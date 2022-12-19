@@ -1,8 +1,12 @@
 import React from "react";
-import dataIconDrawn from "./DIconDrawn";
-import IIcon from "../../typings/interfaces/IIcon";
+import IconPath from "./IconPath";
+import TIcon from "../../typings/types/TIcon";
 
-export default function IconUser({ className, drawn }: IIcon) {
+interface Props {
+  icon: TIcon;
+  className?: string;
+}
+export default function Icon({ className, icon }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -10,7 +14,11 @@ export default function IconUser({ className, drawn }: IIcon) {
       fill="currentColor"
       className={`${className}`}
     >
-      <path fillRule="evenodd" d={dataIconDrawn[drawn]} clipRule="evenodd" />
+      <IconPath icon={icon} />
     </svg>
   );
 }
+
+Icon.defaultProps = {
+  className: "w-24 h-24",
+};
