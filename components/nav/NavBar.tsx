@@ -6,7 +6,7 @@ const pages: TPageTitle[] = ["", "calendar", "bookings", "team", "offices"];
 
 export default function NavBar() {
   return (
-    <nav>
+    <nav className="w-full flex items-center justify-around">
       {pages.map((title: TPageTitle, i: number) => {
         return <NavItem pageTitle={title} key={i} />;
       })}
