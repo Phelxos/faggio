@@ -6,6 +6,7 @@ interface Props {
   icon: TIcon;
   className?: string;
 }
+
 export default function Icon({ className, icon }: Props) {
   return (
     <svg
@@ -20,5 +21,5 @@ export default function Icon({ className, icon }: Props) {
 }
 
 Icon.defaultProps = {
-  className: "w-24 h-24",
+  className: "h-12 w-12",
 };
