@@ -12,7 +12,7 @@ const pages: TPageTitle[] = [
 
 export default function NavBar() {
   return (
-    <nav className="w-full flex items-center justify-around bg-emerald-900 shadow-lg">
+    <nav className="flex w-full items-center justify-around bg-emerald-900 shadow-lg">
       {pages.map((title: TPageTitle, i: number) => {
         return <NavItem pageTitle={title} key={i} />;
       })}
