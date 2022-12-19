@@ -9,10 +9,14 @@ interface Props {
 }
 
 export default function NavItem({ pageTitle }: Props) {
-  const drawnIcon = dataNavIcons[pageTitle] || "home";
+  const drawnIcon = dataNavIcons[pageTitle];
+
   return (
-    <Link href={`/${pageTitle}`}>
-      <Icon icon={drawnIcon} className="h-6 w-6" />
+    <Link
+      href={`/${pageTitle}`}
+      className="grow hover:bg-emerald-500 hover:opacity-100 flex items-center opacity-50 justify-center py-4"
+    >
+      <Icon icon={drawnIcon} className="w-10 h-10 fill-emerald-200" />
     </Link>
   );
 }

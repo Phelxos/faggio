@@ -5,10 +5,11 @@ interface IDataNavIcons {
 }
 
 const dataNavIcons: IDataNavIcons = {
+  home: "home",
   calendar: "calendarDays",
   bookings: "bookOpen",
   offices: "buildingOffice",
-  team: "userGroup",
+  teams: "userGroup",
 };
 
 export default dataNavIcons;
