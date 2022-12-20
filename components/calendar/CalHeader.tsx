@@ -1,13 +1,15 @@
 import useCalendar from "../../stores/SCalendar";
 import SearchAndSelect from "../SearchAndSelect";
 import displayEquivalent from "../../helpers/displayEquivalent";
+import Icon from "../icons/Icon";
 
-export default function CalHead() {
+export default function CalHeader() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
   const incrementSelectedMonth = useCalendar((s) => s.incrementSelectedMonth);
   const displayedMonths = useCalendar((s) => s.displayedMonths);
   const selectedYear = useCalendar((s) => s.selectedYear);
+  const currentYear = useCalendar((s) => s.currentYear);
   const setSelectedYear = useCalendar((s) => s.setSelectedYear);
   const incrementSelectedYear = useCalendar((s) => s.incrementSelectedYear);
   const displayedYears = useCalendar((s) => s.displayedYears);
@@ -17,8 +19,13 @@ export default function CalHead() {
       <div className="mx-auto flex items-center justify-center lg:m-0">
         <svg
           onClick={() => {
-            if (selectedMonth === 0) return;
-            incrementSelectedMonth(-1);
+            if (selectedMonth === 0) {
+              incrementSelectedYear(-1);
+              setSelectedMonth(11);
+              return;
+            } else {
+              incrementSelectedMonth(-1);
+            }
           }}
           xmlns="http://www.w3.org/2000/svg"
           className="mx-1 hidden h-6 w-6 opacity-50 hover:cursor-pointer hover:stroke-slate-100 sm:inline"
@@ -27,11 +34,7 @@ export default function CalHead() {
           stroke="currentColor"
           strokeWidth={2}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
+          <Icon icon="chevronLeft" />
         </svg>
         <SearchAndSelect
           value={displayEquivalent(selectedMonth, "month")}
@@ -40,7 +43,6 @@ export default function CalHead() {
         />
         <svg
           onClick={() => {
-            console.log(selectedMonth);
             if (selectedMonth === 11) {
               incrementSelectedYear(1);
               setSelectedMonth(0);
@@ -56,13 +58,12 @@ export default function CalHead() {
           stroke="currentColor"
           strokeWidth={2}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          <Icon icon="chevronRight" />
         </svg>
       </div>
       <div className="mx-auto flex items-center justify-center lg:m-0">
         <svg
           onClick={() => {
-            if (selectedYear === 0) return;
             incrementSelectedYear(-1);
           }}
           xmlns="http://www.w3.org/2000/svg"
@@ -72,11 +73,7 @@ export default function CalHead() {
           stroke="currentColor"
           strokeWidth={2}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 19l-7-7 7-7"
-          />
+          <Icon icon="chevronLeft" />
         </svg>
         <SearchAndSelect
           value={selectedYear}
@@ -86,7 +83,6 @@ export default function CalHead() {
 
         <svg
           onClick={() => {
-            if (selectedYear === 11) return;
             incrementSelectedYear(1);
           }}
           xmlns="http://www.w3.org/2000/svg"
@@ -96,7 +92,7 @@ export default function CalHead() {
           stroke="currentColor"
           strokeWidth={2}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          <Icon icon="chevronRight" />
         </svg>
       </div>
     </section>

@@ -3,6 +3,8 @@ type TIcon =
   | "calendarDays"
   | "calendar"
   | "check"
+  | "chevronLeft"
+  | "chevronRight"
   | "bookOpen"
   | "buildingOffice"
   | "userGroup"

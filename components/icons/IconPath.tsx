@@ -46,6 +46,22 @@ export default function IconPath({ icon }: Props) {
           />
         </>
       );
+    case "chevronLeft":
+      return (
+        <path
+          fillRule="evenodd"
+          d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+          clipRule="evenodd"
+        />
+      );
+    case "chevronRight":
+      return (
+        <path
+          fillRule="evenodd"
+          d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+          clipRule="evenodd"
+        />
+      );
     case "exclamationCircle":
       return (
         <path
