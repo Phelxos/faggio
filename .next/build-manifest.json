@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/calendar": [
+    "/teams": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/calendar.js"
+      "static/chunks/pages/teams.js"
     ]
   },
   "ampFirstPages": []
