@@ -3,7 +3,7 @@ import useCalendar from "../../stores/SCalendar";
 import mapCalendar from "../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 
-export default function CalenderFullViewBody() {
+export default function CalBody() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const displayedWeekdays = useCalendar((s) => s.displayedWeekdays);
