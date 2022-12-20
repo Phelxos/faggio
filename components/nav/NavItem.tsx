@@ -13,6 +13,7 @@ export default function NavItem({ pageTitle }: Props) {
   const router = useRouter();
   const [isHovering, setIsHovering] = useState(false);
   const [computedClassNameIcon, setComputedClassNameIcon] = useState("");
+
   const handleMouse = {
     over: () => setIsHovering(true),
     out: () => setIsHovering(false),
