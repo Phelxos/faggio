@@ -25,21 +25,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/bookings": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/bookings.js"
-    ],
-    "/calendar": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/calendar.js"
-    ],
-    "/offices": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/offices.js"
-    ],
     "/teams": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
