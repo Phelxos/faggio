@@ -46,7 +46,6 @@ export default function CalBody() {
       </thead>
       <tbody>
         {displayedMonth.map((week: any[], i: number) => {
-          console.log(i % 2, week);
           return (
             <tr
               key={i}
