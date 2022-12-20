@@ -26,7 +26,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="border-r-2 border-emerald-900 p-2 text-center font-mono text-sm font-bold text-emerald-500 opacity-75"
+                  className="border-r-4 border-emerald-900 p-2 text-center font-mono text-sm font-bold text-emerald-500 opacity-75"
                 >
                   {weekday}
                 </th>
@@ -63,7 +63,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className="border-r-2 border-emerald-900 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
+                      className="border-r-4 border-emerald-900 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
                     >
                       {weekday.calWeek}
                     </td>
