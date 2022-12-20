@@ -16,8 +16,8 @@ export default function CalBody() {
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
   return (
-    <table className="h-full w-full grow table-fixed bg-emerald-700 text-emerald-100">
-      <thead>
+    <table className="w-full grow table-fixed">
+      <thead className="bg-emerald-700">
         <tr>
           {displayedWeekdays.map((weekday: string, i: number) => {
             if (weekday === "Sa" || weekday === "So") {
@@ -26,7 +26,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="p-2 text-center font-mono text-lg font-thin text-emerald-900 opacity-75"
+                  className="border-r-2 border-emerald-900 p-2 text-center font-mono text-sm font-bold text-emerald-500 opacity-75"
                 >
                   {weekday}
                 </th>
@@ -35,7 +35,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="p-2 text-center text-xl font-bold text-emerald-400"
+                  className="p-2 text-center font-bold text-emerald-400"
                 >
                   {weekday}
                 </th>
@@ -46,8 +46,16 @@ export default function CalBody() {
       </thead>
       <tbody>
         {displayedMonth.map((week: any[], i: number) => {
+          console.log(i % 2, week);
           return (
-            <tr key={i}>
+            <tr
+              key={i}
+              className={`${
+                i % 2 === 0
+                  ? "bg-emerald-500 text-emerald-700"
+                  : "bg-emerald-600 text-emerald-400"
+              }`}
+            >
               {week.map((weekday: any, i: number) => {
                 if (weekday.isNoDayOfMonth) {
                   return <td key={i}></td>;
@@ -55,7 +63,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`border-emerald-800 p-2 text-center font-mono text-base font-thin text-emerald-900 opacity-50 hover:cursor-pointer hover:bg-emerald-600`}
+                      className="border-r-2 border-emerald-900 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
                     >
                       {weekday.calWeek}
                     </td>
@@ -64,7 +72,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`cursor-pointer p-3 text-center text-xl hover:bg-emerald-500`}
+                      className={`m-2 cursor-pointer p-2 text-center text-3xl font-light hover:rounded-lg hover:bg-emerald-200`}
                     >
                       {getDate(weekday.date)}
                     </td>

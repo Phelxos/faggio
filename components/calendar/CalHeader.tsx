@@ -45,11 +45,11 @@ export default function CalHeader() {
   };
 
   return (
-    <section className="flex h-full w-full grow items-center justify-between rounded-t-lg bg-emerald-800 p-4">
-      <div className="mx-auto flex items-center justify-center lg:m-0">
+    <section className="flex w-full items-center justify-around gap-4 rounded-t-lg bg-emerald-900 p-6">
+      <div className="flex w-1/2 items-center justify-center">
         <Icon
           icon="chevronLeft"
-          className="mx-1 hidden h-6 w-6 opacity-50 hover:cursor-pointer hover:stroke-emerald-100 sm:inline"
+          className="mx-1 hidden h-8 w-8 fill-emerald-700 hover:cursor-pointer hover:fill-emerald-100 sm:inline"
           onClick={handleClick.chevronLeft.month}
         />
         <SearchAndSelect
@@ -60,13 +60,13 @@ export default function CalHeader() {
         <Icon
           icon="chevronRight"
           onClick={handleClick.chevronRight.month}
-          className="mx-1 hidden h-6 w-6 opacity-50 hover:cursor-pointer hover:stroke-emerald-100 sm:inline"
+          className="mx-1 hidden h-8 w-8 fill-emerald-700 hover:cursor-pointer hover:fill-emerald-100 sm:inline"
         />
       </div>
-      <div className="mx-auto flex items-center justify-center lg:m-0">
+      <div className="flex w-1/2 items-center justify-center lg:m-0">
         <Icon
           icon="chevronLeft"
-          className="mx-1 hidden h-6 w-6 opacity-25 hover:cursor-pointer hover:stroke-emerald-100 sm:inline"
+          className="mx-1 hidden h-8 w-8 fill-emerald-700 hover:cursor-pointer hover:fill-emerald-100 sm:inline"
           onClick={handleClick.chevronLeft.year}
         />
         <SearchAndSelect
@@ -76,7 +76,7 @@ export default function CalHeader() {
         />
         <Icon
           icon="chevronRight"
-          className="mx-1 hidden h-6 w-6 opacity-25 hover:cursor-pointer hover:stroke-emerald-100 sm:inline"
+          className="mx-1 hidden h-8 w-8 fill-emerald-700 hover:cursor-pointer hover:fill-emerald-100 sm:inline"
           onClick={handleClick.chevronRight.year}
         />
       </div>
