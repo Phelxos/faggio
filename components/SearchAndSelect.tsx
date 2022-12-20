@@ -2,17 +2,17 @@ import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
 
-interface SearchAndSelectProps {
+interface Props {
   value: any;
   listOfValues: any[];
   setValue: (newVal: any) => void;
 }
 
-const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
+export default function SearchAndSelect({
   value,
   listOfValues,
   setValue,
-}): JSX.Element => {
+}: Props) {
   const [query, setQuery] = useState("");
 
   const filteredListOfValues =
@@ -27,11 +27,11 @@ const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
         );
 
   return (
-    <div className="relative flex w-40 items-center justify-center uppercase text-slate-500">
+    <div className="relative flex w-40 items-center justify-center uppercase text-emerald-500">
       <Combobox value={value} onChange={setValue}>
         <div className="relative m-2 cursor-default overflow-hidden rounded text-left shadow-md sm:text-sm">
           <Combobox.Input
-            className="w-full border-none bg-slate-600 py-2 pl-3 pr-10 text-center text-sm font-semibold tracking-widest text-slate-100"
+            className="w-full border-none bg-emerald-600 py-2 pl-3 pr-10 text-center text-sm font-semibold tracking-widest text-emerald-100"
             displayValue={() => value}
             onChange={(event) => setQuery(event.target.value)}
           />
@@ -46,7 +46,7 @@ const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
           leaveTo="opacity-0"
           afterLeave={() => setQuery("")}
         >
-          <Combobox.Options className="absolute top-12 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md rounded border-2 border-slate-800 bg-slate-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Combobox.Options className="absolute top-12 z-10 mt-1 max-h-60 w-full overflow-auto rounded-md rounded border-2 border-emerald-800 bg-emerald-700 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             {filteredListOfValues.length === 0 && query !== "" ? (
               <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                 Nothing found.
@@ -57,9 +57,13 @@ const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
                   key={i}
                   className={({ active, selected }) =>
                     `relative flex cursor-pointer select-none items-center justify-center p-3 transition-all ${
-                      active ? "bg-slate-500 text-slate-900" : "text-slate-200"
+                      active
+                        ? "bg-emerald-500 text-emerald-900"
+                        : "text-emerald-200"
                     } ${
-                      selected ? "bg-slate-500 text-slate-900" : "font-normal"
+                      selected
+                        ? "bg-emerald-500 text-emerald-900"
+                        : "font-normal"
                     }`
                   }
                   value={value}
@@ -69,14 +73,14 @@ const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
                       <span
                         className={` ${
                           selected
-                            ? "bg-slate-500 text-slate-900"
+                            ? "bg-emerald-500 text-emerald-900"
                             : "font-normal"
                         }`}
                       >
                         {value}
                       </span>
                       {selected ? (
-                        <span className="inset-y-0 left-0 pl-3 text-slate-700">
+                        <span className="inset-y-0 left-0 pl-3 text-emerald-700">
                           <Icon icon="check" />
                         </span>
                       ) : null}
@@ -90,6 +94,4 @@ const SearchAndSelect: React.FC<SearchAndSelectProps> = ({
       </Combobox>
     </div>
   );
-};
-
-export default SearchAndSelect;
+}

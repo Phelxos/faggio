@@ -1,4 +1,4 @@
-import type TIcon from "../../typings/types/TIcon";
+import type TIcon from "../typings/types/TIcon";
 
 interface IDataNavIcons {
   [key: string]: TIcon;

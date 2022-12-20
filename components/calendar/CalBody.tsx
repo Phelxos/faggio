@@ -16,7 +16,7 @@ export default function CalBody() {
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
   return (
-    <table className="w-full grow table-fixed rounded-b bg-slate-700 text-slate-100">
+    <table className="h-full w-full grow table-fixed bg-emerald-700 text-emerald-100">
       <thead>
         <tr>
           {displayedWeekdays.map((weekday: string, i: number) => {
@@ -26,7 +26,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="p-2 text-center font-mono text-lg font-thin text-slate-900 opacity-75"
+                  className="p-2 text-center font-mono text-lg font-thin text-emerald-900 opacity-75"
                 >
                   {weekday}
                 </th>
@@ -35,7 +35,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="p-2 text-center text-xl font-bold text-slate-400"
+                  className="p-2 text-center text-xl font-bold text-emerald-400"
                 >
                   {weekday}
                 </th>
@@ -55,7 +55,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`border-slate-800 p-2 text-center font-mono text-base font-thin text-slate-900 opacity-50 hover:cursor-pointer hover:bg-slate-600`}
+                      className={`border-emerald-800 p-2 text-center font-mono text-base font-thin text-emerald-900 opacity-50 hover:cursor-pointer hover:bg-emerald-600`}
                     >
                       {weekday.calWeek}
                     </td>
@@ -64,7 +64,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`cursor-pointer p-3 text-center text-xl hover:bg-slate-500`}
+                      className={`cursor-pointer p-3 text-center text-xl hover:bg-emerald-500`}
                     >
                       {getDate(weekday.date)}
                     </td>

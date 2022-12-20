@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Icon from "../icons/Icon";
 import type TPageTitle from "../../typings/types/TPageTitle";
-import dataNavIcons from "./DNavIcons";
+import dataNavIcons from "../../data/DNavIcons";
 
 interface Props {
   pageTitle: TPageTitle;
@@ -14,9 +14,9 @@ export default function NavItem({ pageTitle }: Props) {
   return (
     <Link
       href={`/${pageTitle}`}
-      className="grow hover:bg-emerald-500 hover:opacity-100 flex items-center opacity-50 justify-center py-4"
+      className="flex grow items-center justify-center py-4 opacity-50 hover:bg-slate-500 hover:opacity-100"
     >
-      <Icon icon={drawnIcon} className="w-10 h-10 fill-emerald-200" />
+      <Icon icon={drawnIcon} className="h-10 w-10 fill-slate-200" />
     </Link>
   );
 }

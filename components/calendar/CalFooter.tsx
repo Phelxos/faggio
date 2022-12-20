@@ -8,8 +8,9 @@ export default function CalFooter() {
   const currentYear = useCalendar((s) => s.currentYear);
 
   return (
-    <div>
+    <div className="flex w-full items-center justify-center rounded-b-lg bg-emerald-900 py-4">
       <button
+        className="w-1/2 rounded-lg bg-emerald-600 uppercase tracking-widest text-emerald-100"
         onClick={() => {
           setSelectedMonth(currentMonth);
           setSelectedYear(currentYear);
