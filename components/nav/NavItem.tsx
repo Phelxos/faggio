@@ -65,7 +65,7 @@ export default function NavItem({ pageTitle }: Props) {
         icon: "fill-sky-400",
       };
       hoverClassNames = {
-        link: "hover:border-b-sky-400 hover:bg-sky-900",
+        link: "hover:border-b-sky-400 hover:bg-sky-700",
         icon: "fill-sky-400",
       };
       break;
