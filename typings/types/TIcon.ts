@@ -1,15 +1,20 @@
 type TIcon =
-  | "home"
-  | "calendarDays"
+  | "bookOpen"
+  | "buildingOffice"
   | "calendar"
+  | "calendarDays"
+  | "chatBubbleLeftRight"
   | "check"
   | "chevronLeft"
   | "chevronRight"
-  | "bookOpen"
-  | "buildingOffice"
-  | "userGroup"
+  | "envelope"
   | "exclamationCircle"
+  | "home"
+  | "listBullet"
+  | "magnifiyingGlass"
+  | "phone"
   | "select"
-  | "user";
+  | "user"
+  | "userGroup";
 
 export default TIcon;

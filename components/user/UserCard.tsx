@@ -23,7 +23,28 @@ function UserCardInfo({ forename, surname, office }: Colleague) {
 }
 
 function UserCardControls() {
-  return <div className="col-span-2 bg-pink-400"></div>;
+  return (
+    <div className="col-span-2 flex items-center justify-around">
+      <button>
+        <Icon
+          icon="phone"
+          className="h-16 w-16 rounded-full border-2 border-pink-200 bg-pink-600 fill-pink-200 p-3 opacity-75 transition-all hover:bg-pink-200 hover:fill-pink-600 hover:opacity-100"
+        />
+      </button>
+      <button>
+        <Icon
+          icon="envelope"
+          className="h-16 w-16 rounded-full border-2 border-pink-200 bg-pink-600 fill-pink-200 p-3 opacity-75 transition-all hover:bg-pink-200 hover:fill-pink-600 hover:opacity-100"
+        />
+      </button>
+      <button>
+        <Icon
+          icon="chatBubbleLeftRight"
+          className="h-16 w-16 rounded-full border-2 border-pink-200 bg-pink-600 fill-pink-200 p-3 opacity-75 transition-all hover:bg-pink-200 hover:fill-pink-600 hover:opacity-100"
+        />
+      </button>
+    </div>
+  );
 }
 
 export default function UserCard({
