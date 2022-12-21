@@ -47,20 +47,22 @@ export default function Teams({ allColleagues }: Props) {
   }, []);
 
   return (
-    <div className="flex w-full flex-row gap-8 overflow-scroll px-6 shadow-inner">
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        colleagues?.map((colleague: Colleague, i: number) => (
-          <UserCard
-            forename={colleague.forename}
-            surname={colleague.surname}
-            office={colleague.office}
-            imgSrc={colleague.imgSrc}
-            key={i}
-          />
-        ))
-      )}
+    <div className="flex w-full grow flex-col items-center justify-between">
+      <div className="flex w-full flex-row gap-8 overflow-scroll px-6 shadow-inner">
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          colleagues?.map((colleague: Colleague, i: number) => (
+            <UserCard
+              forename={colleague.forename}
+              surname={colleague.surname}
+              office={colleague.office}
+              imgSrc={colleague.imgSrc}
+              key={i}
+            />
+          ))
+        )}
+      </div>
       <ControlsBar />
     </div>
   );
