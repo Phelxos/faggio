@@ -83,7 +83,6 @@ export default function NavItem({ pageTitle }: Props) {
 
   useEffect(() => {
     if (router.pathname === `/${pageTitle}`) {
-      console.log("hallo");
       setComputedClassNameIcon(`h-10 w-10 ${activeClassNames.icon}`);
     } else if (isHovering) {
       setComputedClassNameIcon(`h-10 w-10 ${hoverClassNames.icon}`);
