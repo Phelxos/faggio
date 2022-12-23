@@ -1,19 +1,6 @@
-type location =
-  | "Cologne"
-  | "Dortmund"
-  | "Hamburg"
-  | "Berlin"
-  | "Frankfurt"
-  | "Munich";
+import IColleague from "../../typings/interfaces/IColleague";
 
-export interface Colleague {
-  forename: string;
-  surname: string;
-  office: location;
-  imgSrc?: string;
-}
-
-const allColleagues: Colleague[] = [
+const allColleagues: IColleague[] = [
   {
     forename: "Noah",
     surname: "Bettac",

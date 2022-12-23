@@ -1,7 +1,11 @@
 import React from "react";
-import type { Colleague } from "../../pages/api/teams";
+import IColleague from "../../typings/interfaces/IColleague";
 
-export default function UserCardInfo({ forename, surname, office }: Colleague) {
+export default function UserCardInfo({
+  forename,
+  surname,
+  office,
+}: IColleague) {
   return (
     <div className="flex h-full flex-col justify-center px-2">
       <div className="flex flex-col gap-2">
