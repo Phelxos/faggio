@@ -47,8 +47,8 @@ export default function Teams({ allColleagues }: Props) {
   }, []);
 
   return (
-    <div className="flex w-full grow flex-col items-center justify-between">
-      <div className="flex w-full flex-row gap-8 overflow-scroll px-6 shadow-inner">
+    <div className="flex w-full grow flex-col items-center gap-12">
+      <div className="flex h-[400px] w-full scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 py-4 shadow-inner">
         {isLoading ? (
           <Spinner />
         ) : (

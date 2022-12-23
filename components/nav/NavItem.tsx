@@ -18,7 +18,9 @@ export default function NavItem({ pageTitle }: Props) {
     over: () => setIsHovering(true),
     out: () => setIsHovering(false),
   };
-  const drawnIcon = dataNavIcons[pageTitle];
+
+  let drawnIcon = pageTitle ? dataNavIcons[pageTitle] : "home";
+
   let activeClassNames = {
     link: "",
     icon: "",
@@ -49,10 +51,10 @@ export default function NavItem({ pageTitle }: Props) {
         icon: "fill-amber-400",
       };
       break;
-    case "home":
+    case "":
       activeClassNames = {
-        link: "border-b-slate-400",
-        icon: "fill-slate-800",
+        link: "border-b-slate-200",
+        icon: "fill-slate-200",
       };
       hoverClassNames = {
         link: "hover:border-b-slate-400 hover:bg-slate-500",
@@ -61,12 +63,12 @@ export default function NavItem({ pageTitle }: Props) {
       break;
     case "offices":
       activeClassNames = {
-        link: "border-b-sky-400",
-        icon: "fill-sky-400",
+        link: "border-b-sky-300",
+        icon: "fill-sky-300",
       };
       hoverClassNames = {
-        link: "hover:border-b-sky-400 hover:bg-sky-700",
-        icon: "fill-sky-400",
+        link: "hover:border-b-sky-300 hover:bg-sky-700",
+        icon: "fill-sky-300",
       };
       break;
     case "teams":
@@ -82,6 +84,7 @@ export default function NavItem({ pageTitle }: Props) {
   }
 
   useEffect(() => {
+    console.log(pageTitle);
     if (router.pathname === `/${pageTitle}`) {
       setComputedClassNameIcon(`h-10 w-10 ${activeClassNames.icon}`);
     } else if (isHovering) {
