@@ -3,19 +3,19 @@ import UserCard from "../components/user/UserCard";
 import ControlsBar from "../components/ControlsBar";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
-import type { Colleague } from "./api/teams";
+import IColleague from "../typings/interfaces/IColleague";
 
 interface Props {
-  allColleagues: Colleague[];
+  allColleagues: IColleague[];
 }
 
 export default function Teams({ allColleagues }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [colleagues, setColleagues] = useState<Colleague[]>();
+  const [colleagues, setColleagues] = useState<IColleague[]>();
 
   useEffect(() => {
     const fetchImagesOfColleagues = async (): Promise<
-      Colleague[] | undefined
+      IColleague[] | undefined
     > => {
       try {
         setIsLoading(true);
@@ -26,7 +26,7 @@ export default function Teams({ allColleagues }: Props) {
         const imgSources = randomUsers.results;
 
         const colleaguesWithPhotos = allColleagues.map(
-          (colleague: Colleague, i: number) => {
+          (colleague: IColleague, i: number) => {
             return {
               ...colleague,
               imgSrc: imgSources[i].picture.large as string,
@@ -48,11 +48,11 @@ export default function Teams({ allColleagues }: Props) {
 
   return (
     <div className="flex w-full grow flex-col items-center gap-12">
-      <div className="flex h-[400px] w-full scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 py-4 shadow-inner">
-        {isLoading ? (
+      <div className="flex h-[400px] w-full snap-x snap-mandatory scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 px-[50px] py-4 shadow-inner">
+        {true ? (
           <Spinner />
         ) : (
-          colleagues?.map((colleague: Colleague, i: number) => (
+          colleagues?.map((colleague: IColleague, i: number) => (
             <UserCard
               forename={colleague.forename}
               surname={colleague.surname}
