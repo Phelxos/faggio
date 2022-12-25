@@ -56,8 +56,12 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
   useEffect(() => {
     if (context?.searchForUser) {
       const filteredListOfColleagues = displayedColleagues?.filter(
-        (colleague: IColleague) =>
-          colleague.forename.includes(context.searchForUser)
+        (colleague: IColleague) => {
+          return (
+            colleague.forename.includes(context.searchForUser) ||
+            colleague.surname.includes(context.searchForUser)
+          );
+        }
       );
       setDisplayedColleagues(filteredListOfColleagues);
     } else {
@@ -83,7 +87,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
                 />
               ))
             ) : (
-              <div className="flex h-full flex-col items-center justify-center gap-8">
+              <div className="flex h-full w-full flex-col items-center justify-center gap-8">
                 <Icon
                   icon="exclamationCircle"
                   className="h-32 w-32 fill-slate-800 opacity-50"

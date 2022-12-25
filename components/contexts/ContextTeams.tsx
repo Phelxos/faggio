@@ -27,7 +27,7 @@ export default function ContextTeamsProvider({
 }) {
   const [searchForUser, setSearchForUser] = useState<string>("");
   const [viewOfUsers, setViewOfUsers] = useState<TDisplay>("gallery");
-  const [displayedOffice, setDisplayedOffice] = useState<TLocation>("Dortmund");
+  const [displayedOffice, setDisplayedOffice] = useState<TLocation>("dortmund");
   const [activeButton, setActiveButton] = useState<TActiveButton>("right");
 
   const value = {
