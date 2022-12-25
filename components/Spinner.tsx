@@ -7,7 +7,7 @@ interface Props {
 
 export default function Spinner({ theme = "slate" }: Props) {
   return (
-    <div role="status">
+    <div>
       <svg
         viewBox="0 0 100 101"
         xmlns="http://www.w3.org/2000/svg"

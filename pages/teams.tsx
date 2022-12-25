@@ -1,82 +1,119 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import UserCard from "../components/user/UserCard";
-import ControlsBar from "../components/ControlsBar";
+import TeamsControlsBar from "../components/TeamsControlsBar";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
 import IColleague from "../typings/interfaces/IColleague";
+import { ContextTeams } from "../components/contexts/ContextTeams";
+import Icon from "../components/icons/Icon";
 
 interface Props {
-  allColleagues: IColleague[];
+  allColleaguesfromAPI: IColleague[];
 }
 
-export default function Teams({ allColleagues }: Props) {
+export default function Teams({ allColleaguesfromAPI }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-  const [colleagues, setColleagues] = useState<IColleague[]>();
+  const [displayedColleagues, setDisplayedColleagues] =
+    useState<IColleague[]>();
+  const [allColleagues, setAllColleagues] = useState<IColleague[]>();
+  const context = useContext(ContextTeams);
+
+  const fetchImagesOfColleagues = async (): Promise<
+    IColleague[] | undefined
+  > => {
+    try {
+      setIsLoading(true);
+      const resRandomUsers = await fetch(
+        `https://randomuser.me/api/?results=${allColleaguesfromAPI.length}`
+      );
+      const randomUsers = await resRandomUsers.json();
+      const imgSources = randomUsers.results;
+
+      const colleaguesWithPhotos = allColleaguesfromAPI.map(
+        (colleague: IColleague, i: number) => {
+          return {
+            ...colleague,
+            imgSrc: imgSources[i].picture.large as string,
+          };
+        }
+      );
+      setDisplayedColleagues(colleaguesWithPhotos);
+      setAllColleagues(colleaguesWithPhotos);
+    } catch (e) {
+      console.error(
+        "Something has gone wrong while fetching the photos of the colleagues."
+      );
+    } finally {
+      setIsLoading(false);
+      return;
+    }
+  };
 
   useEffect(() => {
-    const fetchImagesOfColleagues = async (): Promise<
-      IColleague[] | undefined
-    > => {
-      try {
-        setIsLoading(true);
-        const resRandomUsers = await fetch(
-          `https://randomuser.me/api/?results=${allColleagues.length}`
-        );
-        const randomUsers = await resRandomUsers.json();
-        const imgSources = randomUsers.results;
-
-        const colleaguesWithPhotos = allColleagues.map(
-          (colleague: IColleague, i: number) => {
-            return {
-              ...colleague,
-              imgSrc: imgSources[i].picture.large as string,
-            };
-          }
-        );
-        setColleagues(colleaguesWithPhotos);
-      } catch (e) {
-        console.error(
-          "Something has gone wrong while fetching the photos of the colleagues."
-        );
-      } finally {
-        setIsLoading(false);
-        return;
-      }
-    };
     fetchImagesOfColleagues();
   }, []);
+
+  useEffect(() => {
+    if (context?.searchForUser) {
+      const filteredListOfColleagues = displayedColleagues?.filter(
+        (colleague: IColleague) =>
+          colleague.forename.includes(context.searchForUser)
+      );
+      setDisplayedColleagues(filteredListOfColleagues);
+    } else {
+      setDisplayedColleagues(allColleagues);
+    }
+  }, [context?.searchForUser]);
 
   return (
     <div className="flex w-full grow flex-col items-center gap-12">
       <div className="flex h-[400px] w-full snap-x snap-mandatory scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 px-[50px] py-4 shadow-inner">
-        {true ? (
+        {isLoading ? (
           <Spinner />
         ) : (
-          colleagues?.map((colleague: IColleague, i: number) => (
-            <UserCard
-              forename={colleague.forename}
-              surname={colleague.surname}
-              office={colleague.office}
-              imgSrc={colleague.imgSrc}
-              key={i}
-            />
-          ))
+          <>
+            {displayedColleagues!.length > 0 ? (
+              displayedColleagues?.map((colleague: IColleague, i: number) => (
+                <UserCard
+                  forename={colleague.forename}
+                  surname={colleague.surname}
+                  office={colleague.office}
+                  imgSrc={colleague.imgSrc}
+                  key={i}
+                />
+              ))
+            ) : (
+              <div className="flex h-full flex-col items-center justify-center gap-8">
+                <Icon
+                  icon="exclamationCircle"
+                  className="h-32 w-32 fill-slate-800 opacity-50"
+                ></Icon>
+                <p className="text-center">
+                  Es gibt keine Mitarbeiter mit der Buchstabenfolge{" "}
+                  <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
+                    {context?.searchForUser}
+                  </strong>{" "}
+                  im Namen.
+                </p>
+              </div>
+            )}
+          </>
         )}
       </div>
-      <ControlsBar />
+      <TeamsControlsBar />
     </div>
   );
 }
 
 export async function getServerSideProps(context: any) {
   const res = await fetch(`${server}/api/teams`);
-  let allColleagues = await res.json();
-  // const randomNumber = Math.floor(Math.random() * allColleagues.length);
-  // const randomColleague = allColleagues[randomNumber];
+  let allColleaguesfromAPI = await res.json();
+  // const randomNumber = Math.floor(Math.random() * allColleaguesfromAPI.length);
+  // const randomColleague = allColleaguesfromAPI[randomNumber];
 
   return {
     props: {
-      allColleagues,
+      allColleaguesfromAPI,
     },
   };
 }
