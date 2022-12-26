@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import UserCard from "../components/user/UserCard";
-import TeamsControlsBar from "../components/TeamsControlsBar";
+import TeamsControlsBar from "../components/teams-controls-bar/TeamsControlsBar";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
 import IColleague from "../typings/interfaces/IColleague";
@@ -58,8 +58,8 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
       const filteredListOfColleagues = allColleagues?.filter(
         (colleague: IColleague) => {
           return (
-            colleague.forename.includes(context.searchForUser) ||
-            colleague.surname.includes(context.searchForUser)
+            colleague.forename.includes(context?.searchForUser) ||
+            colleague.surname.includes(context?.searchForUser)
           );
         }
       );
@@ -68,6 +68,19 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
       setDisplayedColleagues(allColleagues);
     }
   }, [context?.searchForUser]);
+
+  useEffect(() => {
+    const filteredListOfColleagues = allColleagues?.filter(
+      (colleague: IColleague) => {
+        return (
+          (colleague.forename.includes(context.searchForUser) ||
+            colleague.surname.includes(context.searchForUser)) &&
+          colleague.office === context?.displayedOffice
+        );
+      }
+    );
+    setDisplayedColleagues(filteredListOfColleagues);
+  }, [context?.displayedOffice]);
 
   return (
     <div className="flex w-full grow flex-col items-center gap-12">
@@ -88,6 +101,48 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
                   key={i}
                 />
               ))
+            ) : context?.activeButton === "left" ? (
+              <div className="flex h-full w-full flex-col items-center justify-center gap-8">
+                <Icon
+                  icon="exclamationCircle"
+                  className="h-32 w-32 fill-slate-800 opacity-50"
+                ></Icon>
+                <p className="text-center">
+                  Es gibt keine Mitarbeiter mit der Buchstabenfolge{" "}
+                  <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
+                    {context?.searchForUser}
+                  </strong>{" "}
+                  im Namen.
+                </p>
+              </div>
+            ) : context?.activeButton === "center" ? (
+              <div className="flex h-full w-full flex-col items-center justify-center gap-8">
+                <Icon
+                  icon="exclamationCircle"
+                  className="h-32 w-32 fill-slate-800 opacity-50"
+                ></Icon>
+                <p className="text-center">
+                  Es gibt keine Mitarbeiter in{" "}
+                  <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
+                    {context?.displayedOffice}
+                  </strong>
+                  .
+                </p>
+              </div>
+            ) : context?.activeButton === "right" ? (
+              <div className="flex h-full w-full flex-col items-center justify-center gap-8">
+                <Icon
+                  icon="exclamationCircle"
+                  className="h-32 w-32 fill-slate-800 opacity-50"
+                ></Icon>
+                <p className="text-center">
+                  Es gibt keine Mitarbeiter mit der Buchstabenfolge{" "}
+                  <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
+                    {context?.searchForUser}
+                  </strong>{" "}
+                  im Namen.
+                </p>
+              </div>
             ) : (
               <div className="flex h-full w-full flex-col items-center justify-center gap-8">
                 <Icon

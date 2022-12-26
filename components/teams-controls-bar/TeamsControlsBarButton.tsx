@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Icon from "./icons/Icon";
-import TIcon from "../typings/types/TIcon";
+import Icon from "../icons/Icon";
+import TIcon from "../../typings/types/TIcon";
 
 interface Props {
   icon: TIcon;

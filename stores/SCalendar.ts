@@ -30,7 +30,7 @@ interface Props {
 const today = new Date();
 
 const useCalendar = create<Props>()(
-  devtools((set) => ({
+  devtools((set, get) => ({
     currentDate: today.getDate(),
     currentMonth: today.getMonth(),
     currentYear: today.getFullYear(),

@@ -53,7 +53,7 @@ export default function SearchAndSelect({
         leaveTo="opacity-0"
         afterLeave={() => setQuery("")}
       >
-        <Combobox.Options className="absolute top-8 z-10 mt-2 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-emerald-800 bg-emerald-800 p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Combobox.Options className="absolute top-8 z-10 mt-2 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-emerald-800 bg-emerald-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           {filteredListOfValues.length === 0 && query !== "" ? (
             <div className="relative cursor-default select-none font-mono text-emerald-100">
               Nichts gefunden

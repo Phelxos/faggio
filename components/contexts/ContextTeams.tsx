@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import IColleague from "../../typings/interfaces/IColleague";
 import TDisplay from "../../typings/types/TDisplay";
 import TLocation from "../../typings/types/TLocation";
 import TActiveButton from "../../typings/types/TActiveButton";
