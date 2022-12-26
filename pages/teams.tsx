@@ -126,7 +126,6 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
                   <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
                     {context?.displayedOffice}
                   </strong>
-                  .
                 </p>
               </div>
             ) : context?.activeButton === "right" ? (
