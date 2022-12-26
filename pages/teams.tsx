@@ -55,7 +55,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
 
   useEffect(() => {
     if (context?.searchForUser) {
-      const filteredListOfColleagues = displayedColleagues?.filter(
+      const filteredListOfColleagues = allColleagues?.filter(
         (colleague: IColleague) => {
           return (
             colleague.forename.includes(context.searchForUser) ||
@@ -73,7 +73,9 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
     <div className="flex w-full grow flex-col items-center gap-12">
       <div className="flex h-[400px] w-full snap-x snap-mandatory scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 px-[50px] py-4 shadow-inner">
         {isLoading ? (
-          <Spinner />
+          <div className="flex h-full w-full flex-col items-center justify-center">
+            <Spinner />
+          </div>
         ) : (
           <>
             {displayedColleagues!.length > 0 ? (
@@ -112,8 +114,6 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
 export async function getServerSideProps(context: any) {
   const res = await fetch(`${server}/api/teams`);
   let allColleaguesfromAPI = await res.json();
-  // const randomNumber = Math.floor(Math.random() * allColleaguesfromAPI.length);
-  // const randomColleague = allColleaguesfromAPI[randomNumber];
 
   return {
     props: {

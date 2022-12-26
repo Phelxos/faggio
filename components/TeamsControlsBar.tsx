@@ -1,13 +1,19 @@
-import React, { useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import TActiveButton from "../typings/types/TActiveButton";
 import TIcon from "../typings/types/TIcon";
-import Icon from "./icons/Icon";
 import { ContextTeams } from "./contexts/ContextTeams";
+import Button from "./TeamsControlsBarButton";
 
 export default function ControlsBar() {
   const context = useContext(ContextTeams);
+
   const handleUserSearchInput = (e: any) => {
     if (e.target.value.length > 30) return;
     context?.setSearchForUser(e.target.value);
+  };
+
+  const handleIconButtonClick = (button: TActiveButton) => {
+    context?.setActiveButton(button);
   };
 
   const icons: { left: TIcon; center: TIcon; right: TIcon } = {
@@ -15,6 +21,8 @@ export default function ControlsBar() {
     center: "buildingOffice",
     right: "magnifiyingGlass",
   };
+
+  useEffect(() => {}, [context?.activeButton]);
 
   return (
     <div className="flex w-full flex-col items-stretch rounded bg-slate-600">
@@ -29,24 +37,21 @@ export default function ControlsBar() {
       )}
 
       <div className="flex w-full items-center justify-between gap-8 p-4">
-        <button className="item-center jusftify-center flex grow flex-col">
-          <Icon
-            icon={icons.left}
-            className="h-[100px] w-full grow flex-col items-center justify-center rounded border-4 border-pink-400 bg-pink-800 fill-pink-400 py-4 opacity-75 hover:bg-pink-400 hover:fill-pink-800 hover:opacity-100"
-          />
-        </button>
-        <button className="item-center jusftify-center flex grow flex-col">
-          <Icon
-            icon={icons.center}
-            className="h-[100px] w-full grow flex-col items-center justify-center rounded border-4 border-pink-400 bg-pink-800 fill-pink-400 py-4 opacity-75 hover:bg-pink-400 hover:fill-pink-800 hover:opacity-100"
-          />
-        </button>
-        <button className="item-center jusftify-center flex grow flex-col">
-          <Icon
-            icon={icons.right}
-            className="h-[100px] w-full grow flex-col items-center justify-center rounded border-4 border-pink-400 bg-pink-800 fill-pink-400 py-4 opacity-75 hover:bg-pink-400 hover:fill-pink-800 hover:opacity-100"
-          />
-        </button>
+        <Button
+          icon={icons.left}
+          isActiveButton={context?.activeButton === "left"}
+          onClick={() => handleIconButtonClick("left")}
+        />
+        <Button
+          icon={icons.center}
+          isActiveButton={context?.activeButton === "center"}
+          onClick={() => handleIconButtonClick("center")}
+        />
+        <Button
+          icon={icons.right}
+          isActiveButton={context?.activeButton === "right"}
+          onClick={() => handleIconButtonClick("right")}
+        />
       </div>
     </div>
   );

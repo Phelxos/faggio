@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import IColleague from "../../typings/interfaces/IColleague";
 import TDisplay from "../../typings/types/TDisplay";
 import TLocation from "../../typings/types/TLocation";
-
-type TActiveButton = "left" | "center" | "right";
+import TActiveButton from "../../typings/types/TActiveButton";
 
 interface Interface {
   searchForUser: string;
