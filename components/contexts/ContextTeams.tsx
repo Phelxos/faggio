@@ -12,6 +12,8 @@ interface Interface {
   setDisplayedOffice: (e: TLocation) => void;
   activeButton: TActiveButton;
   setActiveButton: (e: TActiveButton) => void;
+  isListView: boolean;
+  setIsListView: (e: any) => void;
 }
 
 export const ContextTeams = React.createContext<Interface | undefined>(
@@ -27,6 +29,7 @@ export default function ContextTeamsProvider({
   const [viewOfUsers, setViewOfUsers] = useState<TDisplay>("gallery");
   const [displayedOffice, setDisplayedOffice] = useState<TLocation>("dortmund");
   const [activeButton, setActiveButton] = useState<TActiveButton>("right");
+  const [isListView, setIsListView] = useState<boolean>(false);
 
   const value = {
     searchForUser,
@@ -37,6 +40,8 @@ export default function ContextTeamsProvider({
     setDisplayedOffice,
     activeButton,
     setActiveButton,
+    isListView,
+    setIsListView,
   };
   return (
     <ContextTeams.Provider value={value}>{children}</ContextTeams.Provider>

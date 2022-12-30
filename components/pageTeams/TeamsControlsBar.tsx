@@ -4,6 +4,7 @@ import TIcon from "../../typings/types/TIcon";
 import { ContextTeams } from "../contexts/ContextTeams";
 import Button from "./TeamsControlsBarButton";
 import Input from "./TeamsControlsBarInput";
+import Switch from "./TeamsControlsBarSwitch";
 import SearchAndSelect from "../SearchAndSelect";
 import useOffice from "../../stores/SOffices";
 
@@ -26,27 +27,28 @@ export default function ControlsBar() {
     right: "magnifiyingGlass",
   };
 
-  useEffect(() => {
-    console.log(allOffices);
-  }, [context?.activeButton]);
-
   return (
-    <div className="flex h-[250px] w-full flex-col items-stretch justify-end rounded bg-slate-600">
-      {context?.activeButton === "left" ? (
-        <></>
-      ) : context?.activeButton === "center" ? (
-        <SearchAndSelect
-          value={context?.displayedOffice}
-          setValue={context.setDisplayedOffice}
-          listOfValues={allOffices}
-        />
-      ) : context?.activeButton === "right" ? (
-        <Input onInput={handleUserSearchInput} value={context?.searchForUser} />
-      ) : (
-        <></>
-      )}
+    <div className="flex h-[250px] w-full flex-col flex-col items-stretch justify-end gap-8 rounded border-8 border-slate-700 bg-slate-700 p-3">
+      <div className="flex h-full flex-col items-center justify-center rounded bg-slate-600">
+        {context?.activeButton === "left" ? (
+          <Switch />
+        ) : context?.activeButton === "center" ? (
+          <SearchAndSelect
+            value={context?.displayedOffice}
+            setValue={context.setDisplayedOffice}
+            listOfValues={allOffices}
+          />
+        ) : context?.activeButton === "right" ? (
+          <Input
+            onInput={handleUserSearchInput}
+            value={context?.searchForUser}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
 
-      <div className="flex w-full items-center justify-between gap-8 p-4">
+      <div className="flex w-full items-center justify-between gap-8 bg-slate-700">
         <Button
           icon={icons.left}
           isActiveButton={context?.activeButton === "left"}
