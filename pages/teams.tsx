@@ -84,7 +84,13 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
 
   return (
     <div className="flex w-full grow flex-col items-center gap-12">
-      <div className="flex h-[400px] w-full snap-x snap-mandatory scroll-m-2 flex-row items-center gap-10 overflow-scroll rounded border-x-[12px] border-slate-700 bg-slate-700 px-[50px] py-4 shadow-inner">
+      <div
+        className={`${
+          context?.isListView && displayedColleagues?.length > 0
+            ? "flex-col border-8 p-4"
+            : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+        } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
+      >
         {isLoading && (
           <div className="flex h-full w-full flex-col items-center justify-center">
             <Spinner />

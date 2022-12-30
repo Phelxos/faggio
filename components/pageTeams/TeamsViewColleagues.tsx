@@ -22,17 +22,25 @@ function Cards({ colleagues }: { colleagues: IColleague[] | undefined }) {
 
 function List({ colleagues }: { colleagues: IColleague[] | undefined }) {
   return (
-    <ul className="flex w-full flex-col items-stretch gap-8">
+    <ul className="flex w-full snap-always flex-col items-stretch gap-6">
       {colleagues?.map((colleague: IColleague, i: number) => (
-        <li key={i} className="flex items-center gap-4">
+        <li
+          key={i}
+          className="flex items-center gap-2 rounded-lg p-4 text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
+        >
           <Image
             src={colleague.imgSrc || ""}
             alt={`${colleague.forename} ${colleague.surname}`}
             width={50}
             height={50}
-            className="inline rounded-full"
+            className="mr-4 inline rounded-full border-2 border-pink-500"
           />
-          <span>{colleague.forename}</span> <span>{colleague.surname}</span>
+          <span className="text-xl font-thin uppercase tracking-widest text-pink-300">
+            {colleague.forename}
+          </span>{" "}
+          <span className="font-bold uppercase tracking-wider">
+            {colleague.surname}
+          </span>
         </li>
       ))}
     </ul>
