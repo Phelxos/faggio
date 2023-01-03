@@ -18,9 +18,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
   const [allColleagues, setAllColleagues] = useState<IColleague[]>();
   const context = useContext(ContextTeams);
 
-  const fetchImagesOfColleagues = async (): Promise<
-    IColleague[] | undefined
-  > => {
+  async function fetchImagesOfColleagues(): Promise<IColleague[] | undefined> {
     try {
       setIsLoading(true);
       const resRandomUsers = await fetch(
@@ -37,7 +35,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
           };
         }
       );
-      setDisplayedColleagues(colleaguesWithPhotos);
+      filterColleagues(colleaguesWithPhotos);
       setAllColleagues(colleaguesWithPhotos);
     } catch (e) {
       console.error(
@@ -47,15 +45,11 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
       setIsLoading(false);
       return;
     }
-  };
+  }
 
-  useEffect(() => {
-    fetchImagesOfColleagues();
-  }, []);
-
-  useEffect(() => {
+  function filterColleagues(colleagueList: IColleague[] | undefined) {
     if (context?.searchForUser) {
-      const filteredListOfColleagues = allColleagues?.filter(
+      const filteredListOfColleagues = colleagueList?.filter(
         (colleague: IColleague) => {
           return (
             (colleague.forename.includes(context?.searchForUser) ||
@@ -66,13 +60,21 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
       );
       setDisplayedColleagues(filteredListOfColleagues);
     } else {
-      const filteredListOfColleagues = allColleagues?.filter(
+      const filteredListOfColleagues = colleagueList?.filter(
         (colleague: IColleague) => {
           return colleague.office === context?.displayedOffice;
         }
       );
       setDisplayedColleagues(filteredListOfColleagues);
     }
+  }
+
+  useEffect(() => {
+    fetchImagesOfColleagues();
+  }, []);
+
+  useEffect(() => {
+    filterColleagues(allColleagues);
   }, [context?.searchForUser]);
 
   useEffect(() => {
