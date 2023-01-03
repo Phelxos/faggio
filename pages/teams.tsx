@@ -58,14 +58,20 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
       const filteredListOfColleagues = allColleagues?.filter(
         (colleague: IColleague) => {
           return (
-            colleague.forename.includes(context?.searchForUser) ||
-            colleague.surname.includes(context?.searchForUser)
+            (colleague.forename.includes(context?.searchForUser) ||
+              colleague.surname.includes(context?.searchForUser)) &&
+            colleague.office === context?.displayedOffice
           );
         }
       );
       setDisplayedColleagues(filteredListOfColleagues);
     } else {
-      setDisplayedColleagues(allColleagues);
+      const filteredListOfColleagues = allColleagues?.filter(
+        (colleague: IColleague) => {
+          return colleague.office === context?.displayedOffice;
+        }
+      );
+      setDisplayedColleagues(filteredListOfColleagues);
     }
   }, [context?.searchForUser]);
 
@@ -73,8 +79,8 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
     const filteredListOfColleagues = allColleagues?.filter(
       (colleague: IColleague) => {
         return (
-          (colleague.forename.includes(context.searchForUser) ||
-            colleague.surname.includes(context.searchForUser)) &&
+          (colleague.forename.includes(context?.searchForUser) ||
+            colleague.surname.includes(context?.searchForUser)) &&
           colleague.office === context?.displayedOffice
         );
       }

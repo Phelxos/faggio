@@ -15,11 +15,15 @@ export default function BackupMessage() {
         <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
           {context?.displayedOffice}
         </strong>{" "}
-        mit der Buchstabenfolge{" "}
-        <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
-          {context?.searchForUser}
-        </strong>{" "}
-        im Namen.
+        {context?.searchForUser && (
+          <>
+            mit der Buchstabenfolge{" "}
+            <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
+              {context?.searchForUser}
+            </strong>{" "}
+            im Namen.
+          </>
+        )}
       </p>
     </div>
   );
