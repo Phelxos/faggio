@@ -29,7 +29,7 @@ export default function ControlsBar() {
 
   return (
     <div className="flex h-[250px] w-full flex-col flex-col items-stretch justify-end gap-8 rounded border-8 border-slate-700 bg-slate-700 p-3">
-      <div className="flex h-full flex-col items-center justify-center rounded bg-slate-600">
+      <div className="flex h-full flex-col items-center justify-center rounded-lg bg-slate-600">
         {context?.activeButton === "left" ? (
           <Switch />
         ) : context?.activeButton === "center" ? (

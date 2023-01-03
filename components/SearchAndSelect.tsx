@@ -38,12 +38,12 @@ export default function SearchAndSelect({
     >
       <div className="flex h-full cursor-default">
         <Combobox.Input
-          className={`w-full rounded-l border-none bg-${theme}-700 pl-4 text-left font-mono font-thin uppercase tracking-widest text-${theme}-100 shadow-inner outline-none`}
+          className={`w-full rounded-l-lg border-none bg-${theme}-500 pl-4 text-left font-mono font-thin uppercase tracking-widest text-${theme}-100 shadow-inner outline-none`}
           displayValue={() => value}
           onChange={(event) => setQuery(event.target.value)}
         />
         <Combobox.Button
-          className={`flex flex-col items-center justify-center rounded-r bg-${theme}-800 hover:bg-${theme}-400`}
+          className={`flex flex-col items-center justify-center rounded-r-lg bg-${theme}-800 hover:bg-${theme}-700`}
         >
           <Icon
             icon="select"
