@@ -99,19 +99,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
         {displayedColleagues?.length > 0 && (
           <TeamsViewColleagues colleagues={displayedColleagues} />
         )}
-        {displayedColleagues?.length === 0 && (
-          <>
-            {context?.activeButton === "left" ? (
-              <BackupMessage.NoColleague />
-            ) : context?.activeButton === "center" ? (
-              <BackupMessage.NoColleagueInThisOffice />
-            ) : context?.activeButton === "right" ? (
-              <BackupMessage.NoColleague />
-            ) : (
-              <BackupMessage.NoColleague />
-            )}
-          </>
-        )}
+        {displayedColleagues?.length === 0 && <BackupMessage />}
       </div>
       <TeamsControlsBar />
     </div>
