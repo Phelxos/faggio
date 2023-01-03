@@ -34,9 +34,9 @@ export default function SearchAndSelect({
       value={value}
       onChange={setValue}
       as="div"
-      className="relative w-full text-xs"
+      className="relative h-full w-full text-xs"
     >
-      <div className="flex cursor-default">
+      <div className="flex h-full cursor-default">
         <Combobox.Input
           className={`w-full rounded-l border-none bg-${theme}-700 pl-4 text-left font-mono font-thin uppercase tracking-widest text-${theme}-100 shadow-inner outline-none`}
           displayValue={() => value}
@@ -59,7 +59,7 @@ export default function SearchAndSelect({
         afterLeave={() => setQuery("")}
       >
         <Combobox.Options
-          className={`absolute top-8 z-10 mt-2 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={`absolute top-[105%] z-10 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {filteredListOfValues.length === 0 && query !== "" ? (
             <div
