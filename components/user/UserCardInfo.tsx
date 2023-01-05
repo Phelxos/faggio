@@ -9,15 +9,10 @@ export default function UserCardInfo({
   return (
     <div className="flex h-full flex-col justify-center px-2">
       <div className="flex flex-col gap-2">
-<<<<<<< HEAD
-        <span className="text-3xl font-thin tracking-wide">{forename}</span>
-        <span className="text-xl font-bold uppercase tracking-widest">
-=======
         <span className="text-xl font-thin uppercase tracking-widest">
           {forename}
         </span>
         <span className="text-md font-bold uppercase tracking-widest">
->>>>>>> teams
           {surname}
         </span>
       </div>

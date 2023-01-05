@@ -1,29 +1,20 @@
 import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
-<<<<<<< HEAD
-=======
 import TTheme from "../typings/types/TThemes";
->>>>>>> teams
 
 interface Props {
   value: any;
   listOfValues: any[];
   setValue: (newVal: any) => void;
-<<<<<<< HEAD
-=======
   theme?: TTheme;
->>>>>>> teams
 }
 
 export default function SearchAndSelect({
   value,
   listOfValues,
   setValue,
-<<<<<<< HEAD
-=======
   theme = "pink",
->>>>>>> teams
 }: Props) {
   const [query, setQuery] = useState("");
 
@@ -67,11 +58,6 @@ export default function SearchAndSelect({
         leaveTo="opacity-0"
         afterLeave={() => setQuery("")}
       >
-<<<<<<< HEAD
-        <Combobox.Options className="absolute top-8 z-10 mt-2 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-emerald-800 bg-emerald-800 p-2 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {filteredListOfValues.length === 0 && query !== "" ? (
-            <div className="relative cursor-default select-none font-mono text-emerald-100">
-=======
         <Combobox.Options
           className={`absolute top-[105%] z-10 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
@@ -79,7 +65,6 @@ export default function SearchAndSelect({
             <div
               className={`relative cursor-default select-none font-mono text-${theme}-100`}
             >
->>>>>>> teams
               Nichts gefunden
             </div>
           ) : (
@@ -89,19 +74,12 @@ export default function SearchAndSelect({
                 className={({ active, selected }) =>
                   `relative flex cursor-pointer select-none items-center justify-between rounded p-2 font-mono tracking-wider transition-all ${
                     active
-<<<<<<< HEAD
-                      ? "bg-emerald-600 text-emerald-900"
-                      : "text-emerald-200"
-                  } ${
-                    selected ? "bg-emerald-300 text-emerald-900" : "font-normal"
-=======
                       ? `bg-${theme}-600 text-${theme}-900`
                       : `text-${theme}-200`
                   } ${
                     selected
                       ? `bg-${theme}-300 text-${theme}-900`
                       : "font-normal"
->>>>>>> teams
                   }`
                 }
                 value={value}
@@ -110,11 +88,7 @@ export default function SearchAndSelect({
                   <>
                     <span
                       className={` ${
-<<<<<<< HEAD
-                        selected ? "text-emerald-900" : "font-normal"
-=======
                         selected ? `text-${theme}-900` : "font-normal"
->>>>>>> teams
                       }`}
                     >
                       {value}
