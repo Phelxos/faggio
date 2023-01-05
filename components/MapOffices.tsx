@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ContextTeams } from "./contexts/ContextTeams";
 import {
   EOfficesGermanToEnglish,
@@ -14,13 +14,13 @@ import {
 
 interface IMarker {
   markerOffset: number;
-  name: string;
+  name: TOfficesGerman;
   coordinates: [number, number];
 }
 
 const markers: IMarker[] = [
   {
-    markerOffset: 13,
+    markerOffset: 12,
     name: "köln",
     coordinates: [6.953101, 50.935173],
   },
@@ -30,12 +30,12 @@ const markers: IMarker[] = [
     coordinates: [7.466, 51.51494],
   },
   {
-    markerOffset: -5,
+    markerOffset: -6,
     name: "münchen",
     coordinates: [11.57549, 48.13743],
   },
   {
-    markerOffset: -5,
+    markerOffset: -6,
     name: "hamburg",
     coordinates: [9.99302, 53.55073],
   },
@@ -45,9 +45,19 @@ const markers: IMarker[] = [
     coordinates: [8.68417, 50.11552],
   },
   {
-    markerOffset: -5,
+    markerOffset: -6,
     name: "berlin",
     coordinates: [13.41053, 52.52437],
+  },
+  {
+    markerOffset: 12,
+    name: "leipzig",
+    coordinates: [12.360103, 51.340199],
+  },
+  {
+    markerOffset: 11,
+    name: "bremen",
+    coordinates: [8.806422, 53.073635],
   },
 ];
 
@@ -56,6 +66,8 @@ const geoUrl =
 
 export default function MapOffices() {
   const context = useContext(ContextTeams);
+  const [dynClassCircle, setDynClassCircle] = useState("");
+
   function handleMarkerClick(office: TOfficesGerman) {
     const germanOfficeNameInLowerCase: TOfficesGerman =
       office.toLowerCase() as TOfficesGerman;
@@ -64,10 +76,14 @@ export default function MapOffices() {
     );
   }
 
+  function isCurrentlyDisplayedOffice(chosenOffice: TOfficesGerman) {
+    return chosenOffice === EOfficesEnglishToGerman[context?.displayedOffice!];
+  }
+
   return (
     <ComposableMap
       width={120}
-      height={200}
+      height={160}
       projection="geoMercator"
       projectionConfig={{
         rotate: [-10.5, -51.0, 0],
@@ -81,9 +97,8 @@ export default function MapOffices() {
               key={geo.rsmKey}
               geography={geo}
               fill="#0284c7"
-              stroke="#0369a1"
-              strokeOpacity={0.25}
-              strokeWidth={0.125}
+              stroke="#0284c7"
+              className="outline-none"
             />
           ))
         }
@@ -92,21 +107,32 @@ export default function MapOffices() {
         <Marker
           key={name}
           coordinates={coordinates}
-          onClick={() => handleMarkerClick(name as TOfficesGerman)}
+          onClick={() => handleMarkerClick(name)}
+          style={{
+            default: { fill: "#06F" },
+            hover: { fontSize: "16px" },
+          }}
         >
-          <circle r={3} fill="#e1f5fe" stroke="#01579b" strokeWidth={0.5} />
+          <circle
+            r={4}
+            fill={`${isCurrentlyDisplayedOffice(name) ? "#7dd3fc" : "#0369a1"}`}
+            stroke="#01579b"
+            strokeWidth={0.5}
+            className={`${
+              !isCurrentlyDisplayedOffice(name) ? "animate-pulse" : ""
+            }`}
+          />
           <text
             textAnchor="middle"
             y={markerOffset}
             style={{
-              fontSize: "8px",
+              fontSize: "6px",
               fill: "#e1f5fe",
               textTransform: "uppercase",
               fontWeight: `${
-                name === EOfficesEnglishToGerman[context?.displayedOffice!]
-                  ? "bold"
-                  : "lighter"
+                isCurrentlyDisplayedOffice(name) ? "bold" : "300"
               }`,
+              opacity: `${isCurrentlyDisplayedOffice(name) ? "1" : "0.5"}`,
             }}
           >
             {name}

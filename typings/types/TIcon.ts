@@ -10,6 +10,7 @@ type TIcon =
   | "envelope"
   | "exclamationCircle"
   | "home"
+  | "informationCircle"
   | "listBullet"
   | "magnifiyingGlass"
   | "phone"

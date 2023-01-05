@@ -4,7 +4,9 @@ type TOffices =
   | "hamburg"
   | "berlin"
   | "frankfurt"
-  | "munich";
+  | "munich"
+  | "bremen"
+  | "leipzig";
 
 export type TOfficesGerman =
   | "köln"
@@ -12,7 +14,9 @@ export type TOfficesGerman =
   | "hamburg"
   | "berlin"
   | "frankfurt"
-  | "münchen";
+  | "münchen"
+  | "bremen"
+  | "leipzig";
 
 export enum EOfficesEnglishToGerman {
   cologne = "köln",
@@ -21,6 +25,8 @@ export enum EOfficesEnglishToGerman {
   berlin = "berlin",
   frankfurt = "frankfurt",
   munich = "münchen",
+  leipzig = "leipzig",
+  bremen = "bremen",
 }
 
 export enum EOfficesGermanToEnglish {
@@ -30,6 +36,8 @@ export enum EOfficesGermanToEnglish {
   berlin = "berlin",
   frankfurt = "frankfurt",
   "münchen" = "munich",
+  leipzig = "leipzig",
+  bremen = "bremen",
 }
 
 export default TOffices;
