@@ -1,9 +1,9 @@
 type TLocation =
-  | "Cologne"
-  | "Dortmund"
-  | "Hamburg"
-  | "Berlin"
-  | "Frankfurt"
-  | "Munich";
+  | "cologne"
+  | "dortmund"
+  | "hamburg"
+  | "berlin"
+  | "frankfurt"
+  | "munich";
 
 export default TLocation;
