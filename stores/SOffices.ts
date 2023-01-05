@@ -1,6 +1,6 @@
 import create from "zustand";
 import { devtools } from "zustand/middleware";
-import TLocation from "../typings/types/TLocation";
+import TLocation from "../typings/types/TOffices";
 import { server } from "../config/index";
 
 interface Props {

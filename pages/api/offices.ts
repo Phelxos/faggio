@@ -1,4 +1,4 @@
-import TLocation from "../../typings/types/TLocation";
+import TLocation from "../../typings/types/TOffices";
 
 const offices: { office: TLocation }[] = [
   { office: "dortmund" },
