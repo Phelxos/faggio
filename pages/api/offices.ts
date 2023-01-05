@@ -1,12 +1,12 @@
 import TLocation from "../../typings/types/TLocation";
 
 const offices: { office: TLocation }[] = [
-  { office: "Dortmund" },
-  { office: "Cologne" },
-  { office: "Hamburg" },
-  { office: "Berlin" },
-  { office: "Frankfurt" },
-  { office: "Munich" },
+  { office: "dortmund" },
+  { office: "cologne" },
+  { office: "hamburg" },
+  { office: "berlin" },
+  { office: "frankfurt" },
+  { office: "munich" },
 ];
 export default function handler(req: any, res: any) {
   res.status(200).json(offices);
