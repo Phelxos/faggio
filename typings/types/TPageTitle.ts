@@ -1,3 +1,3 @@
-type TPageTitle = "home" | "calendar" | "bookings" | "offices" | "teams";
+type TPageTitle = "" | "calendar" | "bookings" | "offices" | "teams";
 
 export default TPageTitle;
