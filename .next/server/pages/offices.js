@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-"use strict";
-=======
->>>>>>> dev
 /*
  * ATTENTION: An "eval-source-map" devtool has been used.
  * This devtool is neither made for production nor for readable output files.
@@ -16,8 +12,6 @@ exports.id = "pages/offices";
 exports.ids = ["pages/offices"];
 exports.modules = {
 
-<<<<<<< HEAD
-=======
 /***/ "./node_modules/@swc/helpers/lib/_extends.js":
 /*!***************************************************!*\
   !*** ./node_modules/@swc/helpers/lib/_extends.js ***!
@@ -139,16 +133,12 @@ eval("\n\"use client\";\nObject.defineProperty(exports, \"__esModule\", ({\n    
 
 /***/ }),
 
->>>>>>> dev
 /***/ "./pages/offices.tsx":
 /*!***************************!*\
   !*** ./pages/offices.tsx ***!
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-<<<<<<< HEAD
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ offices)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n\n\nfunction offices() {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        children: \"offices\"\n    }, void 0, false, {\n        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n        lineNumber: 4,\n        columnNumber: 10\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wYWdlcy9vZmZpY2VzLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBO0FBQTBCO0FBRVgsU0FBU0MsVUFBVTtJQUNoQyxxQkFBTyw4REFBQ0M7a0JBQUk7Ozs7OztBQUNkLENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9mYWdnaW8vLi9wYWdlcy9vZmZpY2VzLnRzeD9lNjU4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tIFwicmVhY3RcIjtcblxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gb2ZmaWNlcygpIHtcbiAgcmV0dXJuIDxkaXY+b2ZmaWNlczwvZGl2Pjtcbn1cbiJdLCJuYW1lcyI6WyJSZWFjdCIsIm9mZmljZXMiLCJkaXYiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./pages/offices.tsx\n");
-=======
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Offices)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_icons_Icon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/icons/Icon */ \"./components/icons/Icon.tsx\");\n/* harmony import */ var _components_MapOffices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/MapOffices */ \"./components/MapOffices.tsx\");\n/* harmony import */ var _components_offices_OfficeInformationCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/offices/OfficeInformationCard */ \"./components/offices/OfficeInformationCard.tsx\");\n\n\n\n\n\nfunction Offices() {\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"w-full grow\",\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"rounded-lg bg-gradient-to-b from-sky-700 to-slate-900 p-4\",\n                children: [\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h2\", {\n                        className: \"text-2xl font-light tracking-widest text-slate-900/50\",\n                        children: \"Standort w\\xe4hlen\"\n                    }, void 0, false, {\n                        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                        lineNumber: 10,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: \"relative mt-1 flex items-center justify-start border-t-2 border-sky-900 py-2\",\n                        children: [\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_icons_Icon__WEBPACK_IMPORTED_MODULE_2__[\"default\"], {\n                                icon: \"informationCircle\",\n                                className: \"-top-10 -right-2 mr-1 h-7 w-7 fill-slate-900/75\"\n                            }, void 0, false, {\n                                fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                                lineNumber: 14,\n                                columnNumber: 11\n                            }, this),\n                            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h3\", {\n                                className: \"z-10 text-xs uppercase\",\n                                children: [\n                                    \"auf Stadt \",\n                                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"strong\", {\n                                        children: \"tippen\"\n                                    }, void 0, false, {\n                                        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                                        lineNumber: 19,\n                                        columnNumber: 23\n                                    }, this)\n                                ]\n                            }, void 0, true, {\n                                fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                                lineNumber: 18,\n                                columnNumber: 11\n                            }, this)\n                        ]\n                    }, void 0, true, {\n                        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                        lineNumber: 13,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_MapOffices__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {}, void 0, false, {\n                        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                        lineNumber: 22,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                lineNumber: 9,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_offices_OfficeInformationCard__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {}, void 0, false, {\n                fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n                lineNumber: 24,\n                columnNumber: 7\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"/Users/wilhelm.felk/Library/CloudStorage/OneDrive-adessoGroup/werkstatt/faggio/pages/offices.tsx\",\n        lineNumber: 8,\n        columnNumber: 5\n    }, this);\n}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9wYWdlcy9vZmZpY2VzLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7OztBQUFBO0FBQStEO0FBQ25CO0FBQ007QUFDOEI7QUFFakUsU0FBU0ksVUFBVTtJQUNoQyxxQkFDRSw4REFBQ0M7UUFBSUMsV0FBVTs7MEJBQ2IsOERBQUNEO2dCQUFJQyxXQUFVOztrQ0FDYiw4REFBQ0M7d0JBQUdELFdBQVU7a0NBQXdEOzs7Ozs7a0NBR3RFLDhEQUFDRDt3QkFBSUMsV0FBVTs7MENBQ2IsOERBQUNMLDhEQUFJQTtnQ0FDSE8sTUFBSztnQ0FDTEYsV0FBVTs7Ozs7OzBDQUVaLDhEQUFDRztnQ0FBR0gsV0FBVTs7b0NBQXlCO2tEQUMzQiw4REFBQ0k7a0RBQU87Ozs7Ozs7Ozs7Ozs7Ozs7OztrQ0FHdEIsOERBQUNSLDhEQUFVQTs7Ozs7Ozs7Ozs7MEJBRWIsOERBQUNDLGlGQUFxQkE7Ozs7Ozs7Ozs7O0FBRzVCLENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9mYWdnaW8vLi9wYWdlcy9vZmZpY2VzLnRzeD9lNjU4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCwgeyB1c2VFZmZlY3QsIHVzZUNvbnRleHQsIHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XG5pbXBvcnQgSWNvbiBmcm9tIFwiLi4vY29tcG9uZW50cy9pY29ucy9JY29uXCI7XG5pbXBvcnQgTWFwT2ZmaWNlcyBmcm9tIFwiLi4vY29tcG9uZW50cy9NYXBPZmZpY2VzXCI7XG5pbXBvcnQgT2ZmaWNlSW5mb3JtYXRpb25DYXJkIGZyb20gXCIuLi9jb21wb25lbnRzL29mZmljZXMvT2ZmaWNlSW5mb3JtYXRpb25DYXJkXCI7XG5cbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIE9mZmljZXMoKSB7XG4gIHJldHVybiAoXG4gICAgPGRpdiBjbGFzc05hbWU9XCJ3LWZ1bGwgZ3Jvd1wiPlxuICAgICAgPGRpdiBjbGFzc05hbWU9XCJyb3VuZGVkLWxnIGJnLWdyYWRpZW50LXRvLWIgZnJvbS1za3ktNzAwIHRvLXNsYXRlLTkwMCBwLTRcIj5cbiAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQtMnhsIGZvbnQtbGlnaHQgdHJhY2tpbmctd2lkZXN0IHRleHQtc2xhdGUtOTAwLzUwXCI+XG4gICAgICAgICAgU3RhbmRvcnQgd8OkaGxlblxuICAgICAgICA8L2gyPlxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInJlbGF0aXZlIG10LTEgZmxleCBpdGVtcy1jZW50ZXIganVzdGlmeS1zdGFydCBib3JkZXItdC0yIGJvcmRlci1za3ktOTAwIHB5LTJcIj5cbiAgICAgICAgICA8SWNvblxuICAgICAgICAgICAgaWNvbj1cImluZm9ybWF0aW9uQ2lyY2xlXCJcbiAgICAgICAgICAgIGNsYXNzTmFtZT1cIi10b3AtMTAgLXJpZ2h0LTIgbXItMSBoLTcgdy03IGZpbGwtc2xhdGUtOTAwLzc1XCJcbiAgICAgICAgICAvPlxuICAgICAgICAgIDxoMyBjbGFzc05hbWU9XCJ6LTEwIHRleHQteHMgdXBwZXJjYXNlXCI+XG4gICAgICAgICAgICBhdWYgU3RhZHQgPHN0cm9uZz50aXBwZW48L3N0cm9uZz5cbiAgICAgICAgICA8L2gzPlxuICAgICAgICA8L2Rpdj5cbiAgICAgICAgPE1hcE9mZmljZXMgLz5cbiAgICAgIDwvZGl2PlxuICAgICAgPE9mZmljZUluZm9ybWF0aW9uQ2FyZCAvPlxuICAgIDwvZGl2PlxuICApO1xufVxuIl0sIm5hbWVzIjpbIlJlYWN0IiwiSWNvbiIsIk1hcE9mZmljZXMiLCJPZmZpY2VJbmZvcm1hdGlvbkNhcmQiLCJPZmZpY2VzIiwiZGl2IiwiY2xhc3NOYW1lIiwiaDIiLCJpY29uIiwiaDMiLCJzdHJvbmciXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./pages/offices.tsx\n");
 
@@ -271,7 +261,6 @@ module.exports = require("next/dist/shared/lib/side-effect.js");
 
 "use strict";
 module.exports = require("next/dist/shared/lib/utils/warn-once.js");
->>>>>>> dev
 
 /***/ }),
 
@@ -281,16 +270,11 @@ module.exports = require("next/dist/shared/lib/utils/warn-once.js");
   \************************/
 /***/ ((module) => {
 
-<<<<<<< HEAD
-=======
 "use strict";
->>>>>>> dev
 module.exports = require("react");
 
 /***/ }),
 
-<<<<<<< HEAD
-=======
 /***/ "react-simple-maps":
 /*!************************************!*\
   !*** external "react-simple-maps" ***!
@@ -302,17 +286,13 @@ module.exports = require("react-simple-maps");
 
 /***/ }),
 
->>>>>>> dev
 /***/ "react/jsx-dev-runtime":
 /*!****************************************!*\
   !*** external "react/jsx-dev-runtime" ***!
   \****************************************/
 /***/ ((module) => {
 
-<<<<<<< HEAD
-=======
 "use strict";
->>>>>>> dev
 module.exports = require("react/jsx-dev-runtime");
 
 /***/ })
