@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TDisplay from "../../typings/types/TDisplay";
-import TLocation from "../../typings/types/TOffices";
+import TLocation from "../../typings/types/TOfficeCity";
 import TActiveButton from "../../typings/types/TActiveButton";
 
 interface Interface {

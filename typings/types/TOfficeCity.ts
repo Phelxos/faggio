@@ -1,4 +1,4 @@
-type TOffices =
+type TOfficeCity =
   | "cologne"
   | "dortmund"
   | "hamburg"
@@ -8,7 +8,7 @@ type TOffices =
   | "bremen"
   | "leipzig";
 
-export type TOfficesGerman =
+export type TOfficeCityGerman =
   | "köln"
   | "dortmund"
   | "hamburg"
@@ -40,4 +40,4 @@ export enum EOfficesGermanToEnglish {
   bremen = "bremen",
 }
 
-export default TOffices;
+export default TOfficeCity;

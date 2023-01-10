@@ -3,8 +3,8 @@ import { ContextTeams } from "./contexts/ContextTeams";
 import {
   EOfficesGermanToEnglish,
   EOfficesEnglishToGerman,
-  TOfficesGerman,
-} from "../typings/types/TOffices";
+  TOfficeCityGerman,
+} from "../typings/types/TOfficeCity";
 import {
   ComposableMap,
   Geographies,
@@ -14,7 +14,7 @@ import {
 
 interface IMarker {
   markerOffset: number;
-  name: TOfficesGerman;
+  name: TOfficeCityGerman;
   coordinates: [number, number];
 }
 
@@ -66,17 +66,16 @@ const geoUrl =
 
 export default function MapOffices() {
   const context = useContext(ContextTeams);
-  const [dynClassCircle, setDynClassCircle] = useState("");
 
-  function handleMarkerClick(office: TOfficesGerman) {
-    const germanOfficeNameInLowerCase: TOfficesGerman =
-      office.toLowerCase() as TOfficesGerman;
+  function handleMarkerClick(office: TOfficeCityGerman) {
+    const germanOfficeNameInLowerCase: TOfficeCityGerman =
+      office.toLowerCase() as TOfficeCityGerman;
     context?.setDisplayedOffice(
       EOfficesGermanToEnglish[germanOfficeNameInLowerCase]
     );
   }
 
-  function isCurrentlyDisplayedOffice(chosenOffice: TOfficesGerman) {
+  function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityGerman) {
     return chosenOffice === EOfficesEnglishToGerman[context?.displayedOffice!];
   }
 

@@ -1,4 +1,4 @@
-import TLocation from "../types/TOffices";
+import TLocation from "../types/TOfficeCity";
 
 interface IColleague {
   forename: string;
