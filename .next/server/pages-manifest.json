@@ -3,9 +3,10 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/teams": "pages/teams.js",
+  "/api/teams": "pages/api/teams.js",
+  "/": "pages/index.js",
+  "/calendar": "pages/calendar.js",
   "/api/offices": "pages/api/offices.js",
   "/offices": "pages/offices.js",
-  "/api/teams": "pages/api/teams.js",
-  "/calendar": "pages/calendar.js",
   "/bookings": "pages/bookings.js"
 }

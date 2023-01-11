@@ -2,14 +2,17 @@ import TOffices from "../types/TOfficeCity";
 
 export default interface IOffice {
   city: TOffices;
-  district: string;
+  district?: string;
   adress: {
     street: string;
     housenumber: string;
-    postcode: number;
+    postcode: string;
   };
-  areaInSquareMetres: number;
+  areaInSquareMetres?: number;
   headcount: number;
   workstations: number;
-  areDogsAllowed: boolean;
+  areDogsAllowed?: boolean;
+  description?: string;
+  imgSrc?: string;
+  intranetUrl?: string;
 }
