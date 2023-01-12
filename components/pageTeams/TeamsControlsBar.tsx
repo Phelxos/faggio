@@ -10,7 +10,7 @@ import useOffice from "../../stores/SOffices";
 
 export default function ControlsBar() {
   const context = useContext(ContextTeams);
-  const allOffices = useOffice((s) => s.allOffices);
+  const allOfficeNames = useOffice((s) => s.allOfficeNames);
 
   const handleUserSearchInput = (e: any) => {
     if (e.target.value.length > 30) return;
@@ -36,7 +36,7 @@ export default function ControlsBar() {
           <SearchAndSelect
             value={context?.displayedOffice}
             setValue={context.setDisplayedOffice}
-            listOfValues={allOffices}
+            listOfValues={allOfficeNames}
           />
         ) : context?.activeButton === "right" ? (
           <Input

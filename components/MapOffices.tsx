@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { ContextTeams } from "./contexts/ContextTeams";
+import React from "react";
+import useOffice from "../stores/SOffices";
 import {
   EOfficesGermanToEnglish,
   EOfficesEnglishToGerman,
@@ -65,18 +65,17 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
 export default function MapOffices() {
-  const context = useContext(ContextTeams);
+  const displayedOffice = useOffice((s) => s.displayedOffice);
+  const setDisplayedOffice = useOffice((s) => s.setDisplayedOffice);
 
   function handleMarkerClick(office: TOfficeCityGerman) {
     const germanOfficeNameInLowerCase: TOfficeCityGerman =
       office.toLowerCase() as TOfficeCityGerman;
-    context?.setDisplayedOffice(
-      EOfficesGermanToEnglish[germanOfficeNameInLowerCase]
-    );
+    setDisplayedOffice(EOfficesGermanToEnglish[germanOfficeNameInLowerCase]);
   }
 
   function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityGerman) {
-    return chosenOffice === EOfficesEnglishToGerman[context?.displayedOffice!];
+    return chosenOffice === EOfficesEnglishToGerman[displayedOffice!];
   }
 
   return (
