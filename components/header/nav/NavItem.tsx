@@ -31,7 +31,7 @@ export default function NavItem({ pageTitle }: Props) {
   };
 
   switch (pageTitle) {
-    case "calendar":
+    case "bookings":
       activeClassNames = {
         link: "border-b-emerald-400",
         icon: "fill-emerald-400",
@@ -39,16 +39,6 @@ export default function NavItem({ pageTitle }: Props) {
       hoverClassNames = {
         link: "hover:border-b-emerald-400 hover:bg-emerald-800",
         icon: "fill-emerald-400",
-      };
-      break;
-    case "bookings":
-      activeClassNames = {
-        link: "border-b-amber-400",
-        icon: "fill-amber-400",
-      };
-      hoverClassNames = {
-        link: "hover:border-b-amber-400 hover:bg-amber-900",
-        icon: "fill-amber-400",
       };
       break;
     case "":
@@ -63,12 +53,12 @@ export default function NavItem({ pageTitle }: Props) {
       break;
     case "offices":
       activeClassNames = {
-        link: "border-b-sky-300",
-        icon: "fill-sky-300",
+        link: "border-b-amber-300",
+        icon: "fill-amber-300",
       };
       hoverClassNames = {
-        link: "hover:border-b-sky-300 hover:bg-sky-700",
-        icon: "fill-sky-300",
+        link: "hover:border-b-amber-300 hover:bg-amber-700",
+        icon: "fill-amber-300",
       };
       break;
     case "teams":
@@ -96,7 +86,7 @@ export default function NavItem({ pageTitle }: Props) {
   return (
     <NavActiveLink
       href={`/${pageTitle}`}
-      className={`flex grow items-center justify-center border-b-4 border-slate-500 py-4 opacity-50 transition hover:opacity-100 ${hoverClassNames.link}`}
+      className={`flex grow items-center justify-center border-b-4 border-slate-500 py-3 opacity-50 transition hover:opacity-100 ${hoverClassNames.link}`}
       activeClassName={activeClassNames.link}
       onMouseOver={handleMouse.over}
       onMouseOut={handleMouse.out}
