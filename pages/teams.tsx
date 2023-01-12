@@ -6,12 +6,14 @@ import { server } from "../config/index";
 import IColleague from "../typings/interfaces/IColleague";
 import { ContextTeams } from "../components/contexts/ContextTeams";
 import TeamsViewColleagues from "../components/pageTeams/TeamsViewColleagues";
+import useOffice from "../stores/SOffices";
 
 interface Props {
   allColleaguesfromAPI: IColleague[];
 }
 
 export default function Teams({ allColleaguesfromAPI }: Props) {
+  const displayedOffice = useOffice((s) => s.displayedOffice);
   const [isLoading, setIsLoading] = useState(true);
   const [displayedColleagues, setDisplayedColleagues] =
     useState<IColleague[]>();
@@ -71,6 +73,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
 
   useEffect(() => {
     fetchImagesOfColleagues();
+    context?.setDisplayedOffice(displayedOffice);
   }, []);
 
   useEffect(() => {
