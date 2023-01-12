@@ -84,8 +84,8 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
     const filteredListOfColleagues = allColleagues?.filter(
       (colleague: IColleague) => {
         return (
-          (colleague.forename.includes(context?.searchForUser) ||
-            colleague.surname.includes(context?.searchForUser)) &&
+          (colleague.forename.includes(context!.searchForUser) ||
+            colleague.surname.includes(context!.searchForUser)) &&
           colleague.office === context?.displayedOffice
         );
       }
@@ -94,26 +94,32 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
   }, [context?.displayedOffice]);
 
   return (
-    <div className="flex w-full grow flex-col items-center gap-12">
-      <div
-        className={`${
-          context?.isListView && displayedColleagues?.length > 0
-            ? "flex-col border-8 p-4"
-            : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-        } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
-      >
-        {isLoading && (
-          <div className="flex h-full w-full flex-col items-center justify-center">
-            <Spinner />
+    <>
+      {isLoading || !displayedColleagues ? (
+        <Spinner />
+      ) : (
+        <div className="flex w-full grow flex-col items-center gap-12">
+          <div
+            className={`${
+              context?.isListView && displayedColleagues?.length > 0
+                ? "flex-col border-8 p-4"
+                : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+            } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
+          >
+            {isLoading && (
+              <div className="flex h-full w-full flex-col items-center justify-center">
+                <Spinner />
+              </div>
+            )}
+            {displayedColleagues?.length > 0 && (
+              <TeamsViewColleagues colleagues={displayedColleagues} />
+            )}
+            {displayedColleagues?.length === 0 && <BackupMessage />}
           </div>
-        )}
-        {displayedColleagues?.length > 0 && (
-          <TeamsViewColleagues colleagues={displayedColleagues} />
-        )}
-        {displayedColleagues?.length === 0 && <BackupMessage />}
-      </div>
-      <TeamsControlsBar />
-    </div>
+          <TeamsControlsBar />
+        </div>
+      )}
+    </>
   );
 }
 

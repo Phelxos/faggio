@@ -14,7 +14,6 @@ export default function TeamsControlsBarSwitch() {
       <input
         type="checkbox"
         checked={context?.isListView}
-        value={context?.isListView}
         className="peer sr-only"
         onChange={handleCheckboxChange}
       />

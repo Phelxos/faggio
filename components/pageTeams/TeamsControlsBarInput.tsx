@@ -11,7 +11,7 @@ export default function TeamsControlsBarInput({ onInput, value }: Props) {
   const [borderColor, setBorderColor] = useState(200);
 
   useEffect(() => {
-    if (context?.searchForUser?.length > 0) {
+    if (context?.searchForUser?.length! > 0) {
       setBorderColor(700);
     } else {
       setBorderColor(200);
