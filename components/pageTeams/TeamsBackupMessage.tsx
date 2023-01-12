@@ -4,6 +4,7 @@ import { ContextTeams } from "../contexts/ContextTeams";
 
 export default function BackupMessage() {
   const context = useContext(ContextTeams);
+
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8">
       <Icon
