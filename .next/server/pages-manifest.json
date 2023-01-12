@@ -2,6 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/bookings": "pages/bookings.js",
   "/calendar": "pages/calendar.js",
+  "/teams": "pages/teams.js",
+  "/api/teams": "pages/api/teams.js",
+  "/offices": "pages/offices.js",
   "/api/offices": "pages/api/offices.js"
 }
