@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavActiveLink from "./NavActiveLink";
-import Icon from "../icons/Icon";
-import type TPageTitle from "../../typings/types/TPageTitle";
-import dataNavIcons from "../../data/DNavIcons";
+import Icon from "../../icons/Icon";
+import type TPageTitle from "../../../typings/types/TPageTitle";
+import dataNavIcons from "../../../data/DNavIcons";
 
 interface Props {
   pageTitle: TPageTitle;

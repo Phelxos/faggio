@@ -1,6 +1,6 @@
 import React from "react";
 import NavItem from "./NavItem";
-import TPageTitle from "../../typings/types/TPageTitle";
+import TPageTitle from "../../../typings/types/TPageTitle";
 
 const pages: TPageTitle[] = ["", "calendar", "bookings", "teams", "offices"];
 

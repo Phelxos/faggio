@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TPageTitle from "../typings/types/TPageTitle";
-import NavBar from "./nav/NavBar";
+import NavBar from "./header/nav/NavBar";
 
 export default function Header() {
   return (
