@@ -20,7 +20,7 @@ export default function StatusBar() {
     <div
       className={`flex items-center justify-between bg-${color}-700 py-1 px-3 text-xs`}
     >
-      <StatusUser />
+      <StatusUser color={color} />
       <StatusLocation color={color} />
     </div>
   );

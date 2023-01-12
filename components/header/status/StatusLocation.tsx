@@ -15,7 +15,7 @@ export default function StatusLocation({ color }: IProps) {
       <p className={`font-mono font-bold uppercase text-${color}-500`}>
         {EOfficesEnglishToGerman[displayedOffice]}
       </p>
-      <Icon className="ml-1 h-3 w-3 fill-slate-600" icon="mapPin" />
+      <Icon className={`ml-1 h-3 w-3 fill-${color}-600`} icon="mapPin" />
     </div>
   );
 }

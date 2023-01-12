@@ -31,16 +31,6 @@ export default function NavItem({ pageTitle }: Props) {
   };
 
   switch (pageTitle) {
-    case "bookings":
-      activeClassNames = {
-        link: "border-b-emerald-400",
-        icon: "fill-emerald-400",
-      };
-      hoverClassNames = {
-        link: "hover:border-b-emerald-400 hover:bg-emerald-800",
-        icon: "fill-emerald-400",
-      };
-      break;
     case "":
       activeClassNames = {
         link: "border-b-slate-200",
@@ -51,14 +41,24 @@ export default function NavItem({ pageTitle }: Props) {
         icon: "fill-slate-800",
       };
       break;
-    case "offices":
+    case "bookings":
       activeClassNames = {
-        link: "border-b-amber-300",
-        icon: "fill-amber-300",
+        link: "border-b-emerald-400",
+        icon: "fill-emerald-400",
       };
       hoverClassNames = {
-        link: "hover:border-b-amber-300 hover:bg-amber-700",
-        icon: "fill-amber-300",
+        link: "hover:border-b-emerald-400 hover:bg-emerald-800",
+        icon: "fill-emerald-400",
+      };
+      break;
+    case "offices":
+      activeClassNames = {
+        link: "border-b-amber-400",
+        icon: "fill-amber-400",
+      };
+      hoverClassNames = {
+        link: "hover:border-b-amber-400 hover:bg-amber-900",
+        icon: "fill-amber-400",
       };
       break;
     case "teams":
