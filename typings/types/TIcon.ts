@@ -13,6 +13,7 @@ type TIcon =
   | "informationCircle"
   | "listBullet"
   | "magnifiyingGlass"
+  | "mapPin"
   | "phone"
   | "select"
   | "user"
