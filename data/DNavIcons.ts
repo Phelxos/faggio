@@ -5,8 +5,7 @@ interface IDataNavIcons {
 }
 
 const dataNavIcons: IDataNavIcons = {
-  calendar: "calendarDays",
-  bookings: "bookOpen",
+  bookings: "calendarDays",
   offices: "buildingOffice",
   teams: "userGroup",
 };

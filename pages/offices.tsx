@@ -21,7 +21,7 @@ export default function Offices() {
         </div>
         <MapOffices />
       </div>
-      <OfficeInformationCard />
+      {/* <OfficeInformationCard /> */}
     </div>
   );
 }

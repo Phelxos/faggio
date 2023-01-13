@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import NavActiveLink from "./NavActiveLink";
-import Icon from "../icons/Icon";
-import type TPageTitle from "../../typings/types/TPageTitle";
-import dataNavIcons from "../../data/DNavIcons";
+import Icon from "../../icons/Icon";
+import type TPageTitle from "../../../typings/types/TPageTitle";
+import dataNavIcons from "../../../data/DNavIcons";
 
 interface Props {
   pageTitle: TPageTitle;
@@ -31,26 +31,6 @@ export default function NavItem({ pageTitle }: Props) {
   };
 
   switch (pageTitle) {
-    case "calendar":
-      activeClassNames = {
-        link: "border-b-emerald-400",
-        icon: "fill-emerald-400",
-      };
-      hoverClassNames = {
-        link: "hover:border-b-emerald-400 hover:bg-emerald-800",
-        icon: "fill-emerald-400",
-      };
-      break;
-    case "bookings":
-      activeClassNames = {
-        link: "border-b-amber-400",
-        icon: "fill-amber-400",
-      };
-      hoverClassNames = {
-        link: "hover:border-b-amber-400 hover:bg-amber-900",
-        icon: "fill-amber-400",
-      };
-      break;
     case "":
       activeClassNames = {
         link: "border-b-slate-200",
@@ -61,14 +41,24 @@ export default function NavItem({ pageTitle }: Props) {
         icon: "fill-slate-800",
       };
       break;
-    case "offices":
+    case "bookings":
       activeClassNames = {
-        link: "border-b-sky-300",
-        icon: "fill-sky-300",
+        link: "border-b-emerald-400",
+        icon: "fill-emerald-400",
       };
       hoverClassNames = {
-        link: "hover:border-b-sky-300 hover:bg-sky-700",
-        icon: "fill-sky-300",
+        link: "hover:border-b-emerald-400 hover:bg-emerald-800",
+        icon: "fill-emerald-400",
+      };
+      break;
+    case "offices":
+      activeClassNames = {
+        link: "border-b-amber-400",
+        icon: "fill-amber-400",
+      };
+      hoverClassNames = {
+        link: "hover:border-b-amber-400 hover:bg-amber-900",
+        icon: "fill-amber-400",
       };
       break;
     case "teams":
@@ -96,7 +86,7 @@ export default function NavItem({ pageTitle }: Props) {
   return (
     <NavActiveLink
       href={`/${pageTitle}`}
-      className={`flex grow items-center justify-center border-b-4 border-slate-500 py-4 opacity-50 transition hover:opacity-100 ${hoverClassNames.link}`}
+      className={`flex grow items-center justify-center border-b-4 border-slate-500 py-3 opacity-50 transition hover:opacity-100 ${hoverClassNames.link}`}
       activeClassName={activeClassNames.link}
       onMouseOver={handleMouse.over}
       onMouseOut={handleMouse.out}

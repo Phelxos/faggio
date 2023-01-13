@@ -1,5 +1,6 @@
 import React from "react";
+import Cal from "../components/calendar/Cal";
 
-export default function bookings() {
-  return <div>bookings</div>;
+export default function Bookings() {
+  return <Cal />;
 }
