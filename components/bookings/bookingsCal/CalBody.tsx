@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import useCalendar from "../../stores/SCalendar";
-import mapCalendar from "../../helpers/mapCalendar";
+import useCalendar from "../../../stores/SCalendar";
+import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 
 export default function CalBody() {
