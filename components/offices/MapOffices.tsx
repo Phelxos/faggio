@@ -13,49 +13,52 @@ import {
 } from "react-simple-maps";
 
 interface IMarker {
-  markerOffset: number;
+  markerOffset: {
+    x: number;
+    y: number;
+  };
   name: TOfficeCityGerman;
   coordinates: [number, number];
 }
 
 const markers: IMarker[] = [
   {
-    markerOffset: 12,
+    markerOffset: { x: 1, y: 13 },
     name: "köln",
     coordinates: [6.953101, 50.935173],
   },
   {
-    markerOffset: -6,
+    markerOffset: { x: 0, y: -6 },
     name: "dortmund",
     coordinates: [7.466, 51.51494],
   },
   {
-    markerOffset: -6,
+    markerOffset: { x: 0, y: -6 },
     name: "münchen",
     coordinates: [11.57549, 48.13743],
   },
   {
-    markerOffset: -6,
+    markerOffset: { x: 0, y: -6 },
     name: "hamburg",
     coordinates: [9.99302, 53.55073],
   },
   {
-    markerOffset: 12,
+    markerOffset: { x: 0, y: 12 },
     name: "frankfurt",
     coordinates: [8.68417, 50.11552],
   },
   {
-    markerOffset: -6,
+    markerOffset: { x: 0, y: -6 },
     name: "berlin",
     coordinates: [13.41053, 52.52437],
   },
   {
-    markerOffset: 12,
+    markerOffset: { x: 0, y: 12 },
     name: "leipzig",
     coordinates: [12.360103, 51.340199],
   },
   {
-    markerOffset: 11,
+    markerOffset: { x: 0, y: 11 },
     name: "bremen",
     coordinates: [8.806422, 53.073635],
   },
@@ -113,8 +116,10 @@ export default function MapOffices() {
         >
           <circle
             r={4}
-            fill={`${isCurrentlyDisplayedOffice(name) ? "#7dd3fc" : "#0369a1"}`}
-            stroke="#01579b"
+            fill={`${isCurrentlyDisplayedOffice(name) ? "#fef3c7" : "#92400e"}`}
+            stroke={`${
+              isCurrentlyDisplayedOffice(name) ? "#92400e" : "#fef3c7"
+            }`}
             strokeWidth={0.5}
             className={`${
               !isCurrentlyDisplayedOffice(name) ? "animate-pulse" : ""
@@ -122,15 +127,17 @@ export default function MapOffices() {
           />
           <text
             textAnchor="middle"
-            y={markerOffset}
+            x={markerOffset.x}
+            y={markerOffset.y}
             style={{
-              fontSize: "7px",
-              fill: "#e1f5fe",
+              fontSize: `${isCurrentlyDisplayedOffice(name) ? "8px" : "5px"}`,
+              fill: "#fef3c7",
               textTransform: "uppercase",
               fontWeight: `${
                 isCurrentlyDisplayedOffice(name) ? "bold" : "300"
               }`,
               opacity: `${isCurrentlyDisplayedOffice(name) ? "1" : "0.5"}`,
+              transition: "all 0.25s",
             }}
           >
             {name}

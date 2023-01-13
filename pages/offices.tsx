@@ -14,7 +14,7 @@ export default function Offices() {
             Standort wählen
           </h2>
         </div>
-        <div className="bg-gradient-to-b from-amber-800 to-slate-900">
+        <div className="bg-gradient-to-b from-amber-700 to-slate-900">
           <MapOffices />
         </div>
       </div>
