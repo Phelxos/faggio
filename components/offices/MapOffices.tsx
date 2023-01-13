@@ -124,7 +124,7 @@ export default function MapOffices() {
             textAnchor="middle"
             y={markerOffset}
             style={{
-              fontSize: "6px",
+              fontSize: "7px",
               fill: "#e1f5fe",
               textTransform: "uppercase",
               fontWeight: `${

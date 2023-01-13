@@ -26,10 +26,10 @@ export default function OfficeInformationCard({
               height={100}
             />
             <div className="p-6">
-              <h2 className="title-font mb-1 text-xs font-bold tracking-widest text-amber-900 text-gray-500">
+              <h2 className="title-font mb-1 text-xs font-bold tracking-widest text-amber-800 text-gray-500">
                 {district}
               </h2>
-              <h1 className="title-font mb-3 text-2xl font-medium uppercase tracking-widest text-amber-900 text-white">
+              <h1 className="title-font mb-3 text-2xl font-medium uppercase tracking-widest text-amber-800 text-white">
                 {city}
               </h1>
               <p className="mb-3 leading-relaxed">{description}</p>
