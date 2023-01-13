@@ -18,29 +18,36 @@ const initialValueForCurrentlyChosenOffice: IOffice = {
 };
 
 interface Props {
+  allOffices: IOffice[] | [];
   allOfficeNames: TOfficeCity[] | [];
   displayedOffice: TOfficeCity;
   setDisplayedOffice: (office: TOfficeCity) => void;
   currentlyChosenOffice: IOffice;
-  setCurrentlyChosenOffice: (office: IOffice) => void;
+  setCurrentlyChosenOffice: (officeCityName: TOfficeCity) => void;
   fetchAndSetOffice: () => void;
 }
 
 const useOffice = create<Props>()(
   devtools((set, get) => ({
+    allOffices: [],
     allOfficeNames: [],
     displayedOffice: "dortmund",
     setDisplayedOffice: (office) => {
       set({ displayedOffice: office });
     },
     currentlyChosenOffice: initialValueForCurrentlyChosenOffice,
-    setCurrentlyChosenOffice: (office) => {
-      set({ currentlyChosenOffice: office });
+    setCurrentlyChosenOffice: (officeCityName) => {
+      set((state) => ({
+        currentlyChosenOffice: state.allOffices.find(
+          (entry: IOffice) => entry.city === officeCityName
+        ),
+      }));
     },
     fetchAndSetOffice: async () => {
       try {
         const res = await fetch(`${server}/api/offices`);
         const fullList = await res.json();
+        set({ allOffices: fullList });
         set({
           allOfficeNames: fullList.map((entry: IOffice) => entry.city),
         });
