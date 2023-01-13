@@ -1,5 +1,5 @@
 import React from "react";
-import useCalendar from "../../stores/SCalendar";
+import useCalendar from "../../../stores/SCalendar";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
