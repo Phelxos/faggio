@@ -3,33 +3,33 @@ import React from "react";
 import IOffice from "../../typings/interfaces/IOffice";
 
 export default function OfficeInformationCard({
-  city = "dortmund",
-  district = "Stadtviertel",
-  adress = { street: "straße", housenumber: "1", postcode: "12345" },
-  areaInSquareMetres = 100,
-  headcount = 25,
-  workstations = 25,
-  areDogsAllowed = true,
-  description = "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz adessos ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
+  city,
+  district,
+  adress,
+  areaInSquareMetres,
+  headcount,
+  workstations,
+  areDogsAllowed,
+  description,
   imgSrc = "/images/office.jpg",
 }: IOffice) {
   return (
-    <div className="container mx-auto px-5 py-24">
+    <div className="container mx-auto">
       <div className="-m-4 flex flex-wrap">
         <div className="p-4 md:w-1/3">
-          <div className="h-full overflow-hidden rounded-lg border-2 border-gray-800">
+          <div className="h-full overflow-hidden rounded-lg border-2 border-gray-800 bg-amber-600">
             <Image
               className="w-full object-cover object-center md:h-36 lg:h-48"
-              src={imgSrc}
+              src={imgSrc ?? ""}
               alt="blog"
               width={100}
               height={100}
             />
             <div className="p-6">
-              <h2 className="title-font mb-1 text-xs font-medium tracking-widest text-gray-500">
+              <h2 className="title-font mb-1 text-xs font-bold tracking-widest text-amber-900 text-gray-500">
                 {district}
               </h2>
-              <h1 className="title-font mb-3 text-lg font-medium uppercase tracking-widest text-white">
+              <h1 className="title-font mb-3 text-2xl font-medium uppercase tracking-widest text-amber-900 text-white">
                 {city}
               </h1>
               <p className="mb-3 leading-relaxed">{description}</p>

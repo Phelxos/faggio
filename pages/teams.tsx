@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import TeamsControlsBar from "../components/pageTeams/TeamsControlsBar";
-import BackupMessage from "../components/pageTeams/TeamsBackupMessage";
+import TeamsControlsBar from "../components/teams/TeamsControlsBar";
+import BackupMessage from "../components/teams/TeamsBackupMessage";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
 import IColleague from "../typings/interfaces/IColleague";
 import { ContextTeams } from "../components/contexts/ContextTeams";
-import TeamsViewColleagues from "../components/pageTeams/TeamsViewColleagues";
+import TeamsViewColleagues from "../components/teams/TeamsViewColleagues";
 import useOffice from "../stores/SOffices";
 
 interface Props {

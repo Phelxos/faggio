@@ -16,6 +16,7 @@ export default function StatusBar() {
       : "home";
     setColor(pageTitleToTheme.get(pageTitle)!);
   }, [router.pathname]);
+
   return (
     <div
       className={`flex items-center justify-between bg-${color}-700 py-1 px-3 text-xs`}

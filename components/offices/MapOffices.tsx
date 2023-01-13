@@ -1,10 +1,10 @@
 import React from "react";
-import useOffice from "../stores/SOffices";
+import useOffice from "../../stores/SOffices";
 import {
   EOfficesGermanToEnglish,
   EOfficesEnglishToGerman,
   TOfficeCityGerman,
-} from "../typings/types/TOfficeCity";
+} from "../../typings/types/TOfficeCity";
 import {
   ComposableMap,
   Geographies,
@@ -94,8 +94,8 @@ export default function MapOffices() {
             <Geography
               key={geo.rsmKey}
               geography={geo}
-              fill="#0284c7"
-              stroke="#0284c7"
+              fill="#d97706"
+              stroke="#d97706"
               className="outline-none"
             />
           ))
