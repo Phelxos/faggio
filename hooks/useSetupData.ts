@@ -1,11 +1,9 @@
 import useOffice from "../stores/SOffices";
 
 export default function useSetupData() {
-  const fetchAndSetAllOfficeNames = useOffice(
-    (s) => s.fetchAndSetAllOfficeNames
-  );
+  const fetchAndSetOffice = useOffice((s) => s.fetchAndSetOffice);
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
   if (allOfficeNames.length === 0) {
-    fetchAndSetAllOfficeNames();
+    fetchAndSetOffice();
   }
 }

@@ -2,6 +2,10 @@ import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import Icon from "../../icons/Icon";
+<<<<<<< HEAD
+=======
+import useCurrentTheme from "../../../hooks/useCurrentTheme";
+>>>>>>> bookings
 
 export default function CalHeader() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
@@ -12,6 +16,7 @@ export default function CalHeader() {
   const incrementSelectedYear = useCalendar((s) => s.incrementSelectedYear);
   const displayedMonths = useCalendar((s) => s.displayedMonths);
   const displayedYears = useCalendar((s) => s.displayedYears);
+  useCurrentTheme();
 
   const handleClick = {
     chevronLeft: {
@@ -56,6 +61,7 @@ export default function CalHeader() {
           value={displayEquivalent(selectedMonth, "month")}
           setValue={(val) => setSelectedMonth(displayEquivalent(val, "month"))}
           listOfValues={displayedMonths}
+          theme="emerald"
         />
         <Icon
           icon="chevronRight"
@@ -73,6 +79,7 @@ export default function CalHeader() {
           value={selectedYear}
           setValue={setSelectedYear}
           listOfValues={displayedYears}
+          theme="emerald"
         />
         <Icon
           icon="chevronRight"
