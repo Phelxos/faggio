@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
-interface Interface {}
+interface Interface {
+  isBeingEdited: boolean;
+}
 
 export const ContextTeams = React.createContext<Interface | undefined>(
   undefined
