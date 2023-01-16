@@ -2,6 +2,7 @@ import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import Icon from "../../icons/Icon";
+import useCurrentTheme from "../../../hooks/useCurrentTheme";
 
 export default function CalHeader() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
@@ -12,6 +13,7 @@ export default function CalHeader() {
   const incrementSelectedYear = useCalendar((s) => s.incrementSelectedYear);
   const displayedMonths = useCalendar((s) => s.displayedMonths);
   const displayedYears = useCalendar((s) => s.displayedYears);
+  useCurrentTheme();
 
   const handleClick = {
     chevronLeft: {
