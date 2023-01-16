@@ -2,6 +2,7 @@ import React from "react";
 import CalHeader from "./CalHeader";
 import CalBody from "./CalBody";
 import CalFooter from "./CalFooter";
+import CalEditControls from "./CalEditControls";
 
 export default function Calendar() {
   return (
