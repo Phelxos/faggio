@@ -14,7 +14,7 @@ export default function SearchAndSelect({
   value,
   listOfValues,
   setValue,
-  theme,
+  theme = "slate",
 }: Props) {
   const [query, setQuery] = useState("");
 
