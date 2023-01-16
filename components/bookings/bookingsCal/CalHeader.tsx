@@ -2,10 +2,7 @@ import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import Icon from "../../icons/Icon";
-<<<<<<< HEAD
-=======
 import useCurrentTheme from "../../../hooks/useCurrentTheme";
->>>>>>> bookings
 
 export default function CalHeader() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
