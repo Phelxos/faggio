@@ -56,6 +56,7 @@ export default function CalHeader() {
           value={displayEquivalent(selectedMonth, "month")}
           setValue={(val) => setSelectedMonth(displayEquivalent(val, "month"))}
           listOfValues={displayedMonths}
+          theme="emerald"
         />
         <Icon
           icon="chevronRight"
@@ -73,6 +74,7 @@ export default function CalHeader() {
           value={selectedYear}
           setValue={setSelectedYear}
           listOfValues={displayedYears}
+          theme="emerald"
         />
         <Icon
           icon="chevronRight"
