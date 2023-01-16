@@ -11,6 +11,10 @@ export default function CalBody() {
     return mapCalendar(selectedMonth, selectedYear);
   });
 
+  const handleDateClick = (weekday: any) => {
+    const date = new Date(weekday.date);
+  };
+
   useEffect(() => {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
   }, [selectedYear, selectedMonth, displayedWeekdays]);
@@ -72,6 +76,7 @@ export default function CalBody() {
                     <td
                       key={i}
                       className={`m-2 cursor-pointer p-2 text-center text-3xl font-light hover:rounded-lg hover:bg-emerald-200`}
+                      onClick={() => handleDateClick(weekday)}
                     >
                       {getDate(weekday.date)}
                     </td>
