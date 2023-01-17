@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ContextBookings } from "../../contexts/ContextBookings";
+import { CBookings } from "../../contexts/CBookings";
 import Icon from "../../icons/Icon";
 
 function ButtonPlus(props: any) {
@@ -36,7 +36,7 @@ function ButtonXMark(props: any) {
 }
 
 export default function CalEditControls() {
-  const context = useContext(ContextBookings);
+  const context = useContext(CBookings);
   return (
     <div className="fixed right-0 bottom-0 flex items-center justify-end gap-4 p-4">
       {context?.isBeingEdited ? (

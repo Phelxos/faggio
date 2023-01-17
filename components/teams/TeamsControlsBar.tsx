@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import TActiveButton from "../../typings/types/TActiveButton";
 import TIcon from "../../typings/types/TIcon";
-import { ContextTeams } from "../contexts/ContextTeams";
+import { CTeams } from "../contexts/CTeams";
 import Button from "./TeamsControlsBarButton";
 import Input from "./TeamsControlsBarInput";
 import Switch from "./TeamsControlsBarSwitch";
@@ -9,7 +9,7 @@ import SearchAndSelect from "../SearchAndSelect";
 import useOffice from "../../stores/SOffices";
 
 export default function ControlsBar() {
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
 
   const handleUserSearchInput = (e: any) => {

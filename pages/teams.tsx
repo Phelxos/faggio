@@ -4,7 +4,7 @@ import BackupMessage from "../components/teams/TeamsBackupMessage";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
 import ICoworker from "../typings/interfaces/ICoworker";
-import { ContextTeams } from "../components/contexts/ContextTeams";
+import { CTeams } from "../components/contexts/CTeams";
 import TeamsViewCoworkers from "../components/teams/TeamsViewCoworkers";
 import useOffice from "../stores/SOffices";
 
@@ -19,7 +19,7 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>();
   const [allCoworkers, setAllCoworkers] = useState<ICoworker[]>();
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
 
   async function fetchImagesOfCoworkers(): Promise<ICoworker[] | undefined> {
     try {

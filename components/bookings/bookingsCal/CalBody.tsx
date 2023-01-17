@@ -3,13 +3,13 @@ import useCalendar from "../../../stores/SCalendar";
 import useBookings from "../../../stores/SBookings";
 import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
-import { ContextBookings } from "../../contexts/ContextBookings";
+import { CBookings } from "../../contexts/CBookings";
 import TCoworkerId from "../../../typings/types/TCoworkerId";
 import TOfficeCity from "../../../typings/types/TOfficeCity";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
-  const context = useContext(ContextBookings);
+  const context = useContext(CBookings);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);

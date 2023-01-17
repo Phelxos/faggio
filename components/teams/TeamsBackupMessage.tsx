@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import Icon from "../icons/Icon";
-import { ContextTeams } from "../contexts/ContextTeams";
+import { CTeams } from "../contexts/CTeams";
 
 export default function BackupMessage() {
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8">

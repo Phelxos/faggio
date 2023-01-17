@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
-import { ContextBookings } from "../../contexts/ContextBookings";
+import { CBookings } from "../../contexts/CBookings";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -13,7 +13,7 @@ export default function CalFooter() {
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
-  const context = useContext(ContextBookings);
+  const context = useContext(CBookings);
 
   useEffect(() => {
     context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
