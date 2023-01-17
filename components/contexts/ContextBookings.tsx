@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import TOfficeCity from "../../typings/types/TOfficeCity";
 import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
+import IBooking from "../../typings/interfaces/IBooking";
 
 interface Interface {
   isBeingEdited: boolean;
   toggleIsBeingEdited: () => void;
   locallySelectedOfficeName: TOfficeCity;
   setLocallySelectedOfficeName: (office: TOfficeCity) => void;
-  datesToBeSaved: Date[];
-  addDateToBeSaved: (date: Date) => void;
-  saveDatesToBeSaved: () => void;
-  deleteDatesToBeSaved: () => void;
+  bookingsToBeSaved: IBooking[];
+  addBookingsToBeSaved: (booking: IBooking) => void;
+  saveBookingsToBeSaved: () => void;
+  deleteBookingsToBeSaved: () => void;
 }
 
 export const ContextBookings = React.createContext<Interface | undefined>(
@@ -23,19 +24,19 @@ export default function ContextBookingsProvider({
   children: JSX.Element;
 }) {
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
-  const [datesToBeSaved, setDatesToBeSaved] = useState<Date[]>([]);
+  const [bookingsToBeSaved, setbookingsToBeSaved] = useState<IBooking[]>([]);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
     useState<TOfficeCity>(initialValueForGloballySelectedOffice.city);
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
   };
-  const addDateToBeSaved = (date: Date) => {
-    setDatesToBeSaved([...datesToBeSaved, date]);
+  const addBookingsToBeSaved = (booking: IBooking) => {
+    setbookingsToBeSaved([...bookingsToBeSaved, booking]);
   };
-  const saveDatesToBeSaved = () => {};
-  const deleteDatesToBeSaved = () => {
-    setDatesToBeSaved([]);
+  const saveBookingsToBeSaved = () => {};
+  const deleteBookingsToBeSaved = () => {
+    setbookingsToBeSaved([]);
     setIsBeingEdited(false);
   };
 
@@ -44,10 +45,10 @@ export default function ContextBookingsProvider({
     toggleIsBeingEdited,
     locallySelectedOfficeName,
     setLocallySelectedOfficeName,
-    datesToBeSaved,
-    addDateToBeSaved,
-    saveDatesToBeSaved,
-    deleteDatesToBeSaved,
+    bookingsToBeSaved,
+    addBookingsToBeSaved,
+    saveBookingsToBeSaved,
+    deleteBookingsToBeSaved,
   };
 
   return (

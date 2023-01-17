@@ -3,6 +3,8 @@ import useCalendar from "../../../stores/SCalendar";
 import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 import { ContextBookings } from "../../contexts/ContextBookings";
+import TCoworkerId from "../../../typings/types/TCoworkerId";
+import TOfficeCity from "../../../typings/types/TOfficeCity";
 
 export default function CalBody() {
   const context = useContext(ContextBookings);
@@ -14,7 +16,12 @@ export default function CalBody() {
   });
 
   const handleDateClick = (weekday: any) => {
-    const date = new Date(weekday.date);
+    if (context?.isBeingEdited) {
+      const date = new Date(weekday.date);
+      const coworker: TCoworkerId = 9999;
+      const office: TOfficeCity = context!.locallySelectedOfficeName;
+      context.addBookingsToBeSaved({ date, coworker, office });
+    }
   };
 
   useEffect(() => {
