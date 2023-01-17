@@ -5,7 +5,7 @@ import CalFooter from "./CalFooter";
 
 export default function Calendar() {
   return (
-    <div className="flex h-[480px] w-full flex-col rounded-lg bg-emerald-900 bg-emerald-600">
+    <div className="flex h-[480px] w-full flex-col rounded-lg bg-slate-700">
       <CalHeader />
       <CalBody />
       <CalFooter />
