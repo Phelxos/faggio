@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TOfficeCity from "../../typings/types/TOfficeCity";
-import useOffice from "../../stores/SOffices";
+import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 
 interface Interface {
   isBeingEdited: boolean;
@@ -25,7 +25,7 @@ export default function ContextBookingsProvider({
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
   const [datesToBeSaved, setDatesToBeSaved] = useState<Date[]>([]);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
-    useState<TOfficeCity>("dortmund");
+    useState<TOfficeCity>(initialValueForGloballySelectedOffice.city);
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);

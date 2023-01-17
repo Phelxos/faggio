@@ -4,7 +4,7 @@ import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
 import TOfficeCity from "../typings/types/TOfficeCity";
 
-const initialValueForGloballySelectedOffice: IOffice = {
+export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
   district: "Stadtviertel",
   adress: { street: "straße", housenumber: "1", postcode: "12345" },
