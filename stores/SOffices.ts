@@ -4,7 +4,7 @@ import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
 import TOfficeCity from "../typings/types/TOfficeCity";
 
-const initialValueForCurrentlyChosenOffice: IOffice = {
+const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
   district: "Stadtviertel",
   adress: { street: "straße", housenumber: "1", postcode: "12345" },
@@ -20,10 +20,10 @@ const initialValueForCurrentlyChosenOffice: IOffice = {
 interface Props {
   allOffices: IOffice[] | [];
   allOfficeNames: TOfficeCity[] | [];
-  displayedOffice: TOfficeCity;
-  setDisplayedOffice: (office: TOfficeCity) => void;
-  currentlyChosenOffice: IOffice;
-  setCurrentlyChosenOffice: (officeCityName: TOfficeCity) => void;
+  globallySelectedOfficeName: TOfficeCity;
+  setGloballySelectedOfficeName: (office: TOfficeCity) => void;
+  globallySelectedOffice: IOffice;
+  setGloballySelectedOffice: (officeCityName: TOfficeCity) => void;
   fetchAndSetOffice: () => void;
 }
 
@@ -31,14 +31,14 @@ const useOffice = create<Props>()(
   devtools((set, get) => ({
     allOffices: [],
     allOfficeNames: [],
-    displayedOffice: "dortmund",
-    setDisplayedOffice: (office) => {
-      set({ displayedOffice: office });
+    globallySelectedOfficeName: "dortmund",
+    setGloballySelectedOfficeName: (office) => {
+      set({ globallySelectedOfficeName: office });
     },
-    currentlyChosenOffice: initialValueForCurrentlyChosenOffice,
-    setCurrentlyChosenOffice: (officeCityName) => {
+    globallySelectedOffice: initialValueForGloballySelectedOffice,
+    setGloballySelectedOffice: (officeCityName) => {
       set((state) => ({
-        currentlyChosenOffice: state.allOffices.find(
+        globallySelectedOffice: state.allOffices.find(
           (entry: IOffice) => entry.city === officeCityName
         ),
       }));
@@ -52,13 +52,13 @@ const useOffice = create<Props>()(
           allOfficeNames: fullList.map((entry: IOffice) => entry.city),
         });
         set((state) => ({
-          currentlyChosenOffice: fullList.find(
-            (entry: IOffice) => entry.city === state.displayedOffice
+          globallySelectedOffice: fullList.find(
+            (entry: IOffice) => entry.city === state.globallySelectedOfficeName
           ),
         }));
       } catch (e) {
         console.error(
-          "Something has gone wrong while fetching the list of offices."
+          "Something has gone wrong, while fetching the list of offices."
         );
       }
     },

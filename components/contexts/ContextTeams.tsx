@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TDisplay from "../../typings/types/TDisplay";
-import TLocation from "../../typings/types/TOfficeCity";
+import TOfficeCity from "../../typings/types/TOfficeCity";
 import TActiveButton from "../../typings/types/TActiveButton";
 
 interface Interface {
@@ -8,8 +8,8 @@ interface Interface {
   setSearchForUser: (e: string) => void;
   viewOfUsers: TDisplay;
   setViewOfUsers: (e: TDisplay) => void;
-  displayedOffice: TLocation;
-  setDisplayedOffice: (e: TLocation) => void;
+  locallySelectedOfficeName: TOfficeCity;
+  setLocallySelectedOfficeName: (e: TOfficeCity) => void;
   activeButton: TActiveButton;
   setActiveButton: (e: TActiveButton) => void;
   isListView: boolean;
@@ -27,7 +27,8 @@ export default function ContextTeamsProvider({
 }) {
   const [searchForUser, setSearchForUser] = useState<string>("");
   const [viewOfUsers, setViewOfUsers] = useState<TDisplay>("gallery");
-  const [displayedOffice, setDisplayedOffice] = useState<TLocation>("dortmund");
+  const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
+    useState<TOfficeCity>("dortmund");
   const [activeButton, setActiveButton] = useState<TActiveButton>("right");
   const [isListView, setIsListView] = useState<boolean>(false);
 
@@ -36,8 +37,8 @@ export default function ContextTeamsProvider({
     setSearchForUser,
     viewOfUsers,
     setViewOfUsers,
-    displayedOffice,
-    setDisplayedOffice,
+    locallySelectedOfficeName,
+    setLocallySelectedOfficeName,
     activeButton,
     setActiveButton,
     isListView,

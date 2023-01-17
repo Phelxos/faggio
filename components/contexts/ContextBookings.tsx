@@ -1,24 +1,31 @@
 import React, { useState } from "react";
+import TOfficeCity from "../../typings/types/TOfficeCity";
+import useOffice from "../../stores/SOffices";
 
 interface Interface {
   isBeingEdited: boolean;
-  datesToBeSaved: Date[];
   toggleIsBeingEdited: () => void;
+  locallySelectedOfficeName: TOfficeCity;
+  setLocallySelectedOfficeName: (office: TOfficeCity) => void;
+  datesToBeSaved: Date[];
   addDateToBeSaved: (date: Date) => void;
+  saveDatesToBeSaved: () => void;
   deleteDatesToBeSaved: () => void;
 }
 
-export const ContextTeams = React.createContext<Interface | undefined>(
+export const ContextBookings = React.createContext<Interface | undefined>(
   undefined
 );
 
-export default function ContextTeamsProvider({
+export default function ContextBookingsProvider({
   children,
 }: {
   children: JSX.Element;
 }) {
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
   const [datesToBeSaved, setDatesToBeSaved] = useState<Date[]>([]);
+  const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
+    useState<TOfficeCity>("dortmund");
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
@@ -26,19 +33,26 @@ export default function ContextTeamsProvider({
   const addDateToBeSaved = (date: Date) => {
     setDatesToBeSaved([...datesToBeSaved, date]);
   };
+  const saveDatesToBeSaved = () => {};
   const deleteDatesToBeSaved = () => {
     setDatesToBeSaved([]);
+    setIsBeingEdited(false);
   };
 
   const value = {
     isBeingEdited,
     toggleIsBeingEdited,
+    locallySelectedOfficeName,
+    setLocallySelectedOfficeName,
     datesToBeSaved,
     addDateToBeSaved,
+    saveDatesToBeSaved,
     deleteDatesToBeSaved,
   };
 
   return (
-    <ContextTeams.Provider value={value}>{children}</ContextTeams.Provider>
+    <ContextBookings.Provider value={value}>
+      {children}
+    </ContextBookings.Provider>
   );
 }

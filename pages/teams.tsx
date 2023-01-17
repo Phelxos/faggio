@@ -13,7 +13,9 @@ interface Props {
 }
 
 export default function Teams({ allColleaguesfromAPI }: Props) {
-  const displayedOffice = useOffice((s) => s.displayedOffice);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
   const [isLoading, setIsLoading] = useState(true);
   const [displayedColleagues, setDisplayedColleagues] =
     useState<IColleague[]>();
@@ -56,7 +58,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
           return (
             (colleague.forename.includes(context?.searchForUser) ||
               colleague.surname.includes(context?.searchForUser)) &&
-            colleague.office === context?.displayedOffice
+            colleague.office === context?.locallySelectedOfficeName
           );
         }
       );
@@ -64,7 +66,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
     } else {
       const filteredListOfColleagues = colleagueList?.filter(
         (colleague: IColleague) => {
-          return colleague.office === context?.displayedOffice;
+          return colleague.office === context?.locallySelectedOfficeName;
         }
       );
       setDisplayedColleagues(filteredListOfColleagues);
@@ -73,7 +75,7 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
 
   useEffect(() => {
     fetchImagesOfColleagues();
-    context?.setDisplayedOffice(displayedOffice);
+    context!.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   useEffect(() => {
@@ -86,12 +88,12 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
         return (
           (colleague.forename.includes(context!.searchForUser) ||
             colleague.surname.includes(context!.searchForUser)) &&
-          colleague.office === context?.displayedOffice
+          colleague.office === context?.locallySelectedOfficeName
         );
       }
     );
     setDisplayedColleagues(filteredListOfColleagues);
-  }, [context?.displayedOffice]);
+  }, [context?.locallySelectedOfficeName]);
 
   return (
     <>

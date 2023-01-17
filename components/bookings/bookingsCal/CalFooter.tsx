@@ -1,11 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import useCalendar from "../../../stores/SCalendar";
+import SearchAndSelect from "../../SearchAndSelect";
+import useOffice from "../../../stores/SOffices";
+import { ContextBookings } from "../../contexts/ContextBookings";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
   const setSelectedYear = useCalendar((s) => s.setSelectedYear);
   const currentMonth = useCalendar((s) => s.currentMonth);
   const currentYear = useCalendar((s) => s.currentYear);
+  const allOfficeNames = useOffice((s) => s.allOfficeNames);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
+  const context = useContext(ContextBookings);
+
+  useEffect(() => {
+    context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+  }, []);
 
   return (
     <div className="flex w-full items-center justify-center rounded-b-lg bg-emerald-900 py-6">
@@ -18,6 +30,11 @@ export default function CalFooter() {
       >
         heute
       </button>
+      <SearchAndSelect
+        value={context?.locallySelectedOfficeName}
+        setValue={context!.setLocallySelectedOfficeName}
+        listOfValues={allOfficeNames}
+      />
     </div>
   );
 }

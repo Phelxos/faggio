@@ -68,21 +68,31 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
 export default function MapOffices() {
-  const displayedOffice = useOffice((s) => s.displayedOffice);
-  const setDisplayedOffice = useOffice((s) => s.setDisplayedOffice);
-  const setCurrentlyChosenOffice = useOffice((s) => s.setCurrentlyChosenOffice);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
+  const setGloballySelectedOfficeName = useOffice(
+    (s) => s.setGloballySelectedOfficeName
+  );
+  const setGloballySelectedOffice = useOffice(
+    (s) => s.setGloballySelectedOffice
+  );
 
   function handleMarkerClick(office: TOfficeCityGerman) {
     const germanOfficeNameInLowerCase: TOfficeCityGerman =
       office.toLowerCase() as TOfficeCityGerman;
-    setDisplayedOffice(EOfficesGermanToEnglish[germanOfficeNameInLowerCase]);
-    setCurrentlyChosenOffice(
+    setGloballySelectedOfficeName(
+      EOfficesGermanToEnglish[germanOfficeNameInLowerCase]
+    );
+    setGloballySelectedOffice(
       EOfficesGermanToEnglish[germanOfficeNameInLowerCase]
     );
   }
 
   function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityGerman) {
-    return chosenOffice === EOfficesEnglishToGerman[displayedOffice!];
+    return (
+      chosenOffice === EOfficesEnglishToGerman[globallySelectedOfficeName!]
+    );
   }
 
   return (

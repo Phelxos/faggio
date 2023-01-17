@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
+import { ContextBookings } from "../../contexts/ContextBookings";
 
 export default function CalBody() {
+  const context = useContext(ContextBookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const displayedWeekdays = useCalendar((s) => s.displayedWeekdays);
@@ -20,8 +22,8 @@ export default function CalBody() {
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
   return (
-    <table className="w-full grow table-fixed">
-      <thead className="bg-emerald-700">
+    <table className="w-full grow table-fixed border-x-[6px] border-emerald-900">
+      <thead className="bg-slate-800 font-mono">
         <tr>
           {displayedWeekdays.map((weekday: string, i: number) => {
             if (weekday === "Sa" || weekday === "So") {
@@ -30,7 +32,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="border-r-4 border-emerald-900 p-2 text-center font-mono text-sm font-bold text-emerald-500 opacity-75"
+                  className="border-r-4 border-slate-900 p-2 text-center text-sm text-slate-500 opacity-75"
                 >
                   {weekday}
                 </th>
@@ -39,7 +41,7 @@ export default function CalBody() {
               return (
                 <th
                   key={i}
-                  className="p-2 text-center font-bold text-emerald-400"
+                  className="p-2 text-center font-bold text-slate-400"
                 >
                   {weekday}
                 </th>
@@ -55,8 +57,8 @@ export default function CalBody() {
               key={i}
               className={`${
                 i % 2 === 0
-                  ? "bg-emerald-500 text-emerald-700"
-                  : "bg-emerald-600 text-emerald-400"
+                  ? "bg-slate-600 text-slate-300"
+                  : "bg-slate-700 text-slate-400"
               }`}
             >
               {week.map((weekday: any, i: number) => {
@@ -66,7 +68,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className="border-r-4 border-emerald-900 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
+                      className="border-r-4 border-slate-800 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
                     >
                       {weekday.calWeek}
                     </td>

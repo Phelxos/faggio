@@ -34,8 +34,8 @@ export default function ControlsBar() {
           <Switch />
         ) : context?.activeButton === "center" ? (
           <SearchAndSelect
-            value={context?.displayedOffice}
-            setValue={context.setDisplayedOffice}
+            value={context?.locallySelectedOfficeName}
+            setValue={context?.setLocallySelectedOfficeName}
             listOfValues={allOfficeNames}
           />
         ) : context?.activeButton === "right" ? (

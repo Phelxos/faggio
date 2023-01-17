@@ -14,7 +14,7 @@ export default function BackupMessage() {
       <p className="text-center">
         Es gibt keine Mitarbeiter in{" "}
         <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
-          {context?.displayedOffice}
+          {context?.locallySelectedOfficeName}
         </strong>{" "}
         {context?.searchForUser && (
           <>
