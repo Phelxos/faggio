@@ -1,11 +1,7 @@
 import React from "react";
-import IColleague from "../../typings/interfaces/IColleague";
+import ICoworker from "../../typings/interfaces/ICoworker";
 
-export default function UserCardInfo({
-  forename,
-  surname,
-  office,
-}: IColleague) {
+export default function UserCardInfo({ forename, surname, office }: ICoworker) {
   return (
     <div className="flex h-full flex-col justify-center px-2">
       <div className="flex flex-col gap-2">

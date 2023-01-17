@@ -1,6 +1,6 @@
-import IColleague from "../../typings/interfaces/IColleague";
+import ICoworker from "../../typings/interfaces/ICoworker";
 
-const allColleagues: IColleague[] = [
+const allCoworkers: ICoworker[] = [
   {
     forename: "tim",
     surname: "mueller",
@@ -82,5 +82,5 @@ const allColleagues: IColleague[] = [
 ];
 
 export default function handler(req: any, res: any) {
-  res.status(200).json(allColleagues);
+  res.status(200).json(allCoworkers);
 }

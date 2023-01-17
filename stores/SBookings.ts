@@ -1,8 +1,9 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import IBooking from "../typings/interfaces/IBooking";
 
 interface Interface {
-  bookings: Date[];
+  bookings: IBooking[];
 }
 
 const useBookings = create<Interface>()(
