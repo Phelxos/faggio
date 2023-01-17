@@ -4,26 +4,26 @@ import IBooking from "../typings/interfaces/IBooking";
 
 interface Interface {
   bookings: IBooking[];
-  addToBookings: (bookingToBeSaved: IBooking[]) => void;
-  removeFromBookings: (bookingToBeRemoved: IBooking) => void;
-  emptyBookings: () => void;
+  setBookings: (bookingToBeSaved: IBooking[]) => void;
+  deleteBookings: (bookingToBeRemoved: IBooking) => void;
+  clearBookings: () => void;
 }
 
 const useBookings = create<Interface>()(
   devtools(
     persist((set) => ({
       bookings: [],
-      addToBookings: (bookingToBeSaved: IBooking[]) => {
+      setBookings: (bookingToBeSaved: IBooking[]) => {
         set((state) => ({
           bookings: [...state.bookings, ...bookingToBeSaved],
         }));
       },
-      emptyBookings: () => {
+      clearBookings: () => {
         set(() => ({
           bookings: [],
         }));
       },
-      removeFromBookings: (bookingToBeRemoved: IBooking) => {
+      deleteBookings: (bookingToBeRemoved: IBooking) => {
         set((state) => ({
           bookings: state.bookings.filter(
             (booking: IBooking) =>

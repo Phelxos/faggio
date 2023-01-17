@@ -1,32 +1,70 @@
 import React, { useState, useEffect, useContext } from "react";
 import useCalendar from "../../../stores/SCalendar";
+import useBookings from "../../../stores/SBookings";
 import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 import { ContextBookings } from "../../contexts/ContextBookings";
 import TCoworkerId from "../../../typings/types/TCoworkerId";
 import TOfficeCity from "../../../typings/types/TOfficeCity";
+import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const context = useContext(ContextBookings);
+  const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const displayedWeekdays = useCalendar((s) => s.displayedWeekdays);
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
-
+  const isBookedDate = (date: Date): boolean => {
+    if (
+      bookings.some(
+        (b: IBooking) =>
+          +b.date === +date && b.office === context?.locallySelectedOfficeName
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const isBeingSelectedAsBookingToBeSaved = (date: Date): boolean => {
+    if (
+      context?.bookingsToBeSaved.some(
+        (b: IBooking) =>
+          +b.date === +date && b.office === context?.locallySelectedOfficeName
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const handleDateClick = (weekday: any) => {
     if (context?.isBeingEdited) {
-      const date = new Date(weekday.date);
-      const coworker: TCoworkerId = 9999;
-      const office: TOfficeCity = context!.locallySelectedOfficeName;
-      context.addBookingsToBeSaved({ date, coworker, office });
+      const currentlyClickedDate = weekday.date;
+      if (
+        !isBookedDate(currentlyClickedDate) &&
+        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)
+      ) {
+        const date = new Date(currentlyClickedDate);
+        const coworker: TCoworkerId = 9999;
+        const office: TOfficeCity = context!.locallySelectedOfficeName;
+        context.setBookingsToBeSaved({ date, coworker, office });
+      } else if (isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)) {
+        context.deleteBookingsToBeSaved(currentlyClickedDate);
+      }
     }
   };
 
   useEffect(() => {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
   }, [selectedYear, selectedMonth, displayedWeekdays]);
+
+  useEffect(() => {
+    console.dir(context?.bookingsToBeSaved);
+  }, [context?.bookingsToBeSaved]);
 
   return (
     <table className="w-full grow table-fixed border-x-[6px] border-emerald-900">
@@ -84,7 +122,13 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`m-2 cursor-pointer p-2 text-center text-3xl font-light hover:rounded-lg hover:bg-emerald-200`}
+                      className={`m-2 cursor-pointer p-2 text-center text-3xl hover:rounded-lg hover:bg-slate-200 ${
+                        isBookedDate(weekday.date) ? "font-bold" : "font-light"
+                      } ${
+                        isBeingSelectedAsBookingToBeSaved(weekday.date)
+                          ? "bg-emerald-300"
+                          : "bg-slate-900"
+                      }`}
                       onClick={() => handleDateClick(weekday)}
                     >
                       {getDate(weekday.date)}

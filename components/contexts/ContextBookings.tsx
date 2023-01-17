@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TOfficeCity from "../../typings/types/TOfficeCity";
 import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 import IBooking from "../../typings/interfaces/IBooking";
+import useBookings from "../../stores/SBookings";
 
 interface Interface {
   isBeingEdited: boolean;
@@ -9,9 +10,10 @@ interface Interface {
   locallySelectedOfficeName: TOfficeCity;
   setLocallySelectedOfficeName: (office: TOfficeCity) => void;
   bookingsToBeSaved: IBooking[];
-  addBookingsToBeSaved: (booking: IBooking) => void;
-  saveBookingsToBeSaved: () => void;
-  deleteBookingsToBeSaved: () => void;
+  setBookingsToBeSaved: (booking: IBooking) => void;
+  deleteBookingsToBeSaved: (date: Date) => void;
+  transferBookingsToBeSavedToBookingsInStore: () => void;
+  clearBookingsToBeSaved: () => void;
 }
 
 export const ContextBookings = React.createContext<Interface | undefined>(
@@ -24,19 +26,31 @@ export default function ContextBookingsProvider({
   children: JSX.Element;
 }) {
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
-  const [bookingsToBeSaved, setbookingsToBeSaved] = useState<IBooking[]>([]);
+  const [bookingsToBeSaved, setBookingsToBeSaved] = useState<IBooking[]>([]);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
     useState<TOfficeCity>(initialValueForGloballySelectedOffice.city);
+  const setBookings = useBookings((s) => s.setBookings);
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
   };
-  const addBookingsToBeSaved = (booking: IBooking) => {
-    setbookingsToBeSaved([...bookingsToBeSaved, booking]);
+  const setBookingsToBeSavedTEMP = (booking: IBooking) => {
+    setBookingsToBeSaved([...bookingsToBeSaved, booking]);
   };
-  const saveBookingsToBeSaved = () => {};
-  const deleteBookingsToBeSaved = () => {
-    setbookingsToBeSaved([]);
+  const deleteBookingsToBeSaved = (date: Date) => {
+    setBookingsToBeSaved(
+      bookingsToBeSaved.filter(
+        (b: IBooking) =>
+          +b.date !== +date && b.office !== locallySelectedOfficeName
+      )
+    );
+  };
+  const transferBookingsToBeSavedToBookingsInStore = () => {
+    setBookings(bookingsToBeSaved);
+    setIsBeingEdited(false);
+  };
+  const clearBookingsToBeSaved = () => {
+    setBookingsToBeSaved([]);
     setIsBeingEdited(false);
   };
 
@@ -46,9 +60,10 @@ export default function ContextBookingsProvider({
     locallySelectedOfficeName,
     setLocallySelectedOfficeName,
     bookingsToBeSaved,
-    addBookingsToBeSaved,
-    saveBookingsToBeSaved,
+    setBookingsToBeSaved: setBookingsToBeSavedTEMP,
     deleteBookingsToBeSaved,
+    transferBookingsToBeSavedToBookingsInStore,
+    clearBookingsToBeSaved,
   };
 
   return (

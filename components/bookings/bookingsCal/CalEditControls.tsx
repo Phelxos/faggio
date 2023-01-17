@@ -41,8 +41,10 @@ export default function CalEditControls() {
     <div className="fixed right-0 bottom-0 flex items-center justify-end gap-4 p-4">
       {context?.isBeingEdited ? (
         <>
-          <ButtonXMark onClick={context?.deleteBookingsToBeSaved} />
-          <ButtonCheck />
+          <ButtonXMark onClick={context?.clearBookingsToBeSaved} />
+          <ButtonCheck
+            onClick={context?.transferBookingsToBeSavedToBookingsInStore}
+          />
         </>
       ) : (
         <ButtonPlus onClick={context?.toggleIsBeingEdited} />
