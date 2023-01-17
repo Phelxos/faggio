@@ -5,4 +5,5 @@ export default interface IColleague {
   surname: string;
   office: TLocation;
   imgSrc?: string;
+  id: number;
 }
