@@ -129,7 +129,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className="border-r-4 border-slate-800 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-emerald-200"
+                      className="border-r-4 border-slate-800 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-slate-400 hover:text-slate-900"
                     >
                       {weekday.calWeek}
                     </td>
@@ -138,13 +138,16 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`m-2 cursor-pointer p-2 text-center text-3xl hover:rounded-lg hover:bg-slate-200 ${
-                        isBookedDate(weekday.date) ? "font-bold" : "font-light"
+                      className={`m-2 cursor-pointer p-2 text-center text-3xl ${
+                        isBookedDate(weekday.date) &&
+                        !isBeingSelectedAsBookingToBeDeleted(weekday.date)
+                          ? "rounded-full bg-slate-300 font-bold text-slate-700 hover:rounded-full hover:bg-slate-100"
+                          : "font-light hover:rounded-xl hover:bg-slate-400 hover:text-slate-800"
                       } ${
                         isBeingSelectedAsBookingToBeSaved(weekday.date)
-                          ? "rounded-full bg-green-700/50"
+                          ? "rounded-full bg-green-300/50 text-green-800 hover:rounded-full hover:bg-green-300/75 hover:text-green-600"
                           : isBeingSelectedAsBookingToBeDeleted(weekday.date)
-                          ? "rounded-full bg-red-600/50"
+                          ? "rounded-full bg-red-300/50 text-red-800 line-through hover:rounded-full hover:bg-red-300/75 hover:text-red-600"
                           : ""
                       }`}
                       onClick={() => handleDateClick(weekday)}

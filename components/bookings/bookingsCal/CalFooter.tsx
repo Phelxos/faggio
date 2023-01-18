@@ -22,7 +22,7 @@ export default function CalFooter() {
   }, []);
 
   return (
-    <div className="flex w-full items-center justify-center gap-6 rounded-b-lg bg-emerald-900 py-6 px-4">
+    <div className="flex w-full items-center justify-center gap-6 rounded-b-lg bg-emerald-800 py-6 px-4">
       <button
         className="w-min rounded-lg border-2 border-emerald-400 bg-emerald-600 px-3 py-2 uppercase tracking-widest text-emerald-200 hover:bg-emerald-400 hover:text-emerald-600"
         onClick={() => {
