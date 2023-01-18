@@ -16,6 +16,7 @@ interface Interface {
   clearBookingsToBeSavedAndDeleted: () => void;
   bookingsToBeDeleted: IBooking[];
   setBookingsToBeDeleted: (booking: IBooking) => void;
+  deleteBookingsToBeDeleted: (date: Date) => void;
   transferBookingsToBeDeletedToBookingsToStore: () => void;
 }
 
@@ -60,10 +61,16 @@ export default function ContextBookingsProvider({
   const setBookingsToBeDeletedTEMP = (booking: IBooking) => {
     setBookingsToBeDeleted([...bookingsToBeDeleted, booking]);
   };
+  const deleteBookingsToBeDeleted = (date: Date) => {
+    setBookingsToBeDeleted(
+      bookingsToBeDeleted.filter(
+        (b: IBooking) =>
+          +b.date !== +date || b.office !== locallySelectedOfficeName
+      )
+    );
+  };
   const transferBookingsToBeDeletedToBookingsToStore = () => {
-    for (const booking of bookingsToBeDeleted) {
-      deleteBookings(booking);
-    }
+    deleteBookings(bookingsToBeDeleted);
   };
 
   const value = {
@@ -78,6 +85,7 @@ export default function ContextBookingsProvider({
     clearBookingsToBeSavedAndDeleted,
     bookingsToBeDeleted,
     setBookingsToBeDeleted: setBookingsToBeDeletedTEMP,
+    deleteBookingsToBeDeleted,
     transferBookingsToBeDeletedToBookingsToStore,
   };
 

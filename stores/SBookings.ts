@@ -4,8 +4,8 @@ import IBooking from "../typings/interfaces/IBooking";
 
 interface Interface {
   bookings: IBooking[];
-  setBookings: (bookingToBeSaved: IBooking[]) => void;
-  deleteBookings: (bookingToBeRemoved: IBooking) => void;
+  setBookings: (bookingsToBeSaved: IBooking[]) => void;
+  deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
   clearBookings: () => void;
 }
 
@@ -13,9 +13,9 @@ const useBookings = create<Interface>()(
   devtools(
     persist((set) => ({
       bookings: [],
-      setBookings: (bookingToBeSaved: IBooking[]) => {
+      setBookings: (bookingsToBeSaved: IBooking[]) => {
         set((state) => ({
-          bookings: [...state.bookings, ...bookingToBeSaved],
+          bookings: [...state.bookings, ...bookingsToBeSaved],
         }));
       },
       clearBookings: () => {
@@ -23,13 +23,15 @@ const useBookings = create<Interface>()(
           bookings: [],
         }));
       },
-      deleteBookings: (bookingToBeRemoved: IBooking) => {
+      deleteBookings: (bookingsToBeRemoved: IBooking[]) => {
         set((state) => ({
-          bookings: state.bookings.filter(
-            (booking: IBooking) =>
-              booking.date !== bookingToBeRemoved.date &&
-              booking.office !== bookingToBeRemoved.office
-          ),
+          bookings: state.bookings.filter((booking: IBooking) => {
+            return !bookingsToBeRemoved.some(
+              (bookingToBeRemovedPotentially: IBooking) =>
+                +booking.date === +bookingToBeRemovedPotentially.date &&
+                booking.office === bookingToBeRemovedPotentially.office
+            );
+          }),
         }));
       },
     }))

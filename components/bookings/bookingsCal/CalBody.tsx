@@ -9,7 +9,7 @@ import TOfficeCity from "../../../typings/types/TOfficeCity";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
-  const context = useContext(CBookings);
+  const c = useContext(CBookings);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
@@ -21,7 +21,7 @@ export default function CalBody() {
     if (
       bookings.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === context?.locallySelectedOfficeName
+          +b.date === +date && b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -31,9 +31,9 @@ export default function CalBody() {
   };
   const isBeingSelectedAsBookingToBeSaved = (date: Date): boolean => {
     if (
-      context?.bookingsToBeSaved.some(
+      c?.bookingsToBeSaved.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === context?.locallySelectedOfficeName
+          +b.date === +date && b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -43,9 +43,9 @@ export default function CalBody() {
   };
   const isBeingSelectedAsBookingToBeDeleted = (date: Date): boolean => {
     if (
-      context?.bookingsToBeDeleted.some(
+      c?.bookingsToBeDeleted.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === context?.locallySelectedOfficeName
+          +b.date === +date && b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -54,26 +54,32 @@ export default function CalBody() {
     }
   };
   const handleDateClick = (weekday: any) => {
-    if (context?.isBeingEdited) {
+    if (c?.isBeingEdited) {
       const currentlyClickedDate = weekday.date;
       const date = new Date(currentlyClickedDate);
       const coworker: TCoworkerId = 9999;
-      const office: TOfficeCity = context!.locallySelectedOfficeName;
+      const office: TOfficeCity = c!.locallySelectedOfficeName;
       if (
         !isBookedDate(currentlyClickedDate) &&
-        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)
+        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
       ) {
-        context.setBookingsToBeSaved({ date, coworker, office });
+        c.setBookingsToBeSaved({ date, coworker, office });
       } else if (
         isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
         !isBookedDate(currentlyClickedDate)
       ) {
-        context.deleteBookingsToBeSaved(currentlyClickedDate);
+        c.deleteBookingsToBeSaved(currentlyClickedDate);
       } else if (
         isBookedDate(currentlyClickedDate) &&
-        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)
+        !isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
       ) {
-        context.setBookingsToBeDeleted({ date, coworker, office });
+        c.setBookingsToBeDeleted({ date, coworker, office });
+      } else if (
+        isBookedDate(currentlyClickedDate) &&
+        isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
+      ) {
+        c.deleteBookingsToBeDeleted(currentlyClickedDate);
       }
     }
   };
