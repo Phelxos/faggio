@@ -82,11 +82,6 @@ export default function CalBody() {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
-  useEffect(() => {
-    console.dir("Bookings", bookings);
-    console.dir("Bookings to be saved", context?.bookingsToBeSaved);
-  }, [context?.bookingsToBeSaved, bookings]);
-
   return (
     <table className="w-full grow table-fixed">
       <thead className="bg-slate-800 font-mono">

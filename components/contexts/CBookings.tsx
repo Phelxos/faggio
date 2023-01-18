@@ -46,7 +46,7 @@ export default function ContextBookingsProvider({
     setBookingsToBeSaved(
       bookingsToBeSaved.filter(
         (b: IBooking) =>
-          +b.date !== +date && b.office !== locallySelectedOfficeName
+          +b.date !== +date || b.office !== locallySelectedOfficeName
       )
     );
   };
