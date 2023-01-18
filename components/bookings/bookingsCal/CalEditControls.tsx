@@ -36,18 +36,28 @@ function ButtonXMark(props: any) {
 }
 
 export default function CalEditControls() {
-  const context = useContext(CBookings);
+  const c = useContext(CBookings);
+
+  const handleButtonCheckClick = () => {
+    c?.transferBookingsToBeSavedToBookingsToStore();
+    c?.transferBookingsToBeDeletedToBookingsToStore();
+    c?.clearBookingsToBeSavedAndDeleted();
+    c?.toggleIsBeingEdited();
+  };
+
+  const handleButtonXMarkClick = () => {
+    c?.clearBookingsToBeSavedAndDeleted();
+    c?.toggleIsBeingEdited();
+  };
   return (
     <div className="fixed right-0 bottom-0 flex items-center justify-end gap-4 p-4">
-      {context?.isBeingEdited ? (
+      {c?.isBeingEdited ? (
         <>
-          <ButtonXMark onClick={context?.clearBookingsToBeSaved} />
-          <ButtonCheck
-            onClick={context?.transferBookingsToBeSavedToBookingsInStore}
-          />
+          <ButtonXMark onClick={handleButtonXMarkClick} />
+          <ButtonCheck onClick={handleButtonCheckClick} />
         </>
       ) : (
-        <ButtonPlus onClick={context?.toggleIsBeingEdited} />
+        <ButtonPlus onClick={c?.toggleIsBeingEdited} />
       )}
     </div>
   );

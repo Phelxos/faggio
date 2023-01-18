@@ -41,19 +41,39 @@ export default function CalBody() {
       return false;
     }
   };
+  const isBeingSelectedAsBookingToBeDeleted = (date: Date): boolean => {
+    if (
+      context?.bookingsToBeDeleted.some(
+        (b: IBooking) =>
+          +b.date === +date && b.office === context?.locallySelectedOfficeName
+      )
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const handleDateClick = (weekday: any) => {
     if (context?.isBeingEdited) {
       const currentlyClickedDate = weekday.date;
+      const date = new Date(currentlyClickedDate);
+      const coworker: TCoworkerId = 9999;
+      const office: TOfficeCity = context!.locallySelectedOfficeName;
       if (
         !isBookedDate(currentlyClickedDate) &&
         !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)
       ) {
-        const date = new Date(currentlyClickedDate);
-        const coworker: TCoworkerId = 9999;
-        const office: TOfficeCity = context!.locallySelectedOfficeName;
         context.setBookingsToBeSaved({ date, coworker, office });
-      } else if (isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)) {
+      } else if (
+        isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
+        !isBookedDate(currentlyClickedDate)
+      ) {
         context.deleteBookingsToBeSaved(currentlyClickedDate);
+      } else if (
+        isBookedDate(currentlyClickedDate) &&
+        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate)
+      ) {
+        context.setBookingsToBeDeleted({ date, coworker, office });
       }
     }
   };
@@ -63,11 +83,12 @@ export default function CalBody() {
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
   useEffect(() => {
-    console.dir(context?.bookingsToBeSaved);
-  }, [context?.bookingsToBeSaved]);
+    console.dir("Bookings", bookings);
+    console.dir("Bookings to be saved", context?.bookingsToBeSaved);
+  }, [context?.bookingsToBeSaved, bookings]);
 
   return (
-    <table className="w-full grow table-fixed border-x-[6px] border-emerald-900">
+    <table className="w-full grow table-fixed">
       <thead className="bg-slate-800 font-mono">
         <tr>
           {displayedWeekdays.map((weekday: string, i: number) => {
@@ -126,8 +147,10 @@ export default function CalBody() {
                         isBookedDate(weekday.date) ? "font-bold" : "font-light"
                       } ${
                         isBeingSelectedAsBookingToBeSaved(weekday.date)
-                          ? "bg-emerald-300"
-                          : "bg-slate-900"
+                          ? "rounded-full bg-green-700/50"
+                          : isBeingSelectedAsBookingToBeDeleted(weekday.date)
+                          ? "rounded-full bg-red-600/50"
+                          : ""
                       }`}
                       onClick={() => handleDateClick(weekday)}
                     >

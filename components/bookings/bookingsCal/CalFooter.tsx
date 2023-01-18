@@ -3,6 +3,7 @@ import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
+import useCurrentTheme from "../../../hooks/useCurrentTheme";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -14,6 +15,7 @@ export default function CalFooter() {
     (s) => s.globallySelectedOfficeName
   );
   const context = useContext(CBookings);
+  const theme = useCurrentTheme();
 
   useEffect(() => {
     context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
@@ -35,6 +37,7 @@ export default function CalFooter() {
           value={context?.locallySelectedOfficeName}
           setValue={context!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
+          theme={theme}
         />
       </div>
     </div>
