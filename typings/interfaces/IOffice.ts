@@ -1,7 +1,7 @@
-import TOfficeCity from "../types/TOfficeCity";
+import TOfficeCityEnglish from "../types/TOfficeCity";
 
 export default interface IOffice {
-  city: TOfficeCity;
+  city: TOfficeCityEnglish;
   district?: string;
   adress: {
     street: string;

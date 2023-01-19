@@ -1,8 +1,8 @@
 import TCoworkerId from "../types/TCoworkerId";
-import TOfficeCity from "../types/TOfficeCity";
+import TOfficeCityEnglish from "../types/TOfficeCity";
 
 export default interface IBooking {
   date: Date;
-  office: TOfficeCity;
+  office: TOfficeCityEnglish;
   coworker: TCoworkerId;
 }

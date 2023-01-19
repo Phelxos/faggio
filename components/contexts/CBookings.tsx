@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TOfficeCity from "../../typings/types/TOfficeCity";
+import TOfficeCityEnglish from "../../typings/types/TOfficeCity";
 import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 import IBooking from "../../typings/interfaces/IBooking";
 import useBookings from "../../stores/SBookings";
@@ -7,8 +7,8 @@ import useBookings from "../../stores/SBookings";
 interface Interface {
   isBeingEdited: boolean;
   toggleIsBeingEdited: () => void;
-  locallySelectedOfficeName: TOfficeCity;
-  setLocallySelectedOfficeName: (office: TOfficeCity) => void;
+  locallySelectedOfficeName: TOfficeCityEnglish;
+  setLocallySelectedOfficeName: (office: TOfficeCityEnglish) => void;
   bookingsToBeSaved: IBooking[];
   setBookingsToBeSaved: (booking: IBooking) => void;
   deleteBookingsToBeSaved: (date: Date) => void;
@@ -33,7 +33,7 @@ export default function ContextBookingsProvider({
     []
   );
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
-    useState<TOfficeCity>(initialValueForGloballySelectedOffice.city);
+    useState<TOfficeCityEnglish>(initialValueForGloballySelectedOffice.city);
   const setBookings = useBookings((s) => s.setBookings);
   const deleteBookings = useBookings((s) => s.deleteBookings);
 

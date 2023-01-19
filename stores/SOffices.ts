@@ -2,7 +2,7 @@ import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
-import TOfficeCity from "../typings/types/TOfficeCity";
+import TOfficeCityEnglish from "../typings/types/TOfficeCity";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
@@ -19,11 +19,11 @@ export const initialValueForGloballySelectedOffice: IOffice = {
 
 interface Interface {
   allOffices: IOffice[] | [];
-  allOfficeNames: TOfficeCity[] | [];
-  globallySelectedOfficeName: TOfficeCity;
-  setGloballySelectedOfficeName: (office: TOfficeCity) => void;
+  allOfficeNames: TOfficeCityEnglish[] | [];
+  globallySelectedOfficeName: TOfficeCityEnglish;
+  setGloballySelectedOfficeName: (office: TOfficeCityEnglish) => void;
   globallySelectedOffice: IOffice;
-  setGloballySelectedOffice: (officeCityName: TOfficeCity) => void;
+  setGloballySelectedOffice: (officeCityName: TOfficeCityEnglish) => void;
   fetchAndSetOffice: () => void;
 }
 

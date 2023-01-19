@@ -5,7 +5,7 @@ import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 import { CBookings } from "../../contexts/CBookings";
 import TCoworkerId from "../../../typings/types/TCoworkerId";
-import TOfficeCity from "../../../typings/types/TOfficeCity";
+import TOfficeCityEnglish from "../../../typings/types/TOfficeCity";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
@@ -58,7 +58,7 @@ export default function CalBody() {
       const currentlyClickedDate = weekday.date;
       const date = new Date(currentlyClickedDate);
       const coworker: TCoworkerId = 9999;
-      const office: TOfficeCity = c!.locallySelectedOfficeName;
+      const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
       if (
         !isBookedDate(currentlyClickedDate) &&
         !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
