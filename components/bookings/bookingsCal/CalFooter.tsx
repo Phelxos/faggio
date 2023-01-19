@@ -41,7 +41,7 @@ export default function CalFooter() {
           setValue={context!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
           theme={theme}
-          areOptionsOpeningUpward
+          areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
         />
       </div>
     </div>
