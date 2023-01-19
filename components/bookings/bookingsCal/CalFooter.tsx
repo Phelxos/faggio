@@ -5,13 +5,16 @@ import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
 import useCurrentTheme from "../../../hooks/useCurrentTheme";
 import useWindowSize from "../../../hooks/useWindowSize";
+import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
   const setSelectedYear = useCalendar((s) => s.setSelectedYear);
   const currentMonth = useCalendar((s) => s.currentMonth);
   const currentYear = useCalendar((s) => s.currentYear);
-  const allOfficeNames = useOffice((s) => s.allOfficeNames);
+  const allOfficeNames = useOffice((s) =>
+    s.allOfficeNames.map((office) => EOfficesEnglishToGerman[office])
+  );
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
