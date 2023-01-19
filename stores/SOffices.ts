@@ -2,7 +2,7 @@ import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
-import TOfficeCityEnglish from "../typings/types/TOfficeCity";
+import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",

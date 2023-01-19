@@ -23,7 +23,9 @@ export default function CalFooter() {
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    context?.setLocallySelectedOfficeName(
+      EOfficesEnglishToGerman[globallySelectedOfficeName]
+    );
   }, []);
 
   return (
