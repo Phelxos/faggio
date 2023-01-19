@@ -10,6 +10,20 @@ const getWindowsSize = () => {
   return { width: innerWidth, height: innerHeight };
 };
 
+export default function useWindowSize() {
+  const [windowSize, setWindowSize] = useState<IWindowSize>({});
+
+  useEffect(() => {
+    const handleResize = () => setWindowSize(getWindowsSize());
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  console.log(windowSize);
+  return windowSize;
+}
+
 // const areEquallySized = (
 //   windowSizeState: IWindowSize,
 //   windowSizeWindow: IWindowSize
@@ -22,18 +36,3 @@ const getWindowsSize = () => {
 //   }
 //   return true;
 // };
-
-export default function useWindowSize() {
-  const [windowSize, setWindowSize] = useState<IWindowSize>({});
-
-  useEffect(() => {
-    window.addEventListener("resize", () => setWindowSize(getWindowsSize()));
-
-    return () =>
-      window.removeEventListener("resize", () =>
-        setWindowSize(getWindowsSize())
-      );
-  }, []);
-
-  return windowSize;
-}
