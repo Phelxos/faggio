@@ -1,9 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
 import useCurrentTheme from "../../../hooks/useCurrentTheme";
+import { off } from "process";
+import useWindowSize from "../../../hooks/useWindowSize";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -16,6 +18,7 @@ export default function CalFooter() {
   );
   const context = useContext(CBookings);
   const theme = useCurrentTheme();
+  const windowSize = useWindowSize();
 
   useEffect(() => {
     context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
@@ -38,6 +41,7 @@ export default function CalFooter() {
           setValue={context!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
           theme={theme}
+          areOptionsOpeningUpward
         />
       </div>
     </div>
