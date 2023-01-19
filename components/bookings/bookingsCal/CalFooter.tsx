@@ -4,7 +4,6 @@ import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
 import useCurrentTheme from "../../../hooks/useCurrentTheme";
-import { off } from "process";
 import useWindowSize from "../../../hooks/useWindowSize";
 
 export default function CalFooter() {
