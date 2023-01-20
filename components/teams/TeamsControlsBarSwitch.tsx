@@ -10,8 +10,8 @@ export default function TeamsControlsBarSwitch() {
   };
 
   return (
-    <label className="flex inline-flex h-full w-full cursor-pointer items-center justify-between rounded-lg bg-pink-500 py-2 px-4">
-      <div className="relative h-10 w-20">
+    <label className="flex inline-flex h-full w-full cursor-pointer items-center rounded-lg bg-pink-500 py-2 px-4">
+      <div className="relative h-10 w-32">
         <input
           type="checkbox"
           checked={c?.isListView}
@@ -20,7 +20,7 @@ export default function TeamsControlsBarSwitch() {
         />
         <div className="h-full w-full rounded-full bg-slate-700 shadow-inner after:absolute after:top-0 after:left-0 after:h-[40px] after:w-[40px] after:rounded-full after:bg-pink-200 after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-pink-700 peer-checked:after:translate-x-10 peer-focus:ring-4 peer-focus:ring-pink-200" />
       </div>
-      <span className="ml-6 font-bold tracking-widest text-slate-700 peer-checked:text-pink-800">
+      <span className="ml-6 flex h-full w-full grow flex-col items-center justify-center font-bold tracking-widest text-slate-700 peer-checked:text-pink-800">
         Listenansicht
       </span>
     </label>
