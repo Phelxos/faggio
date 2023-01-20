@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  TOfficeCityGerman,
   EOfficesEnglishToGerman,
   TOfficeCityEnglish,
 } from "../../typings/types/TOfficeCity";
@@ -24,8 +23,7 @@ interface Interface {
   transferBookingsToBeDeletedToBookingsToStore: () => void;
 }
 
-const initVal =
-  EOfficesEnglishToGerman[initialValueForGloballySelectedOffice.city];
+const initVal = initialValueForGloballySelectedOffice.city;
 
 export const CBookings = React.createContext<Interface | undefined>(undefined);
 
@@ -40,7 +38,7 @@ export default function ContextBookingsProvider({
     []
   );
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
-    useState<TOfficeCityGerman>(initVal);
+    useState<TOfficeCityEnglish>(initVal);
   const setBookings = useBookings((s) => s.setBookings);
   const deleteBookings = useBookings((s) => s.deleteBookings);
 
