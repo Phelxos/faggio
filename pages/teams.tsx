@@ -19,7 +19,7 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>();
   const [allCoworkers, setAllCoworkers] = useState<ICoworker[]>();
-  const context = useContext(CTeams);
+  const c = useContext(CTeams);
 
   async function fetchImagesOfCoworkers(): Promise<ICoworker[] | undefined> {
     try {
@@ -51,13 +51,13 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   }
 
   function filterCoworkers(coworkersList: ICoworker[] | undefined) {
-    if (context?.searchForUser) {
+    if (c?.searchForUser) {
       const filteredListOfCoworkers = coworkersList?.filter(
         (coworker: ICoworker) => {
           return (
-            (coworker.forename.includes(context?.searchForUser) ||
-              coworker.surname.includes(context?.searchForUser)) &&
-            coworker.office === context?.locallySelectedOfficeName
+            (coworker.forename.includes(c?.searchForUser) ||
+              coworker.surname.includes(c?.searchForUser)) &&
+            coworker.office === c?.locallySelectedOfficeName
           );
         }
       );
@@ -65,7 +65,7 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
     } else {
       const filteredListOfCoworkers = coworkersList?.filter(
         (coworker: ICoworker) => {
-          return coworker.office === context?.locallySelectedOfficeName;
+          return coworker.office === c?.locallySelectedOfficeName;
         }
       );
       setDisplayedCoworkers(filteredListOfCoworkers);
@@ -74,25 +74,25 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
 
   useEffect(() => {
     fetchImagesOfCoworkers();
-    context!.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c!.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   useEffect(() => {
     filterCoworkers(allCoworkers);
-  }, [context?.searchForUser]);
+  }, [c?.searchForUser]);
 
   useEffect(() => {
     const filteredListOfCoworkers = allCoworkers?.filter(
       (coworker: ICoworker) => {
         return (
-          (coworker.forename.includes(context!.searchForUser) ||
-            coworker.surname.includes(context!.searchForUser)) &&
-          coworker.office === context?.locallySelectedOfficeName
+          (coworker.forename.includes(c!.searchForUser) ||
+            coworker.surname.includes(c!.searchForUser)) &&
+          coworker.office === c?.locallySelectedOfficeName
         );
       }
     );
     setDisplayedCoworkers(filteredListOfCoworkers);
-  }, [context?.locallySelectedOfficeName]);
+  }, [c?.locallySelectedOfficeName]);
 
   return (
     <>
@@ -102,10 +102,10 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
         <div className="flex w-full grow flex-col items-center gap-12">
           <div
             className={`${
-              context?.isListView && displayedCoworkers?.length > 0
+              c?.isListView && displayedCoworkers?.length > 0
                 ? "flex-col border-8 p-4"
                 : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-            } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
+            } flex h-[300px] w-full gap-10 overflow-scroll rounded border-transparent bg-pink-300/25 shadow-inner`}
           >
             {isLoading && (
               <div className="flex h-full w-full flex-col items-center justify-center">
