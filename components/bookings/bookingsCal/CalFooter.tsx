@@ -12,9 +12,7 @@ export default function CalFooter() {
   const setSelectedYear = useCalendar((s) => s.setSelectedYear);
   const currentMonth = useCalendar((s) => s.currentMonth);
   const currentYear = useCalendar((s) => s.currentYear);
-  const allOfficeNames = useOffice((s) =>
-    s.allOfficeNames.map((office) => EOfficesEnglishToGerman[office])
-  );
+  const allOfficeNames = useOffice((s) => s.allOfficeNames);
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
@@ -23,9 +21,7 @@ export default function CalFooter() {
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    context?.setLocallySelectedOfficeName(
-      EOfficesEnglishToGerman[globallySelectedOfficeName]
-    );
+    context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   return (
