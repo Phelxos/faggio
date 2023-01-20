@@ -5,7 +5,7 @@ import mapCalendar from "../../../helpers/mapCalendar";
 import { getDate } from "date-fns";
 import { CBookings } from "../../contexts/CBookings";
 import TCoworkerId from "../../../typings/types/TCoworkerId";
-import TOfficeCityEnglish from "../../../typings/types/TOfficeCity";
+import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
