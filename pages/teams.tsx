@@ -99,13 +99,13 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
       {isLoading || !displayedCoworkers ? (
         <Spinner />
       ) : (
-        <div className="flex w-full grow flex-col items-center gap-12">
+        <div className="flex w-full grow flex-col items-center gap-8">
           <div
             className={`${
               c?.isListView && displayedCoworkers?.length > 0
                 ? "flex-col border-8 p-4"
                 : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-            } flex h-[300px] w-full gap-10 overflow-scroll rounded border-transparent bg-pink-300/25 shadow-inner`}
+            } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
           >
             {isLoading && (
               <div className="flex h-full w-full flex-col items-center justify-center">

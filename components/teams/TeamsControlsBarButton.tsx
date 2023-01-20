@@ -18,18 +18,18 @@ export default function TeamsControlsBarButton({
   useEffect(() => {
     if (isActiveButton) {
       setComputedClassName(
-        "h-[100px] w-full grow flex-col items-center justify-center rounded border-4 border-pink-200 bg-pink-500 fill-pink-200 py-4"
+        "w-16 h-full flex grow flex-col grow items-center justify-center rounded-b-lg border-2 border-pink-200/75 bg-pink-500"
       );
     } else {
       setComputedClassName(
-        "h-[100px] w-full grow flex-col items-center justify-center rounded border-4 border-pink-400 bg-pink-800 fill-pink-400 py-4 opacity-75 hover:bg-pink-400 hover:fill-pink-800 hover:opacity-100"
+        "w-16 grow flex flex-col h-full items-center justify-center rounded-b-lg border-2 border-pink-400/50 bg-pink-800 opacity-75"
       );
     }
   }, [isActiveButton]);
 
   return (
-    <button className="item-center jusftify-center flex grow flex-col">
-      <Icon icon={icon} className={computedClassName} onClick={onClick} />
+    <button className={computedClassName} onClick={onClick}>
+      <Icon icon={icon} />
     </button>
   );
 }

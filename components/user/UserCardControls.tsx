@@ -5,7 +5,7 @@ import useTheme from "../../hooks/useTheme";
 export default function UserCardControls() {
   const theme = useTheme();
   return (
-    <div className="col-span-2 flex items-center justify-around rounded-b-lg bg-pink-900/50 py-4 px-2">
+    <div className="col-span-2 flex items-center justify-around rounded-b-lg bg-pink-800/50 py-4 px-2">
       <button>
         <Icon
           icon="phone"

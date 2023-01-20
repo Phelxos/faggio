@@ -30,8 +30,8 @@ export default function ControlsBar() {
   };
 
   return (
-    <div className="flex h-[250px] w-full flex-col flex-col items-stretch justify-end gap-8 rounded border-8 border-slate-700 bg-slate-700 p-3">
-      <div className="flex h-full flex-col items-center justify-center rounded-lg bg-slate-600">
+    <div className="flex h-[200px] w-full flex-col flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/75 p-3">
+      <div className="flex h-1/2 flex-col items-center justify-center rounded-t-lg border-b-2 border-pink-200/75 bg-pink-500">
         {c?.activeButton === "left" ? (
           <Switch />
         ) : c?.activeButton === "center" ? (
@@ -48,7 +48,7 @@ export default function ControlsBar() {
         )}
       </div>
 
-      <div className="flex w-full items-center justify-between gap-8 bg-slate-700">
+      <div className="flex h-1/2 w-full items-center justify-between gap-8">
         <Button
           icon={icons.left}
           isActiveButton={c?.activeButton === "left"}
