@@ -1,4 +1,4 @@
-import TOfficeCityEnglish from "../types/TOfficeCity";
+import { TOfficeCityEnglish } from "../types/TOfficeCity";
 
 export default interface IOffice {
   city: TOfficeCityEnglish;
