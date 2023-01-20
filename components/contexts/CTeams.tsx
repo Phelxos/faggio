@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import TDisplay from "../../typings/types/TDisplay";
-import TLocation from "../../typings/types/TOfficeCity";
+import TOfficeCityEnglish from "../../typings/types/TOfficeCity";
 import TActiveButton from "../../typings/types/TActiveButton";
+import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 
 interface Interface {
   searchForUser: string;
   setSearchForUser: (e: string) => void;
   viewOfUsers: TDisplay;
   setViewOfUsers: (e: TDisplay) => void;
-  displayedOffice: TLocation;
-  setDisplayedOffice: (e: TLocation) => void;
+  locallySelectedOfficeName: TOfficeCityEnglish;
+  setLocallySelectedOfficeName: (e: TOfficeCityEnglish) => void;
   activeButton: TActiveButton;
   setActiveButton: (e: TActiveButton) => void;
   isListView: boolean;
   setIsListView: (e: any) => void;
 }
 
-export const ContextTeams = React.createContext<Interface | undefined>(
-  undefined
-);
+export const CTeams = React.createContext<Interface | undefined>(undefined);
 
 export default function ContextTeamsProvider({
   children,
@@ -27,7 +26,8 @@ export default function ContextTeamsProvider({
 }) {
   const [searchForUser, setSearchForUser] = useState<string>("");
   const [viewOfUsers, setViewOfUsers] = useState<TDisplay>("gallery");
-  const [displayedOffice, setDisplayedOffice] = useState<TLocation>("dortmund");
+  const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
+    useState<TOfficeCityEnglish>(initialValueForGloballySelectedOffice.city);
   const [activeButton, setActiveButton] = useState<TActiveButton>("right");
   const [isListView, setIsListView] = useState<boolean>(false);
 
@@ -36,14 +36,12 @@ export default function ContextTeamsProvider({
     setSearchForUser,
     viewOfUsers,
     setViewOfUsers,
-    displayedOffice,
-    setDisplayedOffice,
+    locallySelectedOfficeName,
+    setLocallySelectedOfficeName,
     activeButton,
     setActiveButton,
     isListView,
     setIsListView,
   };
-  return (
-    <ContextTeams.Provider value={value}>{children}</ContextTeams.Provider>
-  );
+  return <CTeams.Provider value={value}>{children}</CTeams.Provider>;
 }

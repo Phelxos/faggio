@@ -1,10 +1,10 @@
+import TCoworkerId from "../types/TCoworkerId";
 import TLocation from "../types/TOfficeCity";
 
-interface IColleague {
+export default interface ICoworker {
   forename: string;
   surname: string;
   office: TLocation;
   imgSrc?: string;
+  id: TCoworkerId;
 }
-
-export default IColleague;

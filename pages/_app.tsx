@@ -8,10 +8,10 @@ export default function App({ Component, pageProps }: AppProps) {
   useSetupData();
 
   return (
-    <ContextProvider>
-      <Layout>
+    <Layout>
+      <ContextProvider>
         <Component {...pageProps} />
-      </Layout>
-    </ContextProvider>
+      </ContextProvider>
+    </Layout>
   );
 }

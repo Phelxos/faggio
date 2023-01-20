@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ContextTeams } from "../contexts/ContextTeams";
+import { CTeams } from "../contexts/CTeams";
 
 interface Props {
   onInput: (e: any) => void;
@@ -7,11 +7,11 @@ interface Props {
 }
 
 export default function TeamsControlsBarInput({ onInput, value }: Props) {
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
   const [borderColor, setBorderColor] = useState(200);
 
   useEffect(() => {
-    if (context?.searchForUser?.length > 0) {
+    if (context?.searchForUser?.length! > 0) {
       setBorderColor(700);
     } else {
       setBorderColor(200);

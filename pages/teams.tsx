@@ -1,45 +1,48 @@
 import React, { useState, useEffect, useContext } from "react";
-import TeamsControlsBar from "../components/pageTeams/TeamsControlsBar";
-import BackupMessage from "../components/pageTeams/TeamsBackupMessage";
+import TeamsControlsBar from "../components/teams/TeamsControlsBar";
+import BackupMessage from "../components/teams/TeamsBackupMessage";
 import Spinner from "../components/Spinner";
 import { server } from "../config/index";
-import IColleague from "../typings/interfaces/IColleague";
-import { ContextTeams } from "../components/contexts/ContextTeams";
-import TeamsViewColleagues from "../components/pageTeams/TeamsViewColleagues";
+import ICoworker from "../typings/interfaces/ICoworker";
+import { CTeams } from "../components/contexts/CTeams";
+import TeamsViewCoworkers from "../components/teams/TeamsViewCoworkers";
+import useOffice from "../stores/SOffices";
 
 interface Props {
-  allColleaguesfromAPI: IColleague[];
+  allCoworkersFromAPI: ICoworker[];
 }
 
-export default function Teams({ allColleaguesfromAPI }: Props) {
+export default function Teams({ allCoworkersFromAPI }: Props) {
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
   const [isLoading, setIsLoading] = useState(true);
-  const [displayedColleagues, setDisplayedColleagues] =
-    useState<IColleague[]>();
-  const [allColleagues, setAllColleagues] = useState<IColleague[]>();
-  const context = useContext(ContextTeams);
+  const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>();
+  const [allCoworkers, setAllCoworkers] = useState<ICoworker[]>();
+  const context = useContext(CTeams);
 
-  async function fetchImagesOfColleagues(): Promise<IColleague[] | undefined> {
+  async function fetchImagesOfCoworkers(): Promise<ICoworker[] | undefined> {
     try {
       setIsLoading(true);
       const resRandomUsers = await fetch(
-        `https://randomuser.me/api/?results=${allColleaguesfromAPI.length}`
+        `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`
       );
       const randomUsers = await resRandomUsers.json();
       const imgSources = randomUsers.results;
 
-      const colleaguesWithPhotos = allColleaguesfromAPI.map(
-        (colleague: IColleague, i: number) => {
+      const coworkersWithPhotos = allCoworkersFromAPI.map(
+        (coworker: ICoworker, i: number) => {
           return {
-            ...colleague,
+            ...coworker,
             imgSrc: imgSources[i].picture.large as string,
           };
         }
       );
-      filterColleagues(colleaguesWithPhotos);
-      setAllColleagues(colleaguesWithPhotos);
+      filterCoworkers(coworkersWithPhotos);
+      setAllCoworkers(coworkersWithPhotos);
     } catch (e) {
       console.error(
-        "Something has gone wrong while fetching the photos of the colleagues."
+        "Something has gone wrong while fetching the photos of the coworkers."
       );
     } finally {
       setIsLoading(false);
@@ -47,80 +50,87 @@ export default function Teams({ allColleaguesfromAPI }: Props) {
     }
   }
 
-  function filterColleagues(colleagueList: IColleague[] | undefined) {
+  function filterCoworkers(coworkersList: ICoworker[] | undefined) {
     if (context?.searchForUser) {
-      const filteredListOfColleagues = colleagueList?.filter(
-        (colleague: IColleague) => {
+      const filteredListOfCoworkers = coworkersList?.filter(
+        (coworker: ICoworker) => {
           return (
-            (colleague.forename.includes(context?.searchForUser) ||
-              colleague.surname.includes(context?.searchForUser)) &&
-            colleague.office === context?.displayedOffice
+            (coworker.forename.includes(context?.searchForUser) ||
+              coworker.surname.includes(context?.searchForUser)) &&
+            coworker.office === context?.locallySelectedOfficeName
           );
         }
       );
-      setDisplayedColleagues(filteredListOfColleagues);
+      setDisplayedCoworkers(filteredListOfCoworkers);
     } else {
-      const filteredListOfColleagues = colleagueList?.filter(
-        (colleague: IColleague) => {
-          return colleague.office === context?.displayedOffice;
+      const filteredListOfCoworkers = coworkersList?.filter(
+        (coworker: ICoworker) => {
+          return coworker.office === context?.locallySelectedOfficeName;
         }
       );
-      setDisplayedColleagues(filteredListOfColleagues);
+      setDisplayedCoworkers(filteredListOfCoworkers);
     }
   }
 
   useEffect(() => {
-    fetchImagesOfColleagues();
+    fetchImagesOfCoworkers();
+    context!.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   useEffect(() => {
-    filterColleagues(allColleagues);
+    filterCoworkers(allCoworkers);
   }, [context?.searchForUser]);
 
   useEffect(() => {
-    const filteredListOfColleagues = allColleagues?.filter(
-      (colleague: IColleague) => {
+    const filteredListOfCoworkers = allCoworkers?.filter(
+      (coworker: ICoworker) => {
         return (
-          (colleague.forename.includes(context?.searchForUser) ||
-            colleague.surname.includes(context?.searchForUser)) &&
-          colleague.office === context?.displayedOffice
+          (coworker.forename.includes(context!.searchForUser) ||
+            coworker.surname.includes(context!.searchForUser)) &&
+          coworker.office === context?.locallySelectedOfficeName
         );
       }
     );
-    setDisplayedColleagues(filteredListOfColleagues);
-  }, [context?.displayedOffice]);
+    setDisplayedCoworkers(filteredListOfCoworkers);
+  }, [context?.locallySelectedOfficeName]);
 
   return (
-    <div className="flex w-full grow flex-col items-center gap-12">
-      <div
-        className={`${
-          context?.isListView && displayedColleagues?.length > 0
-            ? "flex-col border-8 p-4"
-            : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-        } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
-      >
-        {isLoading && (
-          <div className="flex h-full w-full flex-col items-center justify-center">
-            <Spinner />
+    <>
+      {isLoading || !displayedCoworkers ? (
+        <Spinner />
+      ) : (
+        <div className="flex w-full grow flex-col items-center gap-12">
+          <div
+            className={`${
+              context?.isListView && displayedCoworkers?.length > 0
+                ? "flex-col border-8 p-4"
+                : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+            } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
+          >
+            {isLoading && (
+              <div className="flex h-full w-full flex-col items-center justify-center">
+                <Spinner />
+              </div>
+            )}
+            {displayedCoworkers?.length > 0 && (
+              <TeamsViewCoworkers coworkers={displayedCoworkers} />
+            )}
+            {displayedCoworkers?.length === 0 && <BackupMessage />}
           </div>
-        )}
-        {displayedColleagues?.length > 0 && (
-          <TeamsViewColleagues colleagues={displayedColleagues} />
-        )}
-        {displayedColleagues?.length === 0 && <BackupMessage />}
-      </div>
-      <TeamsControlsBar />
-    </div>
+          <TeamsControlsBar />
+        </div>
+      )}
+    </>
   );
 }
 
 export async function getServerSideProps() {
   const res = await fetch(`${server}/api/teams`);
-  let allColleaguesfromAPI = await res.json();
+  let allCoworkersFromAPI = await res.json();
 
   return {
     props: {
-      allColleaguesfromAPI,
+      allCoworkersFromAPI,
     },
   };
 }

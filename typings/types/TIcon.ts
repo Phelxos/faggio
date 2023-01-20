@@ -13,9 +13,12 @@ type TIcon =
   | "informationCircle"
   | "listBullet"
   | "magnifiyingGlass"
+  | "mapPin"
   | "phone"
+  | "plus"
   | "select"
   | "user"
-  | "userGroup";
+  | "userGroup"
+  | "xMark";
 
 export default TIcon;
