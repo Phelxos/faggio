@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {
   TOfficeCityGerman,
   EOfficesEnglishToGerman,
+  TOfficeCityEnglish,
 } from "../../typings/types/TOfficeCity";
 import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 import IBooking from "../../typings/interfaces/IBooking";
@@ -10,8 +11,8 @@ import useBookings from "../../stores/SBookings";
 interface Interface {
   isBeingEdited: boolean;
   toggleIsBeingEdited: () => void;
-  locallySelectedOfficeName: TOfficeCityGerman;
-  setLocallySelectedOfficeName: (office: TOfficeCityGerman) => void;
+  locallySelectedOfficeName: TOfficeCityEnglish;
+  setLocallySelectedOfficeName: (office: TOfficeCityEnglish) => void;
   bookingsToBeSaved: IBooking[];
   setBookingsToBeSaved: (booking: IBooking) => void;
   deleteBookingsToBeSaved: (date: Date) => void;
