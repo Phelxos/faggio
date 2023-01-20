@@ -17,6 +17,7 @@ type TIcon =
   | "phone"
   | "select"
   | "user"
-  | "userGroup";
+  | "userGroup"
+  | "x-mark";
 
 export default TIcon;
