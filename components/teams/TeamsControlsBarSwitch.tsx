@@ -11,7 +11,7 @@ export default function TeamsControlsBarSwitch() {
   };
 
   return (
-    <div className="flex h-full w-full items-center justify-around p-6">
+    <div className="flex h-full w-full items-center justify-around p-5">
       <Switch.Group>
         <Switch
           checked={c?.isListView}
@@ -29,9 +29,9 @@ export default function TeamsControlsBarSwitch() {
           passive
           className={`${
             c?.isListView
-              ? "font-pink-200 font-bold"
-              : "font-pink-800 font-light"
-          } mr-2 flex h-full w-full flex-col items-end justify-center text-xl tracking-widest`}
+              ? "font-pink-200 font-bold tracking-wider"
+              : "font-pink-800 font-light tracking-widest"
+          } flex h-full w-full flex-col items-end justify-center text-xl`}
         >
           Listenansicht
         </Switch.Label>
