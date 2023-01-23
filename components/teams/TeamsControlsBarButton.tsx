@@ -18,7 +18,7 @@ export default function TeamsControlsBarButton({
   useEffect(() => {
     if (isActiveButton) {
       setComputedClassName(
-        "w-16 h-full flex grow flex-col grow items-center justify-center rounded-b-lg border-2 border-pink-200/75 bg-pink-500"
+        "w-16 h-full flex grow flex-col grow items-center justify-center rounded-b-lg border-2 border-t-4 border-t-pink-200 border-pink-200/50 bg-pink-500"
       );
     } else {
       setComputedClassName(
@@ -29,7 +29,12 @@ export default function TeamsControlsBarButton({
 
   return (
     <button className={computedClassName} onClick={onClick}>
-      <Icon icon={icon} />
+      <Icon
+        icon={icon}
+        className={`h-10 w-10 fill-pink-200 ${
+          isActiveButton ? "opacity-100" : "opacity-50"
+        }`}
+      />
     </button>
   );
 }

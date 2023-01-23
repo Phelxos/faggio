@@ -20,7 +20,7 @@ export default function TeamsControlsBarInput({ onInput, value }: Props) {
 
   return (
     <input
-      className={`border-pink-${borderColor} flex h-full w-full grow flex-col justify-center rounded-t-lg border-2 bg-pink-500 px-4 text-4xl uppercase tracking-widest text-pink-900 caret-pink-900 outline-none placeholder:font-light placeholder:text-pink-200 placeholder:opacity-50`}
+      className={`border-pink-${borderColor} flex h-full w-full grow flex-col justify-center rounded-t-lg bg-pink-500 px-4 text-3xl uppercase tracking-widest text-pink-900 caret-pink-900 shadow-inner outline-none placeholder:font-light placeholder:text-pink-200 placeholder:opacity-50`}
       onInput={onInput}
       value={value}
       placeholder="Suchen…"
