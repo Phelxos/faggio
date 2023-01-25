@@ -1,85 +1,50 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import ICoworker from "../typings/interfaces/ICoworker";
+import { server } from "../config/index";
 
 interface Interface {
-  coworkerListWithPhotos: ICoworker[];
-  fetchCoworkerImages: () => Promise<void>;
+  coworkerListWithPhotos: ICoworker[] | Promise<void>;
   isLoading: boolean;
-  setIsLoading: (newIsLoading: boolean) => void;
 }
 
 const useCoworkers = create<Interface>()(
   devtools(
     persist((set) => ({
-      coworkerListWithPhotos: [],
       isLoading: true,
-      setIsLoading: (newIsLoading: boolean) => {
-        set(() => ({
-          isLoading: newIsLoading,
-        }));
-      },
-      fetchCoworkerImages: async () => {
+      coworkerListWithPhotos: (async () => {
         try {
           set({ isLoading: true });
+          const res = await fetch(`${server}/api/teams`);
+          const allCoworkersFromAPI = await res.json();
           const resRandomUsers = await fetch(
-            `https://randomuser.me/api/?results=${allColleaguesfromAPI.length}`
+            `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`
           );
           const randomUsers = await resRandomUsers.json();
           const imgSources = randomUsers.results;
 
-          const colleaguesWithPhotos = allColleaguesfromAPI.map(
-            (colleague: IColleague, i: number) => {
+          const coworkersListWithPhotos: ICoworker[] = allCoworkersFromAPI.map(
+            (coworker: ICoworker, i: number) => {
               return {
-                ...colleague,
+                ...coworker,
                 imgSrc: imgSources[i].picture.large as string,
               };
             }
           );
-          filterColleagues(colleaguesWithPhotos);
-          setAllColleagues(colleaguesWithPhotos);
+          set(() => ({
+            coworkerListWithPhotos: coworkersListWithPhotos,
+          }));
         } catch (e) {
           console.error(
-            "Something has gone wrong while fetching the photos of the colleagues."
+            "Something has gone wrong while fetching the photos of the coworkers."
           );
         } finally {
           set({ isLoading: false });
           return;
         }
-      },
+      })(),
     }))
   )
 );
 
 export default useCoworkers;
-
-/* 
- async function fetchImagesOfColleagues(): Promise<IColleague[] | undefined> {
-    try {
-      setIsLoading(true);
-      const resRandomUsers = await fetch(
-        `https://randomuser.me/api/?results=${allColleaguesfromAPI.length}`
-      );
-      const randomUsers = await resRandomUsers.json();
-      const imgSources = randomUsers.results;
-
-      const colleaguesWithPhotos = allColleaguesfromAPI.map(
-        (colleague: IColleague, i: number) => {
-          return {
-            ...colleague,
-            imgSrc: imgSources[i].picture.large as string,
-          };
-        }
-      );
-      filterColleagues(colleaguesWithPhotos);
-      setAllColleagues(colleaguesWithPhotos);
-    } catch (e) {
-      console.error(
-        "Something has gone wrong while fetching the photos of the colleagues."
-      );
-    } finally {
-      setIsLoading(false);
-      return;
-    }
-  }
-*/
