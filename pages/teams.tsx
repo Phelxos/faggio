@@ -16,39 +16,10 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
-  const [isLoading, setIsLoading] = useState(true);
   const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>();
-  const [allCoworkers, setAllCoworkers] = useState<ICoworker[]>();
+  const [allCoworkers, setAllCoworkers] =
+    useState<ICoworker[]>(allCoworkersFromAPI);
   const c = useContext(CTeams);
-
-  async function fetchImagesOfCoworkers(): Promise<ICoworker[] | undefined> {
-    try {
-      setIsLoading(true);
-      const resRandomUsers = await fetch(
-        `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`
-      );
-      const randomUsers = await resRandomUsers.json();
-      const imgSources = randomUsers.results;
-
-      const coworkersWithPhotos = allCoworkersFromAPI.map(
-        (coworker: ICoworker, i: number) => {
-          return {
-            ...coworker,
-            imgSrc: imgSources[i].picture.large as string,
-          };
-        }
-      );
-      filterCoworkers(coworkersWithPhotos);
-      setAllCoworkers(coworkersWithPhotos);
-    } catch (e) {
-      console.error(
-        "Something has gone wrong while fetching the photos of the coworkers."
-      );
-    } finally {
-      setIsLoading(false);
-      return;
-    }
-  }
 
   function filterCoworkers(coworkersList: ICoworker[] | undefined) {
     if (c?.searchForUser) {
@@ -73,53 +44,45 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   }
 
   useEffect(() => {
-    fetchImagesOfCoworkers();
-    c!.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   useEffect(() => {
     filterCoworkers(allCoworkers);
-  }, [c?.searchForUser]);
+    console.log(c?.locallySelectedOfficeName);
+  }, [c?.searchForUser, c?.locallySelectedOfficeName]);
 
   useEffect(() => {
-    const filteredListOfCoworkers = allCoworkers?.filter(
-      (coworker: ICoworker) => {
-        return (
-          (coworker.forename.includes(c!.searchForUser) ||
-            coworker.surname.includes(c!.searchForUser)) &&
-          coworker.office === c?.locallySelectedOfficeName
-        );
-      }
-    );
-    setDisplayedCoworkers(filteredListOfCoworkers);
+    // const filteredListOfCoworkers = allCoworkers?.filter(
+    //   (coworker: ICoworker) => {
+    //     return (
+    //       (coworker.forename.includes(c!.searchForUser) ||
+    //         coworker.surname.includes(c!.searchForUser)) &&
+    //       coworker.office === c?.locallySelectedOfficeName
+    //     );
+    //   }
+    // );
+    // console.log(filteredListOfCoworkers);
+    // setDisplayedCoworkers(filteredListOfCoworkers);
   }, [c?.locallySelectedOfficeName]);
 
   return (
     <>
-      {isLoading || !displayedCoworkers ? (
-        <Spinner />
-      ) : (
-        <div className="flex w-full grow flex-col items-center gap-8">
-          <div
-            className={`${
-              c?.isListView && displayedCoworkers?.length > 0
-                ? "flex-col border-8 p-4"
-                : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-            } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
-          >
-            {isLoading && (
-              <div className="flex h-full w-full flex-col items-center justify-center">
-                <Spinner />
-              </div>
-            )}
-            {displayedCoworkers?.length > 0 && (
-              <TeamsViewCoworkers coworkers={displayedCoworkers} />
-            )}
-            {displayedCoworkers?.length === 0 && <BackupMessage />}
-          </div>
-          <TeamsControlsBar />
+      <div className="flex w-full grow flex-col items-center gap-8">
+        <div
+          className={`${
+            c?.isListView && displayedCoworkers?.length > 0
+              ? "flex-col border-8 p-4"
+              : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+          } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
+        >
+          {displayedCoworkers?.length > 0 && (
+            <TeamsViewCoworkers coworkers={displayedCoworkers} />
+          )}
+          {displayedCoworkers?.length === 0 && <BackupMessage />}
         </div>
-      )}
+        <TeamsControlsBar />
+      </div>
     </>
   );
 }
