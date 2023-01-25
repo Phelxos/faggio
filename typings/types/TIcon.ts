@@ -15,9 +15,10 @@ type TIcon =
   | "magnifiyingGlass"
   | "mapPin"
   | "phone"
+  | "plus"
   | "select"
   | "user"
   | "userGroup"
-  | "x-mark";
+  | "xMark";
 
 export default TIcon;

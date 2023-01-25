@@ -9,11 +9,13 @@ interface IProps {
 }
 
 export default function StatusLocation({ color }: IProps) {
-  const displayedOffice = useOffice((s) => s.displayedOffice);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
   return (
     <div className="flex items-center">
       <p className={`font-mono font-bold uppercase text-${color}-500`}>
-        {EOfficesEnglishToGerman[displayedOffice]}
+        {EOfficesEnglishToGerman[globallySelectedOfficeName]}
       </p>
       <Icon className={`ml-1 h-3 w-3 fill-${color}-600`} icon="mapPin" />
     </div>

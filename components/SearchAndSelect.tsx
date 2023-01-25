@@ -8,13 +8,15 @@ interface Props {
   listOfValues: any[];
   setValue: (newVal: any) => void;
   theme?: TTheme;
+  areOptionsOpeningUpward?: boolean;
 }
 
 export default function SearchAndSelect({
   value,
   listOfValues,
   setValue,
-  theme,
+  theme = "slate",
+  areOptionsOpeningUpward = false,
 }: Props) {
   const [query, setQuery] = useState("");
 
@@ -59,7 +61,9 @@ export default function SearchAndSelect({
         afterLeave={() => setQuery("")}
       >
         <Combobox.Options
-          className={`absolute top-[105%] z-10 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={`absolute ${
+            areOptionsOpeningUpward ? "bottom-[110%]" : "top-[110%]"
+          } z-10 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {filteredListOfValues.length === 0 && query !== "" ? (
             <div

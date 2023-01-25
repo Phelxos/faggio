@@ -1,9 +1,8 @@
 import React from "react";
 import useOffice from "../../stores/SOffices";
 import {
-  EOfficesGermanToEnglish,
   EOfficesEnglishToGerman,
-  TOfficeCityGerman,
+  TOfficeCityEnglish,
 } from "../../typings/types/TOfficeCity";
 import {
   ComposableMap,
@@ -17,14 +16,14 @@ interface IMarker {
     x: number;
     y: number;
   };
-  name: TOfficeCityGerman;
+  name: TOfficeCityEnglish;
   coordinates: [number, number];
 }
 
 const markers: IMarker[] = [
   {
     markerOffset: { x: 1, y: 13 },
-    name: "köln",
+    name: "cologne",
     coordinates: [6.953101, 50.935173],
   },
   {
@@ -34,7 +33,7 @@ const markers: IMarker[] = [
   },
   {
     markerOffset: { x: 0, y: -6 },
-    name: "münchen",
+    name: "munich",
     coordinates: [11.57549, 48.13743],
   },
   {
@@ -68,21 +67,25 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
 export default function MapOffices() {
-  const displayedOffice = useOffice((s) => s.displayedOffice);
-  const setDisplayedOffice = useOffice((s) => s.setDisplayedOffice);
-  const setCurrentlyChosenOffice = useOffice((s) => s.setCurrentlyChosenOffice);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
+  const setGloballySelectedOfficeName = useOffice(
+    (s) => s.setGloballySelectedOfficeName
+  );
+  const setGloballySelectedOffice = useOffice(
+    (s) => s.setGloballySelectedOffice
+  );
 
-  function handleMarkerClick(office: TOfficeCityGerman) {
-    const germanOfficeNameInLowerCase: TOfficeCityGerman =
-      office.toLowerCase() as TOfficeCityGerman;
-    setDisplayedOffice(EOfficesGermanToEnglish[germanOfficeNameInLowerCase]);
-    setCurrentlyChosenOffice(
-      EOfficesGermanToEnglish[germanOfficeNameInLowerCase]
-    );
+  function handleMarkerClick(office: TOfficeCityEnglish) {
+    const officeNameInLowerCase: TOfficeCityEnglish =
+      office.toLowerCase() as TOfficeCityEnglish;
+    setGloballySelectedOfficeName(officeNameInLowerCase);
+    setGloballySelectedOffice(officeNameInLowerCase);
   }
 
-  function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityGerman) {
-    return chosenOffice === EOfficesEnglishToGerman[displayedOffice!];
+  function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityEnglish) {
+    return chosenOffice === globallySelectedOfficeName!;
   }
 
   return (
@@ -144,7 +147,7 @@ export default function MapOffices() {
               transition: "all 0.25s",
             }}
           >
-            {name}
+            {EOfficesEnglishToGerman[name]}
           </text>
         </Marker>
       ))}

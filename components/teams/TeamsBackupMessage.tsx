@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import Icon from "../icons/Icon";
-import { ContextTeams } from "../contexts/ContextTeams";
+import { CTeams } from "../contexts/CTeams";
 
 export default function BackupMessage() {
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8">
@@ -14,7 +14,7 @@ export default function BackupMessage() {
       <p className="text-center">
         Es gibt keine Mitarbeiter in{" "}
         <strong className="mx-auto my-2 block w-full rounded bg-slate-600 p-2 font-mono uppercase">
-          {context?.displayedOffice}
+          {context?.locallySelectedOfficeName}
         </strong>{" "}
         {context?.searchForUser && (
           <>

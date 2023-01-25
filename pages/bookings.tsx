@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Cal from "../components/bookings/bookingsCal/Cal";
+import CalEditControls from "../components/bookings/bookingsCal/CalEditControls";
+import ContextBookingsProvider from "../components/contexts/CBookings";
 
 export default function Bookings() {
-  return <Cal />;
+  useEffect(() => {}, []);
+  return (
+    <ContextBookingsProvider>
+      <>
+        <Cal />;
+        <CalEditControls />
+      </>
+    </ContextBookingsProvider>
+  );
 }

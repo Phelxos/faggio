@@ -4,8 +4,11 @@ import OfficeInformationCard from "../components/offices/OfficeInformationCard";
 import useOffice from "../stores/SOffices";
 
 export default function Offices() {
-  const currentlyChosenOffice = useOffice((s) => s.currentlyChosenOffice);
-  useEffect(() => console.dir(currentlyChosenOffice), [currentlyChosenOffice]);
+  const globallySelectedOffice = useOffice((s) => s.globallySelectedOffice);
+  useEffect(
+    () => console.dir(globallySelectedOffice),
+    [globallySelectedOffice]
+  );
   return (
     <div className="flex w-full grow flex-col items-center items-stretch gap-16">
       <div className="w-full">
@@ -18,7 +21,7 @@ export default function Offices() {
           <MapOffices />
         </div>
       </div>
-      <OfficeInformationCard {...currentlyChosenOffice} />
+      <OfficeInformationCard {...globallySelectedOffice} />
     </div>
   );
 }

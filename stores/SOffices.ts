@@ -1,10 +1,10 @@
 import create from "zustand";
-import { devtools } from "zustand/middleware";
+import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
-import TOfficeCity from "../typings/types/TOfficeCity";
+import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 
-const initialValueForCurrentlyChosenOffice: IOffice = {
+export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
   district: "Stadtviertel",
   adress: { street: "straße", housenumber: "1", postcode: "12345" },
@@ -17,52 +17,55 @@ const initialValueForCurrentlyChosenOffice: IOffice = {
   imgSrc: "/images/office.jpg",
 };
 
-interface Props {
+interface Interface {
   allOffices: IOffice[] | [];
-  allOfficeNames: TOfficeCity[] | [];
-  displayedOffice: TOfficeCity;
-  setDisplayedOffice: (office: TOfficeCity) => void;
-  currentlyChosenOffice: IOffice;
-  setCurrentlyChosenOffice: (officeCityName: TOfficeCity) => void;
+  allOfficeNames: TOfficeCityEnglish[] | [];
+  globallySelectedOfficeName: TOfficeCityEnglish;
+  setGloballySelectedOfficeName: (office: TOfficeCityEnglish) => void;
+  globallySelectedOffice: IOffice;
+  setGloballySelectedOffice: (officeCityName: TOfficeCityEnglish) => void;
   fetchAndSetOffice: () => void;
 }
 
-const useOffice = create<Props>()(
-  devtools((set, get) => ({
-    allOffices: [],
-    allOfficeNames: [],
-    displayedOffice: "dortmund",
-    setDisplayedOffice: (office) => {
-      set({ displayedOffice: office });
-    },
-    currentlyChosenOffice: initialValueForCurrentlyChosenOffice,
-    setCurrentlyChosenOffice: (officeCityName) => {
-      set((state) => ({
-        currentlyChosenOffice: state.allOffices.find(
-          (entry: IOffice) => entry.city === officeCityName
-        ),
-      }));
-    },
-    fetchAndSetOffice: async () => {
-      try {
-        const res = await fetch(`${server}/api/offices`);
-        const fullList = await res.json();
-        set({ allOffices: fullList });
-        set({
-          allOfficeNames: fullList.map((entry: IOffice) => entry.city),
-        });
+const useOffice = create<Interface>()(
+  devtools(
+    persist((set) => ({
+      allOffices: [],
+      allOfficeNames: [],
+      globallySelectedOfficeName: "dortmund",
+      setGloballySelectedOfficeName: (office) => {
+        set({ globallySelectedOfficeName: office });
+      },
+      globallySelectedOffice: initialValueForGloballySelectedOffice,
+      setGloballySelectedOffice: (officeCityName) => {
         set((state) => ({
-          currentlyChosenOffice: fullList.find(
-            (entry: IOffice) => entry.city === state.displayedOffice
+          globallySelectedOffice: state.allOffices.find(
+            (entry: IOffice) => entry.city === officeCityName
           ),
         }));
-      } catch (e) {
-        console.error(
-          "Something has gone wrong while fetching the list of offices."
-        );
-      }
-    },
-  }))
+      },
+      fetchAndSetOffice: async () => {
+        try {
+          const res = await fetch(`${server}/api/offices`);
+          const fullList = await res.json();
+          set({ allOffices: fullList });
+          set({
+            allOfficeNames: fullList.map((entry: IOffice) => entry.city),
+          });
+          set((state) => ({
+            globallySelectedOffice: fullList.find(
+              (entry: IOffice) =>
+                entry.city === state.globallySelectedOfficeName
+            ),
+          }));
+        } catch (e) {
+          console.error(
+            "Something has gone wrong, while fetching the list of offices."
+          );
+        }
+      },
+    }))
+  )
 );
 
 export default useOffice;

@@ -1,9 +1,9 @@
 import React from "react";
 import { useContext } from "react";
-import { ContextTeams } from "../contexts/ContextTeams";
+import { CTeams } from "../contexts/CTeams";
 
 export default function TeamsControlsBarSwitch() {
-  const context = useContext(ContextTeams);
+  const context = useContext(CTeams);
 
   const handleCheckboxChange = (e: any) => {
     context?.setIsListView((prevVal: boolean) => !prevVal);
