@@ -3,6 +3,7 @@ import IOffice from "../../typings/interfaces/IOffice";
 const offices: IOffice[] = [
   {
     city: "dortmund",
+    district: "Schüren",
     adress: {
       street: "friedenspl.",
       housenumber: "1",
@@ -12,6 +13,9 @@ const offices: IOffice[] = [
     headcount: 67,
     workstations: 53,
     areDogsAllowed: true,
+    description:
+      "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz adessos ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
+    imgSrc: "/images/office.jpg",
   },
   {
     city: "hamburg",

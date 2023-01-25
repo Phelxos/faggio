@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
 import TTheme from "../typings/types/TThemes";
@@ -14,7 +14,7 @@ export default function SearchAndSelect({
   value,
   listOfValues,
   setValue,
-  theme = "pink",
+  theme,
 }: Props) {
   const [query, setQuery] = useState("");
 
