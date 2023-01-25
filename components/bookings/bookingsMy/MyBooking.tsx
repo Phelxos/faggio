@@ -17,7 +17,7 @@ export default function MyBooking() {
               <StatusLocation color="slate" />
           </div>
           <button className="bg-red-600 hover:bg-red-400 text-white font-bold py-2 px-4 rounded-full">
-              <Icon icon="x-mark" className="h-5 w-5 mx-0"/>
+              <Icon icon="xMark" className="h-5 w-5 mx-0"/>
           </button>
       </div>
     //   ))
