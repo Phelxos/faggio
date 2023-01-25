@@ -17,15 +17,6 @@ export default function Calendar() {
       </div>
       <MyBookingHeader />
       <MyBooking />
-      <div
-      className={`flex h-[485px] w-full flex-col rounded-lg border-[6px] ${
-        c?.isBeingEdited ? "border-emerald-300" : "border-emerald-900"
-      } bg-slate-700`}
-    >
-      <CalHeader />
-      <CalBody />
-      <CalFooter />
-    </div>
     </div>
   )
 };
