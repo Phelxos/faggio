@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect, useContext} from "react";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
-
-
-
+import { CBookings } from "../../contexts/CBookings";
+import useCurrentTheme from "../../../hooks/useCurrentTheme";
 
 export default function MyBookingHeader() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
-  const displayedOffice = useOffice((s) => s.displayedOffice);
-  const setDisplayedOffice = useOffice((s) => s.setDisplayedOffice);
+  const globallySelectedOfficeName = useOffice(
+    (s) => s.globallySelectedOfficeName
+  );
+  const context = useContext(CBookings);
+  const theme = useCurrentTheme();
+
+  useEffect(() => {
+    context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+  });
 
   return (
     <div className="flex flex-col w-full items-center justify-around rounded-t-lg bg-emerald-900 p-6 mt-10">
@@ -17,9 +23,10 @@ export default function MyBookingHeader() {
           </div>
         <div className="w-1/2">
           <SearchAndSelect
-            value={displayedOffice}
-            setValue={(event) => setDisplayedOffice(event)}
+            value={context?.locallySelectedOfficeName}
+            setValue={context!.setLocallySelectedOfficeName}
             listOfValues={allOfficeNames} 
+            theme={theme}
           />
         </div>
           
