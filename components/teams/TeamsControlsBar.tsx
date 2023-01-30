@@ -15,6 +15,10 @@ export default function ControlsBar() {
   const theme = useTheme();
 
   const handleUserSearchInput = (e: any) => {
+    const lastCharacterOfSearchInput =
+      e.target.value[e.target.value.length - 1];
+    console.log(lastCharacterOfSearchInput);
+    if (/^[^a-zA-ZäÄöÖüÜß-]+$/.test(lastCharacterOfSearchInput)) return;
     if (e.target.value.length > 30) return;
     c?.setSearchForUser(e.target.value.toLowerCase());
   };
@@ -31,7 +35,7 @@ export default function ControlsBar() {
 
   return (
     <div className="flex h-[200px] w-full flex-col flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/75 p-3">
-      <div className="flex h-1/2 flex-col items-center justify-center rounded-t-lg border-b-4 border-pink-200/75 bg-pink-500">
+      <div className="flex h-1/2 flex-col items-center justify-center rounded-t-lg border-pink-200/75 bg-pink-500">
         {c?.activeButton === "left" ? (
           <Switch />
         ) : c?.activeButton === "center" ? (
