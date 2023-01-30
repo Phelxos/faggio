@@ -29,9 +29,9 @@ export default function TeamsControlsBarSwitch() {
           passive
           className={`${
             c?.isListView
-              ? "font-bold tracking-wider text-pink-200"
+              ? "font-bold tracking-wider text-pink-300"
               : "font-light tracking-widest text-pink-900/75"
-          } flex h-full w-full flex-col items-end justify-center text-xl`}
+          } flex h-full w-full flex-col items-end justify-center text-xl transition duration-200 ease-in-out`}
         >
           Listenansicht
         </Switch.Label>
