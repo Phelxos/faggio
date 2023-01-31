@@ -28,6 +28,8 @@ const offices: IOffice[] = [
     headcount: 23,
     workstations: 36,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "bremen",
@@ -38,7 +40,7 @@ const offices: IOffice[] = [
     },
     areaInSquareMetres: 231,
     headcount: 13,
-    workstations: 11,
+    workstations: 30,
     areDogsAllowed: true,
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
