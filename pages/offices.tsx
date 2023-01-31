@@ -5,10 +5,7 @@ import useOffice from "../stores/SOffices";
 
 export default function Offices() {
   const globallySelectedOffice = useOffice((s) => s.globallySelectedOffice);
-  useEffect(
-    () => console.dir(globallySelectedOffice),
-    [globallySelectedOffice]
-  );
+
   return (
     <div className="flex w-full grow flex-col items-center items-stretch gap-16">
       <div className="w-full">

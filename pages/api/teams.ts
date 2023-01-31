@@ -51,7 +51,7 @@ const allCoworkers: ICoworker[] = [
   },
   {
     forename: "nils",
-    surname: "danzi",
+    surname: "danzig",
     office: "dortmund",
     id: 1008,
   },

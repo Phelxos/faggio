@@ -1,4 +1,5 @@
 type TIcon =
+  | "bookmark"
   | "bookOpen"
   | "buildingOffice"
   | "calendar"
@@ -14,6 +15,8 @@ type TIcon =
   | "listBullet"
   | "magnifiyingGlass"
   | "mapPin"
+  | "noSymbol"
+  | "pencil"
   | "phone"
   | "plus"
   | "select"

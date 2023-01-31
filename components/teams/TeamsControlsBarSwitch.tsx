@@ -1,26 +1,41 @@
 import React from "react";
 import { useContext } from "react";
 import { CTeams } from "../contexts/CTeams";
+import { Switch } from "@headlessui/react";
 
 export default function TeamsControlsBarSwitch() {
-  const context = useContext(CTeams);
+  const c = useContext(CTeams);
 
   const handleCheckboxChange = (e: any) => {
-    context?.setIsListView((prevVal: boolean) => !prevVal);
+    c?.setIsListView((prevVal: boolean) => !prevVal);
   };
 
   return (
-    <label className="relative flex inline-flex h-full w-full cursor-pointer items-center justify-between rounded-lg bg-pink-500 py-2 px-4">
-      <input
-        type="checkbox"
-        checked={context?.isListView}
-        className="peer sr-only"
-        onChange={handleCheckboxChange}
-      />
-      <div className="h-12 w-24 rounded-full bg-slate-700 shadow-inner  after:absolute after:top-4 after:left-4 after:-mt-[1.5px] after:h-12 after:w-12 after:rounded-full after:bg-pink-200 after:shadow-lg after:transition-all after:content-[''] peer-checked:bg-pink-700 peer-checked:after:translate-x-full  peer-focus:ring-4 peer-focus:ring-pink-200" />
-      <span className="ml-6 text-3xl font-bold tracking-widest text-slate-700 peer-checked:text-pink-800">
-        Listenansicht
-      </span>
-    </label>
+    <div className="flex h-full w-full items-center justify-around p-5">
+      <Switch.Group>
+        <Switch
+          checked={c?.isListView}
+          onChange={handleCheckboxChange}
+          className={`${c?.isListView ? "bg-pink-200" : "bg-slate-900"}
+          peer relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+        >
+          <span
+            aria-hidden="true"
+            className={`${c?.isListView ? "translate-x-9" : "translate-x-0"}
+            pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full bg-pink-700 shadow-lg ring-0 transition duration-200 ease-in-out`}
+          />
+        </Switch>
+        <Switch.Label
+          passive
+          className={`${
+            c?.isListView
+              ? "font-bold tracking-wider text-pink-300"
+              : "font-light tracking-widest text-pink-900/75"
+          } flex h-full w-full flex-col items-end justify-center text-xl transition duration-200 ease-in-out`}
+        >
+          Listenansicht
+        </Switch.Label>
+      </Switch.Group>
+    </div>
   );
 }

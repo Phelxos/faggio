@@ -27,7 +27,7 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
       {coworkers?.map((coworker: ICoworker, i: number) => (
         <li
           key={i}
-          className="flex items-center gap-2 rounded-lg p-4 text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
+          className="flex items-center gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
         >
           <Image
             src={coworker.imgSrc || ""}
@@ -36,12 +36,14 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
             height={50}
             className="mr-4 inline rounded-full border-2 border-pink-500"
           />
-          <span className="text-xl font-thin uppercase tracking-widest text-pink-300">
-            {coworker.forename}
-          </span>{" "}
-          <span className="font-bold uppercase tracking-wider">
-            {coworker.surname}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-2xl font-thin uppercase tracking-wider text-pink-300">
+              {coworker.forename}
+            </span>{" "}
+            <span className="font-semibold uppercase tracking-widest text-slate-900">
+              {coworker.surname}
+            </span>
+          </div>
         </li>
       ))}
     </ul>

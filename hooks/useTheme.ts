@@ -9,7 +9,7 @@ const pageTitleToTheme = new Map<TPageTitle, TTheme>([
   ["offices", "amber"],
 ]);
 
-export default function useCurrentTheme() {
+export default function useTheme() {
   const { pathname } = useRouter();
   // pathname without the slash
   const adjustedPathname: TPageTitle =

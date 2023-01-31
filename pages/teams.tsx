@@ -2,62 +2,29 @@ import React, { useState, useEffect, useContext } from "react";
 import TeamsControlsBar from "../components/teams/TeamsControlsBar";
 import BackupMessage from "../components/teams/TeamsBackupMessage";
 import Spinner from "../components/Spinner";
-import { server } from "../config/index";
 import ICoworker from "../typings/interfaces/ICoworker";
 import { CTeams } from "../components/contexts/CTeams";
 import TeamsViewCoworkers from "../components/teams/TeamsViewCoworkers";
 import useOffice from "../stores/SOffices";
+import useCoworkers from "../stores/SCoworkers";
 
-interface Props {
-  allCoworkersFromAPI: ICoworker[];
-}
-
-export default function Teams({ allCoworkersFromAPI }: Props) {
+export default function Teams() {
+  const c = useContext(CTeams);
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
-  const [isLoading, setIsLoading] = useState(true);
-  const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>();
-  const [allCoworkers, setAllCoworkers] = useState<ICoworker[]>();
-  const context = useContext(CTeams);
+  const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>([]);
+  const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
+  const isLoadingCoworkersListFromStore = useCoworkers((s) => s.isLoading);
 
-  async function fetchImagesOfCoworkers(): Promise<ICoworker[] | undefined> {
-    try {
-      setIsLoading(true);
-      const resRandomUsers = await fetch(
-        `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`
-      );
-      const randomUsers = await resRandomUsers.json();
-      const imgSources = randomUsers.results;
-
-      const coworkersWithPhotos = allCoworkersFromAPI.map(
-        (coworker: ICoworker, i: number) => {
-          return {
-            ...coworker,
-            imgSrc: imgSources[i].picture.large as string,
-          };
-        }
-      );
-      filterCoworkers(coworkersWithPhotos);
-      setAllCoworkers(coworkersWithPhotos);
-    } catch (e) {
-      console.error(
-        "Something has gone wrong while fetching the photos of the coworkers."
-      );
-    } finally {
-      setIsLoading(false);
-      return;
-    }
-  }
-
-  function filterCoworkers(coworkersList: ICoworker[] | undefined) {
-    if (context?.searchForUser) {
+  function filterCoworkers(coworkersList: ICoworker[]) {
+    if (c?.searchForUser) {
       const filteredListOfCoworkers = coworkersList?.filter(
         (coworker: ICoworker) => {
           return (
-            (coworker.forename.includes(context?.searchForUser) ||
-              coworker.surname.includes(context?.searchForUser)) &&
-            coworker.office === context?.locallySelectedOfficeName
+            (coworker.forename.includes(c?.searchForUser) ||
+              coworker.surname.includes(c?.searchForUser)) &&
+            coworker.office === c?.locallySelectedOfficeName
           );
         }
       );
@@ -65,7 +32,7 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
     } else {
       const filteredListOfCoworkers = coworkersList?.filter(
         (coworker: ICoworker) => {
-          return coworker.office === context?.locallySelectedOfficeName;
+          return coworker.office === c?.locallySelectedOfficeName;
         }
       );
       setDisplayedCoworkers(filteredListOfCoworkers);
@@ -73,64 +40,43 @@ export default function Teams({ allCoworkersFromAPI }: Props) {
   }
 
   useEffect(() => {
-    fetchImagesOfCoworkers();
-    context!.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   useEffect(() => {
-    filterCoworkers(allCoworkers);
-  }, [context?.searchForUser]);
+    setDisplayedCoworkers(coworkers as ICoworker[]);
+  }, [coworkers]);
 
   useEffect(() => {
-    const filteredListOfCoworkers = allCoworkers?.filter(
-      (coworker: ICoworker) => {
-        return (
-          (coworker.forename.includes(context!.searchForUser) ||
-            coworker.surname.includes(context!.searchForUser)) &&
-          coworker.office === context?.locallySelectedOfficeName
-        );
-      }
-    );
-    setDisplayedCoworkers(filteredListOfCoworkers);
-  }, [context?.locallySelectedOfficeName]);
+    filterCoworkers(coworkers as ICoworker[]);
+  }, [c?.searchForUser, c?.locallySelectedOfficeName]);
 
   return (
     <>
-      {isLoading || !displayedCoworkers ? (
-        <Spinner />
-      ) : (
-        <div className="flex w-full grow flex-col items-center gap-12">
-          <div
-            className={`${
-              context?.isListView && displayedCoworkers?.length > 0
-                ? "flex-col border-8 p-4"
-                : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
-            } flex h-[400px] w-full gap-10 overflow-scroll rounded border-slate-700 bg-slate-700 shadow-inner`}
-          >
-            {isLoading && (
-              <div className="flex h-full w-full flex-col items-center justify-center">
-                <Spinner />
-              </div>
+      <div className="flex w-full grow flex-col items-center gap-8">
+        <div
+          className={`${
+            c?.isListView && displayedCoworkers?.length > 0
+              ? "flex-col border-8 p-4"
+              : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+          } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
+        >
+          <>
+            {isLoadingCoworkersListFromStore ? (
+              <Spinner />
+            ) : (
+              <>
+                {displayedCoworkers?.length > 0 ? (
+                  <TeamsViewCoworkers coworkers={displayedCoworkers} />
+                ) : (
+                  <BackupMessage />
+                )}
+              </>
             )}
-            {displayedCoworkers?.length > 0 && (
-              <TeamsViewCoworkers coworkers={displayedCoworkers} />
-            )}
-            {displayedCoworkers?.length === 0 && <BackupMessage />}
-          </div>
-          <TeamsControlsBar />
+          </>
         </div>
-      )}
+        <TeamsControlsBar />
+      </div>
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await fetch(`${server}/api/teams`);
-  let allCoworkersFromAPI = await res.json();
-
-  return {
-    props: {
-      allCoworkersFromAPI,
-    },
-  };
 }

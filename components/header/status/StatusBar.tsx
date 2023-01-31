@@ -4,12 +4,12 @@ import StatusLocation from "./StatusLocation";
 import StatusUser from "./StatusUser";
 import TTheme from "../../../typings/types/TThemes";
 import TPageTitle from "../../../typings/types/TPageTitle";
-import useCurrentTheme from "../../../hooks/useCurrentTheme";
+import useTheme from "../../../hooks/useTheme";
 
 export default function StatusBar() {
   const router = useRouter();
   const [color, setColor] = useState<TTheme>("slate");
-  const currentTheme = useCurrentTheme();
+  const currentTheme = useTheme();
 
   useEffect(() => {
     const pageTitle: TPageTitle = router.pathname.slice(1)
