@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, use } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import useBookings from "../../../stores/SBookings";
 import mapCalendar from "../../../helpers/mapCalendar";
@@ -10,6 +10,7 @@ import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
+  const [secondRerender, setSecondRerender] = useState<boolean>(true);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
@@ -20,6 +21,9 @@ export default function CalBody() {
   const isBookedDate = (date: Date): boolean => {
     if (
       bookings.some((b: IBooking) => {
+        console.log(
+          b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
+        );
         return (
           b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
         );
@@ -91,10 +95,6 @@ export default function CalBody() {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
   }, [selectedYear, selectedMonth, displayedWeekdays]);
 
-  useEffect(() => {
-    console.log("Bookings", bookings);
-  }, [c?.bookingsToBeSaved]);
-
   return (
     <table className="w-full grow table-fixed">
       <thead className="bg-slate-800 font-mono">
@@ -151,10 +151,10 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`m-2 cursor-pointer p-2 text-center text-3xl ${
+                      className={`cursor-pointer text-center text-3xl ${
                         isBookedDate(weekday.date) &&
                         !isBeingSelectedAsBookingToBeDeleted(weekday.date)
-                          ? "rounded-full bg-slate-300 font-bold text-slate-700 hover:rounded-full hover:bg-slate-100"
+                          ? "rounded-xl bg-slate-300 font-bold text-slate-700 hover:rounded-xl hover:bg-slate-100"
                           : "font-light hover:rounded-xl hover:bg-slate-400 hover:text-slate-800"
                       } ${
                         isBeingSelectedAsBookingToBeSaved(weekday.date)
