@@ -3,7 +3,7 @@ import IOffice from "../../typings/interfaces/IOffice";
 const offices: IOffice[] = [
   {
     city: "dortmund",
-    district: "Schüren",
+    district: "schueren",
     adress: {
       street: "friedenspl.",
       housenumber: "1",
@@ -40,6 +40,8 @@ const offices: IOffice[] = [
     headcount: 13,
     workstations: 11,
     areDogsAllowed: true,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "berlin",
@@ -52,6 +54,8 @@ const offices: IOffice[] = [
     headcount: 41,
     workstations: 54,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "cologne",
@@ -65,6 +69,8 @@ const offices: IOffice[] = [
     headcount: 21,
     workstations: 36,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "leipzig",
@@ -77,6 +83,8 @@ const offices: IOffice[] = [
     headcount: 9,
     workstations: 10,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "munich",
@@ -89,6 +97,8 @@ const offices: IOffice[] = [
     headcount: 23,
     workstations: 43,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "frankfurt",
@@ -101,6 +111,8 @@ const offices: IOffice[] = [
     headcount: 24,
     workstations: 26,
     areDogsAllowed: true,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
 ];
 export default function handler(req: any, res: any) {

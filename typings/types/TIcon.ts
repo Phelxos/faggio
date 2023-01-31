@@ -8,6 +8,7 @@ type TIcon =
   | "check"
   | "chevronLeft"
   | "chevronRight"
+  | "computerDesktop"
   | "envelope"
   | "exclamationCircle"
   | "home"
