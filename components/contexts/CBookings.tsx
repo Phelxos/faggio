@@ -52,7 +52,8 @@ export default function ContextBookingsProvider({
     setBookingsToBeSaved(
       bookingsToBeSaved.filter(
         (b: IBooking) =>
-          +b.date !== +date || b.office !== locallySelectedOfficeName
+          (b.date as Date).toJSON() !== date.toJSON() ||
+          b.office !== locallySelectedOfficeName
       )
     );
   };
@@ -70,7 +71,8 @@ export default function ContextBookingsProvider({
     setBookingsToBeDeleted(
       bookingsToBeDeleted.filter(
         (b: IBooking) =>
-          +b.date !== +date || b.office !== locallySelectedOfficeName
+          (b.date as Date).toJSON() !== date.toJSON() ||
+          b.office !== locallySelectedOfficeName
       )
     );
   };
