@@ -2,7 +2,7 @@ import React, { useEffect, useContext} from "react";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
-import useCurrentTheme from "../../../hooks/useCurrentTheme";
+import useTheme from "../../../hooks/useTheme";
 
 export default function MyBookingHeader() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
@@ -10,7 +10,7 @@ export default function MyBookingHeader() {
     (s) => s.globallySelectedOfficeName
   );
   const context = useContext(CBookings);
-  const theme = useCurrentTheme();
+  const theme = useTheme();
 
   useEffect(() => {
     context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
