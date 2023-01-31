@@ -33,22 +33,3 @@ export default function MyBookingHeader() {
     </div>
   );
 }
-
-// bookedSlots = [
-//   {
-//     datum: "tt.mm.jjjj",
-//     office: "standort",
-//   },
-//   {
-//     datum: "tt.mm.jjjj",
-//     office: "standort",
-//   },
-//   {
-//     datum: "tt.mm.jjjj",
-//     office: "standort",
-//   },
-//   . 
-//   . 
-//   . 
-// ]
-// XX Buchungen: sowas wie bookedSlots.length einfügen
