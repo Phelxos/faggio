@@ -20,14 +20,10 @@ export default function CalBody() {
   });
   const isBookedDate = (date: Date): boolean => {
     if (
-      bookings.some((b: IBooking) => {
-        console.log(
+      bookings.some(
+        (b: IBooking) =>
           b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
-        );
-        return (
-          b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
-        );
-      })
+      )
     ) {
       return true;
     } else {
