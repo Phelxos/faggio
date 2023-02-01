@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, use } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import useBookings from "../../../stores/SBookings";
 import mapCalendar from "../../../helpers/mapCalendar";
@@ -10,6 +10,7 @@ import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
+  const [secondRerender, setSecondRerender] = useState<boolean>(true);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
@@ -21,7 +22,7 @@ export default function CalBody() {
     if (
       bookings.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === c?.locallySelectedOfficeName
+          b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -33,7 +34,8 @@ export default function CalBody() {
     if (
       c?.bookingsToBeSaved.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === c?.locallySelectedOfficeName
+          (b.date as Date).toJSON() === date.toJSON() &&
+          b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -45,7 +47,8 @@ export default function CalBody() {
     if (
       c?.bookingsToBeDeleted.some(
         (b: IBooking) =>
-          +b.date === +date && b.office === c?.locallySelectedOfficeName
+          (b.date as Date).toJSON() === date.toJSON() &&
+          b.office === c?.locallySelectedOfficeName
       )
     ) {
       return true;
@@ -53,33 +56,33 @@ export default function CalBody() {
       return false;
     }
   };
-  const handleDateClick = (weekday: any) => {
+  const handleDateClick = (date: Date | string) => {
     if (c?.isBeingEdited) {
-      const currentlyClickedDate = weekday.date;
-      const date = new Date(currentlyClickedDate);
+      // ensure using date object
+      const safeDate: Date = new Date(date);
       const coworker: TCoworkerId = 9999;
       const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
       if (
-        !isBookedDate(currentlyClickedDate) &&
-        !isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
+        !isBookedDate(safeDate) &&
+        !isBeingSelectedAsBookingToBeSaved(safeDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeSaved({ date, coworker, office });
+        c.setBookingsToBeSaved({ date: safeDate, coworker, office });
       } else if (
-        isBeingSelectedAsBookingToBeSaved(currentlyClickedDate) &&
-        !isBookedDate(currentlyClickedDate)
+        isBeingSelectedAsBookingToBeSaved(safeDate) &&
+        !isBookedDate(safeDate)
       ) {
-        c.deleteBookingsToBeSaved(currentlyClickedDate);
+        c.deleteBookingsToBeSaved(safeDate);
       } else if (
-        isBookedDate(currentlyClickedDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
+        isBookedDate(safeDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeDeleted({ date, coworker, office });
+        c.setBookingsToBeDeleted({ date: safeDate, coworker, office });
       } else if (
-        isBookedDate(currentlyClickedDate) &&
-        isBeingSelectedAsBookingToBeDeleted(currentlyClickedDate)
+        isBookedDate(safeDate) &&
+        isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.deleteBookingsToBeDeleted(currentlyClickedDate);
+        c.deleteBookingsToBeDeleted(safeDate);
       }
     }
   };
@@ -144,10 +147,10 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className={`m-2 cursor-pointer p-2 text-center text-3xl ${
+                      className={`cursor-pointer text-center text-3xl ${
                         isBookedDate(weekday.date) &&
                         !isBeingSelectedAsBookingToBeDeleted(weekday.date)
-                          ? "rounded-full bg-slate-300 font-bold text-slate-700 hover:rounded-full hover:bg-slate-100"
+                          ? "rounded-xl bg-slate-300 font-bold text-slate-700 hover:rounded-xl hover:bg-slate-100"
                           : "font-light hover:rounded-xl hover:bg-slate-400 hover:text-slate-800"
                       } ${
                         isBeingSelectedAsBookingToBeSaved(weekday.date)
@@ -156,7 +159,7 @@ export default function CalBody() {
                           ? "rounded-full bg-red-300/50 text-red-800 line-through hover:rounded-full hover:bg-red-300/75 hover:text-red-600"
                           : ""
                       }`}
-                      onClick={() => handleDateClick(weekday)}
+                      onClick={() => handleDateClick(weekday.date)}
                     >
                       {getDate(weekday.date)}
                     </td>

@@ -14,6 +14,10 @@ const useBookings = create<Interface>()(
     persist((set) => ({
       bookings: [],
       setBookings: (bookingsToBeSaved: IBooking[]) => {
+        bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => ({
+          ...b,
+          date: (b.date as Date).toJSON(),
+        }));
         set((state) => ({
           bookings: [...state.bookings, ...bookingsToBeSaved],
         }));
@@ -28,7 +32,8 @@ const useBookings = create<Interface>()(
           bookings: state.bookings.filter((booking: IBooking) => {
             return !bookingsToBeRemoved.some(
               (bookingToBeRemovedPotentially: IBooking) =>
-                +booking.date === +bookingToBeRemovedPotentially.date &&
+                booking.date ===
+                  (bookingToBeRemovedPotentially.date as Date).toJSON() &&
                 booking.office === bookingToBeRemovedPotentially.office
             );
           }),
