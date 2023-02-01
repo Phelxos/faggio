@@ -1,4 +1,5 @@
 type TIcon =
+  | "arrowUturnLeft"
   | "bookmark"
   | "bookOpen"
   | "buildingOffice"
