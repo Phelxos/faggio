@@ -7,6 +7,7 @@ interface Interface {
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => void;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
+  deleteBookingsWithoutJSON: (bookingsToBeRemoved: IBooking[]) => void;
   clearBookings: () => void;
 }
 
@@ -33,21 +34,21 @@ const useBookings = create<Interface>()(
           bookings: state.bookings.filter((booking: IBooking) => {
             return !bookingsToBeRemoved.some(
               (bookingToBeRemovedPotentially: IBooking) =>
-              {if (bookingToBeRemovedPotentially.date === typeof String) 
-                {
-                  bookingToBeRemovedPotentially.date = new Date(bookingToBeRemovedPotentially.date)
-                  console.log(bookingToBeRemovedPotentially);
-                }
-                return (
-                booking.date === (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+                booking.date ===
+                  (bookingToBeRemovedPotentially.date as Date).toJSON() &&
                 booking.office === bookingToBeRemovedPotentially.office
-              )}
-                
-                
-                // booking.date ===
-                //   bookingToBeRemovedPotentially.date &&
-
-                
+            );
+          }),
+        }));
+      },
+      deleteBookingsWithoutJSON: (bookingsToBeRemoved: IBooking[]) => {
+        set((state) => ({
+          bookings: state.bookings.filter((booking: IBooking) => {
+            return !bookingsToBeRemoved.some(
+              (bookingToBeRemovedPotentially: IBooking) =>
+                booking.date ===
+                  bookingToBeRemovedPotentially.date &&
+                booking.office === bookingToBeRemovedPotentially.office
             );
           }),
         }));
@@ -57,3 +58,15 @@ const useBookings = create<Interface>()(
 );
 
 export default useBookings;
+
+// {console.log(typeof bookingToBeRemovedPotentially); // --> immer object
+//   console.log(bookingToBeRemovedPotentially); // unterschiedlich, je nachdem ob aus Kalender oder MyBooking Übersicht
+// }
+
+// Für löschen aus Calender (ist Date, deswegen toJSON umandeln):
+// booking.date ===
+//   (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+// Für löschen aus MyBooking Übersicht (ist JSON, deswegen ohne toJSON)
+// booking.date ===
+//   bookingToBeRemovedPotentially.date &&
+// booking.office === bookingToBeRemovedPotentially.office

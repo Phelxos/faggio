@@ -8,7 +8,7 @@ import { CBookings } from "../../contexts/CBookings";
 export default function MyBooking() {
   // bookings: weiterhin JSON
   let bookings = useBookings((s) => s.bookings);
-  let deleteBookings = useBookings((s) => s.deleteBookings);
+  let deleteBookingsWithoutJSON = useBookings((s) => s.deleteBookingsWithoutJSON);
   let dateOptions = {
     year: "numeric", 
     month: "long", 
@@ -17,7 +17,7 @@ export default function MyBooking() {
   }
   console.log(bookings);
   const handleDeleteButton = (toBeDeleted: IBooking[]) => {
-    deleteBookings(toBeDeleted);
+    deleteBookingsWithoutJSON(toBeDeleted);
   }
 
   return (
