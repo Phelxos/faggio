@@ -3,6 +3,7 @@ import { devtools, persist } from "zustand/middleware";
 import IBooking from "../typings/interfaces/IBooking";
 
 interface Interface {
+  // im store ist date als JSON String
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => void;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
@@ -32,9 +33,21 @@ const useBookings = create<Interface>()(
           bookings: state.bookings.filter((booking: IBooking) => {
             return !bookingsToBeRemoved.some(
               (bookingToBeRemovedPotentially: IBooking) =>
-                booking.date ===
-                  (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+              {if (bookingToBeRemovedPotentially.date === typeof String) 
+                {
+                  bookingToBeRemovedPotentially.date = new Date(bookingToBeRemovedPotentially.date)
+                  console.log(bookingToBeRemovedPotentially);
+                }
+                return (
+                booking.date === (bookingToBeRemovedPotentially.date as Date).toJSON() &&
                 booking.office === bookingToBeRemovedPotentially.office
+              )}
+                
+                
+                // booking.date ===
+                //   bookingToBeRemovedPotentially.date &&
+
+                
             );
           }),
         }));
