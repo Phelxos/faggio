@@ -6,6 +6,7 @@ import { CBookings } from "../../contexts/CBookings";
 
 
 export default function MyBooking() {
+  // bookings: weiterhin JSON
   let bookings = useBookings((s) => s.bookings);
   let deleteBookings = useBookings((s) => s.deleteBookings);
   let dateOptions = {
@@ -14,9 +15,9 @@ export default function MyBooking() {
     day: "numeric", 
     weekday: "long"
   }
-
+  console.log(bookings);
   const handleDeleteButton = (toBeDeleted: IBooking[]) => {
-    deleteBookings(toBeDeleted)
+    deleteBookings(toBeDeleted);
   }
 
   return (
@@ -24,7 +25,7 @@ export default function MyBooking() {
       {bookings.map((booking: IBooking) => (
         <div key={Math.random()} className="flex w-full justify-around rounded-lg bg-emerald-500 p-6 mt-10">
           <div className="flex flex-col">
-              <p>{booking.date.toLocaleDateString("de-DE", dateOptions)}</p>
+              <p>{new Date(booking.date).toLocaleDateString()}</p>
               <p>{booking.office}</p>
           </div>
           <button 
@@ -35,6 +36,5 @@ export default function MyBooking() {
         </div>
       ))}    
     </>
-
   );
 }
