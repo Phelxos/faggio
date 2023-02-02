@@ -3,6 +3,7 @@ import { devtools, persist } from "zustand/middleware";
 import IBooking from "../typings/interfaces/IBooking";
 
 interface Interface {
+  // im store ist date als JSON String
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => void;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
@@ -31,10 +32,19 @@ const useBookings = create<Interface>()(
         set((state) => ({
           bookings: state.bookings.filter((booking: IBooking) => {
             return !bookingsToBeRemoved.some(
-              (bookingToBeRemovedPotentially: IBooking) =>
-                booking.date ===
-                  (bookingToBeRemovedPotentially.date as Date).toJSON() &&
-                booking.office === bookingToBeRemovedPotentially.office
+              (bookingToBeRemovedPotentially: IBooking) => {
+                // ensure date is written as JSON
+                if (typeof bookingToBeRemovedPotentially.date === "string") {
+                  bookingToBeRemovedPotentially.date = new Date(
+                    bookingToBeRemovedPotentially.date
+                  );
+                }
+                return (
+                  booking.date ===
+                    (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+                  booking.office === bookingToBeRemovedPotentially.office
+                );
+              }
             );
           }),
         }));
@@ -44,3 +54,15 @@ const useBookings = create<Interface>()(
 );
 
 export default useBookings;
+
+// {console.log(typeof bookingToBeRemovedPotentially); // --> immer object
+//   console.log(bookingToBeRemovedPotentially); // unterschiedlich, je nachdem ob aus Kalender oder MyBooking Übersicht
+// }
+
+// Für löschen aus Calender (ist Date, deswegen toJSON umandeln):
+// booking.date ===
+//   (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+// Für löschen aus MyBooking Übersicht (ist JSON, deswegen ohne toJSON)
+// booking.date ===
+//   bookingToBeRemovedPotentially.date &&
+// booking.office === bookingToBeRemovedPotentially.office
