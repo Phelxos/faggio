@@ -17,32 +17,38 @@ export default function OfficeInformationCard({
   imgSrc = "/images/office.jpg",
 }: IOffice) {
   return (
-    <div className="w-full">
-      <div className="h-full overflow-hidden rounded-lg border-2 border-gray-800 bg-amber-700">
+    <div className="w-full rounded-lg border-4 border-amber-900/75 bg-amber-700">
+      <div className="relative rounded bg-amber-700">
         <Image
-          className="w-full object-cover object-center md:h-36 lg:h-48"
+          className="h-full w-full border-b-4 border-amber-900/50 object-cover object-center md:h-36 lg:h-48"
           src={imgSrc ?? ""}
           alt="blog"
           width={100}
           height={100}
         />
-        <div className="flex flex-col gap-4 p-8">
-          <OfficesCardTitle city={city} district={district} />
-          <div className="flex">
-            <OfficesCardQuickies
-              headcount={headcount}
-              workstations={workstations}
-              areDogsAllowed={areDogsAllowed}
-              areaInSquareMetres={areaInSquareMetres}
-            />
-            <div className="flex flex-col">
-              <p className="text-xs leading-relaxed text-amber-100">
-                {description}
-              </p>
-              <OfficesCardAddress address={address} />
-            </div>
-          </div>
+        <OfficesCardTitle
+          city={city}
+          district={district}
+          className="absolute bottom-3 right-2 rounded-lg p-2 backdrop-blur-xl"
+        />
+      </div>
+      <div className="flex flex-col p-6">
+        <div className="mb-4 flex items-center gap-4">
+          <OfficesCardQuickies
+            headcount={headcount}
+            workstations={workstations}
+            areDogsAllowed={areDogsAllowed}
+            areaInSquareMetres={areaInSquareMetres}
+          />
+          <p className="rounded-xl bg-amber-800/75 p-4 text-sm leading-relaxed text-amber-200">
+            {description}
+          </p>
         </div>
+        <OfficesCardAddress
+          street={address?.street}
+          housenumber={address?.housenumber}
+          postcode={address?.postcode}
+        />
       </div>
     </div>
   );

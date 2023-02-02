@@ -19,28 +19,25 @@ export default function OfficesCardQuickies({
   className,
 }: Props) {
   return (
-    <div
-      className={`flex flex-col items-center justify-around text-sm ${className}`}
-    >
-      <span className="flex items-center border-amber-900 font-bold text-amber-500">
-        <Icon icon="userGroup" className="mr-1 h-6 w-6 opacity-50" />
+    <div className={`flex flex-col items-center text-sm ${className} gap-3`}>
+      <div className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 font-bold text-amber-500">
+        <Icon icon="userGroup" className="h-6 w-6 opacity-50" />
         {headcount}
-      </span>
-      <span className="flex items-center font-bold text-amber-500">
-        <FontAwesomeIcon icon={faChair} className="mr-1 h-5 w-5" />
+      </div>
+      <div className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 font-bold text-amber-500">
+        <FontAwesomeIcon icon={faChair} className="h-5 w-5 opacity-50" />
         {workstations}
-      </span>
-      <span className="flex items-center font-bold text-amber-500">
+      </div>
+      <div className="flex min-h-[48px] w-full items-center justify-center rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 text-xs font-bold text-amber-500">
         {areaInSquareMetres}
-        <span className="ml-1 text-xs opacity-50">
+        <div className="ml-1 opacity-50">
           m<sup>2</sup>
-        </span>
-      </span>
-      <span className="relative flex items-center justify-center text-amber-500">
+        </div>
+      </div>
+      <div className="flex min-h-[48px] w-full flex-col items-center justify-center gap-2 rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 font-bold text-amber-500">
         {areDogsAllowed ? (
           <>
             <FontAwesomeIcon icon={faPaw} className="mr-1 h-5 w-5" />
-            <span className="text-xs opacity-75">erlaubt</span>
           </>
         ) : (
           <>
@@ -51,7 +48,7 @@ export default function OfficesCardQuickies({
             />
           </>
         )}
-      </span>
+      </div>
     </div>
   );
 }
