@@ -1,12 +1,14 @@
 import Image from "next/image";
 import React from "react";
 import IOffice from "../../../typings/interfaces/IOffice";
+import OfficesCardAddress from "./OfficesCardAddress";
+import OfficesCardQuickies from "./OfficesCardQuickies";
 import OfficesCardTitle from "./OfficesCardTitle";
 
 export default function OfficeInformationCard({
   city,
   district,
-  adress,
+  address,
   areaInSquareMetres,
   headcount,
   workstations,
@@ -24,13 +26,21 @@ export default function OfficeInformationCard({
           width={100}
           height={100}
         />
-        <div className="grid grid-cols-1 grid-rows-2 gap-4 p-8">
+        <div className="flex flex-col gap-4 p-8">
           <OfficesCardTitle city={city} district={district} />
-          <div className="grid grid-cols-2 grid-rows-1">
-            <div className="grid grid-cols-1 grid-rows-2"></div>
-            <p className="text-xs leading-relaxed text-amber-100">
-              {description}
-            </p>
+          <div className="flex">
+            <OfficesCardQuickies
+              headcount={headcount}
+              workstations={workstations}
+              areDogsAllowed={areDogsAllowed}
+              areaInSquareMetres={areaInSquareMetres}
+            />
+            <div className="flex flex-col">
+              <p className="text-xs leading-relaxed text-amber-100">
+                {description}
+              </p>
+              <OfficesCardAddress address={address} />
+            </div>
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ interface Props {
 
 export default function OfficesCardTitle({ district, city, className }: Props) {
   return (
-    <div className={`${className}`}>
+    <div className={`h-[50px] ${className}`}>
       <h2 className="text-xs font-bold tracking-widest text-amber-900">
         {district}
       </h2>

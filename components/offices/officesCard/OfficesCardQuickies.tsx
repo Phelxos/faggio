@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../../icons/Icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw } from "@fortawesome/free-solid-svg-icons";
+import { faPaw, faChair } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   headcount: number;
@@ -27,7 +27,7 @@ export default function OfficesCardQuickies({
         {headcount}
       </span>
       <span className="flex items-center font-bold text-amber-500">
-        <Icon icon="computerDesktop" className="mr-1 h-6 w-6 opacity-50" />
+        <FontAwesomeIcon icon={faChair} className="mr-1 h-5 w-5" />
         {workstations}
       </span>
       <span className="flex items-center font-bold text-amber-500">

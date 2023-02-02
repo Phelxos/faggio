@@ -4,7 +4,7 @@ const offices: IOffice[] = [
   {
     city: "dortmund",
     district: "schueren",
-    adress: {
+    address: {
       street: "friedenspl.",
       housenumber: "1",
       postcode: "44135",
@@ -19,7 +19,7 @@ const offices: IOffice[] = [
   },
   {
     city: "hamburg",
-    adress: {
+    address: {
       street: "rathausstraße",
       housenumber: "2",
       postcode: "20095",
@@ -33,7 +33,7 @@ const offices: IOffice[] = [
   },
   {
     city: "bremen",
-    adress: {
+    address: {
       street: "am markt",
       housenumber: "21",
       postcode: "28195",
@@ -47,7 +47,7 @@ const offices: IOffice[] = [
   },
   {
     city: "berlin",
-    adress: {
+    address: {
       street: "weinmeisterstraße",
       housenumber: "2",
       postcode: "10178",
@@ -62,7 +62,7 @@ const offices: IOffice[] = [
   {
     city: "cologne",
     district: "bickendorf",
-    adress: {
+    address: {
       street: "wilhelm-mauser-straße",
       housenumber: "14",
       postcode: "50827",
@@ -76,7 +76,7 @@ const offices: IOffice[] = [
   },
   {
     city: "leipzig",
-    adress: {
+    address: {
       street: "markt",
       housenumber: "24",
       postcode: "04109",
@@ -90,7 +90,7 @@ const offices: IOffice[] = [
   },
   {
     city: "munich",
-    adress: {
+    address: {
       street: "säbener str.",
       housenumber: "51",
       postcode: "81547",
@@ -104,7 +104,7 @@ const offices: IOffice[] = [
   },
   {
     city: "frankfurt",
-    adress: {
+    address: {
       street: "sonnemannstraße",
       housenumber: "20",
       postcode: "60134",
