@@ -34,14 +34,18 @@ const useBookings = create<Interface>()(
             return !bookingsToBeRemoved.some(
               (bookingToBeRemovedPotentially: IBooking) => {
                 // ensure date is written as JSON
-                if (typeof bookingToBeRemovedPotentially.date === "string") {
-                  bookingToBeRemovedPotentially.date = new Date(
-                    bookingToBeRemovedPotentially.date
+                // create temporary variable "dateToBeRemovedPotentially" to guarantee correct updating of "bookings" in store
+                let dateToBeRemovedPotentially =
+                  bookingToBeRemovedPotentially.date;
+                if (typeof dateToBeRemovedPotentially === "string") {
+                  dateToBeRemovedPotentially = new Date(
+                    dateToBeRemovedPotentially
                   );
                 }
+
                 return (
                   booking.date ===
-                    (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+                    (dateToBeRemovedPotentially as Date).toJSON() &&
                   booking.office === bookingToBeRemovedPotentially.office
                 );
               }
