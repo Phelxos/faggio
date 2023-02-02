@@ -22,14 +22,14 @@ export default function OfficesCardAddress({
         <button className="flex flex-col items-center justify-center">
           <FontAwesomeIcon
             icon={faCopy}
-            className="h-3 w-3 rounded-full bg-amber-400/50 p-2 text-amber-800 opacity-50"
+            className="h-3 w-3 rounded-full bg-amber-600/50 p-2 text-amber-800 opacity-75"
           />
         </button>
       </div>
       <div className="flex w-full flex-col gap-2 p-4">
-        <div className="flex w-full items-center justify-between gap-2 px-2">
+        <div className="flex w-full items-center justify-between gap-4 px-2">
           <div className="w-full">
-            <span className="text-3xl font-light uppercase text-amber-900">
+            <span className="break-all text-xl font-light uppercase text-amber-900">
               {street} {housenumber}
             </span>
           </div>
@@ -41,9 +41,9 @@ export default function OfficesCardAddress({
           </button>
         </div>
         <hr className="my-2 border-amber-900 opacity-25" />
-        <div className="flex w-full items-center justify-between gap-2 px-2">
+        <div className="flex w-full items-center justify-between gap-4 px-2">
           <div className="w-full">
-            <span className="font-bold uppercase text-amber-900">
+            <span className="break-all font-semibold uppercase text-amber-900">
               {postcode}
             </span>
           </div>
