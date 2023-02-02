@@ -17,7 +17,6 @@ export default function ControlsBar() {
   const handleUserSearchInput = (e: any) => {
     const lastCharacterOfSearchInput =
       e.target.value[e.target.value.length - 1];
-    console.log(lastCharacterOfSearchInput);
     if (/^[^a-zA-ZäÄöÖüÜß-]+$/.test(lastCharacterOfSearchInput)) return;
     if (e.target.value.length > 30) return;
     c?.setSearchForUser(e.target.value.toLowerCase());

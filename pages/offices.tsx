@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
-import MapOffices from "../components/offices/MapOffices";
-import OfficeInformationCard from "../components/offices/OfficeInformationCard";
+import MapOffices from "../components/offices/OfficesMap";
+import OfficeInformationCard from "../components/offices/officesCard/OfficesCard";
 import useOffice from "../stores/SOffices";
 
 export default function Offices() {
