@@ -1,10 +1,11 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
 import useWindowSize from "../../../hooks/useWindowSize";
 import useTheme from "../../../hooks/useTheme";
+import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -15,12 +16,12 @@ export default function CalFooter() {
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
   );
-  const context = useContext(CBookings);
+  const c = useContext(CBookings);
   const theme = useTheme();
   const windowSize = useWindowSize();
 
   useEffect(() => {
-    context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
   }, []);
 
   return (
@@ -36,8 +37,8 @@ export default function CalFooter() {
       </button>
       <div className="h-full">
         <SearchAndSelect
-          value={context?.locallySelectedOfficeName}
-          setValue={context!.setLocallySelectedOfficeName}
+          value={c?.locallySelectedOfficeName}
+          setValue={c!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
           theme={theme}
           areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
