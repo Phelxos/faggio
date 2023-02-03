@@ -1,6 +1,6 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import Icon from "../../icons/Icon";
 
 interface Props {
   street: string;
@@ -20,9 +20,13 @@ export default function OfficesCardAddress({
           Adresse
         </span>
         <button className="flex flex-col items-center justify-center">
-          <FontAwesomeIcon
+          {/* <FontAwesomeIcon
             icon={faCopy}
             className="h-3 w-3 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75"
+          /> */}
+          <Icon
+            icon="documentDuplicate"
+            className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75"
           />
         </button>
       </div>
@@ -34,9 +38,13 @@ export default function OfficesCardAddress({
             </span>
           </div>
           <button className="flex flex-col items-center justify-center">
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faCopy}
               className="h-3 w-3 rounded-full bg-amber-800/25 p-2 text-amber-900/50"
+            /> */}
+            <Icon
+              icon="documentDuplicate"
+              className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
             />
           </button>
         </div>
@@ -48,9 +56,13 @@ export default function OfficesCardAddress({
             </span>
           </div>
           <button className="flex flex-col items-center justify-center">
-            <FontAwesomeIcon
+            {/* <FontAwesomeIcon
               icon={faCopy}
               className="h-3 w-3 rounded-full bg-amber-800/25 p-2 text-amber-900/50"
+            /> */}
+            <Icon
+              icon="documentDuplicate"
+              className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
             />
           </button>
         </div>

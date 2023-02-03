@@ -11,7 +11,7 @@ export default function Offices() {
     <div className="flex w-full grow flex-col items-center items-stretch gap-16">
       <div className="w-full">
         <OfficesMapHeader />
-        <div className="bg-gradient-to-b from-amber-700 to-slate-900">
+        <div className="to-transpartent bg-gradient-to-b from-amber-700">
           <MapOffices />
         </div>
       </div>

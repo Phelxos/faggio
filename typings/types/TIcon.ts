@@ -12,6 +12,7 @@ type TIcon =
   | "chevronRight"
   | "cursorArrowRays"
   | "computerDesktop"
+  | "documentDuplicate"
   | "envelope"
   | "exclamationCircle"
   | "home"
