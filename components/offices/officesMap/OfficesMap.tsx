@@ -1,9 +1,9 @@
 import React from "react";
-import useOffice from "../../stores/SOffices";
+import useOffice from "../../../stores/SOffices";
 import {
   EOfficesEnglishToGerman,
   TOfficeCityEnglish,
-} from "../../typings/types/TOfficeCity";
+} from "../../../typings/types/TOfficeCity";
 import {
   ComposableMap,
   Geographies,

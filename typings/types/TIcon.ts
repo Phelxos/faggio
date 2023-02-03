@@ -10,6 +10,7 @@ type TIcon =
   | "check"
   | "chevronLeft"
   | "chevronRight"
+  | "cursorArrowRays"
   | "computerDesktop"
   | "envelope"
   | "exclamationCircle"
