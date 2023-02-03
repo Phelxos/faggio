@@ -7,7 +7,7 @@ import { CBookings } from "../../contexts/CBookings";
 import useWindowSize from "../../../hooks/useWindowSize";
 import { useContext } from "react";
 
-export default function OtherHeader() {
+export default function BookingsOtherHeader() {
   const theme = useTheme();
   const c = useContext(CBookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
@@ -21,16 +21,20 @@ export default function OtherHeader() {
   const windowSize = useWindowSize();
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
   return (
-    <div>
-      <div>
-        <p>Buchungen meiner Kollegen in</p>
-        <SearchAndSelect
-          value={c?.locallySelectedOfficeName}
-          setValue={c!.setLocallySelectedOfficeName}
-          listOfValues={allOfficeNames}
-          theme={theme}
-          areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
-        />
+    <div className="flex w-full flex-col items-center justify-around gap-4 rounded-t-lg bg-emerald-900 p-6">
+      <div className="flex items-end gap-2">
+        <p className="font-light">
+          Buchungen <span className="font-semibold">meiner Kollegen</span> in
+        </p>
+        <div>
+          <SearchAndSelect
+            value={c?.locallySelectedOfficeName}
+            setValue={c!.setLocallySelectedOfficeName}
+            listOfValues={allOfficeNames}
+            theme={theme}
+            areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
+          />
+        </div>
       </div>
       <div>
         <SearchAndSelect
