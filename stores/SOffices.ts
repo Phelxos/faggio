@@ -7,7 +7,7 @@ import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
   district: "Stadtviertel",
-  adress: { street: "straße", housenumber: "1", postcode: "12345" },
+  address: { street: "straße", housenumber: "1", postcode: "12345" },
   areaInSquareMetres: 100,
   headcount: 25,
   workstations: 25,

@@ -4,9 +4,9 @@ import { getWeek } from "date-fns";
 
 interface Interface {
   currentDate: number;
-  currentMonth: number;
   currentWeekday: number;
   currentCalWeek: number;
+  currentMonth: number;
   currentYear: number;
   countedWeekdays: { [index: number]: number };
   selectedDate: number;
@@ -14,6 +14,7 @@ interface Interface {
   selectedMonth: number;
   selectedYear: number;
   displayedWeekdays: string[];
+  displayedNumberOfCalWeeks: number;
   displayedWeekOverview: boolean;
   displayedMonths: string[];
   displayedYears: number[];
@@ -29,6 +30,10 @@ interface Interface {
 
 const today = new Date();
 
+// to receive the number of weeks in the current year at "numberOfWeeksInYear"
+const currentYear = new Date().getFullYear();
+const lastDayOfCurrentYear = new Date(currentYear, 11, 31);
+
 const useCalendar = create<Interface>()(
   devtools(
     persist((set) => ({
@@ -36,12 +41,19 @@ const useCalendar = create<Interface>()(
       currentMonth: today.getMonth(),
       currentYear: today.getFullYear(),
       currentWeekday: today.getDay(),
-      currentCalWeek: getWeek(today),
+      currentCalWeek: getWeek(today, {
+        weekStartsOn: 1,
+        firstWeekContainsDate: 4,
+      }),
       countedWeekdays: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
+      displayedNumberOfCalWeeks: getWeek(lastDayOfCurrentYear, {
+        weekStartsOn: 1,
+        firstWeekContainsDate: 4,
+      }),
       selectedDate: today.getDate(),
       selectedMonth: today.getMonth(),
       selectedYear: today.getFullYear(),
-      selectedCalWeek: 0,
+      selectedCalWeek: getWeek(today),
       displayedMonths: [
         "Januar",
         "Februar",
