@@ -48,9 +48,10 @@ function getDisplayedCalWeeksInSelectedYear(): number[] {
   );
 }
 
-// to receive the number of weeks in the current year at "numberOfWeeksInYear"
-const currentYear = new Date().getFullYear();
-const lastDayOfCurrentYear = new Date(currentYear, 11, 31);
+function getLastDayOfCurrentYear() {
+  const currentYear = new Date().getFullYear();
+  return new Date(currentYear, 11, 31);
+}
 
 const useCalendar = create<Interface>()(
   devtools(
@@ -64,10 +65,13 @@ const useCalendar = create<Interface>()(
         firstWeekContainsDate: 4,
       }),
       countedWeekdays: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-      displayedNumberOfCalWeeksInSelectedYear: getWeek(lastDayOfCurrentYear, {
-        weekStartsOn: 1,
-        firstWeekContainsDate: 4,
-      }),
+      displayedNumberOfCalWeeksInSelectedYear: getWeek(
+        getLastDayOfCurrentYear(),
+        {
+          weekStartsOn: 1,
+          firstWeekContainsDate: 4,
+        }
+      ),
       displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedYear(),
       selectedDate: today.getDate(),
       selectedMonth: today.getMonth(),
