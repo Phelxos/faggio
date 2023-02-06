@@ -45,7 +45,7 @@ export default function ContextBookingsProvider({
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
   };
-  const setBookingsToBeSavedTEMP = (booking: IBooking) => {
+  const setBookingsToBeSavedTMP = (booking: IBooking) => {
     setBookingsToBeSaved([...bookingsToBeSaved, booking]);
   };
   const deleteBookingsToBeSaved = (date: Date) => {
@@ -64,7 +64,7 @@ export default function ContextBookingsProvider({
     setBookingsToBeSaved([]);
     setBookingsToBeDeleted([]);
   };
-  const setBookingsToBeDeletedTEMP = (booking: IBooking) => {
+  const setBookingsToBeDeletedTMP = (booking: IBooking) => {
     setBookingsToBeDeleted([...bookingsToBeDeleted, booking]);
   };
   const deleteBookingsToBeDeleted = (date: Date) => {
@@ -86,12 +86,12 @@ export default function ContextBookingsProvider({
     locallySelectedOfficeName,
     setLocallySelectedOfficeName,
     bookingsToBeSaved,
-    setBookingsToBeSaved: setBookingsToBeSavedTEMP,
+    setBookingsToBeSaved: setBookingsToBeSavedTMP,
     deleteBookingsToBeSaved,
     transferBookingsToBeSavedToBookingsToStore,
     clearBookingsToBeSavedAndDeleted,
     bookingsToBeDeleted,
-    setBookingsToBeDeleted: setBookingsToBeDeletedTEMP,
+    setBookingsToBeDeleted: setBookingsToBeDeletedTMP,
     deleteBookingsToBeDeleted,
     transferBookingsToBeDeletedToBookingsToStore,
   };
