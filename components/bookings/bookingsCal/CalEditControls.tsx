@@ -50,7 +50,7 @@ export default function CalEditControls() {
     c?.toggleIsBeingEdited();
   };
   return (
-    <div className="fixed right-0 bottom-0 m-2 flex items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
+    <div className="fixed right-0 bottom-0 z-50 m-2 flex items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
       {c?.isBeingEdited ? (
         <>
           <ArrowUturnLeft onClick={handleArrowUturnLeftClick} />
