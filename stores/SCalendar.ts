@@ -1,6 +1,6 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { getWeek } from "date-fns";
+import { getWeek, startOfMonth, endOfMonth } from "date-fns";
 
 interface Interface {
   currentDate: number;
@@ -14,7 +14,8 @@ interface Interface {
   selectedMonth: number;
   selectedYear: number;
   displayedWeekdays: string[];
-  displayedNumberOfCalWeeks: number;
+  displayedNumberOfCalWeeksInSelectedYear: number;
+  displayedCalWeeksInSelectedMonth: number[];
   displayedWeekOverview: boolean;
   displayedMonths: string[];
   displayedYears: number[];
@@ -29,6 +30,23 @@ interface Interface {
 }
 
 const today = new Date();
+
+function getDisplayedCalWeeksInSelectedYear(): number[] {
+  const firstDay = startOfMonth(today);
+  const lastDay = endOfMonth(today);
+  const firstWeek = getWeek(firstDay, {
+    weekStartsOn: 1,
+    firstWeekContainsDate: 4,
+  });
+  const lastWeek = getWeek(lastDay, {
+    weekStartsOn: 1,
+    firstWeekContainsDate: 4,
+  });
+  return Array.from(
+    { length: lastWeek - firstWeek + 1 },
+    (_, i) => firstWeek + i
+  );
+}
 
 // to receive the number of weeks in the current year at "numberOfWeeksInYear"
 const currentYear = new Date().getFullYear();
@@ -46,10 +64,11 @@ const useCalendar = create<Interface>()(
         firstWeekContainsDate: 4,
       }),
       countedWeekdays: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 },
-      displayedNumberOfCalWeeks: getWeek(lastDayOfCurrentYear, {
+      displayedNumberOfCalWeeksInSelectedYear: getWeek(lastDayOfCurrentYear, {
         weekStartsOn: 1,
         firstWeekContainsDate: 4,
       }),
+      displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedYear(),
       selectedDate: today.getDate(),
       selectedMonth: today.getMonth(),
       selectedYear: today.getFullYear(),
@@ -77,7 +96,7 @@ const useCalendar = create<Interface>()(
         })),
       displayedWeekdays: ["KW", "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
       setSelectedCalWeek: (calWeek: number) =>
-        set(() => ({
+        set((s) => ({
           selectedCalWeek: calWeek,
         })),
       displayedWeekOverview: false,

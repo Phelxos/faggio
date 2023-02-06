@@ -10,44 +10,19 @@ export default function BookingsOtherHeaderDate() {
   const windowSize = useWindowSize();
 
   const selectedMonth = useCalendar((s) => s.selectedMonth);
-  const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
-  const incrementSelectedMonth = useCalendar((s) => s.incrementSelectedMonth);
-  const displayedMonths = useCalendar((s) => s.displayedMonths);
   const selectedYear = useCalendar((s) => s.selectedYear);
-  const setSelectedYear = useCalendar((s) => s.setSelectedYear);
-  const incrementSelectedYear = useCalendar((s) => s.incrementSelectedYear);
-  const displayedYears = useCalendar((s) => s.displayedYears);
-  const globallySelectedCalWeek = useCalendar((s) => s.selectedCalWeek);
-  const displayedNumberOfCalWeeks = useCalendar(
-    (s) => s.displayedNumberOfCalWeeks
+  const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
+  const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
+  const displayedCalWeeksInSelectedMonth = useCalendar(
+    (s) => s.displayedCalWeeksInSelectedMonth
   );
-
-  const [locallySelectedCalWeek, setLocallySelectedCalWeek] = useState<number>(
-    globallySelectedCalWeek
-  );
-  const [locallyDisplayedCalWeeks, setLocallyDisplayedCalWeeks] = useState<
-    number[]
-  >(Array.from(Array(displayedNumberOfCalWeeks + 1).keys()).slice(1));
-
-  useEffect(() => {
-    setLocallyDisplayedCalWeeks(
-      Array.from(Array(displayedNumberOfCalWeeks + 1).keys()).slice(1)
-    );
-  }, [displayedNumberOfCalWeeks]);
 
   return (
     <div>
       <SearchAndSelect
-        value={locallySelectedCalWeek}
-        setValue={(val) => setSelectedMonth(val)}
-        listOfValues={locallyDisplayedCalWeeks}
-        theme={theme}
-        areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
-      />
-      <SearchAndSelect
-        value={displayEquivalent(selectedMonth, "month")}
-        setValue={(val) => setSelectedMonth(displayEquivalent(val, "month"))}
-        listOfValues={displayedMonths}
+        value={selectedCalWeek}
+        setValue={(val) => setSelectedCalWeek(val)}
+        listOfValues={displayedCalWeeksInSelectedMonth}
         theme={theme}
         areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
       />
