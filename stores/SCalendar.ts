@@ -29,9 +29,14 @@ interface Interface {
   [prop: string]: any;
 }
 
-const today = new Date();
-
-function getDisplayedCalWeeksInSelectedYear(): number[] {
+let today = new Date();
+function getDisplayedCalWeeksInSelectedMonth(
+  month?: number,
+  year?: number
+): number[] {
+  if (arguments.length) {
+    today = new Date(year!, month!);
+  }
   const firstDay = startOfMonth(today);
   const lastDay = endOfMonth(today);
   const firstWeek = getWeek(firstDay, {
@@ -72,7 +77,7 @@ const useCalendar = create<Interface>()(
           firstWeekContainsDate: 4,
         }
       ),
-      displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedYear(),
+      displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedMonth(),
       selectedDate: today.getDate(),
       selectedMonth: today.getMonth(),
       selectedYear: today.getFullYear(),
@@ -100,7 +105,7 @@ const useCalendar = create<Interface>()(
         })),
       displayedWeekdays: ["KW", "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
       setSelectedCalWeek: (calWeek: number) =>
-        set((s) => ({
+        set(() => ({
           selectedCalWeek: calWeek,
         })),
       displayedWeekOverview: false,
@@ -109,8 +114,12 @@ const useCalendar = create<Interface>()(
           selectedYear: year,
         })),
       setSelectedMonth: (month: number) =>
-        set(() => ({
+        set((s) => ({
           selectedMonth: month,
+          displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedMonth(
+            s.selectedYear,
+            month
+          ),
         })),
       incrementCountedWeekdays: (weekday: number, by: number) =>
         set((state) => ({
