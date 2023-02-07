@@ -128,8 +128,16 @@ const useCalendar = create<Interface>()(
         })),
       displayedWeekOverview: false,
       setSelectedYear: (year: number) =>
-        set(() => ({
+        set((s) => ({
           selectedYear: year,
+          displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedMonth(
+            s.selectedMonth,
+            year
+          ),
+          selectedCalWeek: getFirstCalWeekOfSelectedMonth(
+            s.selectedMonth,
+            year
+          ),
         })),
       setSelectedMonth: (month: number) =>
         set((s) => ({
