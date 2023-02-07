@@ -36,6 +36,7 @@ function getDisplayedCalWeeksInSelectedMonth(
 ): number[] {
   if (arguments.length) {
     today = new Date(year!, month!);
+    console.log(year);
   }
   const firstDay = startOfMonth(today);
   const lastDay = endOfMonth(today);
@@ -47,6 +48,7 @@ function getDisplayedCalWeeksInSelectedMonth(
     weekStartsOn: 1,
     firstWeekContainsDate: 4,
   });
+  console.log(firstDay);
   return Array.from(
     { length: lastWeek - firstWeek + 1 },
     (_, i) => firstWeek + i
@@ -117,8 +119,8 @@ const useCalendar = create<Interface>()(
         set((s) => ({
           selectedMonth: month,
           displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedMonth(
-            s.selectedYear,
-            month
+            month,
+            s.selectedYear
           ),
         })),
       incrementCountedWeekdays: (weekday: number, by: number) =>
