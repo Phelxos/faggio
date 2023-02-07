@@ -1,6 +1,12 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { getWeek, startOfMonth, endOfMonth } from "date-fns";
+import {
+  getWeek,
+  startOfMonth,
+  endOfMonth,
+  isWeekend,
+  nextMonday,
+} from "date-fns";
 
 interface Interface {
   currentDate: number;
@@ -36,7 +42,6 @@ function getDisplayedCalWeeksInSelectedMonth(
 ): number[] {
   if (arguments.length) {
     today = new Date(year!, month!);
-    console.log(year);
   }
   const firstDay = startOfMonth(today);
   const lastDay = endOfMonth(today);
@@ -55,9 +60,18 @@ function getDisplayedCalWeeksInSelectedMonth(
   );
 }
 
-function getLastDayOfCurrentYear() {
+function getLastDayOfCurrentYear(): Date {
   const currentYear = new Date().getFullYear();
   return new Date(currentYear, 11, 31);
+}
+
+function getFirstCalWeekOfSelectedMonth(month: number, year: number): number {
+  const firstDayOfMonth = startOfMonth(new Date(year, month));
+  if (isWeekend(firstDayOfMonth)) {
+    return getWeek(nextMonday(firstDayOfMonth));
+  } else {
+    return getWeek(firstDayOfMonth);
+  }
 }
 
 const useCalendar = create<Interface>()(
@@ -119,6 +133,10 @@ const useCalendar = create<Interface>()(
         set((s) => ({
           selectedMonth: month,
           displayedCalWeeksInSelectedMonth: getDisplayedCalWeeksInSelectedMonth(
+            month,
+            s.selectedYear
+          ),
+          selectedCalWeek: getFirstCalWeekOfSelectedMonth(
             month,
             s.selectedYear
           ),
