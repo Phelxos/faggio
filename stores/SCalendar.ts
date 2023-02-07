@@ -43,7 +43,10 @@ function getDisplayedCalWeeksInSelectedMonth(
   if (arguments.length) {
     today = new Date(year!, month!);
   }
-  const firstDay = startOfMonth(today);
+  let firstDay = startOfMonth(today);
+  if (isWeekend(firstDay)) {
+    firstDay = nextMonday(firstDay);
+  }
   const lastDay = endOfMonth(today);
   const firstWeek = getWeek(firstDay, {
     weekStartsOn: 1,
@@ -53,7 +56,6 @@ function getDisplayedCalWeeksInSelectedMonth(
     weekStartsOn: 1,
     firstWeekContainsDate: 4,
   });
-  console.log(firstDay);
   return Array.from(
     { length: lastWeek - firstWeek + 1 },
     (_, i) => firstWeek + i
