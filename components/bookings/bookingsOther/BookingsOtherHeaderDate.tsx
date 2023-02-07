@@ -18,9 +18,9 @@ export default function BookingsOtherHeaderDate() {
   );
 
   return (
-    <div className="flex items-center rounded-lg bg-emerald-800 p-4">
-      <div className="flex w-2/6 flex-col items-center gap-2 rounded-lg bg-emerald-700 p-2">
-        <span className="text-emerald-300">KW</span>
+    <div className="flex gap-2 rounded-lg bg-emerald-800 p-4">
+      <div className="flex items-center gap-2 rounded-lg bg-emerald-700 p-2">
+        <span className="text-xs font-bold text-emerald-300">KW</span>
         <SearchAndSelect
           value={selectedCalWeek}
           setValue={(val) => setSelectedCalWeek(val)}
@@ -29,7 +29,7 @@ export default function BookingsOtherHeaderDate() {
           areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
         />
       </div>
-      <div className="flex w-4/6 items-center justify-end gap-2 text-xs uppercase tracking-wider text-emerald-300">
+      <div className="flex w-full items-center gap-2 text-xs uppercase tracking-wider text-emerald-300">
         <span className="rounded-xl bg-emerald-700 p-2">
           {displayEquivalent(selectedMonth, "month")}
         </span>
