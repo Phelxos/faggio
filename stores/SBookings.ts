@@ -7,7 +7,6 @@ interface Interface {
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => void;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
-  deleteBookingsWithoutJSON: (bookingsToBeRemoved: IBooking[]) => void;
   clearBookings: () => void;
 }
 
@@ -33,22 +32,23 @@ const useBookings = create<Interface>()(
         set((state) => ({
           bookings: state.bookings.filter((booking: IBooking) => {
             return !bookingsToBeRemoved.some(
-              (bookingToBeRemovedPotentially: IBooking) =>
-                booking.date ===
-                  (bookingToBeRemovedPotentially.date as Date).toJSON() &&
-                booking.office === bookingToBeRemovedPotentially.office
-            );
-          }),
-        }));
-      },
-      deleteBookingsWithoutJSON: (bookingsToBeRemoved: IBooking[]) => {
-        set((state) => ({
-          bookings: state.bookings.filter((booking: IBooking) => {
-            return !bookingsToBeRemoved.some(
-              (bookingToBeRemovedPotentially: IBooking) =>
-                booking.date ===
-                  bookingToBeRemovedPotentially.date &&
-                booking.office === bookingToBeRemovedPotentially.office
+              (bookingToBeRemovedPotentially: IBooking) => {
+                // ensure date is written as JSON
+                // create temporary variable "dateToBeRemovedPotentially" to guarantee correct updating of "bookings" in store
+                let dateToBeRemovedPotentially =
+                  bookingToBeRemovedPotentially.date;
+                if (typeof dateToBeRemovedPotentially === "string") {
+                  dateToBeRemovedPotentially = new Date(
+                    dateToBeRemovedPotentially
+                  );
+                }
+
+                return (
+                  booking.date ===
+                    (dateToBeRemovedPotentially as Date).toJSON() &&
+                  booking.office === bookingToBeRemovedPotentially.office
+                );
+              }
             );
           }),
         }));

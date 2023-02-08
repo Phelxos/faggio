@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import CalHeader from "./CalHeader";
 import CalBody from "./CalBody";
 import CalFooter from "./CalFooter";
-import MyBookingHeader from "../bookingsMy/MyBookingHeader";
-import MyBooking from "../bookingsMy/MyBooking";
+import MyBookingHeader from "../bookingsMy/BookingsMyHeader";
+import MyBooking from "../bookingsMy/BookingsMy";
 import { CBookings } from "../../contexts/CBookings";
 
 export default function Calendar() {
@@ -15,8 +15,7 @@ export default function Calendar() {
         <CalBody />
         <CalFooter />
       </div>
-      <MyBookingHeader />
       <MyBooking />
     </div>
-  )
-};
+  );
+}
