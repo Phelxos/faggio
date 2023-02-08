@@ -12,62 +12,64 @@ const months = [
   "November",
   "Dezember",
 ];
-type targetedFormat = "day" | "month";
+type targetedFormat = "date" | "month" | "day";
 
 //Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
 const displayEquivalent = (
-  date: any,
+  mainInput: any,
   targetedFormat: targetedFormat,
   startsCountingAtZero: boolean = true
 ): any => {
-  const error = "Something has gone wrong.";
+  console.log(mainInput);
+  const error =
+    "Something has gone wrong while trying to display the equivalent of a date, a month, or a day.";
   if (
-    date == 0 ||
-    date == 1 ||
-    date == 2 ||
-    date == 3 ||
-    date == 4 ||
-    date == 5 ||
-    date == 6 ||
-    date == 7 ||
-    date == 8 ||
-    date == 9 ||
-    date === "01" ||
-    date === "02" ||
-    date === "03" ||
-    date === "04" ||
-    date === "05" ||
-    date === "06" ||
-    date === "07" ||
-    date === "08" ||
-    date === "09" ||
-    date == 10 ||
-    date == 11 ||
-    date == 12 ||
-    date == 13 ||
-    date == 14 ||
-    date == 15 ||
-    date == 16 ||
-    date == 17 ||
-    date == 18 ||
-    date == 19 ||
-    date == 20 ||
-    date == 21 ||
-    date == 22 ||
-    date == 23 ||
-    date == 24 ||
-    date == 25 ||
-    date == 26 ||
-    date == 27 ||
-    date == 28 ||
-    date == 29 ||
-    date == 30 ||
-    date == 31 ||
-    months.includes(date)
+    mainInput == 0 ||
+    mainInput == 1 ||
+    mainInput == 2 ||
+    mainInput == 3 ||
+    mainInput == 4 ||
+    mainInput == 5 ||
+    mainInput == 6 ||
+    mainInput == 7 ||
+    mainInput == 8 ||
+    mainInput == 9 ||
+    mainInput === "01" ||
+    mainInput === "02" ||
+    mainInput === "03" ||
+    mainInput === "04" ||
+    mainInput === "05" ||
+    mainInput === "06" ||
+    mainInput === "07" ||
+    mainInput === "08" ||
+    mainInput === "09" ||
+    mainInput == 10 ||
+    mainInput == 11 ||
+    mainInput == 12 ||
+    mainInput == 13 ||
+    mainInput == 14 ||
+    mainInput == 15 ||
+    mainInput == 16 ||
+    mainInput == 17 ||
+    mainInput == 18 ||
+    mainInput == 19 ||
+    mainInput == 20 ||
+    mainInput == 21 ||
+    mainInput == 22 ||
+    mainInput == 23 ||
+    mainInput == 24 ||
+    mainInput == 25 ||
+    mainInput == 26 ||
+    mainInput == 27 ||
+    mainInput == 28 ||
+    mainInput == 29 ||
+    mainInput == 30 ||
+    mainInput == 31 ||
+    months.includes(mainInput)
   ) {
     if (targetedFormat === "month") {
       if (startsCountingAtZero) {
-        switch (date) {
+        switch (mainInput) {
           case 0:
             return "Januar";
           case 1:
@@ -129,7 +131,7 @@ const displayEquivalent = (
             return error;
         }
       } else {
-        switch (date) {
+        switch (mainInput) {
           case 1:
             return "Januar";
           case 2:
@@ -190,39 +192,58 @@ const displayEquivalent = (
             return error;
         }
       }
-    } else if (targetedFormat === "day") {
-      if (date[0] == 0) {
-        return date[1].toString();
+    } else if (targetedFormat === "date") {
+      if (mainInput[0] == 0) {
+        return mainInput[1].toString();
       } else {
-        return date.toString();
+        return mainInput.toString();
+      }
+    } else if (targetedFormat === "day") {
+      console.log(mainInput);
+      if (
+        mainInput === "Mo" ||
+        mainInput === "Di" ||
+        mainInput === "Mi" ||
+        mainInput === "Do" ||
+        mainInput === "Fr"
+      ) {
+        switch (mainInput) {
+          case "Mo":
+            return "montags";
+          case "Di":
+            return "dienstags";
+          case "Mi":
+            return "mittwochs";
+          case "Do":
+            return "donnerstags";
+          case "Fr":
+            return "freitags";
+          default:
+            return error;
+        }
+      } else if (typeof mainInput === "number") {
+        switch (mainInput) {
+          case 0:
+            return "So";
+          case 1:
+            return "Mo";
+          case 2:
+            return "Di";
+          case 3:
+            return "Mi";
+          case 4:
+            return "Do";
+          case 5:
+            return "Fr";
+          case 6:
+            return "Sa";
+        }
+      } else {
+        return error;
       }
     } else {
       return error;
     }
-  } else if (
-    date === "Mo" ||
-    date === "Di" ||
-    date === "Mi" ||
-    date === "Do" ||
-    date === "Fr"
-  ) {
-    switch (date) {
-      case "Mo":
-        return "montags";
-      case "Di":
-        return "dienstags";
-      case "Mi":
-        return "mittwochs";
-      case "Do":
-        return "donnerstags";
-      case "Fr":
-        return "freitags";
-      default:
-        return error;
-    }
-  } else {
-    return error;
   }
 };
-
 export default displayEquivalent;

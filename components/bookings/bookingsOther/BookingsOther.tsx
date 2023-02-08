@@ -1,5 +1,5 @@
 import BookingsOtherHeader from "./bookingsOtherHeader/BookingsOtherHeader";
-import BookingsOtherMain from "./bookingsOtherMain/bookingsOtherMain";
+import BookingsOtherMain from "./bookingsOtherMain/BookingsOtherMain";
 
 export default function BookingsOther() {
   return (

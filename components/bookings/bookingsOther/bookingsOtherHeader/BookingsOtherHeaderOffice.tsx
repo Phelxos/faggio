@@ -1,7 +1,5 @@
 import useTheme from "../../../../hooks/useTheme";
 import SearchAndSelect from "../../../SearchAndSelect";
-import useCalendar from "../../../../stores/SCalendar";
-import displayEquivalent from "../../../../helpers/displayEquivalent";
 import useOffice from "../../../../stores/SOffices";
 import { CBookings } from "../../../contexts/CBookings";
 import useWindowSize from "../../../../hooks/useWindowSize";
