@@ -1,12 +1,11 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
+import { getWeek } from "date-fns";
 import {
-  getWeek,
-  startOfMonth,
-  endOfMonth,
-  isWeekend,
-  nextMonday,
-} from "date-fns";
+  getDisplayedCalWeeksInSelectedMonth,
+  getLastDayOfCurrentYear,
+  getFirstCalWeekOfSelectedMonth,
+} from "../helpers/helpersForStoreCalendar";
 
 interface Interface {
   currentDate: number;
@@ -35,46 +34,7 @@ interface Interface {
   [prop: string]: any;
 }
 
-let today = new Date();
-function getDisplayedCalWeeksInSelectedMonth(
-  month?: number,
-  year?: number
-): number[] {
-  if (arguments.length) {
-    today = new Date(year!, month!);
-  }
-  let firstDay = startOfMonth(today);
-  if (isWeekend(firstDay)) {
-    firstDay = nextMonday(firstDay);
-  }
-  const lastDay = endOfMonth(today);
-  const firstWeek = getWeek(firstDay, {
-    weekStartsOn: 1,
-    firstWeekContainsDate: 4,
-  });
-  const lastWeek = getWeek(lastDay, {
-    weekStartsOn: 1,
-    firstWeekContainsDate: 4,
-  });
-  return Array.from(
-    { length: lastWeek - firstWeek + 1 },
-    (_, i) => firstWeek + i
-  );
-}
-
-function getLastDayOfCurrentYear(): Date {
-  const currentYear = new Date().getFullYear();
-  return new Date(currentYear, 11, 31);
-}
-
-function getFirstCalWeekOfSelectedMonth(month: number, year: number): number {
-  const firstDayOfMonth = startOfMonth(new Date(year, month));
-  if (isWeekend(firstDayOfMonth)) {
-    return getWeek(nextMonday(firstDayOfMonth));
-  } else {
-    return getWeek(firstDayOfMonth);
-  }
-}
+const today = new Date();
 
 const useCalendar = create<Interface>()(
   devtools(
