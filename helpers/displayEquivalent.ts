@@ -20,7 +20,6 @@ const displayEquivalent = (
   targetedFormat: targetedFormat,
   startsCountingAtZero: boolean = true
 ): any => {
-  console.log(mainInput);
   const error =
     "Something has gone wrong while trying to display the equivalent of a date, a month, or a day.";
   if (
@@ -199,7 +198,6 @@ const displayEquivalent = (
         return mainInput.toString();
       }
     } else if (targetedFormat === "day") {
-      console.log(mainInput);
       if (
         mainInput === "Mo" ||
         mainInput === "Di" ||

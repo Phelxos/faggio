@@ -46,10 +46,23 @@ export function getFirstCalWeekOfSelectedMonth(
   year: number
 ): number {
   const firstDayOfMonth = startOfMonth(new Date(year, month));
+  console.log(
+    firstDayOfMonth,
+    getWeek(firstDayOfMonth, {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4,
+    })
+  );
   if (isWeekend(firstDayOfMonth)) {
-    return getWeek(nextMonday(firstDayOfMonth));
+    return getWeek(nextMonday(firstDayOfMonth), {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4,
+    });
   } else {
-    return getWeek(firstDayOfMonth);
+    return getWeek(firstDayOfMonth, {
+      weekStartsOn: 1,
+      firstWeekContainsDate: 4,
+    });
   }
 }
 
