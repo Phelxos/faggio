@@ -1,4 +1,6 @@
 type TIcon =
+  | "arrowTopRightOnSquare"
+  | "arrowUturnLeft"
   | "bookmark"
   | "bookOpen"
   | "buildingOffice"
@@ -8,6 +10,9 @@ type TIcon =
   | "check"
   | "chevronLeft"
   | "chevronRight"
+  | "cursorArrowRays"
+  | "computerDesktop"
+  | "documentDuplicate"
   | "envelope"
   | "exclamationCircle"
   | "home"

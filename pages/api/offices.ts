@@ -3,8 +3,8 @@ import IOffice from "../../typings/interfaces/IOffice";
 const offices: IOffice[] = [
   {
     city: "dortmund",
-    district: "Schüren",
-    adress: {
+    district: "schueren",
+    address: {
       street: "friedenspl.",
       housenumber: "1",
       postcode: "44135",
@@ -19,7 +19,7 @@ const offices: IOffice[] = [
   },
   {
     city: "hamburg",
-    adress: {
+    address: {
       street: "rathausstraße",
       housenumber: "2",
       postcode: "20095",
@@ -28,22 +28,26 @@ const offices: IOffice[] = [
     headcount: 23,
     workstations: 36,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "bremen",
-    adress: {
+    address: {
       street: "am markt",
       housenumber: "21",
       postcode: "28195",
     },
     areaInSquareMetres: 231,
     headcount: 13,
-    workstations: 11,
+    workstations: 30,
     areDogsAllowed: true,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "berlin",
-    adress: {
+    address: {
       street: "weinmeisterstraße",
       housenumber: "2",
       postcode: "10178",
@@ -52,11 +56,13 @@ const offices: IOffice[] = [
     headcount: 41,
     workstations: 54,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "cologne",
     district: "bickendorf",
-    adress: {
+    address: {
       street: "wilhelm-mauser-straße",
       housenumber: "14",
       postcode: "50827",
@@ -65,10 +71,12 @@ const offices: IOffice[] = [
     headcount: 21,
     workstations: 36,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "leipzig",
-    adress: {
+    address: {
       street: "markt",
       housenumber: "24",
       postcode: "04109",
@@ -77,10 +85,12 @@ const offices: IOffice[] = [
     headcount: 9,
     workstations: 10,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "munich",
-    adress: {
+    address: {
       street: "säbener str.",
       housenumber: "51",
       postcode: "81547",
@@ -89,10 +99,12 @@ const offices: IOffice[] = [
     headcount: 23,
     workstations: 43,
     areDogsAllowed: false,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
   {
     city: "frankfurt",
-    adress: {
+    address: {
       street: "sonnemannstraße",
       housenumber: "20",
       postcode: "60134",
@@ -101,6 +113,8 @@ const offices: IOffice[] = [
     headcount: 24,
     workstations: 26,
     areDogsAllowed: true,
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
   },
 ];
 export default function handler(req: any, res: any) {
