@@ -92,9 +92,7 @@ const useCalendar = create<Interface>()(
         set((s) => ({
           selectedCalWeek: calWeek,
           workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
-            getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
-              s.selectedYear
-            ),
+            s.workingDaysOfSelectedYearAndTheirCalWeek,
             calWeek
           ),
         })),
