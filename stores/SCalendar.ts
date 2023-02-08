@@ -89,8 +89,14 @@ const useCalendar = create<Interface>()(
         })),
       displayedWeekdays: ["KW", "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
       setSelectedCalWeek: (calWeek: number) =>
-        set(() => ({
+        set((s) => ({
           selectedCalWeek: calWeek,
+          workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
+            getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
+              s.selectedYear
+            ),
+            calWeek
+          ),
         })),
       setSelectedYear: (year: number) =>
         set((s) => ({
