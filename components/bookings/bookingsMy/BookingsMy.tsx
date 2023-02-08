@@ -5,7 +5,6 @@ import BookingsMyHeader from "./BookingsMyHeader";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function BookingsMy() {
-  // bookings: weiterhin JSON
   let bookings = useBookings((s) => s.bookings);
   let deleteBookings = useBookings((s) => s.deleteBookings);
   let dateOptions = {
@@ -26,15 +25,15 @@ export default function BookingsMy() {
   return (
     <>
       <BookingsMyHeader />
-      <div>
+      <div className="divide-y divide-emerald-900">
         {bookings.map((booking: IBooking) => (
           <div
             key={Math.random()}
-            className="mt-10 flex w-full justify-around rounded-lg bg-emerald-500 p-6"
+            className="flex w-full justify-between bg-emerald-500 p-6 px-20 last:rounded-b-lg"
           >
             <div className="flex flex-col">
-              <p>{new Date(booking.date).toLocaleDateString()}</p>
-              <p>{booking.office}</p>
+              <p>{new Date(booking.date).toLocaleDateString('de-DE', dateOptions)}</p>
+              <p>{booking.office[0].toUpperCase() + booking.office.substring(1)}</p>
             </div>
             <button
               className="rounded-full bg-red-600 py-2 px-4 font-bold text-white hover:bg-red-400"
@@ -46,5 +45,5 @@ export default function BookingsMy() {
         ))}
       </div>
     </>
-  );
+  )
 }
