@@ -61,11 +61,11 @@ export function getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
     end: new Date(year, 11, 31),
   });
   const allWorkingDaysOfYearWithTheirCorrespondingCalWeek: (
-    | undefined
     | {
         date: Date;
         calWeek: number;
       }
+    | undefined
   )[] = allWorkingDaysOfYear
     .map((date) => {
       if (!isWeekend(date)) {
@@ -78,4 +78,13 @@ export function getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
     })
     .filter((date) => date);
   return allWorkingDaysOfYearWithTheirCorrespondingCalWeek;
+}
+
+export function getWorkingDaysOfSelectedCalWeek(
+  workingDays: ({ date: Date; calWeek: number } | undefined)[],
+  calWeekFilter: number
+): Date[] {
+  return workingDays
+    .filter(({ calWeek }: any) => calWeek === calWeekFilter)
+    .map(({ date }: any) => date);
 }

@@ -1,10 +1,12 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { getWeek } from "date-fns";
+import { getWeek, startOfMonth } from "date-fns";
 import {
   getDisplayedCalWeeksInSelectedMonth,
   getLastDayOfCurrentYear,
   getFirstCalWeekOfSelectedMonth,
+  getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek,
+  getWorkingDaysOfSelectedCalWeek,
 } from "../helpers/helpersForStoreCalendar";
 
 interface Interface {
@@ -21,9 +23,13 @@ interface Interface {
   displayedWeekdays: string[];
   displayedNumberOfCalWeeksInSelectedYear: number;
   displayedCalWeeksInSelectedMonth: number[];
-  displayedWeekOverview: boolean;
   displayedMonths: string[];
   displayedYears: number[];
+  workingDaysOfSelectedYearAndTheirCalWeek: (
+    | { date: Date; calWeek: number }
+    | undefined
+  )[];
+  workingDaysOfSelectedCalWeek: Date[];
   setDisplayedWeekOverview: () => void;
   setSelectedCalWeek: (calWeek: number) => void;
   setSelectedMonth: (month: number) => void;
@@ -86,7 +92,6 @@ const useCalendar = create<Interface>()(
         set(() => ({
           selectedCalWeek: calWeek,
         })),
-      displayedWeekOverview: false,
       setSelectedYear: (year: number) =>
         set((s) => ({
           selectedYear: year,
@@ -98,7 +103,23 @@ const useCalendar = create<Interface>()(
             s.selectedMonth,
             year
           ),
+          workingDaysOfSelectedYearAndTheirCalWeek:
+            getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(year),
+          workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
+            getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(year),
+            getWeek(new Date(year, s.selectedMonth))
+          ),
         })),
+      workingDaysOfSelectedYearAndTheirCalWeek:
+        getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
+          today.getFullYear()
+        ),
+      workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
+        getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
+          today.getFullYear()
+        ),
+        getWeek(today)
+      ),
       setSelectedMonth: (month: number) =>
         set((s) => ({
           selectedMonth: month,
@@ -109,6 +130,10 @@ const useCalendar = create<Interface>()(
           selectedCalWeek: getFirstCalWeekOfSelectedMonth(
             month,
             s.selectedYear
+          ),
+          workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
+            s.workingDaysOfSelectedYearAndTheirCalWeek,
+            getWeek(new Date(s.selectedYear, month))
           ),
         })),
       incrementCountedWeekdays: (weekday: number, by: number) =>
