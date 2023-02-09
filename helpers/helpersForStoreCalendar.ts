@@ -46,13 +46,6 @@ export function getFirstCalWeekOfSelectedMonth(
   year: number
 ): number {
   const firstDayOfMonth = startOfMonth(new Date(year, month));
-  console.log(
-    firstDayOfMonth,
-    getWeek(firstDayOfMonth, {
-      weekStartsOn: 1,
-      firstWeekContainsDate: 4,
-    })
-  );
   if (isWeekend(firstDayOfMonth)) {
     return getWeek(nextMonday(firstDayOfMonth), {
       weekStartsOn: 1,
@@ -82,7 +75,10 @@ export function getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
   )[] = allWorkingDaysOfYear
     .map((date) => {
       if (!isWeekend(date)) {
-        const calWeek = getWeek(date);
+        const calWeek = getWeek(date, {
+          weekStartsOn: 1,
+          firstWeekContainsDate: 4,
+        });
         return {
           date,
           calWeek,
@@ -97,7 +93,8 @@ export function getWorkingDaysOfSelectedCalWeek(
   workingDays: ({ date: Date; calWeek: number } | undefined)[],
   calWeekFilter: number
 ): Date[] {
-  return workingDays
+  const workingDaysOfSelectedCalWeek = workingDays
     .filter(({ calWeek }: any) => calWeek === calWeekFilter)
     .map(({ date }: any) => date);
+  return workingDaysOfSelectedCalWeek;
 }
