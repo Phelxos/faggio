@@ -4,7 +4,7 @@ import ICoworker from "../../typings/interfaces/ICoworker";
 export default function UserCardInfo({ forename, surname, office }: ICoworker) {
   return (
     <div className="flex h-full flex-col justify-end rounded-tr-lg border-2 border-pink-400/50 bg-pink-600 p-2">
-      <div className="flex flex-col uppercase uppercase">
+      <div className="flex flex-col uppercase">
         <span className="text-lg font-light text-slate-900">{forename}</span>
         <span className="text-xs font-bold text-pink-400">{surname}</span>
       </div>

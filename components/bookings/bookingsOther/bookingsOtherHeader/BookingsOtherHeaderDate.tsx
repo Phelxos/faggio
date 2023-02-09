@@ -11,30 +11,13 @@ export default function BookingsOtherHeaderDate() {
 
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
-  const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
-  const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
-  const displayedCalWeeksInSelectedMonth = useCalendar(
-    (s) => s.displayedCalWeeksInSelectedMonth
-  );
 
   return (
-    <div className="flex gap-2 rounded-lg bg-emerald-800 p-4">
-      <div className="flex items-center gap-2 rounded-lg bg-emerald-700 p-2">
-        <span className="text-xs font-bold text-emerald-300">KW</span>
-        <SearchAndSelect
-          value={selectedCalWeek}
-          setValue={(val) => setSelectedCalWeek(val)}
-          listOfValues={displayedCalWeeksInSelectedMonth}
-          theme={theme}
-          areOptionsOpeningUpward={windowSize.height! < 900 ? true : false}
-        />
-      </div>
-      <div className="flex w-full items-center gap-2 text-xs uppercase tracking-wider text-emerald-300">
-        <span className="rounded-xl bg-emerald-700 p-2">
-          {displayEquivalent(selectedMonth, "month")}
-        </span>
-        <span className="rounded-xl bg-emerald-700 p-2">{selectedYear}</span>
-      </div>
+    <div className="flex items-center justify-end gap-2 bg-slate-700/50 p-3 text-xl uppercase tracking-widest text-slate-300/50">
+      <span className="font-semibold">
+        {displayEquivalent(selectedMonth, "month")}
+      </span>
+      <span className="font-thin">{selectedYear}</span>
     </div>
   );
 }

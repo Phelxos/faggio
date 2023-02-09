@@ -1,11 +1,11 @@
 import React from "react";
-import BookingsOtherHeaderOffice from "./BookingsOtherHeaderOffice";
+import BookingsOtherHeaderInput from "./BookingsOtherHeaderInput";
 import BookingsOtherHeaderDate from "./BookingsOtherHeaderDate";
 
 export default function BookingsOtherHeader() {
   return (
-    <div className="flex flex-col gap-6 rounded-t-lg bg-emerald-900 p-3">
-      <BookingsOtherHeaderOffice />
+    <div className="flex flex-col rounded-t-lg">
+      <BookingsOtherHeaderInput />
       <BookingsOtherHeaderDate />
     </div>
   );
