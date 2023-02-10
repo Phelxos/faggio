@@ -126,6 +126,16 @@ const useCalendar = create<Interface>()(
                 firstWeekContainsDate: 4,
               })
             ),
+            workingDaysOfSelectedCalWeekAndTheirMonth:
+              getWorkingDaysOfSelectedCalWeekAndTheirMonth(
+                getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
+                  year
+                ),
+                getWeek(new Date(year, s.selectedMonthmonth), {
+                  weekStartsOn: 1,
+                  firstWeekContainsDate: 4,
+                })
+              ),
           })),
         workingDaysOfSelectedYearAndTheirCalWeekAndMonth:
           getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
@@ -161,11 +171,13 @@ const useCalendar = create<Interface>()(
             ),
             workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
               s.workingDaysOfSelectedYearAndTheirCalWeekAndMonth,
-              getWeek(new Date(s.selectedYear, month), {
-                weekStartsOn: 1,
-                firstWeekContainsDate: 4,
-              })
+              getFirstCalWeekOfSelectedMonth(month, s.selectedYear)
             ),
+            workingDaysOfSelectedCalWeekAndTheirMonth:
+              getWorkingDaysOfSelectedCalWeekAndTheirMonth(
+                s.workingDaysOfSelectedYearAndTheirCalWeekAndMonth,
+                getFirstCalWeekOfSelectedMonth(month, s.selectedYear)
+              ),
           })),
         incrementCountedWeekdays: (weekday: number, by: number) =>
           set((state) => ({

@@ -16,19 +16,27 @@ export default function BookingsOtherHeaderDate() {
         monthCounter++;
       }
     }
+    console.log(
+      "🚀 ~ file: BookingsOtherHeaderDate.tsx:23 ~ positionOtherMonth ~ workingDays[0]?.month",
+      workingDays[0]?.month
+    );
     return {
       isPresent: monthCounter > 0,
       isBeforeSelectedMonth:
-        workingDays[0].month === selectedMonth ? false : true,
+        workingDays[0]?.month === selectedMonth ? false : true,
     };
   }
+
+  useEffect(() => {
+    console.log(workingDays);
+  });
   return (
     <div className="flex items-center justify-between gap-2 border-t-4 border-emerald-900/50 bg-slate-700/50 p-3 uppercase tracking-widest text-slate-300/50">
       <div className="text-md flex gap-2">
         {positionOtherMonth().isPresent &&
           positionOtherMonth().isBeforeSelectedMonth && (
             <span className="font-extralight">
-              {displayEquivalent(selectedMonth - 1, "month")}
+              {displayEquivalent(selectedMonth - 1, "month")} /
             </span>
           )}
         <span className="font-semibold">
@@ -37,7 +45,7 @@ export default function BookingsOtherHeaderDate() {
         {positionOtherMonth().isPresent &&
           !positionOtherMonth().isBeforeSelectedMonth && (
             <span className="font-light">
-              {displayEquivalent(selectedMonth + 1, "month")}
+              / {displayEquivalent(selectedMonth + 1, "month")}
             </span>
           )}
       </div>

@@ -105,6 +105,10 @@ export function getWorkingDaysOfSelectedCalWeekAndTheirMonth(
   workingDays: ({ date: Date; calWeek: number; month: number } | undefined)[],
   calWeekFilter: number
 ): { date: Date; month: number }[] {
+  console.log(
+    "🚀 ~ file: helpersForStoreCalendar.ts:108 ~ calWeekFilter",
+    calWeekFilter
+  );
   const workingDaysOfSelectedCalWeek = workingDays
     .filter(({ calWeek }: any) => calWeek === calWeekFilter)
     .map(({ date, month }: any) => ({ date, month }));

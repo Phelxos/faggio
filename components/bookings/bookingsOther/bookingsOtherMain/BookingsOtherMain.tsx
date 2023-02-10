@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useCalendar from "../../../../stores/SCalendar";
 import getDate from "../../../../helpers/getDate";
 import displayEquivalent from "../../../../helpers/displayEquivalent";
@@ -8,6 +8,13 @@ export default function BookingsOtherMainDays() {
   const workingDaysOfSelectedCalWeek = useCalendar(
     (s) => s.workingDaysOfSelectedCalWeek
   );
+
+  useEffect(() => {
+    console.log(
+      "🚀 ~ file: BookingsOtherMain.tsx:10 ~ workingDaysOfSelectedCalWeek",
+      workingDaysOfSelectedCalWeek
+    );
+  });
   return (
     <ul className="flex flex-col items-center">
       {workingDaysOfSelectedCalWeek.map((workingDay, i) => {
