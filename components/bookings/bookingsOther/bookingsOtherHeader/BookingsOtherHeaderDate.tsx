@@ -16,10 +16,6 @@ export default function BookingsOtherHeaderDate() {
         monthCounter++;
       }
     }
-    console.log(
-      "🚀 ~ file: BookingsOtherHeaderDate.tsx:23 ~ positionOtherMonth ~ workingDays[0]?.month",
-      workingDays[0]?.month
-    );
     return {
       isPresent: monthCounter > 0,
       isBeforeSelectedMonth:
@@ -27,9 +23,6 @@ export default function BookingsOtherHeaderDate() {
     };
   }
 
-  useEffect(() => {
-    console.log(workingDays);
-  });
   return (
     <div className="flex items-center justify-between gap-2 border-t-4 border-emerald-900/50 bg-slate-700/50 p-3 uppercase tracking-widest text-slate-300/50">
       <div className="text-md flex gap-2">

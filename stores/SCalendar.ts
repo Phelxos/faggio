@@ -121,20 +121,14 @@ const useCalendar = create<Interface>()(
               getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
                 year
               ),
-              getWeek(new Date(year, s.selectedMonth), {
-                weekStartsOn: 1,
-                firstWeekContainsDate: 4,
-              })
+              getFirstCalWeekOfSelectedMonth(s.selectedMonth, year)
             ),
             workingDaysOfSelectedCalWeekAndTheirMonth:
               getWorkingDaysOfSelectedCalWeekAndTheirMonth(
                 getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
                   year
                 ),
-                getWeek(new Date(year, s.selectedMonthmonth), {
-                  weekStartsOn: 1,
-                  firstWeekContainsDate: 4,
-                })
+                getFirstCalWeekOfSelectedMonth(s.selectedMonth, year)
               ),
           })),
         workingDaysOfSelectedYearAndTheirCalWeekAndMonth:
