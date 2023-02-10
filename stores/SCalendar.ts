@@ -5,8 +5,9 @@ import {
   getDisplayedCalWeeksInSelectedMonth,
   getLastDayOfCurrentYear,
   getFirstCalWeekOfSelectedMonth,
-  getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek,
+  getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth,
   getWorkingDaysOfSelectedCalWeek,
+  getWorkingDaysOfSelectedCalWeekAndTheirMonth,
 } from "../helpers/helpersForStoreCalendar";
 
 interface Interface {
@@ -25,11 +26,12 @@ interface Interface {
   displayedCalWeeksInSelectedMonth: number[];
   displayedMonths: string[];
   displayedYears: number[];
-  workingDaysOfSelectedYearAndTheirCalWeek: (
-    | { date: Date; calWeek: number }
+  workingDaysOfSelectedYearAndTheirCalWeekAndMonth: (
+    | { date: Date; calWeek: number; month: number }
     | undefined
   )[];
   workingDaysOfSelectedCalWeek: Date[];
+  workingDaysOfSelectedCalWeekAndTheirMonth: { date: Date; month: number }[];
   setDisplayedWeekOverview: () => void;
   setSelectedCalWeek: (calWeek: number) => void;
   setSelectedMonth: (month: number) => void;
@@ -93,9 +95,14 @@ const useCalendar = create<Interface>()(
           set((s) => ({
             selectedCalWeek: calWeek,
             workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
-              s.workingDaysOfSelectedYearAndTheirCalWeek,
+              s.workingDaysOfSelectedYearAndTheirCalWeekAndMonth,
               calWeek
             ),
+            workingDaysOfSelectedCalWeekAndTheirMonth:
+              getWorkingDaysOfSelectedCalWeekAndTheirMonth(
+                s.workingDaysOfSelectedYearAndTheirCalWeekAndMonth,
+                calWeek
+              ),
           })),
         setSelectedYear: (year: number) =>
           set((s) => ({
@@ -106,22 +113,26 @@ const useCalendar = create<Interface>()(
               s.selectedMonth,
               year
             ),
-            workingDaysOfSelectedYearAndTheirCalWeek:
-              getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(year),
+            workingDaysOfSelectedYearAndTheirCalWeekAndMonth:
+              getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
+                year
+              ),
             workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
-              getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(year),
+              getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
+                year
+              ),
               getWeek(new Date(year, s.selectedMonth), {
                 weekStartsOn: 1,
                 firstWeekContainsDate: 4,
               })
             ),
           })),
-        workingDaysOfSelectedYearAndTheirCalWeek:
-          getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
+        workingDaysOfSelectedYearAndTheirCalWeekAndMonth:
+          getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
             today.getFullYear()
           ),
         workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
-          getAllWorkingDaysOfYearWithTheirCorrespondingCalWeek(
+          getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
             today.getFullYear()
           ),
           getWeek(today, {
@@ -129,6 +140,16 @@ const useCalendar = create<Interface>()(
             firstWeekContainsDate: 4,
           })
         ),
+        workingDaysOfSelectedCalWeekAndTheirMonth:
+          getWorkingDaysOfSelectedCalWeekAndTheirMonth(
+            getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
+              today.getFullYear()
+            ),
+            getWeek(today, {
+              weekStartsOn: 1,
+              firstWeekContainsDate: 4,
+            })
+          ),
         setSelectedMonth: (month: number) =>
           set((s) => ({
             selectedMonth: month,
@@ -139,7 +160,7 @@ const useCalendar = create<Interface>()(
               s.selectedYear
             ),
             workingDaysOfSelectedCalWeek: getWorkingDaysOfSelectedCalWeek(
-              s.workingDaysOfSelectedYearAndTheirCalWeek,
+              s.workingDaysOfSelectedYearAndTheirCalWeekAndMonth,
               getWeek(new Date(s.selectedYear, month), {
                 weekStartsOn: 1,
                 firstWeekContainsDate: 4,

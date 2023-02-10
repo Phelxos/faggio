@@ -9,7 +9,7 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
   const isLoading = useCoworkers((s) => s.isLoading);
   return (
     <div
-      className={`col-span-6 flex h-full items-center overflow-scroll p-2 shadow-inner ${
+      className={`col-span-6 flex h-full items-center overflow-scroll py-2 px-3 shadow-inner ${
         i % 2 === 0 ? "bg-slate-500/50" : "bg-slate-400/50"
       }`}
     >
