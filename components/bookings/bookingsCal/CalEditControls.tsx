@@ -52,7 +52,17 @@ export default function CalEditControls() {
 
   const handleButtonEditClick = () => {
     c?.toggleIsBeingEdited();
-    c?.calRef?.current?.scrollIntoView({ behavior: "smooth" });
+    console.log(c?.calRef?.current?.offsetHeight);
+    console.log(c?.calRef?.current?.getBoundingClientRect().top);
+    if (
+      c?.calRef?.current?.getBoundingClientRect().top &&
+      0 > c?.calRef?.current?.getBoundingClientRect().top
+    ) {
+      c?.calRef?.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
   };
 
   return (
