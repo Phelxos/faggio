@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import {
-  EOfficesEnglishToGerman,
-  TOfficeCityEnglish,
-} from "../../typings/types/TOfficeCity";
+import React, { useState, useRef } from "react";
+import { TOfficeCityEnglish } from "../../typings/types/TOfficeCity";
 import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
 import IBooking from "../../typings/interfaces/IBooking";
 import useBookings from "../../stores/SBookings";
@@ -21,6 +18,7 @@ interface Interface {
   setBookingsToBeDeleted: (booking: IBooking) => void;
   deleteBookingsToBeDeleted: (date: Date) => void;
   transferBookingsToBeDeletedToBookingsToStore: () => void;
+  calRef: React.RefObject<HTMLDivElement> | null;
 }
 
 const initVal = initialValueForGloballySelectedOffice.city;
@@ -41,6 +39,7 @@ export default function ContextBookingsProvider({
     useState<TOfficeCityEnglish>(initVal);
   const setBookings = useBookings((s) => s.setBookings);
   const deleteBookings = useBookings((s) => s.deleteBookings);
+  const calRef = useRef<HTMLDivElement | null>(null);
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
@@ -94,6 +93,7 @@ export default function ContextBookingsProvider({
     setBookingsToBeDeleted: setBookingsToBeDeletedTMP,
     deleteBookingsToBeDeleted,
     transferBookingsToBeDeletedToBookingsToStore,
+    calRef,
   };
 
   return <CBookings.Provider value={value}>{children}</CBookings.Provider>;
