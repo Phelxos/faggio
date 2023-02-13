@@ -52,8 +52,6 @@ export default function CalEditControls() {
 
   const handleButtonEditClick = () => {
     c?.toggleIsBeingEdited();
-    console.log(c?.calRef?.current?.offsetHeight);
-    console.log(c?.calRef?.current?.getBoundingClientRect().top);
     if (
       c?.calRef?.current?.getBoundingClientRect().top &&
       0 > c?.calRef?.current?.getBoundingClientRect().top
