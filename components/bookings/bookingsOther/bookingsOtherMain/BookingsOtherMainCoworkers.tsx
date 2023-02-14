@@ -32,7 +32,7 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
                   key={`${coworker.forename} ${coworker.surname}`}
                   width={50}
                   height={50}
-                  className={`mr-4 inline rounded-full border-2 border-emerald-500/50`}
+                  className={`mr-4 inline rounded-full border-2 border-emerald-500/50 shadow-lg`}
                 />
               );
             })}
