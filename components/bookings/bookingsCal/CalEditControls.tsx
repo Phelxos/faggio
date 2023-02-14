@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { CBookings } from "../../contexts/CBookings";
 import Icon from "../../icons/Icon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
 function ButtonEdit(props: any) {
   return (
@@ -13,13 +15,16 @@ function ButtonEdit(props: any) {
   );
 }
 
-function ButtonCheck(props: any) {
+function ButtonSave(props: any) {
   return (
     <button
       {...props}
       className="flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-lime-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-lime-100 to-lime-500 drop-shadow-xl duration-200 ease-in-out hover:border-lime-900 active:translate-y-0.5 active:drop-shadow-md"
     >
-      <Icon icon="check" className="h-16 w-16 fill-lime-700 p-2" />
+      <FontAwesomeIcon
+        icon={faFloppyDisk}
+        className="h-8 w-8 text-lime-900 opacity-75"
+      />
     </button>
   );
 }
@@ -28,7 +33,7 @@ function ButtonArrowUturnLeft(props: any) {
   return (
     <button
       {...props}
-      className="relative flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-orange-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-red-200 to-red-500 drop-shadow-xl duration-200 ease-in-out hover:border-orange-900 active:translate-y-0.5 active:drop-shadow-md"
+      className="relative flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-orange-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-200 to-orange-500 drop-shadow-xl duration-200 ease-in-out hover:border-orange-900 active:translate-y-0.5 active:drop-shadow-md"
     >
       <Icon icon="arrowUturnLeft" className="h-8 w-8 fill-orange-900/75" />
     </button>
@@ -38,7 +43,7 @@ function ButtonArrowUturnLeft(props: any) {
 export default function CalEditControls() {
   const c = useContext(CBookings);
 
-  const handleButtonCheckClick = () => {
+  const handleButtonSaveClick = () => {
     c?.transferBookingsToBeSavedToBookingsToStore();
     c?.transferBookingsToBeDeletedToBookingsToStore();
     c?.clearBookingsToBeSavedAndDeleted();
@@ -68,7 +73,7 @@ export default function CalEditControls() {
       {c?.isBeingEdited ? (
         <>
           <ButtonArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />
-          <ButtonCheck onClick={handleButtonCheckClick} />
+          <ButtonSave onClick={handleButtonSaveClick} />
         </>
       ) : (
         <ButtonEdit onClick={handleButtonEditClick} />
