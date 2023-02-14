@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
 import TTheme from "../typings/types/TThemes";
@@ -63,7 +63,7 @@ export default function SearchAndSelect({
         <Combobox.Options
           className={`absolute ${
             areOptionsOpeningUpward ? "bottom-[110%]" : "top-[110%]"
-          } z-10 max-h-60 w-full overflow-auto rounded-md rounded border-4 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          } z-10 max-h-60 w-full overflow-auto rounded-md border-2 border-${theme}-300 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           {filteredListOfValues.length === 0 && query !== "" ? (
             <div
