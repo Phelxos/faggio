@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { CBookings } from "../../contexts/CBookings";
-import Icon from "../../icons/Icon";
+import { CBookings } from "../../../contexts/CBookings";
+import Icon from "../../../icons/Icon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
@@ -40,7 +40,7 @@ function ButtonArrowUturnLeft(props: any) {
   );
 }
 
-export default function CalEditControls() {
+export default function CalEditControlButtons() {
   const c = useContext(CBookings);
 
   const handleButtonSaveClick = () => {
@@ -69,7 +69,7 @@ export default function CalEditControls() {
   };
 
   return (
-    <div className="fixed right-0 bottom-0 z-50 m-2 flex items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
+    <div className="flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
       {c?.isBeingEdited ? (
         <>
           <ButtonArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />
