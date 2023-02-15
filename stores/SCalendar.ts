@@ -11,6 +11,7 @@ import {
 } from "../helpers/helpersForStoreCalendar";
 
 interface Interface {
+  today: Date;
   currentDate: number;
   currentWeekday: number;
   currentCalWeek: number;
@@ -32,6 +33,7 @@ interface Interface {
   )[];
   workingDaysOfSelectedCalWeek: Date[];
   workingDaysOfSelectedCalWeekAndTheirMonth: { date: Date; month: number }[];
+  setToday: (date: Date) => void;
   setDisplayedWeekOverview: () => void;
   setSelectedCalWeek: (calWeek: number) => void;
   setSelectedMonth: (month: number) => void;
@@ -48,6 +50,7 @@ const useCalendar = create<Interface>()(
   devtools(
     persist(
       (set) => ({
+        today: today,
         currentDate: today.getDate(),
         currentMonth: today.getMonth(),
         currentYear: today.getFullYear(),
@@ -86,6 +89,9 @@ const useCalendar = create<Interface>()(
         displayedYears: [
           ...Array.from(Array(today.getFullYear() + 11 - 2022).keys()),
         ].map((year) => year + 2022),
+        setToday: (date) => {
+          set({ today: date });
+        },
         setDisplayedWeekOverview: () =>
           set((state) => ({
             displayedWeekOverview: !state.displayedWeekOverview,

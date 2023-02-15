@@ -11,7 +11,7 @@ export default function Calendar() {
   return (
     <div
       className={`flex h-[485px] w-full flex-col rounded-lg border-[6px] ${
-        c?.isBeingEdited ? "border-emerald-300" : "border-emerald-900"
+        c?.isBeingEdited ? "border-lime-300" : "border-emerald-900"
       } bg-slate-700`}
       ref={c?.calRef}
     >

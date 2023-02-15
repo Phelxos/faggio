@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Cal from "../components/bookings/bookingsCal/Cal";
-import CalEditControls from "../components/bookings/bookingsCal/CalEditControls";
-import BookingsMy from "../components/bookings/bookingsMy/BookingsMy";
+import CalEditControl from "../components/bookings/bookingsCal/bookingsCalEditControl/CalEditControl";
 import BookingsOther from "../components/bookings/bookingsOther/BookingsOther";
 import ContextBookingsProvider from "../components/contexts/CBookings";
 
@@ -11,8 +10,7 @@ export default function Bookings() {
     <ContextBookingsProvider>
       <>
         <Cal />
-        <CalEditControls />
-        <BookingsMy />
+        <CalEditControl />
         <BookingsOther />
       </>
     </ContextBookingsProvider>
