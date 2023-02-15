@@ -24,12 +24,14 @@ export default function BookingsMy() {
     console.log(bookings);
   }, [bookings]);
 
+
   return (
     <>
       <BookingsMyHeader />
       <div className="divide-y divide-emerald-900 w-full">
         {bookings
         .filter((booking: IBooking) => booking.office === c?.locallySelectedOfficeName)
+        .sort((d1, d2) => (d1.date > d2.date) ? 1 : (d1.date < d2.date) ? -1 : 0)
         .map((booking: IBooking) => (
           <div
             key={Math.random()}
