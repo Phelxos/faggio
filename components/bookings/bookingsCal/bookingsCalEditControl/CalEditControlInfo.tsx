@@ -1,25 +1,21 @@
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import TIcon from "../../../../typings/types/TIcon";
 import Icon from "../../../icons/Icon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 
-const solutions = [
+const buttons: { name: string; description: string; icon: TIcon }[] = [
   {
-    name: "Insights",
-    description: "Measure actions your users take",
-    href: "##",
-    icon: IconOne,
+    name: "Speichern",
+    description:
+      "Buche deine bearbeiteten Tage: Grün markierte Tage werden gebucht. Bereits gebuchte Tage, die rot durchgestrichen sind, werden aus deinen Buchungen entfernt.",
+    icon: "noSymbol",
   },
   {
-    name: "Automations",
-    description: "Create your own targeted content",
-    href: "##",
-    icon: IconTwo,
-  },
-  {
-    name: "Reports",
-    description: "Keep track of your growth",
-    href: "##",
-    icon: IconThree,
+    name: "Abbrechen",
+    description: "Jegliche Bearbeitung wird verworfen.",
+    icon: "arrowUturnLeft",
   },
 ];
 
@@ -30,13 +26,13 @@ export default function Example() {
         <>
           <Popover.Button
             className={`
-                ${open ? "" : "text-opacity-90"}
-                group ml-2 inline-flex items-center rounded-full border-2 border-slate-200/50 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/75 to-indigo-500/75 p-1 hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                ${open ? "border-slate-200" : "border-slate-200/50"}
+                group ml-2 inline-flex items-center rounded-full border-2  bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/75 to-indigo-500/75 p-1 hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
           >
             <Icon
               icon="informationCircle"
-              className={`${open ? "" : "text-opacity-70"}
-                  h-10 w-10 text-slate-100/50 transition duration-150 ease-in-out group-hover:text-opacity-80`}
+              className={`${open ? "text-opacity-100" : "text-opacity-50"}
+                  h-10 w-10 text-slate-100 transition duration-150 ease-in-out group-hover:text-opacity-80`}
               aria-hidden="true"
             />
           </Popover.Button>
@@ -49,45 +45,47 @@ export default function Example() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-sm -translate-y-[130%] -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
-              <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
-                <div className="relative grid gap-8 bg-white p-7 lg:grid-cols-2">
-                  {solutions.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                    >
-                      <div className="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12">
-                        <item.icon aria-hidden="true" />
+            <Popover.Panel className="absolute left-1/2 z-10 w-screen max-w-sm -translate-y-[125%] -translate-x-1/2 transform  px-4 sm:px-0 lg:max-w-3xl">
+              <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-purple-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900 to-indigo-500 p-6">
+                <div className="relative grid gap-8 lg:grid-cols-2">
+                  {buttons.map(
+                    ({ name, description, icon }: any, i: number) => (
+                      <div key={i} className="flex items-center gap-4">
+                        {icon !== "noSymbol" ? (
+                          <Icon
+                            icon={icon}
+                            className="h-12 w-12 rounded-lg bg-indigo-900/50 fill-indigo-300/75 p-2"
+                          />
+                        ) : (
+                          <FontAwesomeIcon
+                            icon={faFloppyDisk}
+                            className="rounded-lg bg-indigo-900/50 p-2 text-indigo-300/75"
+                          />
+                        )}
+                        <div className="">
+                          <p className="text-sm font-bold tracking-wider text-indigo-400">
+                            {name}
+                          </p>
+                          <p className="text-xs text-indigo-100">
+                            {description}
+                          </p>
+                        </div>
                       </div>
-                      <div className="ml-4">
-                        <p className="text-sm font-medium text-gray-900">
-                          {item.name}
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {item.description}
-                        </p>
-                      </div>
-                    </a>
-                  ))}
+                    )
+                  )}
                 </div>
-                <div className="bg-gray-50 p-4">
-                  <a
-                    href="##"
-                    className="flow-root rounded-md px-2 py-2 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50"
-                  >
-                    <span className="flex items-center">
-                      <span className="text-md mb-2 font-medium text-gray-900">
-                        Bürotage buchen
-                      </span>
+                <hr className="opacity-50" />
+                <div className="text-indigo-200/90">
+                  <span className="flex flex-col">
+                    <span className="mb-1 text-lg font-bold tracking-wider">
+                      Bürotage buchen
                     </span>
-                    <span className="block text-sm text-gray-500">
-                      Um einzutragen dass du an einem Tag ins Büro kommst,{" "}
-                      <span className="font-bold">klicke auf den Tag</span> im
-                      Bearbeitungsmodus des Kalendars.
-                    </span>
-                  </a>
+                  </span>
+                  <span className="text-md block font-light tracking-wide">
+                    Um einzutragen dass du an einem Tag ins Büro kommst,{" "}
+                    <span className="font-bold">klicke auf den Tag</span> im
+                    Bearbeitungsmodus des Kalendars.
+                  </span>
                 </div>
               </div>
             </Popover.Panel>
