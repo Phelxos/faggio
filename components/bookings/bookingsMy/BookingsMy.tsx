@@ -25,7 +25,7 @@ export default function BookingsMy() {
   return (
     <>
       <BookingsMyHeader />
-      <div className="divide-y divide-emerald-900">
+      <div className="divide-y divide-emerald-900 w-full">
         {bookings.map((booking: IBooking) => (
           <div
             key={Math.random()}
