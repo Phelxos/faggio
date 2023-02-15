@@ -3,9 +3,11 @@ import Icon from "../../icons/Icon";
 import useBookings from "../../../stores/SBookings";
 import BookingsMyHeader from "./BookingsMyHeader";
 import IBooking from "../../../typings/interfaces/IBooking";
+import { CBookings } from "../../contexts/CBookings";
 
 export default function BookingsMy() {
   let bookings = useBookings((s) => s.bookings);
+  const c = useContext(CBookings);
   let deleteBookings = useBookings((s) => s.deleteBookings);
   let dateOptions = {
     year: "numeric",
@@ -26,7 +28,9 @@ export default function BookingsMy() {
     <>
       <BookingsMyHeader />
       <div className="divide-y divide-emerald-900 w-full">
-        {bookings.map((booking: IBooking) => (
+        {bookings
+        .filter((booking: IBooking) => booking.office === c?.locallySelectedOfficeName)
+        .map((booking: IBooking) => (
           <div
             key={Math.random()}
             className="flex w-full justify-between bg-emerald-500 p-6 px-20 last:rounded-b-lg"
