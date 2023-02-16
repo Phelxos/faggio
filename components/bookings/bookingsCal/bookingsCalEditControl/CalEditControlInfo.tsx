@@ -45,24 +45,23 @@ export default function Example() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute left-1/2 z-10 w-screen max-w-sm -translate-y-[125%] -translate-x-1/2 transform  px-4 sm:px-0 lg:max-w-3xl">
+            <Popover.Panel className="absolute left-1/2 z-10 w-screen max-w-sm -translate-y-[120%] -translate-x-1/2 transform  px-4 sm:px-0 lg:max-w-3xl">
               <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-purple-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900 to-indigo-500 p-6">
                 <div className="relative grid gap-8 lg:grid-cols-2">
                   {buttons.map(
                     ({ name, description, icon }: any, i: number) => (
                       <div key={i} className="flex items-center gap-4">
-                        {icon !== "noSymbol" ? (
-                          <Icon
-                            icon={icon}
-                            className="h-12 w-12 rounded-lg bg-indigo-900/50 fill-indigo-300/75 p-2"
-                          />
-                        ) : (
-                          <FontAwesomeIcon
-                            icon={faFloppyDisk}
-                            className="rounded-lg bg-indigo-900/50 p-2 text-indigo-300/75"
-                          />
-                        )}
-                        <div className="">
+                        <div className=" flex min-h-[75px] min-w-[75px] flex-col items-center justify-center rounded-lg bg-indigo-900/50 p-2 text-indigo-300/75">
+                          {icon !== "noSymbol" ? (
+                            <Icon icon={icon} className="h-12 w-12" />
+                          ) : (
+                            <FontAwesomeIcon
+                              icon={faFloppyDisk}
+                              className="h-12 w-12"
+                            />
+                          )}
+                        </div>
+                        <div>
                           <p className="text-sm font-bold tracking-wider text-indigo-400">
                             {name}
                           </p>
@@ -77,11 +76,11 @@ export default function Example() {
                 <hr className="opacity-50" />
                 <div className="text-indigo-200/90">
                   <span className="flex flex-col">
-                    <span className="mb-1 text-lg font-bold tracking-wider">
+                    <span className="text-md mb-1 font-bold tracking-wider">
                       Bürotage buchen
                     </span>
                   </span>
-                  <span className="text-md block font-light tracking-wide">
+                  <span className="block text-sm font-light tracking-wide">
                     Um einzutragen dass du an einem Tag ins Büro kommst,{" "}
                     <span className="font-bold">klicke auf den Tag</span> im
                     Bearbeitungsmodus des Kalendars.
