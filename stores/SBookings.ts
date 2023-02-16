@@ -33,10 +33,20 @@ const useBookings = create<Interface>()(
           set((state) => ({
             bookings: state.bookings.filter((booking: IBooking) => {
               return !bookingsToBeRemoved.some(
-                (bookingToBeRemovedPotentially: IBooking) =>
-                  booking.date ===
-                    (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+                (bookingToBeRemovedPotentially: IBooking) => {
+                  // ensure data is writte as JSON
+                  // create tempor<ry variable "dateToBeRemovedPotentially" to guaratee correct updating of bookings in store
+                  let dateToBeRemovedPotentially = bookingToBeRemovedPotentially.date;
+                  if (typeof dateToBeRemovedPotentially === "string") {
+                    dateToBeRemovedPotentially = new Date(dateToBeRemovedPotentially);
+                  }
+                  return (
+                    booking.date ===
+                    // Um aus Übersicht zu löschen: ohne .toJSON()
+                    (dateToBeRemovedPotentially as Date).toJSON() &&
                   booking.office === bookingToBeRemovedPotentially.office
+                  )
+                }
               );
             }),
           }));
@@ -58,6 +68,7 @@ export default useBookings;
 // Für löschen aus Calender (ist Date, deswegen toJSON umandeln):
 // booking.date ===
 //   (bookingToBeRemovedPotentially.date as Date).toJSON() &&
+
 // Für löschen aus MyBooking Übersicht (ist JSON, deswegen ohne toJSON)
 // booking.date ===
 //   bookingToBeRemovedPotentially.date &&
