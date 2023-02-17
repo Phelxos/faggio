@@ -13,6 +13,22 @@ export default function OfficesCardAddress({
   housenumber,
   postcode,
 }: Props) {
+
+// const copyStreetHousenumber = (street: string, housenumber: string) => {
+//   console.log("This is Street and Housenumber");
+//   let putStreetHousenumberTogether = street + '' + housenumber;
+//   console.log(putStreetHousenumberTogether);
+//   let streetHousenumber = navigator.clipboard.writeText(putStreetHousenumberTogether);
+//   console.log(streetHousenumber);
+// }
+
+const copyAdress = (adressPart_1: string, adressPart_2?: string, adressPart_3?: string) => {
+  let putAdressTogether = adressPart_1 + '' + adressPart_2 + '' + adressPart_3;
+  console.log(`Zusammengefügt: ${putAdressTogether}`);
+  let copiedAdress = navigator.clipboard.writeText(putAdressTogether);
+  console.log(`Kopierter Text: ${copiedAdress}`);
+}
+
   return (
     <div className="rounded-lg border-2 border-amber-800 bg-amber-600">
       <div className="flex items-center justify-between bg-amber-900/90 p-4">
@@ -27,6 +43,7 @@ export default function OfficesCardAddress({
           <Icon
             icon="documentDuplicate"
             className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75"
+            onClick={() => copyAdress("Adresse")}
           />
         </button>
       </div>
@@ -45,6 +62,7 @@ export default function OfficesCardAddress({
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
+              onClick={() => copyAdress(street, housenumber)}
             />
           </button>
         </div>
@@ -63,6 +81,7 @@ export default function OfficesCardAddress({
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
+              onClick={() => copyAdress(postcode)}
             />
           </button>
         </div>
