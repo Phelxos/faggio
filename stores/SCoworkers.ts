@@ -34,9 +34,10 @@ const useCoworkers = create<Interface>()(
             set(() => ({
               coworkerListWithPhotos: coworkersListWithPhotos,
             }));
-          } catch (e) {
+          } catch (err) {
             console.error(
-              "Something has gone wrong while fetching the photos of the coworkers."
+              "Something has gone wrong while fetching the photos of the coworkers:",
+              err
             );
           } finally {
             set({ isLoading: false });

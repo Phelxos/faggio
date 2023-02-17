@@ -59,9 +59,10 @@ const useOffice = create<Interface>()(
                   entry.city === state.globallySelectedOfficeName
               ),
             }));
-          } catch (e) {
+          } catch (err) {
             console.error(
-              "Something has gone wrong, while fetching the list of offices."
+              "Something has gone wrong, while fetching the list of offices:",
+              err
             );
           }
         },

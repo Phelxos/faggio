@@ -20,36 +20,44 @@ export default function BookingsMy() {
     deleteBookings(toBeDeleted);
   };
 
-  useEffect(() => {
-    console.log(bookings);
-  }, [bookings]);
-
-
   return (
     <>
       <BookingsMyHeader />
-      <div className="divide-y divide-emerald-900 w-full">
+      <div className="w-full divide-y divide-emerald-900">
         {bookings
-        .filter((booking: IBooking) => booking.office === c?.locallySelectedOfficeName)
-        .sort((d1, d2) => (d1.date > d2.date) ? 1 : (d1.date < d2.date) ? -1 : 0)
-        .map((booking: IBooking) => (
-          <div
-            key={Math.random()}
-            className="flex w-full justify-between bg-emerald-500 p-6 px-20 last:rounded-b-lg"
-          >
-            <div className="flex flex-col">
-              <p>{new Date(booking.date).toLocaleDateString('de-DE', dateOptions)}</p>
-              <p>{booking.office[0].toUpperCase() + booking.office.substring(1)}</p>
-            </div>
-            <button
-              className="rounded-full bg-red-600 py-2 px-4 font-bold text-white hover:bg-red-400"
-              onClick={() => handleDeleteButton([booking])}
+          .filter(
+            (booking: IBooking) =>
+              booking.office === c?.locallySelectedOfficeName
+          )
+          .sort((d1, d2) =>
+            d1.date > d2.date ? 1 : d1.date < d2.date ? -1 : 0
+          )
+          .map((booking: IBooking) => (
+            <div
+              key={Math.random()}
+              className="flex w-full justify-between bg-emerald-500 p-6 px-20 last:rounded-b-lg"
             >
-              <Icon icon="xMark" className="mx-0 h-5 w-5" />
-            </button>
-          </div>
-        ))}
+              <div className="flex flex-col">
+                <p>
+                  {new Date(booking.date).toLocaleDateString(
+                    "de-DE",
+                    dateOptions
+                  )}
+                </p>
+                <p>
+                  {booking.office[0].toUpperCase() +
+                    booking.office.substring(1)}
+                </p>
+              </div>
+              <button
+                className="rounded-full bg-red-600 py-2 px-4 font-bold text-white hover:bg-red-400"
+                onClick={() => handleDeleteButton([booking])}
+              >
+                <Icon icon="xMark" className="mx-0 h-5 w-5" />
+              </button>
+            </div>
+          ))}
       </div>
     </>
-  )
+  );
 }

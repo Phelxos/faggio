@@ -35,17 +35,19 @@ const useBookings = create<Interface>()(
               return !bookingsToBeRemoved.some(
                 (bookingToBeRemovedPotentially: IBooking) => {
                   // ensure data is writte as JSON
-                  // create tempor<ry variable "dateToBeRemovedPotentially" to guaratee correct updating of bookings in store
-                  let dateToBeRemovedPotentially = bookingToBeRemovedPotentially.date;
+                  // create temporary variable "dateToBeRemovedPotentially" to guaratee correct updating of bookings in store
+                  let dateToBeRemovedPotentially =
+                    bookingToBeRemovedPotentially.date;
                   if (typeof dateToBeRemovedPotentially === "string") {
-                    dateToBeRemovedPotentially = new Date(dateToBeRemovedPotentially);
+                    dateToBeRemovedPotentially = new Date(
+                      dateToBeRemovedPotentially
+                    );
                   }
                   return (
                     booking.date ===
-                    // Um aus Übersicht zu löschen: ohne .toJSON()
-                    (dateToBeRemovedPotentially as Date).toJSON() &&
-                  booking.office === bookingToBeRemovedPotentially.office
-                  )
+                      (dateToBeRemovedPotentially as Date).toJSON() &&
+                    booking.office === bookingToBeRemovedPotentially.office
+                  );
                 }
               );
             }),
@@ -60,16 +62,3 @@ const useBookings = create<Interface>()(
 );
 
 export default useBookings;
-
-// {console.log(typeof bookingToBeRemovedPotentially); // --> immer object
-//   console.log(bookingToBeRemovedPotentially); // unterschiedlich, je nachdem ob aus Kalender oder MyBooking Übersicht
-// }
-
-// Für löschen aus Calender (ist Date, deswegen toJSON umandeln):
-// booking.date ===
-//   (bookingToBeRemovedPotentially.date as Date).toJSON() &&
-
-// Für löschen aus MyBooking Übersicht (ist JSON, deswegen ohne toJSON)
-// booking.date ===
-//   bookingToBeRemovedPotentially.date &&
-// booking.office === bookingToBeRemovedPotentially.office
