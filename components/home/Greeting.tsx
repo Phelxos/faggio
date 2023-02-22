@@ -5,30 +5,13 @@ import Spinner from "../Spinner";
 
 export default function Greeting() {
   const greeting = useGreeting((s) => s.greeting);
-  const language = useGreeting((s) => s.language);
-  const [translatedLanguage, setTranslatedLanguage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const awaitTranslation = async () => {
-      try {
-        const translation = await translateToGerman(language);
-        setTranslatedLanguage(translation);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    awaitTranslation();
-  }, [language]);
-
-  if (isLoading) return <Spinner />;
-
+  const languageInGerman = useGreeting((s) => s.languageInGerman);
   return (
-    <div>
-      <div>{greeting}!</div>
-      <div>{translatedLanguage}</div>
+    <div className="w-full bg-sky-700">
+      <div className="flex items-center gap-2">
+        <span>{greeting}!</span>
+        <span>{languageInGerman}</span>
+      </div>
     </div>
   );
 }
