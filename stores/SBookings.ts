@@ -2,8 +2,9 @@ import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import IBooking from "../typings/interfaces/IBooking";
 
+// Note: Zustand saves dates as JSON in the store – though, not immediately. After the page's next reload, the dates are saved as JSON for certain.
+
 interface Interface {
-  // im store ist date als JSON String
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => void;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => void;
