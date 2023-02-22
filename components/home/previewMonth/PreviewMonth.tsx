@@ -10,6 +10,14 @@ export default function PreviewMonth() {
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
+
+  function getOccupancyLevel(bookings: number, workstationCapacity: number) {
+    const occupancyRate = Math.round((bookings / workstationCapacity) * 100);
+    if (occupancyRate < 10) return 10;
+    if (occupancyRate < 20) return 40;
+    if (occupancyRate < 30) return 75;
+    else return 90;
+  }
   return (
     <div className="w-full">
       <div className="flex w-full items-center justify-between rounded-t-lg bg-emerald-900 py-4 pl-6 pr-4">
