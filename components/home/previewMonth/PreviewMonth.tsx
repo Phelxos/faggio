@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import mapCalendar from "../../../helpers/mapCalendar";
 import useCalendar from "../../../stores/SCalendar";
+import useOffice from "../../../stores/SOffices";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 
 export default function PreviewMonth() {
@@ -10,6 +11,9 @@ export default function PreviewMonth() {
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
+  const workstationCapacity = useOffice(
+    (s) => s.globallySelectedOffice
+  ).workstations;
 
   function getOccupancyLevel(bookings: number, workstationCapacity: number) {
     const occupancyRate = Math.round((bookings / workstationCapacity) * 100);
