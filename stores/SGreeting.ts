@@ -5,12 +5,12 @@ import translateToGerman from "../helpers/translateToGerman";
 
 interface Interface {
   greeting: string;
+  setGreeting: (greeting: string) => void;
+  fetchGreeting: () => Promise<void>;
   language: string;
+  setLanguage: (language: string) => void;
   languageInGerman: string;
   setLanguageInGerman: (language: string) => void;
-  setGreeting: (greeting: string) => void;
-  setLanguage: (language: string) => void;
-  fetchGreeting: () => Promise<void>;
   hasLoaded: boolean;
   setHasLoaded: (status: boolean) => void;
 }

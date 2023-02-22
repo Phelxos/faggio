@@ -15,14 +15,11 @@ export default function useSetupData() {
 
   // wait till NextJS rehydration completes
   useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
-  useEffect(() => {
     if (!hasLoadedGreeting) {
       fetchGreeting();
     }
-  }, [fetchGreeting, hasLoadedGreeting]);
+    setIsHydrated(true);
+  }, []);
 
   return isHydrated;
 }
