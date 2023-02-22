@@ -1,13 +1,17 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import mapCalendar from "../../../helpers/mapCalendar";
 import useCalendar from "../../../stores/SCalendar";
 import useOffice from "../../../stores/SOffices";
+import useBookings from "../../../stores/SBookings";
 import displayEquivalent from "../../../helpers/displayEquivalent";
+import getOccupancyLevel from "../../../helpers/getOccupancyLevel";
 
 export default function PreviewMonth() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
+  const bookingsOther = useBookings((s) => s.bookingsOther);
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
@@ -15,23 +19,18 @@ export default function PreviewMonth() {
     (s) => s.globallySelectedOffice
   ).workstations;
 
-  function getOccupancyLevel(bookings: number, workstationCapacity: number) {
-    const occupancyRate = Math.round((bookings / workstationCapacity) * 100);
-    if (occupancyRate < 10) return 10;
-    if (occupancyRate < 20) return 40;
-    if (occupancyRate < 30) return 75;
-    else return 90;
-  }
   return (
     <div className="w-full">
-      <div className="flex w-full items-center justify-between rounded-t-lg bg-emerald-900 py-4 pl-6 pr-4">
-        <span className="text-2xl font-extralight uppercase tracking-widest text-emerald-200">
-          {displayEquivalent(selectedMonth, "month")}
-        </span>
-        <span className="rounded bg-emerald-700/50 py-2 px-4 tracking-widest text-emerald-400/75">
-          {selectedYear}
-        </span>
-      </div>
+      <Link href="/bookings">
+        <div className="flex w-full items-center justify-between rounded-t-lg bg-emerald-900 py-4 pl-6 pr-4">
+          <span className="text-2xl font-extralight uppercase tracking-widest text-emerald-200">
+            {displayEquivalent(selectedMonth, "month")}
+          </span>
+          <span className="rounded bg-emerald-700/50 py-2 px-4 tracking-widest text-emerald-400/75">
+            {selectedYear}
+          </span>
+        </div>
+      </Link>
       <div>
         {displayedMonth.map((week: any[], i: number) => {
           return (
@@ -68,7 +67,11 @@ export default function PreviewMonth() {
                   return (
                     <div
                       key={i}
-                      className="h-[30px] w-[30px] rounded-full bg-emerald-200/90"
+                      className={`h-[30px] w-[30px] rounded-full bg-emerald-200/${getOccupancyLevel(
+                        weekday.date,
+                        workstationCapacity,
+                        bookingsOther
+                      )}`}
                     />
                   );
                 }
