@@ -13,6 +13,8 @@ interface Interface {
   setLanguageInGerman: (language: string) => void;
   hasLoaded: boolean;
   setHasLoaded: (status: boolean) => void;
+  hasFetchedSuccessfully: boolean;
+  setHasFetchedSuccessfully: (status: boolean) => void;
 }
 
 const useGreeting = create<Interface>()(
@@ -20,6 +22,9 @@ const useGreeting = create<Interface>()(
     (set) => ({
       hasLoaded: false,
       setHasLoaded: (status: boolean) => set({ hasLoaded: status }),
+      hasFetchedSuccessfully: false,
+      setHasFetchedSuccessfully: (status: boolean) =>
+        set({ hasFetchedSuccessfully: status }),
       greeting: "",
       languageInGerman: "",
       setLanguageInGerman: (newLanguageInGerman: string) =>

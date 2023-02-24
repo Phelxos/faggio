@@ -80,7 +80,9 @@ const useBookings = create<Interface>()(
             date: (b.date as Date).toJSON(),
           }));
           set((state) => ({
-            bookings: [...state.bookings, ...bookingsToBeSaved],
+            bookings: [...state.bookings, ...bookingsToBeSaved].sort((a, b) =>
+              a.date > b.date ? 1 : -1
+            ),
           }));
         },
         clearBookings: () => {

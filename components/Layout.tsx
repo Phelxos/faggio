@@ -11,7 +11,7 @@ export default function Layout({
   return (
     <>
       <Meta />
-      <div className="flex h-screen w-screen flex-col">
+      <div className="flex w-screen flex-col">
         <Header />
         <Main>{children}</Main>
       </div>
