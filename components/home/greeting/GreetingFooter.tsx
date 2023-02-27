@@ -7,12 +7,12 @@ export default function GreetingFooter() {
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);
   const languageInGerman = useGreeting((s) => s.languageInGerman);
   return (
-    <div className="relative flex items-center justify-center gap-1 rounded-b bg-sky-900 p-2 text-xs text-sky-400/50">
+    <div className="relative flex items-center justify-end gap-1 rounded-b bg-sky-900 px-1 py-3 text-xs text-sky-400/50">
       {hasFetchedSuccesfully && (
         <>
           <div>
             <span className="italic">{greeting}</span> bedeutet „
-            <span>Hallo</span>“ in der Sprache{" "}
+            <span>Hallo</span>“ auf{" "}
           </div>
           <a
             className="mx-1 flex items-center gap-1 rounded bg-sky-800 p-[6px] text-sky-300/75"

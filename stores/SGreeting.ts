@@ -41,7 +41,12 @@ const useGreeting = create<Interface>()(
           );
           const { language, greeting } = response.data;
           const languageInGerman = await translateToGerman(language);
-          set(() => ({ greeting, language, languageInGerman }));
+          set(() => ({
+            greeting,
+            language,
+            languageInGerman,
+            hasFetchedSuccessfully: true,
+          }));
         } catch (err) {
           console.error(
             "Something has gone wrong while fetching the greeting.",
