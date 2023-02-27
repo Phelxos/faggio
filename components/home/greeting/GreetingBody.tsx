@@ -19,7 +19,7 @@ export default function GreetingBody() {
             </p>
             <div className="text-sky-500">
               Du planst, das nächste Mal {!nextDay?.includes(" ") && "am"}{" "}
-              <div className="inline-block rounded bg-sky-700 py-1 px-2 text-sky-300">
+              <div className="inline-block rounded bg-sky-700 px-2 text-sky-300">
                 {nextDay}
               </div>{" "}
               ins Büro zu gehen.
@@ -50,7 +50,7 @@ export default function GreetingBody() {
             </p>
             <div className="text-sky-500">
               Nächste Woche hast du vor,{" "}
-              <span className="inline-block rounded bg-sky-700 py-1 px-2 text-sky-300">
+              <span className="inline-block rounded bg-sky-700 px-2 text-sky-300">
                 {nextWeekBookingsNumber > 1 ? nextWeekBookingsNumber : "ein"}
               </span>{" "}
               Mal ins Büro zu kommen.
