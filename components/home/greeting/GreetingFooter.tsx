@@ -16,7 +16,7 @@ export default function GreetingFooter() {
           </div>
           <a
             className="mx-1 flex items-center gap-1 rounded bg-sky-800 p-[6px] text-sky-300/75"
-            href={`https://www.google.de/search?q=${languageInGerman}`}
+            href={`https://www.google.de/search?q=${languageInGerman.toLocaleLowerCase()}`}
           >
             <span>{languageInGerman}</span>
             <Icon icon="arrowTopRightOnSquare" className="h-4 w-4 opacity-50" />

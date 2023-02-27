@@ -11,7 +11,7 @@ export default function GreetingBody() {
   const nextWeekBookingsNumber = useState(useNextWeekBookings()?.length)[0];
   return (
     <div className="flex flex-col items-center leading-8">
-      <div className="flex flex-col gap-3 p-5">
+      <div className="flex flex-col gap-3 p-6">
         {nextDay ? (
           <>
             <p className="self-end text-4xl font-thin text-sky-500/50">
