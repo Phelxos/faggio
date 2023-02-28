@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import getLiteralDate from "../../../helpers/getLiteralDate";
 import useBookings from "../../../stores/SBookings";
-import useNextBooking from "../../../hooks/useNextBooking";
-import useNextWeekBookings from "../../../hooks/useNextWeekBookings";
+import useNextBooking from "../../../hooks/useNextBookingMy";
+import useNextWeekBookings from "../../../hooks/useNextWeekBookingsMy";
 import Link from "next/link";
 
 export default function GreetingBody() {
@@ -32,7 +32,7 @@ export default function GreetingBody() {
             </p>
             <Link
               href={"/bookings"}
-              className="self-end rounded border-2 border-sky-800/75 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sky-700 to-sky-400 py-2 px-3 text-sky-900 shadow-lg"
+              className="self-end rounded-xl border-2 border-sky-800/75 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sky-700 to-sky-400 py-2 px-3 text-sky-900 shadow-lg"
             >
               <button className="font-mono text-xs uppercase tracking-wider">
                 Bürotage buchen

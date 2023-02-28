@@ -18,57 +18,82 @@ const useBookings = create<Interface>()(
       (set) => ({
         bookingsOther: [
           {
-            date: "2023-02-13T23:00:00.000Z",
+            date: "2023-03-04T23:00:00.000Z",
             coworker: 3423,
             office: "dortmund",
           },
           {
-            date: "2023-02-09T23:00:00.000Z",
+            date: "2023-03-13T23:00:00.000Z",
+            coworker: 3423,
+            office: "dortmund",
+          },
+          {
+            date: "2023-03-09T23:00:00.000Z",
+            coworker: 3423,
+            office: "bremen",
+          },
+          {
+            date: "2023-03-14T23:00:00.000Z",
+            coworker: 3423,
+            office: "dortmund",
+          },
+          {
+            date: "2023-03-01T23:00:00.000Z",
+            coworker: 3423,
+            office: "dortmund",
+          },
+          {
+            date: "2023-03-18T23:00:00.000Z",
+            coworker: 3423,
+            office: "dortmund",
+          },
+          {
+            date: "2023-03-09T23:00:00.000Z",
             coworker: 3233,
             office: "cologne",
           },
           {
-            date: "2023-02-25T23:00:00.000Z",
+            date: "2023-03-25T23:00:00.000Z",
             coworker: 9783,
             office: "munich",
           },
           {
-            date: "2023-02-03T23:00:00.000Z",
+            date: "2023-03-03T23:00:00.000Z",
             coworker: 9453,
             office: "dortmund",
           },
           {
-            date: "2023-02-13T23:00:00.000Z",
+            date: "2023-03-13T23:00:00.000Z",
             coworker: 2313,
             office: "dortmund",
           },
           {
-            date: "2023-02-17T23:00:00.000Z",
+            date: "2023-03-17T23:00:00.000Z",
             coworker: 9432,
             office: "dortmund",
           },
           {
-            date: "2023-02-13T23:00:00.000Z",
+            date: "2023-03-13T23:00:00.000Z",
             coworker: 3423,
             office: "dortmund",
           },
           {
-            date: "2023-02-05T23:00:00.000Z",
+            date: "2023-03-05T23:00:00.000Z",
             coworker: 1211,
             office: "cologne",
           },
           {
-            date: "2023-02-22T23:00:00.000Z",
+            date: "2023-03-22T23:00:00.000Z",
             coworker: 7732,
             office: "cologne",
           },
           {
-            date: "2023-02-09T23:00:00.000Z",
+            date: "2023-03-09T23:00:00.000Z",
             coworker: 5632,
             office: "dortmund",
           },
           {
-            date: "2023-02-21T23:00:00.000Z",
+            date: "2023-03-21T23:00:00.000Z",
             coworker: 8834,
             office: "dortmund",
           },

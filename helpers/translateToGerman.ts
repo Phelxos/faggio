@@ -7,10 +7,6 @@ export default async function translateToGerman(text: string) {
   )}&target_lang=DE`;
   try {
     const response = await axios.get(API_URL);
-    console.log(
-      "🚀 ~ file: translateToGerman.ts:9 ~ translateToGerman ~ response:",
-      response
-    );
     return response.data.translations[0].text;
   } catch (error) {
     console.error(error);

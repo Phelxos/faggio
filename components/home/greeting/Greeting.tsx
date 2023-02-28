@@ -5,7 +5,7 @@ import GreetingFooter from "./GreetingFooter";
 
 export default function Greeting() {
   return (
-    <div className="w-full rounded bg-sky-600/50">
+    <div className="w-full rounded-xl bg-sky-600/50 shadow-md">
       <GreetingHeader />
       <GreetingBody />
       <GreetingFooter />
