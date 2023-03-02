@@ -65,10 +65,6 @@ export default function PreviewWeek() {
   useEffect(() => {
     const isThursdayOrLater =
       getDay(new Date()) === 0 || getDay(new Date()) > 3;
-    console.log(
-      "🚀 ~ file: PreviewWeek.tsx:67 ~ useEffect ~ isThursdayOrLater:",
-      isThursdayOrLater
-    );
     setIsShowingNextWeekBookings(isThursdayOrLater);
   }, [today]);
 

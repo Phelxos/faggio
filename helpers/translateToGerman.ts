@@ -1,6 +1,5 @@
 import axios from "axios";
 export default async function translateToGerman(text: string) {
-  console.log(process.env);
   const API_KEY = process.env.DEEPL_API_KEY;
   const API_URL = `https://api-free.deepl.com/v2/translate?auth_key=${API_KEY}&text=${encodeURIComponent(
     text
