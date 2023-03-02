@@ -60,11 +60,15 @@ export default function PreviewWeek() {
       });
       setWeekBookingsOtherCount(newWeekBookingsOtherCount);
     }
-  }, [bookingsOther]);
+  }, [bookingsOther, isShowingNextWeekBookings]);
 
   useEffect(() => {
     const isThursdayOrLater =
       getDay(new Date()) === 0 || getDay(new Date()) > 3;
+    console.log(
+      "🚀 ~ file: PreviewWeek.tsx:67 ~ useEffect ~ isThursdayOrLater:",
+      isThursdayOrLater
+    );
     setIsShowingNextWeekBookings(isThursdayOrLater);
   }, [today]);
 
@@ -117,11 +121,9 @@ export default function PreviewWeek() {
                           )}`
                     }`}
                   >
-                    {
-                      weekBookingsOtherCount.find(({ date: dateToFind }) =>
-                        isSameDay(new Date(dateToFind), new Date(date))
-                      )?.count
-                    }
+                    {weekBookingsOtherCount.find(({ date: dateToFind }) =>
+                      isSameDay(new Date(dateToFind), new Date(date))
+                    )?.count ?? 0}
                   </div>
                 </div>
               );
