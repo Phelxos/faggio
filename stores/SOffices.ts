@@ -13,7 +13,7 @@ export const initialValueForGloballySelectedOffice: IOffice = {
   workstations: 25,
   areDogsAllowed: true,
   description:
-    "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz adessos ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
+    "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz des Unternehmens ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
   imgSrc: "/images/office.jpg",
 };
 
