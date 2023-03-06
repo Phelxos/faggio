@@ -1,5 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import Cal from "../components/bookings/bookingsCal/Cal";
+import CalEditControl from "../components/bookings/bookingsCal/bookingsCalEditControl/CalEditControl";
+import BookingsMy from "../components/bookings/bookingsMy/BookingsMy";
+import BookingsOther from "../components/bookings/bookingsOther/BookingsOther";
+import ContextBookingsProvider from "../components/contexts/CBookings";
 
-export default function bookings() {
-  return <div>bookings</div>;
+export default function Bookings() {
+  return (
+    <ContextBookingsProvider>
+      <>
+        <Cal />
+        <CalEditControl />
+        <BookingsMy />
+        <BookingsOther />
+      </>
+    </ContextBookingsProvider>
+  );
 }

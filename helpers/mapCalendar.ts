@@ -60,10 +60,23 @@ const mapCalendar = (
     }
   }
 
-  let finalArr: Object[] = [];
+  let finalArr = [];
   for (const row in calRows) {
+    // Do not insert if the row is empty
+    if (calRows[row].length === 0) continue;
+
+    // Fill in the blank days of the last row
+    if (calRows[row].length < 6) {
+      for (let i = calRows[row].length; i < 6; i++) {
+        calRows[row].push({
+          isNoDayOfMonth: true,
+        });
+      }
+    }
+
     finalArr.push(calRows[row]);
   }
+
   return finalArr;
 };
 

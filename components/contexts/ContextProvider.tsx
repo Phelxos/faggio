@@ -1,5 +1,5 @@
 import React from "react";
-import ContextTeamsProvider from "./ContextTeams";
+import ContextTeamsProvider from "./CTeams";
 
 export default function ContextProvider({
   children,

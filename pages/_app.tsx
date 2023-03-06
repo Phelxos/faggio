@@ -5,13 +5,19 @@ import ContextProvider from "../components/contexts/ContextProvider";
 import useSetupData from "../hooks/useSetupData";
 
 export default function App({ Component, pageProps }: AppProps) {
-  useSetupData();
+  const isHydrated = useSetupData();
 
-  return (
-    <ContextProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ContextProvider>
-  );
+  if (isHydrated) {
+    return (
+      <>
+        <ContextProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ContextProvider>
+      </>
+    );
+  }
+
+  return null;
 }
