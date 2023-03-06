@@ -1,12 +1,12 @@
 import create from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import TOfficeCity from "../typings/types/TOfficeCity";
+import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 
 interface Interface {
   forename: string;
   surname: string;
   favourites: number[];
-  mainOffice: TOfficeCity;
+  mainOffice: TOfficeCityEnglish;
 }
 
 const useAccount = create<Interface>()(

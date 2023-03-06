@@ -3,6 +3,7 @@ import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
 import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
+import useAccount from "./SAccount";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
@@ -33,7 +34,7 @@ const useOffice = create<Interface>()(
       (set) => ({
         allOffices: [],
         allOfficeNames: [],
-        globallySelectedOfficeName: "dortmund",
+        globallySelectedOfficeName: useAccount.getState().mainOffice,
         setGloballySelectedOfficeName: (office) => {
           set({ globallySelectedOfficeName: office });
         },
