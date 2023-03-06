@@ -1,4 +1,5 @@
-import { createStore } from "zustand";
+import create from "zustand";
+import { devtools, persist } from "zustand/middleware";
 import TOfficeCity from "../typings/types/TOfficeCity";
 
 interface Interface {
@@ -8,9 +9,20 @@ interface Interface {
   mainOffice: TOfficeCity;
 }
 
-const useAccount = createStore<Interface>((set) => ({
-  forename: "max",
-  surname: "mustermann",
-  favourites: [9432, 5632, 8834],
-  mainOffice: "dortmund",
-}));
+const useAccount = create<Interface>()(
+  devtools(
+    persist(
+      (set) => ({
+        forename: "max",
+        surname: "mustermann",
+        favourites: [9432, 5632, 8834],
+        mainOffice: "dortmund",
+      }),
+      {
+        name: "account",
+      }
+    )
+  )
+);
+
+export default useAccount;
