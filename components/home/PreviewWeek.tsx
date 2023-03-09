@@ -74,12 +74,12 @@ export default function PreviewWeek() {
         Wochenübersicht
       </p>
       <p></p>
-      <div className="flex rounded bg-emerald-900/75 p-1 shadow-md">
+      <div className="flex rounded bg-emerald-900/75 p-1 text-emerald-200/75 shadow-md">
         <div className="flex w-1/5 flex-col items-center justify-between border-r-2 border-emerald-300/50 p-3">
           <span className="self-start text-2xl font-thin text-emerald-300/60">
             KW
           </span>
-          <span className="self-end text-xl font-bold text-emerald-300/75">
+          <span className="self-end text-xl font-bold text-emerald-300/50">
             {isShowingNextWeekBookings ? calWeek + 1 : calWeek}
           </span>
         </div>
