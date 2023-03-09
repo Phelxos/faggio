@@ -1,16 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import UserCardInfo from "./UserCardInfo";
 import UserCardControls from "./UserCardControls";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
+import useAccount from "../../stores/SAccount";
 
-export default function UserCard({
-  forename,
-  surname,
-  office,
-  imgSrc,
-  id,
-}: ICoworker) {
+export default function UserCard({ forename, surname, imgSrc, id }: ICoworker) {
+  const [
+    isFavouriteCoworkerOfLoggedInUser,
+    setIsFavouriteCoworkerOfLoggedInUser,
+  ] = useState(false);
+  const favouriteCoworkersOfLoggedInUser = useAccount((s) => s.favourites);
+
+  useEffect(() => {
+    const isCoworkerAFavouriteCoworkerOfLoggedInUser =
+      favouriteCoworkersOfLoggedInUser.some(
+        (favouriteId) => id === favouriteId
+      );
+    setIsFavouriteCoworkerOfLoggedInUser(
+      isCoworkerAFavouriteCoworkerOfLoggedInUser
+    );
+  }, [favouriteCoworkersOfLoggedInUser, id]);
+
   return (
     <div className="grid h-[250px] min-w-[275px] snap-center grid-cols-[2.5fr_2fr] grid-rows-[3fr_2fr] place-items-stretch gap-2 rounded-lg border-[8px] border-transparent bg-slate-800 text-pink-100">
       <div className="relative flex flex-col items-center justify-center">
@@ -25,8 +36,7 @@ export default function UserCard({
       <UserCardInfo
         forename={forename}
         surname={surname}
-        office={office}
-        id={id}
+        isFavourite={isFavouriteCoworkerOfLoggedInUser}
       />
       <UserCardControls />
     </div>
