@@ -19,6 +19,8 @@ export default function UserCardInfo({
   const deleteFromFavourites = useAccount((s) => s.deleteFromFavourites);
 
   const handleFavouriteClick = () => {
+    if (!id) return;
+
     if (isFavourite) {
       deleteFromFavourites(id);
       return;

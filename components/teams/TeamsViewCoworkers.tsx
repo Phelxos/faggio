@@ -14,7 +14,7 @@ function Cards({ coworkers }: { coworkers: ICoworker[] | undefined }) {
           office={coworker.office}
           imgSrc={coworker.imgSrc}
           key={i}
-          id={coworker.id}
+          coworkerId={coworker.coworkerId}
         />
       ))}
     </>

@@ -13,7 +13,7 @@ export default function FavouritesContainer() {
   const isLoading = useCoworkers((s) => s.isLoading);
 
   return (
-    <div className="flex w-full items-center gap-2 overflow-x-auto rounded bg-pink-600/50 p-3 shadow-md">
+    <div className="flex w-full snap-x gap-4 overflow-x-auto rounded bg-pink-600/25 py-8 px-4 shadow-xl">
       {isLoading ? (
         <Spinner />
       ) : (

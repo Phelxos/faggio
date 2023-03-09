@@ -1,18 +1,21 @@
 import useBookings from "../stores/SBookings";
 import { isAfter } from "date-fns";
+import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 
-export default function useNextBooking(id: number): Date | undefined {
+export default function useNextBooking(id: number):
+  | {
+      date: Date;
+      office: TOfficeCityEnglish;
+    }
+  | undefined {
   const today = new Date();
   const bookings = useBookings((s) => s.bookingsOther);
 
   const nextBooking = bookings.find(({ date, coworkerId }) => {
     if (isAfter(new Date(date), today))
-      console.log(
-        "🚀 ~ file: useNextBooking.ts:10 ~ nextBooking ~ isAfter(new Date(date), today):",
-        isAfter(new Date(date), today)
-      );
-    console.log(coworkerId);
-    return isAfter(new Date(date), today) && coworkerId === id;
+      return isAfter(new Date(date), today) && coworkerId === id;
   });
-  return nextBooking ? new Date(nextBooking!.date) : undefined;
+  return nextBooking
+    ? { date: new Date(nextBooking!.date), office: nextBooking.office }
+    : undefined;
 }
