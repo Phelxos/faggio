@@ -5,7 +5,12 @@ import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import useAccount from "../../stores/SAccount";
 
-export default function UserCard({ forename, surname, imgSrc, id }: ICoworker) {
+export default function UserCard({
+  forename,
+  surname,
+  imgSrc,
+  coworkerId,
+}: ICoworker) {
   const [
     isFavouriteCoworkerOfLoggedInUser,
     setIsFavouriteCoworkerOfLoggedInUser,
@@ -15,12 +20,12 @@ export default function UserCard({ forename, surname, imgSrc, id }: ICoworker) {
   useEffect(() => {
     const isCoworkerAFavouriteCoworkerOfLoggedInUser =
       favouriteCoworkersOfLoggedInUser.some(
-        (favouriteId) => id === favouriteId
+        (favouriteId) => coworkerId === favouriteId
       );
     setIsFavouriteCoworkerOfLoggedInUser(
       isCoworkerAFavouriteCoworkerOfLoggedInUser
     );
-  }, [favouriteCoworkersOfLoggedInUser, id]);
+  }, [favouriteCoworkersOfLoggedInUser, coworkerId]);
 
   return (
     <div className="grid h-[250px] min-w-[275px] snap-center grid-cols-[2.5fr_2fr] grid-rows-[3fr_2fr] place-items-stretch gap-2 rounded-lg border-[8px] border-transparent bg-slate-800 text-pink-100">
@@ -36,7 +41,7 @@ export default function UserCard({ forename, surname, imgSrc, id }: ICoworker) {
       <UserCardInfo
         forename={forename}
         surname={surname}
-        id={id}
+        id={coworkerId}
         isFavourite={isFavouriteCoworkerOfLoggedInUser}
       />
       <UserCardControls />

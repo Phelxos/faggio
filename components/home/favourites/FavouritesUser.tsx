@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import useNextBooking from "../../../hooks/useNextBooking";
 
 interface Props {
   imgSrc: string | undefined;
@@ -14,6 +15,7 @@ export default function FavouritesUser({
   forename,
   surname,
 }: Props) {
+  const nextBooking = useNextBooking(id)?.toDateString();
   return (
     <div>
       <Image
@@ -23,6 +25,7 @@ export default function FavouritesUser({
         alt={`${forename} ${surname}`}
         className="w-full rounded-full border-2 border-pink-400/50 shadow-inner"
       />
+      <div>{nextBooking || id}</div>
     </div>
   );
 }

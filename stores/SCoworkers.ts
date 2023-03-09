@@ -16,7 +16,7 @@ const useCoworkers = create<Interface>()(
         coworkerListWithPhotos: (async () => {
           try {
             set({ isLoading: true });
-            const res = await fetch(`${server}/api/teams`);
+            const res = await fetch(`${server}/api/coworkers`);
             const allCoworkersFromAPI = await res.json();
             const resRandomUsers = await fetch(
               `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`

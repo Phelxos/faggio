@@ -20,7 +20,7 @@ export default function FavouritesContainer() {
         <>
           {favouriteCoworkersOfLoggedInUserAccount.map((favouriteId) => {
             const coworker = (coworkers as ICoworker[]).find(
-              (coworker: ICoworker) => coworker.id === favouriteId
+              (coworker: ICoworker) => coworker.coworkerId === favouriteId
             );
             if (coworker) {
               return (
