@@ -36,6 +36,7 @@ export default function UserCard({ forename, surname, imgSrc, id }: ICoworker) {
       <UserCardInfo
         forename={forename}
         surname={surname}
+        id={id}
         isFavourite={isFavouriteCoworkerOfLoggedInUser}
       />
       <UserCardControls />
