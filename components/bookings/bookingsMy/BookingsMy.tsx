@@ -29,9 +29,6 @@ export default function BookingsMy() {
             (booking: IBooking) =>
               booking.office === c?.locallySelectedOfficeName
           )
-          .sort((d1, d2) =>
-            d1.date > d2.date ? 1 : d1.date < d2.date ? -1 : 0
-          )
           .map((booking: IBooking) => (
             <div
               key={Math.random()}

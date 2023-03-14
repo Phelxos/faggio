@@ -1,8 +1,9 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
 import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
+import useAccount from "./SAccount";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
@@ -13,7 +14,7 @@ export const initialValueForGloballySelectedOffice: IOffice = {
   workstations: 25,
   areDogsAllowed: true,
   description:
-    "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz adessos ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
+    "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz des Unternehmens ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
   imgSrc: "/images/office.jpg",
 };
 
@@ -33,7 +34,7 @@ const useOffice = create<Interface>()(
       (set) => ({
         allOffices: [],
         allOfficeNames: [],
-        globallySelectedOfficeName: "dortmund",
+        globallySelectedOfficeName: useAccount.getState().mainOffice,
         setGloballySelectedOfficeName: (office) => {
           set({ globallySelectedOfficeName: office });
         },

@@ -1,19 +1,56 @@
 import React from "react";
-import ICoworker from "../../typings/interfaces/ICoworker";
+import Icon from "../icons/Icon";
+import useAccount from "../../stores/SAccount";
 
-export default function UserCardInfo({ forename, surname, office }: ICoworker) {
+interface Props {
+  forename: string;
+  surname: string;
+  id: number;
+  isFavourite: boolean;
+}
+
+export default function UserCardInfo({
+  forename,
+  surname,
+  id,
+  isFavourite,
+}: Props) {
+  const addToFavourites = useAccount((s) => s.addToFavourites);
+  const deleteFromFavourites = useAccount((s) => s.deleteFromFavourites);
+
+  const handleFavouriteClick = () => {
+    if (!id) return;
+
+    if (isFavourite) {
+      deleteFromFavourites(id);
+      return;
+    }
+
+    addToFavourites(id);
+  };
   return (
-    <div className="flex h-full flex-col justify-end rounded-tr-lg border-2 border-pink-400/50 bg-pink-600 p-2">
+    <div className="relative flex h-full cursor-pointer flex-col justify-end rounded-tr-lg border-2 border-pink-400/50 bg-pink-600 p-2">
+      <button
+        className={`absolute top-3 right-3 flex flex-col items-center justify-center rounded-full p-1 transition duration-150 ease-out  ${
+          isFavourite
+            ? "bg-pink-500 hover:bg-pink-500/75"
+            : "bg-pink-800 hover:bg-pink-800/75"
+        }`}
+        onClick={handleFavouriteClick}
+      >
+        <Icon
+          icon="star"
+          className={`h-6 w-6 ${
+            isFavourite
+              ? "fill-pink-200/75 hover:fill-pink-200/75"
+              : "fill-pink-600 hover:fill-pink-600/75"
+          }`}
+        />
+      </button>
       <div className="flex flex-col uppercase">
         <span className="text-lg font-light text-slate-900">{forename}</span>
         <span className="text-xs font-bold text-pink-400">{surname}</span>
       </div>
-      {/* <div className="flex items-center gap-2">
-        {office && (
-          <Icon icon="buildingOffice" className="h-6 w-6 opacity-50" />
-        )}
-        <span className="text-sm tracking-widest">{office}</span>
-      </div> */}
     </div>
   );
 }

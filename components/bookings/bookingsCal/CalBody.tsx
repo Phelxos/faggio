@@ -10,7 +10,6 @@ import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
-  const [secondRerender, setSecondRerender] = useState<boolean>(true);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);

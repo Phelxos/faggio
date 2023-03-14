@@ -25,6 +25,7 @@ type TIcon =
   | "phone"
   | "plus"
   | "select"
+  | "star"
   | "user"
   | "userGroup"
   | "xMark";

@@ -33,16 +33,16 @@ export default function OfficeInformationCard({
         />
       </div>
       <div className="flex flex-col p-6">
-        <div className="mb-4 flex items-center gap-4">
+        <div className="mb-4 flex items-stretch gap-4">
           <OfficesCardQuickies
             headcount={headcount}
             workstations={workstations}
             areDogsAllowed={areDogsAllowed}
             areaInSquareMetres={areaInSquareMetres}
           />
-          <p className="rounded-xl bg-amber-800/75 p-4 text-sm leading-relaxed text-amber-200">
+          <div className="rounded-xl bg-amber-800/75 p-4 text-sm leading-relaxed text-amber-200">
             {description}
-          </p>
+          </div>
         </div>
         <OfficesCardAddress
           street={address?.street}

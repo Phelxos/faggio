@@ -33,8 +33,14 @@ export default function ControlsBar() {
   };
 
   return (
-    <div className="flex h-[200px] w-full flex-col flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/75 p-3">
-      <div className="flex h-1/2 flex-col items-center justify-center rounded-t-lg border-pink-200/75 bg-pink-500">
+    <div className="flex h-[200px] w-full flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/40 p-3">
+      <div
+        className={`flex h-1/2 flex-col items-center justify-center rounded-t-lg border-pink-200/75 ${
+          c?.activeButton !== "center"
+            ? "bg-pink-500"
+            : " bg-gradient-to-r from-pink-500 to-pink-800"
+        }`}
+      >
         {c?.activeButton === "left" ? (
           <Switch />
         ) : c?.activeButton === "center" ? (
@@ -43,6 +49,7 @@ export default function ControlsBar() {
             setValue={c?.setLocallySelectedOfficeName}
             listOfValues={allOfficeNames}
             theme={theme}
+            areOptionsOpeningUpward={true}
           />
         ) : c?.activeButton === "right" ? (
           <Input onInput={handleUserSearchInput} value={c?.searchForUser} />

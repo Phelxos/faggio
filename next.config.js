@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+const { parsed: localEnv } = require("dotenv").config();
+
 const nextConfig = {
   reactStrictMode: true,
   async redirects() {
@@ -19,6 +22,9 @@ const nextConfig = {
         pathname: "/api/**",
       },
     ],
+  },
+  env: {
+    DEEPL_API_KEY: localEnv.DEEPL_API_KEY,
   },
 };
 
