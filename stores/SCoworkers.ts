@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import ICoworker from "../typings/interfaces/ICoworker";
 import { server } from "../config/index";
@@ -16,6 +16,7 @@ const useCoworkers = create<Interface>()(
         coworkerListWithPhotos: (async () => {
           try {
             set({ isLoading: true });
+            console.log("Start fetching");
             const res = await fetch(`${server}/api/coworkers`);
             const allCoworkersFromAPI = await res.json();
             const resRandomUsers = await fetch(
