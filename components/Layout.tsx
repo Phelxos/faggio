@@ -11,12 +11,13 @@ export default function Layout({
   children: JSX.Element | JSX.Element[];
 }) {
   const { isDisplayingModal } = useModal();
-  useEffect(() => {
+
+  const display = () => {
     console.log(
-      "🚀 ~ file: useModal.ts:5 ~ useModal ~ isDisplayingModal:",
+      "🚀 ~ file: Layout.tsx:14 ~ isDisplayingModal:",
       isDisplayingModal
     );
-  }, []);
+  };
 
   return (
     <>
