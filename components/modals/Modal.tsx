@@ -36,7 +36,7 @@ export default function Modal({
 
   return (
     <Dialog
-      className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur-sm`}
+      className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
       open={isDisplayingModal}
       onClose={toggleModal}
     >
