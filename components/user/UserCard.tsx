@@ -4,6 +4,7 @@ import UserCardControls from "./UserCardControls";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import useAccount from "../../stores/SAccount";
+import useModal from "../../stores/SModal";
 
 export default function UserCard({
   forename,
@@ -11,6 +12,7 @@ export default function UserCard({
   imgSrc,
   coworkerId,
 }: ICoworker) {
+  const { toggleModal } = useModal();
   const [
     isFavouriteCoworkerOfLoggedInUser,
     setIsFavouriteCoworkerOfLoggedInUser,
@@ -36,6 +38,7 @@ export default function UserCard({
           src={imgSrc || ""}
           alt={`${forename} ${surname}`}
           className="w-full rounded-tl-lg border-2 border-slate-500/50 shadow-inner"
+          onClick={toggleModal}
         />
       </div>
       <UserCardInfo

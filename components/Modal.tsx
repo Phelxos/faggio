@@ -1,31 +1,37 @@
-import React, { useEffect } from "react";
-import useModal from "../../hooks/useModal";
-import useTheme from "../../hooks/useTheme";
-import Icon from "../icons/Icon";
+import React from "react";
 import { Dialog } from "@headlessui/react";
+import useModal from "../stores/SModal";
+import Icon from "./icons/Icon";
+import { shallow } from "zustand/shallow";
 
-interface Props {
-  title: string;
-  descriptionShort: string;
-  descriptionLong: string;
-  buttonAcceptLabel: string;
-  onButtonAcceptClick?: () => void;
-  buttonDeclineLabel: string;
-  onButtonDeclineClick?: () => void;
-}
-
-export default function Modal({
-  title,
-  descriptionShort,
-  descriptionLong,
-  buttonAcceptLabel,
-  onButtonAcceptClick,
-  buttonDeclineLabel,
-  onButtonDeclineClick,
-}: Props) {
-  const { toggleModal, isDisplayingModal } = useModal();
+export default function Modal() {
+  const {
+    isDisplayingModal,
+    toggleModal,
+    title,
+    descriptionShort,
+    descriptionLong,
+    buttonAcceptLabel,
+    onButtonAcceptClick,
+    buttonDeclineLabel,
+    onButtonDeclineClick,
+  } = useModal(
+    (s) => ({
+      isDisplayingModal: s.isDisplayingModal,
+      toggleModal: s.toggleModal,
+      title: s.title,
+      descriptionShort: s.descriptionShort,
+      descriptionLong: s.descriptionLong,
+      buttonAcceptLabel: s.buttonAcceptLabel,
+      onButtonAcceptClick: s.onButtonAcceptClick,
+      buttonDeclineLabel: s.buttonDeclineLabel,
+      onButtonDeclineClick: s.onButtonDeclineClick,
+    }),
+    shallow
+  );
 
   const handleButtonAcceptClick = () => {
+    console.log(isDisplayingModal);
     toggleModal();
     if (onButtonAcceptClick) onButtonAcceptClick();
   };
@@ -33,8 +39,7 @@ export default function Modal({
     toggleModal();
     if (onButtonDeclineClick) onButtonDeclineClick();
   };
-
-  return (
+  return isDisplayingModal ? (
     <Dialog
       className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
       open={isDisplayingModal}
@@ -67,14 +72,5 @@ export default function Modal({
         </div>
       </Dialog.Panel>
     </Dialog>
-  );
+  ) : null;
 }
-
-Modal.defaultProps = {
-  title: "Deactivate account",
-  descriptionShort: "This will permanently deactivate your account",
-  descriptionLong:
-    "Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.",
-  buttonAcceptLabel: "Deactivate",
-  buttonDeclineLabel: "Cancel",
-};
