@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import IModal from "../typings/interfaces/IModas";
+import IModal from "../typings/interfaces/IModal";
 
 interface Interface extends IModal {
   displayModal: (props: IModal) => void;
@@ -20,9 +20,11 @@ const useModal = create<Interface>()(
         descriptionLong:
           "Hier sollte eine längere Zusammenfassung des Dialogs stehen. Erklären sie ausführlich, worum es in diesem Dialog gehen soll.",
         buttonAcceptLabel: "annehmen",
-        onButtonAcceptClick: () => {},
+        onButtonAcceptClick: () =>
+          set((state) => ({ isDisplayingModal: !state.isDisplayingModal })),
         buttonDeclineLabel: "ablehnen",
-        onButtonDeclineClick: () => {},
+        onButtonDeclineClick: () =>
+          set((state) => ({ isDisplayingModal: !state.isDisplayingModal })),
         displayModal: ({
           title,
           descriptionShort,
@@ -46,6 +48,7 @@ const useModal = create<Interface>()(
               onButtonDeclineClick();
               state.toggleModal();
             },
+            isDisplayingModal: !state.isDisplayingModal,
           }));
         },
       }),

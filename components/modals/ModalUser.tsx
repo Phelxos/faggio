@@ -1,45 +1,19 @@
-import React from "react";
 import { Dialog } from "@headlessui/react";
-import useModal from "../stores/SModal";
-import Icon from "./icons/Icon";
-import { shallow } from "zustand/shallow";
+import IModal from "../../typings/interfaces/IModal";
+import Icon from "../icons/Icon";
 
-export default function Modal() {
-  const {
-    isDisplayingModal,
-    toggleModal,
-    title,
-    descriptionShort,
-    descriptionLong,
-    buttonAcceptLabel,
-    onButtonAcceptClick,
-    buttonDeclineLabel,
-    onButtonDeclineClick,
-  } = useModal(
-    (s) => ({
-      isDisplayingModal: s.isDisplayingModal,
-      toggleModal: s.toggleModal,
-      title: s.title,
-      descriptionShort: s.descriptionShort,
-      descriptionLong: s.descriptionLong,
-      buttonAcceptLabel: s.buttonAcceptLabel,
-      onButtonAcceptClick: s.onButtonAcceptClick,
-      buttonDeclineLabel: s.buttonDeclineLabel,
-      onButtonDeclineClick: s.onButtonDeclineClick,
-    }),
-    shallow
-  );
-
-  const handleButtonAcceptClick = () => {
-    console.log(isDisplayingModal);
-    toggleModal();
-    if (onButtonAcceptClick) onButtonAcceptClick();
-  };
-  const handleButtonDeclineClick = () => {
-    toggleModal();
-    if (onButtonDeclineClick) onButtonDeclineClick();
-  };
-  return isDisplayingModal ? (
+export default function ModalUser({
+  isDisplayingModal,
+  toggleModal,
+  title,
+  descriptionShort,
+  descriptionLong,
+  buttonAcceptLabel,
+  onButtonAcceptClick,
+  buttonDeclineLabel,
+  onButtonDeclineClick,
+}: IModal & { isDisplayingModal: boolean; toggleModal: () => void }) {
+  return (
     <Dialog
       className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
       open={isDisplayingModal}
@@ -59,18 +33,18 @@ export default function Modal() {
         <div className="flex w-full items-stretch gap-4">
           <button
             className="w-1/2 rounded-lg bg-sky-500 p-4 font-mono text-sm font-bold uppercase tracking-wider text-black/75 drop-shadow-xl"
-            onClick={handleButtonAcceptClick}
+            onClick={onButtonAcceptClick}
           >
             {buttonAcceptLabel}
           </button>
           <button
             className="w-1/2 rounded-lg border-2 border-sky-200/75 p-4 font-mono text-sm uppercase tracking-wider text-white/75 drop-shadow-xl"
-            onClick={handleButtonDeclineClick}
+            onClick={onButtonDeclineClick}
           >
             {buttonDeclineLabel}
           </button>
         </div>
       </Dialog.Panel>
     </Dialog>
-  ) : null;
+  );
 }

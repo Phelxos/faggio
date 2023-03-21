@@ -12,7 +12,7 @@ export default function UserCard({
   imgSrc,
   coworkerId,
 }: ICoworker) {
-  const { toggleModal } = useModal();
+  const { displayModal } = useModal();
   const [
     isFavouriteCoworkerOfLoggedInUser,
     setIsFavouriteCoworkerOfLoggedInUser,
@@ -38,7 +38,17 @@ export default function UserCard({
           src={imgSrc || ""}
           alt={`${forename} ${surname}`}
           className="w-full rounded-tl-lg border-2 border-slate-500/50 shadow-inner"
-          onClick={toggleModal}
+          onClick={() =>
+            displayModal({
+              title: "Modal",
+              descriptionLong: "long long long description",
+              descriptionShort: "short description",
+              buttonAcceptLabel: "annehmen",
+              buttonDeclineLabel: "abbrechen",
+              onButtonAcceptClick: () => console.log("accept"),
+              onButtonDeclineClick: () => console.log("decline"),
+            })
+          }
         />
       </div>
       <UserCardInfo
