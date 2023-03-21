@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Meta from "./Meta";
 import Header from "./Header";
 import Main from "./Main";
-import Modal from "./modals/Modal";
 
 export default function Layout({
   children,
@@ -15,7 +14,6 @@ export default function Layout({
       <div className="relative flex h-fit w-screen flex-col">
         <Header />
         <Main>{children}</Main>
-        <Modal />
       </div>
     </>
   );

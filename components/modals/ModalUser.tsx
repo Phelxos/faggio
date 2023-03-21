@@ -5,14 +5,12 @@ import Icon from "../icons/Icon";
 export default function ModalUser({
   isDisplayingModal,
   toggleModal,
-  title,
-  descriptionShort,
-  descriptionLong,
+  id,
   buttonAcceptLabel,
   onButtonAcceptClick,
   buttonDeclineLabel,
   onButtonDeclineClick,
-}: IModal & { isDisplayingModal: boolean; toggleModal: () => void }) {
+}: any) {
   return (
     <Dialog
       className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
