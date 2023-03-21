@@ -6,5 +6,5 @@ export default interface ICoworker {
   surname: string;
   office: TLocation;
   imgSrc?: string;
-  id: TCoworkerId;
+  coworkerId: TCoworkerId;
 }

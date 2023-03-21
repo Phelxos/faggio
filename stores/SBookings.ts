@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import IBooking from "../typings/interfaces/IBooking";
 
@@ -19,82 +19,82 @@ const useBookings = create<Interface>()(
         bookingsOther: [
           {
             date: "2023-03-04T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1000,
             office: "dortmund",
           },
           {
             date: "2023-03-13T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1001,
             office: "dortmund",
           },
           {
             date: "2023-03-09T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1002,
             office: "bremen",
           },
           {
             date: "2023-03-14T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1003,
             office: "dortmund",
           },
           {
             date: "2023-03-01T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1004,
             office: "dortmund",
           },
           {
             date: "2023-03-18T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1005,
             office: "dortmund",
           },
           {
             date: "2023-03-09T23:00:00.000Z",
-            coworker: 3233,
+            coworkerId: 1006,
             office: "cologne",
           },
           {
             date: "2023-03-25T23:00:00.000Z",
-            coworker: 9783,
+            coworkerId: 1007,
             office: "munich",
           },
           {
             date: "2023-03-03T23:00:00.000Z",
-            coworker: 9453,
+            coworkerId: 1008,
             office: "dortmund",
           },
           {
             date: "2023-03-13T23:00:00.000Z",
-            coworker: 2313,
+            coworkerId: 1009,
             office: "dortmund",
           },
           {
             date: "2023-03-17T23:00:00.000Z",
-            coworker: 9432,
+            coworkerId: 1010,
             office: "dortmund",
           },
           {
             date: "2023-03-13T23:00:00.000Z",
-            coworker: 3423,
+            coworkerId: 1011,
             office: "dortmund",
           },
           {
             date: "2023-03-05T23:00:00.000Z",
-            coworker: 1211,
+            coworkerId: 1012,
             office: "cologne",
           },
           {
             date: "2023-03-22T23:00:00.000Z",
-            coworker: 7732,
+            coworkerId: 1000,
             office: "cologne",
           },
           {
             date: "2023-03-09T23:00:00.000Z",
-            coworker: 5632,
+            coworkerId: 1001,
             office: "dortmund",
           },
           {
             date: "2023-03-21T23:00:00.000Z",
-            coworker: 8834,
+            coworkerId: 1002,
             office: "dortmund",
           },
         ],

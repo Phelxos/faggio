@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
 import IOffice from "../typings/interfaces/IOffice";
