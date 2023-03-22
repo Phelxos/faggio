@@ -4,7 +4,6 @@ import UserCardControls from "./UserCardControls";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import useAccount from "../../stores/SAccount";
-import useModal from "../../stores/SModal";
 import { createPortal } from "react-dom";
 import Modal from "../modals/Modal";
 

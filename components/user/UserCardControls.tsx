@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Icon from "../icons/Icon";
-import useTheme from "../../hooks/useTheme";
 
 export default function UserCardControls() {
-  const theme = useTheme();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const toggleModal = () => {
+    if (isOpenModal) setIsOpenModal(false);
+    else setIsOpenModal(true);
+  };
   return (
     <div className="col-span-2 flex items-center justify-around rounded-b-lg bg-pink-800/50 py-4 px-2">
       <button>
