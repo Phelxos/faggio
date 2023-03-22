@@ -5,7 +5,7 @@ import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import useAccount from "../../stores/SAccount";
 import { createPortal } from "react-dom";
-import Modal from "../modals/Modal";
+import Modal from "../modals/ModalUser";
 
 export default function UserCard({
   forename,
@@ -46,7 +46,11 @@ export default function UserCard({
           onClick={toggleModal}
         />
         {createPortal(
-          <Modal toggleModal={toggleModal} isDisplayingModal={isOpenModal} />,
+          <Modal
+            toggleModal={toggleModal}
+            isDisplayingModal={isOpenModal}
+            id={coworkerId}
+          />,
           document.body
         )}
       </div>
