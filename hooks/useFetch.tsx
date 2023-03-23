@@ -27,6 +27,7 @@ export default async function useFetch(
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   return { isLoading, resData };
 }

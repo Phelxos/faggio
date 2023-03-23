@@ -12,7 +12,7 @@ export default function Modal({
   onButtonAcceptClick,
   buttonDeclineLabel = "ablehnen",
   onButtonDeclineClick,
-}: IModal & { isDisplayingModal: boolean; toggleModal: () => void }) {
+}: IModal) {
   const handleButtonAcceptClick = () => {
     if (onButtonAcceptClick) onButtonAcceptClick();
     toggleModal();

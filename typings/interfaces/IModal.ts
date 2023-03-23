@@ -1,4 +1,6 @@
 export default interface IModal {
+  isDisplayingModal: boolean;
+  toggleModal: () => void;
   title?: string;
   descriptionShort?: string;
   descriptionLong?: string;
