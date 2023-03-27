@@ -7,6 +7,7 @@ type TIcon =
   | "buildingOffice"
   | "calendar"
   | "calendarDays"
+  | "cake"
   | "chatBubbleLeftRight"
   | "check"
   | "chevronLeft"

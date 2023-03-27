@@ -4,7 +4,7 @@ type TCoworkerId =
   | "Frontend Developer"
   | "Backend Developer"
   | "Team Lead"
-  | "Copy Writer"
+  | "Copywriter"
   | "UI Designer"
   | "Product Owner";
 

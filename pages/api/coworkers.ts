@@ -71,7 +71,7 @@ const allCoworkers: ICoworker[] = [
       month: 6,
     },
     employmentBeginning: 2021,
-    position: "Copy Writer",
+    position: "Copywriter",
   },
   {
     forename: "willem",
@@ -143,7 +143,7 @@ const allCoworkers: ICoworker[] = [
       month: 5,
     },
     employmentBeginning: 2018,
-    position: "Copy Writer",
+    position: "Copywriter",
   },
   {
     forename: "lisa",

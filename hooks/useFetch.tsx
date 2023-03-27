@@ -1,10 +1,7 @@
 import { useState, useEffect } from "react";
 import { server } from "../config/index";
 
-export default async function useFetch(
-  url: string,
-  options?: { isAPI?: true }
-) {
+export default function useFetch(url: string, options?: { isAPI?: true }) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [resData, setResData] = useState<unknown | null>();
 
