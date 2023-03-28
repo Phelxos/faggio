@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import UserCard from "../user/UserCard";
 import { CTeams } from "../contexts/CTeams";
-import Image from "next/image";
-import FavouriteButton from "../user/UserFavouriteButton";
+import Coworker from "./TeamsViewCoworkersItem";
 
 function Cards({ coworkers }: { coworkers: ICoworker[] | undefined }) {
   return (
@@ -26,30 +25,7 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
   return (
     <ul className="flex w-full snap-always flex-col items-stretch gap-6">
       {coworkers?.map((coworker: ICoworker, i: number) => (
-        <li
-          key={i}
-          className="flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
-        >
-          <Image
-            src={coworker.imgSrc || ""}
-            alt={`${coworker.forename} ${coworker.surname}`}
-            width={50}
-            height={50}
-            className="mr-4 inline rounded-full border-2 border-pink-500"
-          />
-          <div className="flex grow flex-col">
-            <span className="text-2xl font-thin uppercase tracking-wider text-pink-300">
-              {coworker.forename}
-            </span>{" "}
-            <span className="font-semibold uppercase tracking-widest text-slate-900">
-              {coworker.surname}
-            </span>
-          </div>
-          <FavouriteButton
-            id={coworker.coworkerId}
-            className="border-2 border-pink-200/25"
-          />
-        </li>
+        <Coworker coworker={coworker} key={i} />
       ))}
     </ul>
   );

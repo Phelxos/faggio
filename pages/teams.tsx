@@ -4,7 +4,7 @@ import BackupMessage from "../components/teams/TeamsBackupMessage";
 import Spinner from "../components/Spinner";
 import ICoworker from "../typings/interfaces/ICoworker";
 import { CTeams } from "../components/contexts/CTeams";
-import TeamsViewCoworkers from "../components/teams/TeamsViewCoworkers";
+import Coworkers from "../components/teams/TeamsViewCoworkersList";
 import useOffice from "../stores/SOffices";
 import useCoworkers from "../stores/SCoworkers";
 
@@ -67,7 +67,7 @@ export default function Teams() {
             ) : (
               <>
                 {displayedCoworkers?.length > 0 ? (
-                  <TeamsViewCoworkers coworkers={displayedCoworkers} />
+                  <Coworkers coworkers={displayedCoworkers} />
                 ) : (
                   <BackupMessage />
                 )}

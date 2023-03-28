@@ -5,6 +5,7 @@ import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import { createPortal } from "react-dom";
 import Modal from "../modals/ModalUser";
+import useModal from "../../hooks/useModal";
 
 export default function UserCard({
   forename,
@@ -12,11 +13,7 @@ export default function UserCard({
   imgSrc,
   coworkerId,
 }: ICoworker) {
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const toggleModal = () => {
-    if (isOpenModal) setIsOpenModal(false);
-    else setIsOpenModal(true);
-  };
+  const { isOpenModal, toggleModal } = useModal();
 
   return (
     <div className="grid h-[250px] min-w-[275px] snap-center grid-cols-[2.5fr_2fr] grid-rows-[3fr_2fr] place-items-stretch gap-2 rounded-lg border-[8px] border-transparent bg-slate-800 text-pink-100">

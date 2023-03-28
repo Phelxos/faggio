@@ -16,15 +16,12 @@ export default function ModalUser({
   isDisplayingModal,
   toggleModal,
   id,
-  buttonAcceptLabel,
-  onButtonAcceptClick,
-  buttonDeclineLabel,
-  onButtonDeclineClick,
 }: IModal & { id: number }) {
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoading = useCoworkers((s) => s.isLoading);
   const [coworker, setCoworker] = useState<ICoworker | null>(null);
   const nextBooking = useNextBooking(id);
+  console.log("🚀 ~ file: ModalUser.tsx:24 ~ id:", id);
   const temporaryCompanyLogos = [
     "/images/company-logo.jpg",
     "/images/company-logo.jpg",
@@ -44,7 +41,7 @@ export default function ModalUser({
       (user) => user.coworkerId === id
     );
     setCoworker(coworkerData as ICoworker);
-  }, [coworkers]);
+  }, [coworkers, id]);
 
   return isLoading ? (
     <Spinner />
