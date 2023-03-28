@@ -3,6 +3,7 @@ import ICoworker from "../../typings/interfaces/ICoworker";
 import UserCard from "../user/UserCard";
 import { CTeams } from "../contexts/CTeams";
 import Image from "next/image";
+import FavouriteButton from "../user/UserFavouriteButton";
 
 function Cards({ coworkers }: { coworkers: ICoworker[] | undefined }) {
   return (
@@ -27,7 +28,7 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
       {coworkers?.map((coworker: ICoworker, i: number) => (
         <li
           key={i}
-          className="flex items-center gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
+          className="flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 "
         >
           <Image
             src={coworker.imgSrc || ""}
@@ -36,7 +37,7 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
             height={50}
             className="mr-4 inline rounded-full border-2 border-pink-500"
           />
-          <div className="flex flex-col">
+          <div className="flex grow flex-col">
             <span className="text-2xl font-thin uppercase tracking-wider text-pink-300">
               {coworker.forename}
             </span>{" "}
@@ -44,6 +45,10 @@ function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
               {coworker.surname}
             </span>
           </div>
+          <FavouriteButton
+            id={coworker.coworkerId}
+            className="border-2 border-pink-200/25"
+          />
         </li>
       ))}
     </ul>
