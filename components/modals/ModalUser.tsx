@@ -21,7 +21,6 @@ export default function ModalUser({
   const isLoading = useCoworkers((s) => s.isLoading);
   const [coworker, setCoworker] = useState<ICoworker | null>(null);
   const nextBooking = useNextBooking(id);
-  console.log("🚀 ~ file: ModalUser.tsx:24 ~ id:", id);
   const temporaryCompanyLogos = [
     "/images/company-logo.jpg",
     "/images/company-logo.jpg",
@@ -89,15 +88,15 @@ export default function ModalUser({
             </div>
           </div>
           <div
-            className={`col-span-4 w-full rounded bg-pink-700/50 p-4 ${
+            className={`col-span-4 flex w-full flex-col items-center rounded bg-pink-700/50 p-4 ${
               !nextBooking && "opacity-50"
             }`}
           >
-            <p className="mb-2 font-thin tracking-wider text-pink-300/75">
+            <p className="mb-4 w-full font-thin tracking-wider text-pink-300/75">
               Nächster Bürobesuch
             </p>
             <p
-              className={`text-right text-xs text-pink-300/75 ${
+              className={`w-full text-right text-xs text-pink-300/75 ${
                 nextBooking ? "font-bold" : "italic"
               }`}
             >
@@ -120,7 +119,15 @@ export default function ModalUser({
                   </span>
                 </>
               ) : (
-                "bislang nichts geplant"
+                <div className="flex flex-col items-center gap-3">
+                  <Icon
+                    icon="xMark"
+                    className="h-14 w-14 rounded-full bg-pink-600/50 fill-pink-400/75 p-2"
+                  />
+                  <span className="font-semibold tracking-widest">
+                    bislang nichts geplant
+                  </span>
+                </div>
               )}
             </p>
           </div>
