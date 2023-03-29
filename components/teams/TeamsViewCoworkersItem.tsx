@@ -1,6 +1,6 @@
 import React from "react";
 import { createPortal } from "react-dom";
-import Modal from "../modals/ModalUser";
+import Modal from "../modals/ModalUser/ModalUser";
 import useModal from "../../hooks/useModal";
 import FavouriteButton from "../user/UserFavouriteButton";
 import Image from "next/image";

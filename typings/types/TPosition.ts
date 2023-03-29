@@ -1,4 +1,4 @@
-type TCoworkerId =
+type TPosition =
   | "Project Manager"
   | "UX Designer"
   | "Frontend Developer"
@@ -8,4 +8,4 @@ type TCoworkerId =
   | "UI Designer"
   | "Product Owner";
 
-export default TCoworkerId;
+export default TPosition;
