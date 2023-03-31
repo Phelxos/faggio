@@ -15,7 +15,9 @@ export default function TeamsViewCoworkersItem({
   const { isOpenModal, toggleModal } = useModal();
   return (
     <li className="flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 ">
-      <UserImage coworker={coworker} />
+      <div>
+        <UserImage coworker={coworker} />
+      </div>
       <div className="ml-2 flex grow flex-col">
         <span className="text-2xl font-thin uppercase tracking-wider text-pink-300">
           {coworker.forename}

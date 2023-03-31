@@ -17,7 +17,7 @@ export default function UserImage({ coworker }: { coworker: ICoworker }) {
         key={`${coworker.forename} ${coworker.surname}`}
         width={50}
         height={50}
-        className={`inline rounded-full border-2 border-${theme}-500/50 shadow-lg`}
+        className={`inline w-full rounded-full border-2 border-${theme}-500/50 shadow-lg`}
         onClick={toggleModal}
       />
       {createPortal(
