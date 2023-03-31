@@ -1,11 +1,13 @@
 type TIcon =
   | "arrowTopRightOnSquare"
   | "arrowUturnLeft"
+  | "briefcase"
   | "bookmark"
   | "bookOpen"
   | "buildingOffice"
   | "calendar"
   | "calendarDays"
+  | "cake"
   | "chatBubbleLeftRight"
   | "check"
   | "chevronLeft"

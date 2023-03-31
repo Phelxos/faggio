@@ -16,7 +16,6 @@ const useCoworkers = create<Interface>()(
         coworkerListWithPhotos: (async () => {
           try {
             set({ isLoading: true });
-            console.log("Start fetching");
             const res = await fetch(`${server}/api/coworkers`);
             const allCoworkersFromAPI = await res.json();
             const resRandomUsers = await fetch(

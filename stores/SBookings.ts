@@ -18,67 +18,67 @@ const useBookings = create<Interface>()(
       (set) => ({
         bookingsOther: [
           {
-            date: "2023-03-04T23:00:00.000Z",
+            date: "2023-03-07T23:00:00.000Z",
             coworkerId: 1000,
             office: "dortmund",
           },
           {
-            date: "2023-03-13T23:00:00.000Z",
+            date: "2023-04-13T23:00:00.000Z",
             coworkerId: 1001,
             office: "dortmund",
           },
           {
-            date: "2023-03-09T23:00:00.000Z",
+            date: "2023-04-09T23:00:00.000Z",
             coworkerId: 1002,
             office: "bremen",
           },
           {
-            date: "2023-03-14T23:00:00.000Z",
+            date: "2023-04-14T23:00:00.000Z",
             coworkerId: 1003,
             office: "dortmund",
           },
           {
-            date: "2023-03-01T23:00:00.000Z",
+            date: "2023-04-01T23:00:00.000Z",
             coworkerId: 1004,
             office: "dortmund",
           },
           {
-            date: "2023-03-18T23:00:00.000Z",
+            date: "2023-04-18T23:00:00.000Z",
             coworkerId: 1005,
             office: "dortmund",
           },
           {
-            date: "2023-03-09T23:00:00.000Z",
+            date: "2023-04-09T23:00:00.000Z",
             coworkerId: 1006,
             office: "cologne",
           },
           {
-            date: "2023-03-25T23:00:00.000Z",
+            date: "2023-04-25T23:00:00.000Z",
             coworkerId: 1007,
             office: "munich",
           },
           {
-            date: "2023-03-03T23:00:00.000Z",
+            date: "2023-04-03T23:00:00.000Z",
             coworkerId: 1008,
             office: "dortmund",
           },
           {
-            date: "2023-03-13T23:00:00.000Z",
+            date: "2023-04-13T23:00:00.000Z",
             coworkerId: 1009,
             office: "dortmund",
           },
           {
-            date: "2023-03-17T23:00:00.000Z",
+            date: "2023-04-17T23:00:00.000Z",
             coworkerId: 1010,
             office: "dortmund",
           },
           {
-            date: "2023-03-13T23:00:00.000Z",
+            date: "2023-04-13T23:00:00.000Z",
             coworkerId: 1011,
             office: "dortmund",
           },
           {
-            date: "2023-03-05T23:00:00.000Z",
+            date: "2023-04-05T23:00:00.000Z",
             coworkerId: 1012,
             office: "cologne",
           },
@@ -88,12 +88,12 @@ const useBookings = create<Interface>()(
             office: "cologne",
           },
           {
-            date: "2023-03-09T23:00:00.000Z",
+            date: "2023-04-09T23:00:00.000Z",
             coworkerId: 1001,
             office: "dortmund",
           },
           {
-            date: "2023-03-21T23:00:00.000Z",
+            date: "2023-04-21T23:00:00.000Z",
             coworkerId: 1002,
             office: "dortmund",
           },

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import mapCalendar from "../../helpers/mapCalendar";
-import useCalendar from "../../stores/SCalendar";
-import useOffice from "../../stores/SOffices";
-import useBookings from "../../stores/SBookings";
-import displayEquivalent from "../../helpers/displayEquivalent";
-import getOccupancyLevel from "../../helpers/getOccupancyLevel";
+import mapCalendar from "../../../helpers/mapCalendar";
+import useCalendar from "../../../stores/SCalendar";
+import useOffice from "../../../stores/SOffices";
+import useBookings from "../../../stores/SBookings";
+import displayEquivalent from "../../../helpers/displayEquivalent";
+import getOccupancyLevel from "../../../helpers/getOccupancyLevel";
 
 export default function PreviewMonth() {
   const globallySelectedOffice = useOffice(
