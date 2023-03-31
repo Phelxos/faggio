@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import type TTheme from "../typings/types/TThemes";
 
 interface Props {

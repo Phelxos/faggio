@@ -9,12 +9,6 @@ export default function BookingsMy() {
   let bookings = useBookings((s) => s.bookings);
   const c = useContext(CBookings);
   let deleteBookings = useBookings((s) => s.deleteBookings);
-  let dateOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    weekday: "long",
-  };
 
   const handleDeleteButton = (toBeDeleted: IBooking[]) => {
     deleteBookings(toBeDeleted);
@@ -36,10 +30,12 @@ export default function BookingsMy() {
             >
               <div className="flex flex-col">
                 <p>
-                  {new Date(booking.date).toLocaleDateString(
-                    "de-DE",
-                    dateOptions
-                  )}
+                  {new Date(booking.date).toLocaleDateString("de-DE", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    weekday: "long",
+                  })}
                 </p>
                 <p>
                   {booking.office[0].toUpperCase() +

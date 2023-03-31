@@ -34,6 +34,7 @@ export default function CalFooter() {
 
   useEffect(() => {
     c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globallySelectedOfficeName]);
 
   return (

@@ -16,10 +16,13 @@ export default function BookingsMyHeader() {
   const theme = useTheme();
   const c = useContext(CBookings);
 
-  let bookedOffice = bookings.filter((booking: IBooking) => booking.office === c?.locallySelectedOfficeName)
+  let bookedOffice = bookings.filter(
+    (booking: IBooking) => booking.office === c?.locallySelectedOfficeName
+  );
 
   useEffect(() => {
     context?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

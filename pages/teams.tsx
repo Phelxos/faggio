@@ -49,6 +49,7 @@ export default function Teams() {
 
   useEffect(() => {
     filterCoworkers(coworkers as ICoworker[]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [c?.searchForUser, c?.locallySelectedOfficeName]);
 
   return (

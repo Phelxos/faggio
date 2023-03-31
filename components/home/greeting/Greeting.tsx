@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import GreetingHeader from "./GreetingHeader";
 import GreetingBody from "./GreetingBody";
 import GreetingFooter from "./GreetingFooter";

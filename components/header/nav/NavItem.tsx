@@ -81,6 +81,7 @@ export default function NavItem({ pageTitle }: Props) {
     } else {
       setComputedClassNameIcon("h-10 w-10 fill-slate-400");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHovering, router.pathname]);
 
   return (

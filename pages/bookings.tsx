@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Cal from "../components/bookings/bookingsCal/Cal";
 import CalEditControl from "../components/bookings/bookingsCal/bookingsCalEditControl/CalEditControl";
 import BookingsMy from "../components/bookings/bookingsMy/BookingsMy";

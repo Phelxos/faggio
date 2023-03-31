@@ -59,14 +59,14 @@ export default function CalBody() {
     if (c?.isBeingEdited) {
       // ensure using date object
       const safeDate: Date = new Date(date);
-      const coworker: TCoworkerId = 9999;
+      const coworkerId: TCoworkerId = 9999;
       const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
       if (
         !isBookedDate(safeDate) &&
         !isBeingSelectedAsBookingToBeSaved(safeDate) &&
         !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeSaved({ date: safeDate, coworker, office });
+        c.setBookingsToBeSaved({ date: safeDate, coworkerId, office });
       } else if (
         isBeingSelectedAsBookingToBeSaved(safeDate) &&
         !isBookedDate(safeDate)
@@ -76,7 +76,7 @@ export default function CalBody() {
         isBookedDate(safeDate) &&
         !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeDeleted({ date: safeDate, coworker, office });
+        c.setBookingsToBeDeleted({ date: safeDate, coworkerId, office });
       } else if (
         isBookedDate(safeDate) &&
         isBeingSelectedAsBookingToBeDeleted(safeDate)
