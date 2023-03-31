@@ -14,7 +14,9 @@ export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
         !nextBooking && "opacity-50"
       }`}
     >
-      <UserImage coworker={coworker} />
+      <div className="relative -top-4">
+        <UserImage coworker={coworker} />
+      </div>
       {nextBooking ? (
         <>
           <div className="flex w-full grow flex-col items-center justify-between gap-2 px-6 pb-3 text-pink-100">
