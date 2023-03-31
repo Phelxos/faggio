@@ -3,7 +3,7 @@ import BookingsOtherMain from "./bookingsOtherMain/BookingsOtherMain";
 
 export default function BookingsOther() {
   return (
-    <div className="rounded-lg border-8 border-emerald-900/50 mt-10">
+    <div className="rounded-lg border-8 border-emerald-900/50">
       <BookingsOtherHeader />
       <BookingsOtherMain />
     </div>

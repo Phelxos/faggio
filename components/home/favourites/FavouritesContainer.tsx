@@ -13,25 +13,17 @@ export default function FavouritesContainer() {
   const isLoading = useCoworkers((s) => s.isLoading);
 
   return (
-    <div className="flex w-full snap-x gap-4 overflow-x-auto rounded bg-pink-600/25 py-8 px-4 shadow-xl">
+    <div className="flex w-full snap-x gap-6 overflow-x-auto rounded bg-pink-600/25 py-8 px-4 shadow-xl">
       {isLoading ? (
         <Spinner />
       ) : (
         <>
-          {favouriteCoworkersOfLoggedInUserAccount.map((favouriteId) => {
+          {favouriteCoworkersOfLoggedInUserAccount.map((favouriteId, i) => {
             const coworker = (coworkers as ICoworker[]).find(
               (coworker: ICoworker) => coworker.coworkerId === favouriteId
             );
             if (coworker) {
-              return (
-                <FavouritesUser
-                  key={favouriteId}
-                  id={favouriteId}
-                  imgSrc={coworker.imgSrc}
-                  forename={coworker.forename}
-                  surname={coworker.surname}
-                />
-              );
+              return <FavouritesUser key={i} coworker={coworker} />;
             }
           })}
         </>
