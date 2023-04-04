@@ -7,6 +7,10 @@ import useWindowSize from "../../../../hooks/useWindowSize";
 import { useContext } from "react";
 import useCalendar from "../../../../stores/SCalendar";
 import useViewportDistance from "../../../../hooks/useViewportDistance";
+import {
+  TOfficeCityEnglish,
+  EOfficesEnglishToGerman,
+} from "../../../../typings/types/TOfficeCity";
 
 export default function BookingsOtherHeader() {
   const theme = useTheme();
@@ -48,6 +52,9 @@ export default function BookingsOtherHeader() {
             listOfValues={displayedCalWeeksInSelectedMonth}
             theme={theme}
             areOptionsOpeningUpward={isCWCloserToTop ? false : true}
+            displayFilter={(city: TOfficeCityEnglish) =>
+              EOfficesEnglishToGerman[city]
+            }
           />
         </div>
       </div>

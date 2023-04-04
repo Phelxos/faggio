@@ -8,6 +8,10 @@ import Switch from "./TeamsControlsBarSwitch";
 import SearchAndSelect from "../SearchAndSelect";
 import useOffice from "../../stores/SOffices";
 import useTheme from "../../hooks/useTheme";
+import {
+  TOfficeCityEnglish,
+  EOfficesEnglishToGerman,
+} from "../../typings/types/TOfficeCity";
 
 export default function ControlsBar() {
   const c = useContext(CTeams);
@@ -50,6 +54,9 @@ export default function ControlsBar() {
             listOfValues={allOfficeNames}
             theme={theme}
             areOptionsOpeningUpward={true}
+            displayFilter={(city: TOfficeCityEnglish) =>
+              EOfficesEnglishToGerman[city]
+            }
           />
         ) : c?.activeButton === "right" ? (
           <Input onInput={handleUserSearchInput} value={c?.searchForUser} />

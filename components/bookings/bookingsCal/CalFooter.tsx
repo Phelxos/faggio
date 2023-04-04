@@ -3,9 +3,12 @@ import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
-import useWindowSize from "../../../hooks/useWindowSize";
 import useTheme from "../../../hooks/useTheme";
 import useViewportDistance from "../../../hooks/useViewportDistance";
+import {
+  EOfficesEnglishToGerman,
+  TOfficeCityEnglish,
+} from "../../../typings/types/TOfficeCity";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -52,6 +55,9 @@ export default function CalFooter() {
           listOfValues={allOfficeNames}
           theme={theme}
           areOptionsOpeningUpward={isCloserToTop ? false : true}
+          displayFilter={(city: TOfficeCityEnglish) =>
+            EOfficesEnglishToGerman[city]
+          }
         />
       </div>
     </div>

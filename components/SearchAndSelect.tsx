@@ -9,6 +9,7 @@ interface Props {
   setValue: (newVal: any) => void;
   theme?: TTheme;
   areOptionsOpeningUpward?: boolean;
+  displayFilter?: (value: any) => string;
 }
 
 export default function SearchAndSelect({
@@ -17,6 +18,7 @@ export default function SearchAndSelect({
   setValue,
   theme = "slate",
   areOptionsOpeningUpward = false,
+  displayFilter,
 }: Props) {
   const [query, setQuery] = useState("");
 
@@ -36,12 +38,14 @@ export default function SearchAndSelect({
       value={value}
       onChange={setValue}
       as="div"
-      className="relative h-full w-full text-xs"
+      className="relative h-full w-full cursor-default text-xs"
     >
-      <div className="flex h-full cursor-default">
+      <div className={`flex h-full`}>
         <Combobox.Input
           className={`w-full rounded-l-lg border-none bg-${theme}-500 pl-4 text-left font-mono font-thin uppercase tracking-widest text-${theme}-100 shadow-inner outline-none`}
-          displayValue={() => value}
+          displayValue={
+            displayFilter ? (value) => displayFilter(value) : () => value
+          }
           onChange={(event) => setQuery(event.target.value)}
         />
         <Combobox.Button
@@ -95,7 +99,7 @@ export default function SearchAndSelect({
                         selected ? `text-${theme}-900` : "font-normal"
                       }`}
                     >
-                      {value}
+                      {displayFilter ? displayFilter(value) : value}
                     </span>
                   </>
                 )}

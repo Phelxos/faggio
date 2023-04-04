@@ -5,6 +5,10 @@ import { CBookings } from "../../contexts/CBookings";
 import useTheme from "../../../hooks/useTheme";
 import useBookings from "../../../stores/SBookings";
 import IBooking from "../../../typings/interfaces/IBooking";
+import {
+  TOfficeCityEnglish,
+  EOfficesEnglishToGerman,
+} from "../../../typings/types/TOfficeCity";
 
 export default function BookingsMyHeader() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
@@ -40,6 +44,9 @@ export default function BookingsMyHeader() {
           setValue={context!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
           theme={theme}
+          displayFilter={(city: TOfficeCityEnglish) =>
+            EOfficesEnglishToGerman[city]
+          }
         />
       </div>
     </div>
