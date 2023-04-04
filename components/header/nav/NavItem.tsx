@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import NavActiveLink from "./NavActiveLink";
 import Icon from "../../icons/Icon";
 import type TPageTitle from "../../../typings/types/TPageTitle";
-import dataNavIcons from "../../../data/DNavIcons";
+import useNavIcon from "../../../hooks/useNavIcon";
 
 interface Props {
   pageTitle: TPageTitle;
@@ -13,13 +13,12 @@ export default function NavItem({ pageTitle }: Props) {
   const router = useRouter();
   const [isHovering, setIsHovering] = useState(false);
   const [computedClassNameIcon, setComputedClassNameIcon] = useState("");
+  const drawnIcon = useNavIcon(pageTitle);
 
   const handleMouse = {
     over: () => setIsHovering(true),
     out: () => setIsHovering(false),
   };
-
-  let drawnIcon = pageTitle ? dataNavIcons[pageTitle] : "home";
 
   let activeClassNames = {
     link: "",
