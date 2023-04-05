@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { useState, useEffect } from "react";
 
 interface IViewportDistance {
@@ -14,6 +13,7 @@ export default function useViewportDistance(
     const handleScroll = () => {
       if (!ref.current) return;
       const { top, bottom } = ref.current.getBoundingClientRect();
+      // If the distance between the element's bottom edge and the window's bottom edge is greater that the distance between the element's top edge and the window's top edge, then the element is closer to the top of the window.
       setIsCloserToTop(window.innerHeight - bottom > top ? true : false);
     };
 

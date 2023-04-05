@@ -41,6 +41,9 @@ export default function BookingsOtherHeader() {
             listOfValues={allOfficeNames}
             theme={theme}
             areOptionsOpeningUpward={isOCloserToTop ? false : true}
+            displayFilter={(city: TOfficeCityEnglish) =>
+              EOfficesEnglishToGerman[city]
+            }
           />
         </div>
         <span className="text-emerald-200/75">für die </span>
@@ -52,9 +55,6 @@ export default function BookingsOtherHeader() {
             listOfValues={displayedCalWeeksInSelectedMonth}
             theme={theme}
             areOptionsOpeningUpward={isCWCloserToTop ? false : true}
-            displayFilter={(city: TOfficeCityEnglish) =>
-              EOfficesEnglishToGerman[city]
-            }
           />
         </div>
       </div>

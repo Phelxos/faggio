@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef } from "react";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
@@ -9,6 +9,7 @@ import {
   TOfficeCityEnglish,
   EOfficesEnglishToGerman,
 } from "../../../typings/types/TOfficeCity";
+import useViewportDistance from "../../../hooks/useViewportDistance";
 
 export default function BookingsMyHeader() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
@@ -19,6 +20,8 @@ export default function BookingsMyHeader() {
   const context = useContext(CBookings);
   const theme = useTheme();
   const c = useContext(CBookings);
+  const inputRef = useRef(null);
+  const { isCloserToTop } = useViewportDistance(inputRef);
 
   let bookedOffice = bookings.filter(
     (booking: IBooking) => booking.office === c?.locallySelectedOfficeName
@@ -31,7 +34,10 @@ export default function BookingsMyHeader() {
 
   return (
     <div className="mt-10 flex w-full flex-col items-center justify-around rounded-t-lg bg-emerald-900 p-6">
-      <div className="flex h-full items-end font-thin text-slate-50">
+      <div
+        className="flex h-full items-end font-thin text-slate-50"
+        ref={inputRef}
+      >
         <span className="flex w-3/4 flex-wrap items-center">
           Meine{" "}
           <span className="mx-2 font-bold">
@@ -47,6 +53,7 @@ export default function BookingsMyHeader() {
           displayFilter={(city: TOfficeCityEnglish) =>
             EOfficesEnglishToGerman[city]
           }
+          areOptionsOpeningUpward={isCloserToTop ? false : true}
         />
       </div>
     </div>
