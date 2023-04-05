@@ -1,9 +1,7 @@
 import React, { useContext, useRef } from "react";
 import CalHeader from "./CalHeader";
-import CalBody from "./CalBody";
+import CalBody from "./CalBody/CalBody";
 import CalFooter from "./CalFooter";
-import MyBookingHeader from "../bookingsMy/BookingsMyHeader";
-import MyBooking from "../bookingsMy/BookingsMy";
 import { CBookings } from "../../contexts/CBookings";
 
 export default function Calendar() {

@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useContext, use } from "react";
-import useCalendar from "../../../stores/SCalendar";
-import useBookings from "../../../stores/SBookings";
-import mapCalendar from "../../../helpers/mapCalendar";
+import React, { useState, useEffect, useContext } from "react";
+import Head from "./TableHead";
+import useCalendar from "../../../../stores/SCalendar";
+import useBookings from "../../../../stores/SBookings";
+import mapCalendar from "../../../../helpers/mapCalendar";
 import { getDate, isPast } from "date-fns";
-import { CBookings } from "../../contexts/CBookings";
-import TCoworkerId from "../../../typings/types/TCoworkerId";
-import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
-import IBooking from "../../../typings/interfaces/IBooking";
+import { CBookings } from "../../../contexts/CBookings";
+import TCoworkerId from "../../../../typings/types/TCoworkerId";
+import { TOfficeCityEnglish } from "../../../../typings/types/TOfficeCity";
+import IBooking from "../../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
   const bookings = useBookings((s) => s.bookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
-  const displayedWeekdays = useCalendar((s) => s.displayedWeekdays);
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
@@ -57,7 +57,7 @@ export default function CalBody() {
   };
   const handleDateClick = (date: Date | string) => {
     if (c?.isBeingEdited) {
-      // ensure using date object
+      // Ensure using date object
       const safeDate: Date = new Date(date);
       if (isPast(safeDate)) return;
       const coworkerId: TCoworkerId = 9999;
@@ -89,37 +89,11 @@ export default function CalBody() {
 
   useEffect(() => {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
-  }, [selectedYear, selectedMonth, displayedWeekdays]);
+  }, [selectedYear, selectedMonth]);
 
   return (
     <table className="w-full grow table-fixed">
-      <thead className="bg-slate-800 font-mono">
-        <tr>
-          {displayedWeekdays.map((weekday: string, i: number) => {
-            if (weekday === "Sa" || weekday === "So") {
-              return null;
-            } else if (weekday === "KW") {
-              return (
-                <th
-                  key={i}
-                  className="border-r-4 border-slate-900 p-2 text-center text-sm text-slate-500 opacity-75"
-                >
-                  {weekday}
-                </th>
-              );
-            } else {
-              return (
-                <th
-                  key={i}
-                  className="p-2 text-center font-bold text-slate-400"
-                >
-                  {weekday}
-                </th>
-              );
-            }
-          })}
-        </tr>
-      </thead>
+      <Head />
       <tbody>
         {displayedMonth.map((week: any[], i: number) => {
           return (
@@ -138,7 +112,7 @@ export default function CalBody() {
                   return (
                     <td
                       key={i}
-                      className="border-r-4 border-slate-800 p-2 text-center font-mono text-sm font-bold opacity-50 hover:cursor-pointer hover:bg-slate-400 hover:text-slate-900"
+                      className="border-r-4 border-slate-800 p-2 text-center font-mono text-sm font-bold opacity-50"
                     >
                       {weekday.calWeek}
                     </td>
