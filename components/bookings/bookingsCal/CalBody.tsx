@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, use } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import useBookings from "../../../stores/SBookings";
 import mapCalendar from "../../../helpers/mapCalendar";
-import { getDate } from "date-fns";
+import { getDate, isPast } from "date-fns";
 import { CBookings } from "../../contexts/CBookings";
 import TCoworkerId from "../../../typings/types/TCoworkerId";
 import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
@@ -59,6 +59,7 @@ export default function CalBody() {
     if (c?.isBeingEdited) {
       // ensure using date object
       const safeDate: Date = new Date(date);
+      if (isPast(safeDate)) return;
       const coworkerId: TCoworkerId = 9999;
       const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
       if (
