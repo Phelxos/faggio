@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
 import TTheme from "../typings/types/TThemes";
+import useViewportDistance from "../hooks/useViewportDistance";
 import useViewportIntersection from "../hooks/useViewportIntersection";
 
 interface Props {
@@ -9,8 +10,6 @@ interface Props {
   listOfValues: any[];
   setValue: (newVal: any) => void;
   theme?: TTheme;
-  isOpen?: boolean;
-  areOptionsOpeningUpward?: boolean;
   displayFilter?: (value: any) => string;
 }
 
@@ -19,13 +18,12 @@ export default function SearchAndSelect({
   listOfValues,
   setValue,
   theme = "slate",
-  areOptionsOpeningUpward = false,
   displayFilter,
 }: Props) {
   const [query, setQuery] = useState("");
   const ref = useRef(null);
+  const isCloserToTop = useViewportDistance(ref);
   const isIntersecting = useViewportIntersection(ref);
-  const defaultValue = value;
 
   const filteredListOfValues =
     query === ""
@@ -78,7 +76,7 @@ export default function SearchAndSelect({
         {!isIntersecting && (
           <Combobox.Options
             className={`absolute ${
-              areOptionsOpeningUpward ? "bottom-[110%]" : "top-[110%]"
+              isCloserToTop ? "top-[110%]" : "bottom-[110%]"
             } z-10 max-h-60 w-full overflow-auto rounded-md border-2 border-${theme}-300 border-${theme}-800 bg-${theme}-800 p-2 uppercase shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
           >
             {filteredListOfValues.length === 0 && query !== "" ? (

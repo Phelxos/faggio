@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
 
-interface IViewportDistance {
-  isCloserToTop: boolean;
-}
-
 export default function useViewportDistance(
   ref: React.RefObject<HTMLElement>
-): IViewportDistance {
+): boolean {
   const [isCloserToTop, setIsCloserToTop] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,5 +19,5 @@ export default function useViewportDistance(
     return () => window.removeEventListener("scroll", handleScroll);
   }, [ref]);
 
-  return { isCloserToTop };
+  return isCloserToTop;
 }

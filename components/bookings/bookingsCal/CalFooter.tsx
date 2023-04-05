@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import useCalendar from "../../../stores/SCalendar";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
 import { CBookings } from "../../contexts/CBookings";
 import useTheme from "../../../hooks/useTheme";
-import useViewportDistance from "../../../hooks/useViewportDistance";
 import {
   EOfficesEnglishToGerman,
   TOfficeCityEnglish,
@@ -24,9 +23,7 @@ export default function CalFooter() {
   );
   const setToday = useCalendar((s) => s.setToday);
   const c = useContext(CBookings);
-  const inputContainerRef = useRef<HTMLDivElement | null>(null);
   const theme = useTheme();
-  const { isCloserToTop } = useViewportDistance(inputContainerRef);
 
   const setAllRelevantCalendarStoreVariablesToTodaysAttributes = () => {
     setToday(today);
@@ -48,13 +45,12 @@ export default function CalFooter() {
       >
         heute
       </button>
-      <div className="h-full" ref={inputContainerRef}>
+      <div className="h-full">
         <SearchAndSelect
           value={c?.locallySelectedOfficeName}
           setValue={c!.setLocallySelectedOfficeName}
           listOfValues={allOfficeNames}
           theme={theme}
-          areOptionsOpeningUpward={isCloserToTop ? false : true}
           displayFilter={(city: TOfficeCityEnglish) =>
             EOfficesEnglishToGerman[city]
           }

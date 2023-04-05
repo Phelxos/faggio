@@ -9,7 +9,6 @@ import {
   TOfficeCityEnglish,
   EOfficesEnglishToGerman,
 } from "../../../typings/types/TOfficeCity";
-import useViewportDistance from "../../../hooks/useViewportDistance";
 
 export default function BookingsMyHeader() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
@@ -21,7 +20,6 @@ export default function BookingsMyHeader() {
   const theme = useTheme();
   const c = useContext(CBookings);
   const inputRef = useRef(null);
-  const { isCloserToTop } = useViewportDistance(inputRef);
 
   let bookedOffice = bookings.filter(
     (booking: IBooking) => booking.office === c?.locallySelectedOfficeName
@@ -53,7 +51,6 @@ export default function BookingsMyHeader() {
           displayFilter={(city: TOfficeCityEnglish) =>
             EOfficesEnglishToGerman[city]
           }
-          areOptionsOpeningUpward={isCloserToTop ? false : true}
         />
       </div>
     </div>

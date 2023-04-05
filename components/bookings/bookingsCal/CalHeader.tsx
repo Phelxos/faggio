@@ -4,7 +4,6 @@ import SearchAndSelect from "../../SearchAndSelect";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import Icon from "../../icons/Icon";
 import useTheme from "../../../hooks/useTheme";
-import useViewportDistance from "../../../hooks/useViewportDistance";
 
 export default function CalHeader() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
@@ -17,9 +16,7 @@ export default function CalHeader() {
   const displayedYears = useCalendar((s) => s.displayedYears);
   const theme = useTheme();
   const yearRef = useRef(null);
-  const { isCloserToTop: isYCloserToTop } = useViewportDistance(yearRef);
   const monthRef = useRef(null);
-  const { isCloserToTop: isMCloserToTop } = useViewportDistance(monthRef);
 
   const handleClick = {
     chevronLeft: {
@@ -65,7 +62,6 @@ export default function CalHeader() {
           setValue={(val) => setSelectedMonth(displayEquivalent(val, "month"))}
           listOfValues={displayedMonths}
           theme={theme}
-          areOptionsOpeningUpward={isMCloserToTop ? false : true}
         />
         <Icon
           icon="chevronRight"
@@ -87,7 +83,6 @@ export default function CalHeader() {
           setValue={setSelectedYear}
           listOfValues={displayedYears}
           theme={theme}
-          areOptionsOpeningUpward={isYCloserToTop ? false : true}
         />
         <Icon
           icon="chevronRight"

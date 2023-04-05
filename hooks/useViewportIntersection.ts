@@ -10,7 +10,8 @@ export default function useViewportIntersection(
     const handleScroll = () => {
       if (!ref.current) return;
       const { top, bottom } = ref.current.getBoundingClientRect();
-      setIsIntersecting(bottom <= 0 || top <= 0 ? true : false);
+      const hasIntersected = window.innerHeight - bottom <= 0 || top <= 0;
+      setIsIntersecting(hasIntersected);
     };
 
     window.addEventListener("scroll", handleScroll);
