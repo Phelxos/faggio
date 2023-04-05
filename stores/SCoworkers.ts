@@ -35,10 +35,7 @@ const useCoworkers = create<Interface>()(
               coworkerListWithPhotos: coworkersListWithPhotos,
             }));
           } catch (err) {
-            console.error(
-              "Something has gone wrong while fetching the photos of the coworkers:",
-              err
-            );
+            console.error("😣 ~ file: SCoworkers.ts:40", err);
           } finally {
             set({ isLoading: false });
             return;

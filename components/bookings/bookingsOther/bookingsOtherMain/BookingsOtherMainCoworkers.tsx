@@ -10,7 +10,6 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoading = useCoworkers((s) => s.isLoading);
   const c = useContext(CBookings);
-  const { isOpenModal, toggleModal } = useModal();
   return (
     <div
       className={`col-span-6 flex h-full items-center gap-4 overflow-scroll py-2 px-3 shadow-inner ${
@@ -22,7 +21,7 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
       ) : (
         <>
           {(coworkers as ICoworker[])
-            .filter(
+            ?.filter(
               (coworker: ICoworker) =>
                 coworker.office === c?.locallySelectedOfficeName
             )
