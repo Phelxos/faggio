@@ -19,6 +19,8 @@ interface Interface {
   deleteBookingsToBeDeleted: (date: Date) => void;
   transferBookingsToBeDeletedToBookingsToStore: () => void;
   calRef: React.RefObject<HTMLDivElement> | null;
+  isOpenModal: boolean;
+  toggleIsOpenModal: () => void;
 }
 
 const initVal = initialValueForGloballySelectedOffice.city;
@@ -35,6 +37,7 @@ export default function ContextBookingsProvider({
   const [bookingsToBeDeleted, setBookingsToBeDeleted] = useState<IBooking[]>(
     []
   );
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
     useState<TOfficeCityEnglish>(initVal);
   const setBookings = useBookings((s) => s.setBookings);
@@ -78,6 +81,10 @@ export default function ContextBookingsProvider({
   const transferBookingsToBeDeletedToBookingsToStore = () => {
     deleteBookings(bookingsToBeDeleted);
   };
+  const toggleIsOpenModal = () => {
+    if (isOpenModal) setIsOpenModal(false);
+    else setIsOpenModal(true);
+  };
 
   const value = {
     isBeingEdited,
@@ -94,6 +101,8 @@ export default function ContextBookingsProvider({
     deleteBookingsToBeDeleted,
     transferBookingsToBeDeletedToBookingsToStore,
     calRef,
+    isOpenModal,
+    toggleIsOpenModal,
   };
 
   return <CBookings.Provider value={value}>{children}</CBookings.Provider>;
