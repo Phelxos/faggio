@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import getLiteralDate from "../../../helpers/getLiteralDate";
-import useBookings from "../../../stores/SBookings";
 import useNextBooking from "../../../hooks/useNextBookingMy";
 import useNextWeekBookings from "../../../hooks/useNextWeekBookingsMy";
 import Link from "next/link";

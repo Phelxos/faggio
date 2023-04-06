@@ -1,5 +1,5 @@
 import React from "react";
-import type TTheme from "../typings/types/TThemes";
+import type TTheme from "../../typings/types/TThemes";
 
 interface Props {
   theme?: TTheme;
