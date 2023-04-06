@@ -43,7 +43,7 @@ export default function NextBooking({ id = 1000 }: { id: number | undefined }) {
           <div className="flex flex-col items-center gap-3">
             <Icon
               icon="xMark"
-              className="h-14 w-14 rounded-full bg-pink-600/50 fill-pink-500/75 p-2"
+              className="h-14 w-14 rounded-full fill-pink-500/75 p-2"
             />
             <span className="font-semibold tracking-widest">
               bislang nichts geplant

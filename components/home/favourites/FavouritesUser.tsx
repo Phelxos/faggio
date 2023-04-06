@@ -5,6 +5,7 @@ import displayEquivalent from "../../../helpers/displayEquivalent";
 import useNextBooking from "../../../hooks/useNextBooking";
 import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 import ICoworker from "../../../typings/interfaces/ICoworker";
+import Icon from "../../icons/Icon";
 
 export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
   const nextBooking = useNextBooking(coworker.coworkerId);
@@ -39,9 +40,15 @@ export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
           )}
         </>
       ) : (
-        <span className="flex w-full grow flex-col items-center justify-center p-4 text-center text-xs italic text-pink-200/50">
-          nichts geplant
-        </span>
+        <div className="flex flex-col items-center justify-center px-4 pt-1 pb-6">
+          <Icon
+            icon="xMark"
+            className="h-14 w-14 rounded-full fill-pink-500/50 p-2"
+          />
+          <span className="text-center text-xs font-bold italic tracking-widest text-pink-500">
+            bislang keine Buchung
+          </span>
+        </div>
       )}
     </div>
   );
