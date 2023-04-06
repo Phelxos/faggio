@@ -82,8 +82,10 @@ export default function ContextBookingsProvider({
     deleteBookings(bookingsToBeDeleted);
   };
   const toggleIsOpenModal = () => {
-    if (isOpenModal) setIsOpenModal(false);
-    else setIsOpenModal(true);
+    if (isOpenModal) {
+      setIsOpenModal(false);
+      setIsBeingEdited(false);
+    } else setIsOpenModal(true);
   };
 
   const value = {
