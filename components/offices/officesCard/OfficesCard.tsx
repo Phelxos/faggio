@@ -48,6 +48,7 @@ export default function OfficeInformationCard({
           street={address?.street}
           housenumber={address?.housenumber}
           postcode={address?.postcode}
+          city={city}
         />
       </div>
     </div>
