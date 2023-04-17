@@ -69,7 +69,7 @@ export default function CalEditControlButtons() {
   };
 
   return (
-    <div className="flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
+    <div className="fixed right-4 bottom-4 flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
       {c?.isBeingEdited ? (
         <>
           <ButtonArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />

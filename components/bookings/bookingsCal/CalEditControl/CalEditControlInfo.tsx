@@ -21,7 +21,7 @@ const buttons: { name: string; description: string; icon: TIcon }[] = [
 
 export default function Example() {
   return (
-    <Popover>
+    <Popover className={`fixed left-7 bottom-7 z-50`}>
       {({ open }) => (
         <>
           <Popover.Button
@@ -45,7 +45,7 @@ export default function Example() {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="absolute left-1/2 z-10 w-screen max-w-sm -translate-y-[120%] -translate-x-1/2 transform  px-4 sm:px-0 lg:max-w-3xl">
+            <Popover.Panel className="fixed bottom-28 left-0 right-0 z-10 w-screen max-w-sm transform px-4 sm:px-0 lg:max-w-3xl">
               <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-purple-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900 to-indigo-500 p-6">
                 <div className="relative grid gap-8 lg:grid-cols-2">
                   {buttons.map(
