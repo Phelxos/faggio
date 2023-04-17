@@ -35,7 +35,7 @@ export default function TeamsControlsBarInput({ onInput, value }: Props) {
       />
       {c?.searchForUser?.length! > 0 && (
         <button onClick={clearSearch}>
-          <Icon icon="xMark" className="h-10 w-10 grow fill-pink-900/50" />
+          <Icon icon="xMark" className="ml-2 h-10 w-10 grow fill-pink-900/50" />
         </button>
       )}
     </div>

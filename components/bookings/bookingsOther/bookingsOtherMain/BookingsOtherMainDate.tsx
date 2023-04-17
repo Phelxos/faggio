@@ -9,7 +9,7 @@ interface Interface {
 export default function BookingsOtherMainDate({ day, date, i }: Interface) {
   return (
     <div
-      className={`col-span-2 flex flex-col items-center justify-center border-r-2 p-3 ${
+      className={`col-span-2 flex flex-col items-center justify-between border-r-2 p-3 ${
         i % 2 === 0
           ? "border-r-slate-400/50 bg-slate-600/50"
           : "border-r-slate-300/50 bg-slate-500/50"

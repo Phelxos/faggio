@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import Icon from "../icons/Icon";
 import { CTeams } from "../contexts/CTeams";
+import {
+  EOfficesEnglishToGerman,
+  TOfficeCityEnglish,
+} from "../../typings/types/TOfficeCity";
 
 export default function BackupMessage() {
   const c = useContext(CTeams);
@@ -14,7 +18,11 @@ export default function BackupMessage() {
       <p className="text-center">
         Es gibt keine Mitarbeiter in{" "}
         <strong className="mx-auto my-2 block w-full rounded bg-pink-500/25 p-2 font-mono uppercase">
-          {c?.locallySelectedOfficeName}
+          {
+            EOfficesEnglishToGerman[
+              c?.locallySelectedOfficeName as TOfficeCityEnglish
+            ]
+          }
         </strong>{" "}
         {c?.searchForUser && (
           <>
