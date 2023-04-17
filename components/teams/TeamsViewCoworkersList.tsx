@@ -23,9 +23,9 @@ function Cards({ coworkers }: { coworkers: ICoworker[] | undefined }) {
 
 function List({ coworkers }: { coworkers: ICoworker[] | undefined }) {
   return (
-    <ul className="flex w-full snap-always flex-col items-stretch gap-8">
+    <ul className="flex w-full flex-col items-stretch gap-8">
       {coworkers?.map((coworker: ICoworker, i: number) => (
-        <Coworker coworker={coworker} key={i} />
+        <Coworker coworker={coworker} key={i} className="snap-center" />
       ))}
     </ul>
   );

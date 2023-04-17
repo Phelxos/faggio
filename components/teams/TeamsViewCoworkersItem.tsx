@@ -6,12 +6,15 @@ import UserImage from "../user/UserImage";
 
 export default function TeamsViewCoworkersItem({
   coworker,
+  className,
 }: {
   coworker: ICoworker;
+  className?: string;
 }) {
-  const { isOpenModal, toggleModal } = useModal();
   return (
-    <li className="flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 ">
+    <li
+      className={`flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 ${className}`}
+    >
       <div>
         <UserImage coworker={coworker} />
       </div>

@@ -12,11 +12,14 @@ export default function UserCard({
   surname,
   imgSrc,
   coworkerId,
-}: ICoworker) {
+  className,
+}: ICoworker & { className?: string }) {
   const { isOpenModal, toggleModal } = useModal();
 
   return (
-    <div className="grid h-[250px] min-w-[275px] snap-center grid-cols-[2.5fr_2fr] grid-rows-[3fr_2fr] place-items-stretch gap-2 rounded-lg border-[8px] border-transparent bg-slate-800 text-pink-100">
+    <div
+      className={`grid h-[250px] min-w-[275px] snap-center grid-cols-[2.5fr_2fr] grid-rows-[3fr_2fr] place-items-stretch gap-2 rounded-lg border-[8px] border-transparent bg-slate-800 text-pink-100 ${className}`}
+    >
       <div className="relative flex flex-col items-center justify-center">
         <Image
           width={100}
