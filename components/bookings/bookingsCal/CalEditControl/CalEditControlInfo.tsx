@@ -27,7 +27,7 @@ export default function Example() {
           <Popover.Button
             className={`
                 ${open ? "border-slate-200" : "border-slate-200/50"}
-                group ml-2 inline-flex items-center rounded-full border-2  bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-900/75 to-indigo-500/75 p-1 hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+                group ml-2 inline-flex items-center rounded-full border-2  bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-900/75 to-lime-500/75 p-1 hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
           >
             <Icon
               icon="informationCircle"
@@ -46,12 +46,12 @@ export default function Example() {
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel className="fixed bottom-28 left-0 right-0 z-10 w-screen max-w-sm transform px-4 sm:px-0 lg:max-w-3xl">
-              <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-purple-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-purple-900 to-indigo-500 p-6">
+              <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-orange-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-900 to-lime-500 p-6">
                 <div className="relative grid gap-8 lg:grid-cols-2">
                   {buttons.map(
                     ({ name, description, icon }: any, i: number) => (
                       <div key={i} className="flex items-center gap-4">
-                        <div className=" flex min-h-[75px] min-w-[75px] flex-col items-center justify-center rounded-lg bg-indigo-900/50 p-2 text-indigo-300/75">
+                        <div className=" flex min-h-[75px] min-w-[75px] flex-col items-center justify-center rounded-lg bg-lime-900/50 p-2 text-lime-300/75">
                           {icon !== "noSymbol" ? (
                             <Icon icon={icon} className="h-12 w-12" />
                           ) : (
@@ -62,25 +62,23 @@ export default function Example() {
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-bold tracking-wider text-indigo-400">
+                          <p className="text-sm font-bold tracking-wider text-lime-400">
                             {name}
                           </p>
-                          <p className="text-xs text-indigo-100">
-                            {description}
-                          </p>
+                          <p className="text-xs text-lime-100">{description}</p>
                         </div>
                       </div>
                     )
                   )}
                 </div>
-                <hr className="opacity-50" />
-                <div className="text-indigo-200/90">
+                <hr className="border-orange-900/25" />
+                <div className="text-lime-200/90">
                   <span className="flex flex-col">
-                    <span className="text-md mb-1 font-bold tracking-wider">
+                    <span className="text-md mb-1 font-bold tracking-wider text-orange-900/50">
                       Bürotage buchen
                     </span>
                   </span>
-                  <span className="block text-sm font-light tracking-wide">
+                  <span className="block text-sm font-light tracking-wide text-orange-900/75">
                     Um einzutragen dass du an einem Tag ins Büro kommst,{" "}
                     <span className="font-bold">klicke auf den Tag</span> im
                     Bearbeitungsmodus des Kalendars.
