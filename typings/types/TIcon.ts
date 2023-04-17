@@ -28,6 +28,7 @@ type TIcon =
   | "plus"
   | "select"
   | "star"
+  | "trash"
   | "user"
   | "userGroup"
   | "xMark";

@@ -31,28 +31,36 @@ export default function BookingsMyHeader() {
   }, []);
 
   return (
-    <div className="mt-10 flex w-full flex-col items-center justify-around rounded-t-lg bg-emerald-900 p-6">
-      <div
-        className="flex h-full items-end font-thin text-slate-50"
-        ref={inputRef}
-      >
-        <span className="flex w-3/4 flex-wrap items-center">
-          Meine{" "}
-          <span className="mx-2 font-bold">
-            {bookedOffice.length > 1 ? bookedOffice.length : ""}
-          </span>
-          Buchung{bookings.length !== 1 ? "en" : ""} in
-        </span>
-        <SearchAndSelect
-          value={context?.locallySelectedOfficeName}
-          setValue={context!.setLocallySelectedOfficeName}
-          listOfValues={allOfficeNames}
-          theme={theme}
-          displayFilter={(city: TOfficeCityEnglish) =>
-            EOfficesEnglishToGerman[city]
-          }
-        />
+    <div className="flex w-full flex-col justify-around">
+      <p className="bg-emerald-900/50 p-4 text-lg font-thin tracking-wider text-emerald-500/75">
+        Meine{" "}
+        {bookedOffice.length > 1 && (
+          <>
+            <span className="mx-1 font-bold">
+              {bookedOffice.length > 1 ? bookedOffice.length : ""}
+            </span>{" "}
+          </>
+        )}
+        Buchungen
+      </p>
+      <div className="flex flex-wrap items-end justify-end gap-4 bg-emerald-700/50 p-4 text-lg">
+        <span className="text-emerald-200/75">in</span>
+        <div className="max-w-[150px]">
+          <SearchAndSelect
+            value={c?.locallySelectedOfficeName}
+            setValue={c!.setLocallySelectedOfficeName}
+            listOfValues={allOfficeNames}
+            theme={theme}
+            displayFilter={(city: TOfficeCityEnglish) =>
+              EOfficesEnglishToGerman[city]
+            }
+          />
+        </div>
       </div>
     </div>
   );
 }
+
+/* <span className="mx-2 font-bold">
+            {bookedOffice.length > 1 ? bookedOffice.length : ""}
+          </span>*/
