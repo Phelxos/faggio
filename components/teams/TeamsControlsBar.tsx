@@ -3,7 +3,7 @@ import TActiveButton from "../../typings/types/TActiveButton";
 import TIcon from "../../typings/types/TIcon";
 import { CTeams } from "../contexts/CTeams";
 import Button from "./TeamsControlsBarButton";
-import Input from "./TeamsControlsBarInput";
+import Search from "./TeamsControlsBarSearch";
 import Switch from "./TeamsControlsBarSwitch";
 import SearchAndSelect from "../SearchAndSelect";
 import useOffice from "../../stores/SOffices";
@@ -53,13 +53,12 @@ export default function ControlsBar() {
             setValue={c?.setLocallySelectedOfficeName}
             listOfValues={allOfficeNames}
             theme={theme}
-            areOptionsOpeningUpward={true}
             displayFilter={(city: TOfficeCityEnglish) =>
               EOfficesEnglishToGerman[city]
             }
           />
         ) : c?.activeButton === "right" ? (
-          <Input onInput={handleUserSearchInput} value={c?.searchForUser} />
+          <Search onInput={handleUserSearchInput} value={c?.searchForUser} />
         ) : (
           <></>
         )}
