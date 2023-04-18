@@ -23,7 +23,9 @@ export default function CalBody() {
     if (
       bookings.some(
         (b: IBooking) =>
-          b.date === date.toJSON() && b.office === c?.locallySelectedOfficeName
+          b.date === date.toJSON() &&
+          b.office === c?.locallySelectedOfficeName &&
+          b.coworkerId === coworkerId
       )
     ) {
       return true;

@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useRef } from "react";
 import SearchAndSelect from "../../SearchAndSelect";
 import useOffice from "../../../stores/SOffices";
+import useAccount from "../../../stores/SAccount";
 import { CBookings } from "../../contexts/CBookings";
 import useTheme from "../../../hooks/useTheme";
 import useBookings from "../../../stores/SBookings";
@@ -11,6 +12,7 @@ import {
 } from "../../../typings/types/TOfficeCity";
 
 export default function BookingsMyHeader() {
+  const coworkerId: number = useAccount((s) => s.coworkerId);
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
   const globallySelectedOfficeName = useOffice(
     (s) => s.globallySelectedOfficeName
@@ -19,10 +21,11 @@ export default function BookingsMyHeader() {
   const context = useContext(CBookings);
   const theme = useTheme();
   const c = useContext(CBookings);
-  const inputRef = useRef(null);
 
-  let bookedOffice = bookings.filter(
-    (booking: IBooking) => booking.office === c?.locallySelectedOfficeName
+  let myBookingsInSelectedOffice = bookings.filter(
+    (booking: IBooking) =>
+      booking.office === c?.locallySelectedOfficeName &&
+      booking.coworkerId === coworkerId
   );
 
   useEffect(() => {
@@ -34,14 +37,16 @@ export default function BookingsMyHeader() {
     <div className="flex w-full flex-col justify-around">
       <p className="bg-emerald-900/50 p-4 text-lg font-thin tracking-wider text-emerald-500/75">
         Meine{" "}
-        {bookedOffice.length > 1 && (
+        {myBookingsInSelectedOffice.length > 1 && (
           <>
             <span className="mx-1 font-bold">
-              {bookedOffice.length > 1 ? bookedOffice.length : ""}
+              {myBookingsInSelectedOffice.length > 1
+                ? myBookingsInSelectedOffice.length
+                : ""}
             </span>{" "}
           </>
         )}
-        Buchungen
+        Buchung{myBookingsInSelectedOffice.length > 1 && "en"}
       </p>
       <div className="flex flex-wrap items-end justify-end gap-4 bg-emerald-700/50 p-4 text-lg">
         <span className="text-emerald-200/75">in</span>
@@ -62,5 +67,5 @@ export default function BookingsMyHeader() {
 }
 
 /* <span className="mx-2 font-bold">
-            {bookedOffice.length > 1 ? bookedOffice.length : ""}
+            {myBookingsInSelectedOffice.length > 1 ? myBookingsInSelectedOffice.length : ""}
           </span>*/

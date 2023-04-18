@@ -5,8 +5,6 @@ import a from "axios";
 import { apiPath } from "../config/index";
 import useAccount from "./SAccount";
 
-// Note: Zustand saves dates as JSON in the store – though, not immediately. After the page's next reload, the dates are saved as JSON for certain.
-
 interface Interface {
   bookingsOther: IBooking[];
   bookings: IBooking[];
@@ -51,20 +49,18 @@ const useBookings = create<Interface>()(
           const { data: bookingsFromApi } = await a.delete(apiPath.BOOKINGS, {
             data: bookingsToBeRemoved,
           });
-
+          const sortedBookings = bookingsFromApi.sort(
+            (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
+          );
           set(() => ({
-            bookings: bookingsFromApi,
+            bookings: sortedBookings,
           }));
         },
         fetchBookings: async () => {
           if (get().bookings) return;
-          const { data: bookingsFromApi } = await a.get(apiPath.BOOKINGS, {
-            params: {
-              coworkerId,
-            },
-          });
+          const { data: bookingsFromApi } = await a.get(apiPath.BOOKINGS);
           if (bookingsFromApi) {
-            const sortedBookings: IBooking[] = bookingsFromApi.sort(
+            const sortedBookings = bookingsFromApi.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
             set(() => ({

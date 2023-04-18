@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import Icon from "../../icons/Icon";
 import useBookings from "../../../stores/SBookings";
+import useAccount from "../../../stores/SAccount";
 import IBooking from "../../../typings/interfaces/IBooking";
 import { CBookings } from "../../contexts/CBookings";
 import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
@@ -9,9 +10,10 @@ import displayEquivalent from "../../../helpers/displayEquivalent";
 import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 
 export default function BookingsMyMain() {
-  let bookings = useBookings((s) => s.bookings);
+  const bookings = useBookings((s) => s.bookings);
+  const coworkerId = useAccount((s) => s.coworkerId);
   const c = useContext(CBookings);
-  let deleteBookings = useBookings((s) => s.deleteBookings);
+  const deleteBookings = useBookings((s) => s.deleteBookings);
 
   const handleDeleteButton = (toBeDeleted: IBooking[]) => {
     deleteBookings(toBeDeleted);
@@ -23,7 +25,8 @@ export default function BookingsMyMain() {
         ? bookings
             .filter(
               (booking: IBooking) =>
-                booking.office === c?.locallySelectedOfficeName
+                booking.office === c?.locallySelectedOfficeName &&
+                booking.coworkerId === coworkerId
             )
             .map((booking: IBooking, i: number) => (
               <div

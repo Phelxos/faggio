@@ -88,18 +88,11 @@ let bookings: IBooking[] = [
 export default function handler(req: any, res: any) {
   try {
     if (req.method === "GET") {
-      const { coworkerId } = req.query;
-      const coworkersBookings = bookings.filter(
-        (booking: IBooking) => booking.coworkerId === coworkerId
-      );
-      res.status(200).json(coworkersBookings);
+      res.status(200).json(bookings);
     } else if (req.method === "POST") {
-      const { bookingsToBeSaved, coworkerId } = req.body;
+      const { bookingsToBeSaved } = req.body;
       bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
-      const coworkersBookings = bookings.filter(
-        (booking: IBooking) => booking.coworkerId === coworkerId
-      );
-      res.status(200).json(coworkersBookings);
+      res.status(200).json(bookings);
     } else if (req.method === "DELETE") {
       const bookingsToBeRemoved = req.body;
       bookings = bookings.filter((booking: IBooking) => {
@@ -111,7 +104,6 @@ export default function handler(req: any, res: any) {
           );
         });
       });
-
       res.status(200).json(bookings);
     } else {
       res.status(200).json(bookings);
