@@ -2,18 +2,20 @@ import React, { useState, useEffect, useContext } from "react";
 import Head from "./TableHead";
 import useCalendar from "../../../../stores/SCalendar";
 import useBookings from "../../../../stores/SBookings";
+import useAccount from "../../../../stores/SAccount";
 import mapCalendar from "../../../../helpers/mapCalendar";
 import { getDate, isPast } from "date-fns";
 import { CBookings } from "../../../contexts/CBookings";
-import TCoworkerId from "../../../../typings/types/TCoworkerId";
 import { TOfficeCityEnglish } from "../../../../typings/types/TOfficeCity";
 import IBooking from "../../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
   const bookings = useBookings((s) => s.bookings);
+  const fetchBookings = useBookings((s) => s.fetchBookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
+  const coworkerId: number = useAccount((s) => s.coworkerId);
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
@@ -60,7 +62,6 @@ export default function CalBody() {
       // Ensure using date object
       const safeDate: Date = new Date(date);
       if (isPast(safeDate)) return;
-      const coworkerId: TCoworkerId = 9999;
       const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
       if (
         !isBookedDate(safeDate) &&
@@ -89,6 +90,8 @@ export default function CalBody() {
 
   useEffect(() => {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
+    fetchBookings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedYear, selectedMonth]);
 
   return (

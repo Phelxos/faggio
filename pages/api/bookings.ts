@@ -1,9 +1,6 @@
+import { apiPath } from "../../config";
 import IBooking from "../../typings/interfaces/IBooking";
-
-export enum EActions {
-  ADD = "add",
-  REMOVE = "remove",
-}
+import filterDuplicateBookings from "../../helpers/filterDuplicateBookings";
 
 let bookings: IBooking[] = [
   {
@@ -88,40 +85,41 @@ let bookings: IBooking[] = [
   },
 ];
 
-function filterDuplicateBookings(bookings: IBooking[]): IBooking[] {
-  const seenBookings: { [key: string]: boolean } = {};
-  const uniqueBookings: IBooking[] = [];
-
-  for (const booking of bookings) {
-    const bookingKey = `${booking.date}-${booking.coworkerId}-${booking.office}`;
-
-    if (!seenBookings[bookingKey]) {
-      seenBookings[bookingKey] = true;
-      uniqueBookings.push(booking);
-    }
-  }
-
-  return uniqueBookings;
-}
-
 export default function handler(req: any, res: any) {
-  if (req.method === "POST") {
-    const { bookingsToBeSaved } = req.body;
-    bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
-    res.status(200).json(bookings);
-  } else if (req.method === "DELETE") {
-    const bookingsToBeRemoved = req.body;
-    bookings = bookings.filter((booking: IBooking) => {
-      !bookingsToBeRemoved.some((toBeRemoved: IBooking) => {
-        return (
-          toBeRemoved.date === booking.date &&
-          toBeRemoved.coworkerId === booking.coworkerId &&
-          toBeRemoved.office === booking.office
-        );
+  try {
+    if (req.method === "GET") {
+      const { coworkerId } = req.query;
+      const coworkersBookings = bookings.filter(
+        (booking: IBooking) => booking.coworkerId === coworkerId
+      );
+      res.status(200).json(coworkersBookings);
+    } else if (req.method === "POST") {
+      const { bookingsToBeSaved, coworkerId } = req.body;
+      bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
+      const coworkersBookings = bookings.filter(
+        (booking: IBooking) => booking.coworkerId === coworkerId
+      );
+      res.status(200).json(coworkersBookings);
+    } else if (req.method === "DELETE") {
+      const bookingsToBeRemoved = req.body;
+      bookings = bookings.filter((booking: IBooking) => {
+        return !bookingsToBeRemoved.some((toBeRemoved: IBooking) => {
+          return (
+            toBeRemoved.date === booking.date &&
+            toBeRemoved.coworkerId === booking.coworkerId &&
+            toBeRemoved.office === booking.office
+          );
+        });
       });
+
+      res.status(200).json(bookings);
+    } else {
+      res.status(200).json(bookings);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: `An error occurred while processing a request directed to ${apiPath.BOOKINGS}`,
     });
-    res.status(200).json(bookings);
-  } else {
-    res.status(200).json(bookings);
   }
 }

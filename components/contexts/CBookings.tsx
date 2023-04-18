@@ -60,6 +60,7 @@ export default function ContextBookingsProvider({
     );
   };
   const transferBookingsToBeSavedToBookingsToStore = () => {
+    if (!bookingsToBeSaved.length) return;
     setBookings(bookingsToBeSaved);
   };
   const clearBookingsToBeSavedAndDeleted = () => {
@@ -79,6 +80,7 @@ export default function ContextBookingsProvider({
     );
   };
   const transferBookingsToBeDeletedToBookingsToStore = () => {
+    if (!bookingsToBeDeleted.length) return;
     deleteBookings(bookingsToBeDeleted);
   };
   const toggleIsOpenModal = () => {

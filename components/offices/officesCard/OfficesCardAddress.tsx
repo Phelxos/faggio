@@ -15,19 +15,38 @@ export default function OfficesCardAddress({
   postcode,
   city,
 }: Props) {
-
-
-const copyAdress = (adressPart_1: string, adressPart_2: string, adressPart_3?: string, adressPart_4?: string) => {
-  if (!adressPart_3 && !adressPart_4) {
-    let putAdressPartsTogetherShort = adressPart_1[0].toUpperCase() + adressPart_1.substring(1) + ' ' + adressPart_2[0].toUpperCase() + adressPart_2.substring(1);
-    let copiedAdressShort = navigator.clipboard.writeText(putAdressPartsTogetherShort);
-    console.log(putAdressPartsTogetherShort);
-  } else {
-    let putAdressPartsTogetherLong = adressPart_1[0].toUpperCase() + adressPart_1.substring(1) + ' ' + adressPart_2 + ' ' + adressPart_3 + ' ' + adressPart_4?.[0].toUpperCase() + adressPart_4?.substring(1);
-    let copiedAdressLong = navigator.clipboard.writeText(putAdressPartsTogetherLong);
-    console.log(putAdressPartsTogetherLong);
-  }
-}
+  const copyAdress = (
+    adressPart_1: string,
+    adressPart_2: string,
+    adressPart_3?: string,
+    adressPart_4?: string
+  ) => {
+    if (!adressPart_3 && !adressPart_4) {
+      let putAdressPartsTogetherShort =
+        adressPart_1[0].toUpperCase() +
+        adressPart_1.substring(1) +
+        " " +
+        adressPart_2[0].toUpperCase() +
+        adressPart_2.substring(1);
+      let copiedAdressShort = navigator.clipboard.writeText(
+        putAdressPartsTogetherShort
+      );
+    } else {
+      let putAdressPartsTogetherLong =
+        adressPart_1[0].toUpperCase() +
+        adressPart_1.substring(1) +
+        " " +
+        adressPart_2 +
+        " " +
+        adressPart_3 +
+        " " +
+        adressPart_4?.[0].toUpperCase() +
+        adressPart_4?.substring(1);
+      let copiedAdressLong = navigator.clipboard.writeText(
+        putAdressPartsTogetherLong
+      );
+    }
+  };
 
   return (
     <div className="rounded-lg border-2 border-amber-800 bg-amber-600">
@@ -35,7 +54,7 @@ const copyAdress = (adressPart_1: string, adressPart_2: string, adressPart_3?: s
         <span className="ml-1 text-lg font-extralight tracking-widest text-amber-400/75">
           Adresse
         </span>
-        <button className="flex flex-col items-center justify-center active:bg-amber-400 rounded-full">
+        <button className="flex flex-col items-center justify-center rounded-full active:bg-amber-400">
           {/* <FontAwesomeIcon
             icon={faCopy}
             className="h-3 w-3 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75"
@@ -54,7 +73,7 @@ const copyAdress = (adressPart_1: string, adressPart_2: string, adressPart_3?: s
               {street} {housenumber}
             </span>
           </div>
-          <button className="flex flex-col items-center justify-center active:bg-amber-400 rounded-full">
+          <button className="flex flex-col items-center justify-center rounded-full active:bg-amber-400">
             {/* <FontAwesomeIcon
               icon={faCopy}
               className="h-3 w-3 rounded-full bg-amber-800/25 p-2 text-amber-900/50"
@@ -73,7 +92,7 @@ const copyAdress = (adressPart_1: string, adressPart_2: string, adressPart_3?: s
               {postcode} {city}
             </span>
           </div>
-          <button className="flex flex-col items-center justify-center active:bg-amber-400 rounded-full">
+          <button className="flex flex-col items-center justify-center rounded-full active:bg-amber-400">
             {/* <FontAwesomeIcon
               icon={faCopy}
               className="h-3 w-3 rounded-full bg-amber-800/25 p-2 text-amber-900/50"

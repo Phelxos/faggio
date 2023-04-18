@@ -12,6 +12,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2003,
     position: "Backend Developer",
+    favorites: [],
   },
   {
     forename: "matthias",
@@ -24,6 +25,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2020,
     position: "Frontend Developer",
+    favorites: [],
   },
   {
     forename: "helena",
@@ -36,6 +38,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2019,
     position: "UI Designer",
+    favorites: [],
   },
   {
     forename: "berkan",
@@ -48,6 +51,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2012,
     position: "UI Designer",
+    favorites: [],
   },
   {
     forename: "pieree",
@@ -60,6 +64,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2007,
     position: "UX Designer",
+    favorites: [],
   },
   {
     forename: "arnold",
@@ -72,6 +77,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2021,
     position: "Copywriter",
+    favorites: [],
   },
   {
     forename: "willem",
@@ -84,6 +90,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2017,
     position: "Project Manager",
+    favorites: [],
   },
   {
     forename: "sanji",
@@ -96,6 +103,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2014,
     position: "Project Manager",
+    favorites: [],
   },
   {
     forename: "nils",
@@ -108,6 +116,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2022,
     position: "Product Owner",
+    favorites: [],
   },
   {
     forename: "seren",
@@ -120,6 +129,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2017,
     position: "Team Lead",
+    favorites: [],
   },
   {
     forename: "wassili",
@@ -132,6 +142,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2020,
     position: "Frontend Developer",
+    favorites: [],
   },
   {
     forename: "susanne",
@@ -144,6 +155,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2018,
     position: "Copywriter",
+    favorites: [],
   },
   {
     forename: "lisa",
@@ -156,6 +168,7 @@ const allCoworkers: ICoworker[] = [
     },
     employmentBeginning: 2011,
     position: "UI Designer",
+    favorites: [],
   },
 ];
 

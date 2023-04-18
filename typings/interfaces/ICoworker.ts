@@ -15,4 +15,5 @@ export default interface ICoworker {
   position?: TPosition;
   projects?: {}[];
   coworkerId: TCoworkerId;
+  favorites: number[];
 }
