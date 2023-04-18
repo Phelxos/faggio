@@ -2,7 +2,7 @@ import React from "react";
 import FavouritesUser from "./FavouritesUser";
 import useCoworkers from "../../../stores/SCoworkers";
 import useAccount from "../../../stores/SAccount";
-import SpinnerWrapped from "../../Spinner/SpinnerWrapped";
+import SpinnerWrapped from "../../spinners/SpinnerWrapped";
 import ICoworker from "../../../typings/interfaces/ICoworker";
 import Link from "next/link";
 import Icon from "../../icons/Icon";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Dialog } from "@headlessui/react";
 import useCoworkers from "../../../stores/SCoworkers";
-import Spinner from "../../Spinner/Spinner";
+import Spinner from "../../spinners/Spinner";
 import ICoworker from "../../../typings/interfaces/ICoworker";
 import IModal from "../../../typings/interfaces/IModal";
 import Image from "next/image";

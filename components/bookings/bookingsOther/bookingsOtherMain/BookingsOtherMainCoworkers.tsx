@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import useCoworkers from "../../../../stores/SCoworkers";
 import ICoworker from "../../../../typings/interfaces/ICoworker";
-import Spinner from "../../../spinner/Spinner";
+import Spinner from "../../../spinners/Spinner";
 import { CBookings } from "../../../contexts/CBookings";
 import useModal from "../../../../hooks/useModal";
 import UserImage from "../../../user/UserImage";
