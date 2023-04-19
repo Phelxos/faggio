@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
-import { isAfter } from "date-fns";
+import { isAfter, parseISO, parseJSON } from "date-fns";
 import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 import IBooking from "../typings/interfaces/IBooking";
 
@@ -11,20 +11,23 @@ export default function useNextBooking(id: number):
       office: TOfficeCityEnglish;
     }
   | undefined {
-  const today = useCalendar((s) => s.today);
-  const bookings = useBookings((s) => s.bookingsOther);
+  const today = parseJSON(useCalendar((s) => s.today)); // Parse the date saved in JSON format for comparison
+  const bookings = useBookings((s) => s.bookings);
   const nextBooking = useRef<IBooking | undefined>(undefined);
 
   nextBooking.current = bookings.find(({ date, coworkerId }) => {
-    if (isAfter(new Date(date), today))
-      return isAfter(new Date(date), today) && coworkerId === id;
+    const newDate = new Date(parseISO(date as string));
+    if (isAfter(newDate, today))
+      return isAfter(newDate, today) && coworkerId === id;
   });
 
   useEffect(() => {
     nextBooking.current = bookings.find(({ date, coworkerId }) => {
-      if (isAfter(new Date(date), today))
-        return isAfter(new Date(date), today) && coworkerId === id;
+      const newDate = new Date(parseISO(date as string));
+      if (isAfter(newDate, today))
+        return isAfter(newDate, today) && coworkerId === id;
     });
+    console.log(bookings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [today]);
 

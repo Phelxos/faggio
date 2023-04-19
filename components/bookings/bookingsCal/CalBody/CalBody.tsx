@@ -92,8 +92,6 @@ export default function CalBody() {
 
   useEffect(() => {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
-    fetchBookings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedYear, selectedMonth]);
 
   return (

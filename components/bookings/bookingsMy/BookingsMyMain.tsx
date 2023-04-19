@@ -20,7 +20,7 @@ export default function BookingsMyMain() {
   };
 
   return (
-    <div className="w-full grow divide-y-4 divide-emerald-900">
+    <div className="h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-scroll">
       {bookings.length > 0
         ? bookings
             .filter(
@@ -57,20 +57,17 @@ export default function BookingsMyMain() {
                     </span>
                   </div>
                   <div className="grid w-full grid-cols-6">
-                    <div className="col-span-5 flex w-fit items-center justify-between gap-2 rounded-xl bg-slate-800/25 p-2">
+                    <div className="col-span-5 flex w-fit items-center justify-between gap-2 rounded-xl bg-slate-800/25 py-1 px-2">
                       <Icon
                         icon="buildingOffice"
-                        className="h-5 w-5 fill-slate-300/25"
+                        className="h-4 w-4 fill-slate-300/25"
                       />
-                      <span className="text-xs uppercase text-slate-300/75">
+                      <span className="text-xs uppercase text-slate-300/50">
                         {capitaliseFirstLetter(
                           EOfficesEnglishToGerman[booking.office]
                         )}
                       </span>
                     </div>
-                    <span className="col-span-1 place-self-center rounded bg-slate-800/25 p-2 text-center text-xs text-slate-300/50">
-                      {getYear(new Date(booking.date))}
-                    </span>
                   </div>
                 </div>
                 <div className="flex grow flex-col items-end justify-center">
