@@ -4,6 +4,7 @@ import useCalendar from "../stores/SCalendar";
 import { isAfter, parseISO, parseJSON } from "date-fns";
 import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 import IBooking from "../typings/interfaces/IBooking";
+import getSafeDate from "../helpers/getSafeDate";
 
 export default function useNextBooking(id: number):
   | {
@@ -16,14 +17,14 @@ export default function useNextBooking(id: number):
   const nextBooking = useRef<IBooking | undefined>(undefined);
 
   nextBooking.current = bookings.find(({ date, coworkerId }) => {
-    const newDate = new Date(parseISO(date as string));
+    const newDate = getSafeDate(date);
     if (isAfter(newDate, today))
       return isAfter(newDate, today) && coworkerId === id;
   });
 
   useEffect(() => {
     nextBooking.current = bookings.find(({ date, coworkerId }) => {
-      const newDate = new Date(parseISO(date as string));
+      const newDate = getSafeDate(date);
       if (isAfter(newDate, today))
         return isAfter(newDate, today) && coworkerId === id;
     });

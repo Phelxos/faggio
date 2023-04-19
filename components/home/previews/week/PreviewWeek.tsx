@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
-import useCalendar from "../../../stores/SCalendar";
-import useWeekNext from "../../../hooks/useWeekNext";
-import useWeekCurrent from "../../../hooks/useWeekCurrent";
+import useCalendar from "../../../../stores/SCalendar";
+import useWeekNext from "../../../../hooks/useWeekNext";
+import useWeekCurrent from "../../../../hooks/useWeekCurrent";
 import { getDate, getDay } from "date-fns";
-import useBookings from "../../../stores/SBookings";
+import useBookings from "../../../../stores/SBookings";
 import { isSameDay } from "date-fns";
-import useOffice from "../../../stores/SOffices";
-import getOccupancyLevel from "../../../helpers/getOccupancyLevel";
+import useOffice from "../../../../stores/SOffices";
+import getOccupancyLevel from "../../../../helpers/getOccupancyLevel";
 
 export default function PreviewWeek() {
   const globallySelectedOffice = useOffice(
@@ -60,6 +60,7 @@ export default function PreviewWeek() {
       });
       setWeekBookingsOtherCount(newWeekBookingsOtherCount);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookingsOther, isShowingNextWeekBookings]);
 
   useEffect(() => {
