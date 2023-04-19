@@ -83,6 +83,21 @@ let bookings: IBooking[] = [
     coworkerId: 1002,
     office: "dortmund",
   },
+  {
+    date: "2023-04-20T23:00:00.000Z",
+    coworkerId: 1003,
+    office: "dortmund",
+  },
+  {
+    date: "2023-04-20T23:00:00.000Z",
+    coworkerId: 1004,
+    office: "dortmund",
+  },
+  {
+    date: "2023-04-19T23:00:00.000Z",
+    coworkerId: 1005,
+    office: "dortmund",
+  },
 ];
 
 export default function handler(req: any, res: any) {

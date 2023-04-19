@@ -27,7 +27,6 @@ export default function useNextBooking(id: number):
       if (isAfter(newDate, today))
         return isAfter(newDate, today) && coworkerId === id;
     });
-    console.log(bookings);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [today]);
 

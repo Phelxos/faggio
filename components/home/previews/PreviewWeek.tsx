@@ -17,7 +17,7 @@ export default function PreviewWeek() {
   ).workstations;
   const calWeek = useCalendar((s) => s.currentCalWeek);
   const today = useCalendar((s) => s.today);
-  const bookingsOther = useBookings((s) => s.bookingsOther);
+  const bookingsOther = useBookings((s) => s.bookings);
   const nextWeek = useWeekNext();
   const currentWeek = useWeekCurrent();
   const [isShowingNextWeekBookings, setIsShowingNextWeekBookings] =
