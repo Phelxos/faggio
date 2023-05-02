@@ -8,9 +8,13 @@ exports.up = function (knex) {
     .createTable("bookings", function (table) {
       table.increments("id").primary();
       table.date("date").notNullable();
-      table.string("office").notNullable();
       table
-        .number("coworkerId")
+        .foreign("office")
+        .notNullable()
+        .references("city")
+        .inTable("office");
+      table
+        .foreign("coworkerId")
         .notNullable()
         .references("coworkerId")
         .inTable("coworkers");
@@ -23,14 +27,28 @@ exports.up = function (knex) {
       table.string("imgSrc");
       table.string("birthdayDate");
       table.string("birthdayMonth");
-      table.number("employmentBeginning").notNullable();
+      table.integer("employmentBeginning").notNullable();
       table.string("position").notNullable();
       table.json("projects");
-      table.number("coworkerId").notNullable();
+      table.integer("coworkerId").notNullable();
       table.json("favorites");
       table.string("email").notNullable();
       table.string("phone").notNullable();
       table.string("messenger").notNullable();
+    })
+    .createTable("office", function (table) {
+      table.string("city").notNullable();
+      table.integer("officeId").notNullable();
+      table.string("district");
+      table.string("street").notNullable();
+      table.string("houseNumber").notNullable();
+      table.integer("areaInSquareMeters");
+      table.boolean("areDogsAllowed");
+      table.integer("headcount");
+      table.integer("workstations");
+      table.text("description");
+      table.string("imgSrc");
+      table.string("intranetUrl");
     });
 };
 
