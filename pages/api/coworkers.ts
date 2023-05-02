@@ -13,6 +13,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2003,
     position: "Backend Developer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "matthias",
@@ -26,6 +29,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2020,
     position: "Frontend Developer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "helena",
@@ -39,6 +45,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2019,
     position: "UI Designer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "berkan",
@@ -52,6 +61,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2012,
     position: "UI Designer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "pieree",
@@ -65,6 +77,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2007,
     position: "UX Designer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "arnold",
@@ -78,6 +93,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2021,
     position: "Copywriter",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "willem",
@@ -91,6 +109,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2017,
     position: "Project Manager",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "sanji",
@@ -104,6 +125,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2014,
     position: "Project Manager",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "nils",
@@ -117,6 +141,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2022,
     position: "Product Owner",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "seren",
@@ -130,6 +157,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2017,
     position: "Team Lead",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "wassili",
@@ -143,6 +173,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2020,
     position: "Frontend Developer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "susanne",
@@ -156,6 +189,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2018,
     position: "Copywriter",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
   {
     forename: "lisa",
@@ -169,6 +205,9 @@ const allCoworkers: ICoworker[] = [
     employmentBeginning: 2011,
     position: "UI Designer",
     favorites: [],
+    email: "coworker@company.com",
+    phone: "+4929021234567",
+    messenger: "#",
   },
 ];
 

@@ -16,4 +16,7 @@ export default interface ICoworker {
   projects?: {}[];
   coworkerId: TCoworkerId;
   favorites: number[];
+  email: string;
+  phone: string;
+  messenger: string;
 }
