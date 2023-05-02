@@ -12,7 +12,7 @@ export default interface ICoworker {
     month: number;
   };
   employmentBeginning?: number;
-  position?: TPosition;
+  position: TPosition;
   projects?: {}[];
   coworkerId: TCoworkerId;
   favorites: number[];
