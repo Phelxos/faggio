@@ -5,21 +5,6 @@
 
 exports.up = function (knex) {
   return knex.schema
-    .createTable("bookings", function (table) {
-      table.increments("id").primary();
-      table.date("date").notNullable();
-      table
-        .foreign("office")
-        .notNullable()
-        .references("city")
-        .inTable("office");
-      table
-        .foreign("coworkerId")
-        .notNullable()
-        .references("coworkerId")
-        .inTable("coworkers");
-      table.timestamps(true, true);
-    })
     .createTable("coworkers", function (table) {
       table.string("forename").notNullable();
       table.string("surname").notNullable();
@@ -36,7 +21,7 @@ exports.up = function (knex) {
       table.string("phone").notNullable();
       table.string("messenger").notNullable();
     })
-    .createTable("office", function (table) {
+    .createTable("offices", function (table) {
       table.string("city").notNullable();
       table.integer("officeId").notNullable();
       table.string("district");
@@ -49,6 +34,15 @@ exports.up = function (knex) {
       table.text("description");
       table.string("imgSrc");
       table.string("intranetUrl");
+    })
+    .createTable("bookings", function (table) {
+      table.increments("id").primary();
+      table.date("date").notNullable();
+      table.string("office").notNullable();
+      table.integer("coworkerId").notNullable();
+      table.foreign("office").references("city").inTable("offices");
+      table.foreign("coworkerId").references("coworkerId").inTable("coworkers");
+      table.timestamps(true, true);
     });
 };
 
@@ -58,5 +52,8 @@ exports.up = function (knex) {
  */
 
 exports.down = function (knex) {
-  return knex.schema.dropTable("bookings");
+  return knex.schema
+    .dropTable("bookings")
+    .dropTable("coworkers")
+    .dropTable("offices");
 };

@@ -1,14 +1,14 @@
 module.exports = {
   client: "sqlite3",
   connection: {
-    filename: "./faggio-db.sqlite",
+    filename: "./database/faggio-db.sqlite",
   },
   useNullAsDefault: true,
   migrations: {
-    directory: "./migrations",
+    directory: "./database/migrations",
   },
   seeds: {
-    directory: "./seeds",
+    directory: "./database/seeds",
   },
   useNullAsDefault: true,
 };

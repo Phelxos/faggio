@@ -1,6 +1,7 @@
 import { apiPath } from "../../config";
 import IBooking from "../../typings/interfaces/IBooking";
 import filterDuplicateBookings from "../../helpers/filterDuplicateBookings";
+import { addBooking } from "../../database/db";
 
 let bookings: IBooking[] = [
   {
@@ -107,6 +108,7 @@ export default function handler(req: any, res: any) {
     } else if (req.method === "POST") {
       const { bookingsToBeSaved } = req.body;
       bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
+      addBooking(bookingsToBeSaved[0]);
       res.status(200).json(bookings);
     } else if (req.method === "DELETE") {
       const bookingsToBeRemoved = req.body;
