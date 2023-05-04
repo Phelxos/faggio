@@ -38,9 +38,9 @@ exports.up = function (knex) {
     .createTable("bookings", function (table) {
       table.increments("id").primary();
       table.date("date").notNullable();
-      table.string("office").notNullable();
+      table.string("officeId").notNullable();
       table.integer("coworkerId").notNullable();
-      table.foreign("office").references("city").inTable("offices");
+      table.foreign("officeId").references("officeId").inTable("offices");
       table.foreign("coworkerId").references("coworkerId").inTable("coworkers");
       table.timestamps(true, true);
     });

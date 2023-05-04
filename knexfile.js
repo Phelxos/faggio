@@ -3,7 +3,6 @@ module.exports = {
   connection: {
     filename: "./database/faggio-db.sqlite",
   },
-  useNullAsDefault: true,
   migrations: {
     directory: "./database/migrations",
   },

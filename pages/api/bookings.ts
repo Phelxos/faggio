@@ -5,99 +5,99 @@ import { addBooking } from "../../database/db";
 
 let bookings: IBooking[] = [
   {
-    date: "2023-05-07T23:00:00.000Z",
+    date: "2023-06-07T23:00:00.000Z",
     coworkerId: 1000,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-13T23:00:00.000Z",
+    date: "2023-06-13T23:00:00.000Z",
     coworkerId: 1001,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-09T23:00:00.000Z",
+    date: "2023-06-09T23:00:00.000Z",
     coworkerId: 1002,
-    office: "bremen",
+    officeId: 11,
   },
   {
-    date: "2023-05-14T23:00:00.000Z",
+    date: "2023-06-14T23:00:00.000Z",
     coworkerId: 1003,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-01T23:00:00.000Z",
+    date: "2023-06-01T23:00:00.000Z",
     coworkerId: 1004,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-18T23:00:00.000Z",
+    date: "2023-06-18T23:00:00.000Z",
     coworkerId: 1005,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-09T23:00:00.000Z",
+    date: "2023-06-09T23:00:00.000Z",
     coworkerId: 1006,
-    office: "cologne",
+    officeId: 12,
   },
   {
-    date: "2023-05-25T23:00:00.000Z",
+    date: "2023-06-25T23:00:00.000Z",
     coworkerId: 1007,
-    office: "munich",
+    officeId: 13,
   },
   {
-    date: "2023-05-03T23:00:00.000Z",
+    date: "2023-06-03T23:00:00.000Z",
     coworkerId: 1008,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-13T23:00:00.000Z",
+    date: "2023-06-13T23:00:00.000Z",
     coworkerId: 1009,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-17T23:00:00.000Z",
+    date: "2023-06-17T23:00:00.000Z",
     coworkerId: 1010,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-13T23:00:00.000Z",
+    date: "2023-06-13T23:00:00.000Z",
     coworkerId: 1011,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-05T23:00:00.000Z",
+    date: "2023-06-05T23:00:00.000Z",
     coworkerId: 1012,
-    office: "cologne",
+    officeId: 12,
   },
   {
-    date: "2023-05-22T23:00:00.000Z",
+    date: "2023-06-22T23:00:00.000Z",
     coworkerId: 1000,
-    office: "cologne",
+    officeId: 12,
   },
   {
-    date: "2023-05-09T23:00:00.000Z",
+    date: "2023-06-09T23:00:00.000Z",
     coworkerId: 1001,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-05-21T23:00:00.000Z",
+    date: "2023-06-21T23:00:00.000Z",
     coworkerId: 1002,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-04-20T23:00:00.000Z",
+    date: "2023-06-20T23:00:00.000Z",
     coworkerId: 1003,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-04-20T23:00:00.000Z",
+    date: "2023-06-20T23:00:00.000Z",
     coworkerId: 1004,
-    office: "dortmund",
+    officeId: 10,
   },
   {
-    date: "2023-04-19T23:00:00.000Z",
+    date: "2023-06-19T23:00:00.000Z",
     coworkerId: 1005,
-    office: "dortmund",
+    officeId: 10,
   },
 ];
 
@@ -117,7 +117,7 @@ export default function handler(req: any, res: any) {
           return (
             toBeRemoved.date === booking.date &&
             toBeRemoved.coworkerId === booking.coworkerId &&
-            toBeRemoved.office === booking.office
+            toBeRemoved.officeId === booking.officeId
           );
         });
       });

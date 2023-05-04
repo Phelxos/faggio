@@ -24,7 +24,7 @@ export default function BookingsMyHeader() {
 
   let myBookingsInSelectedOffice = bookings.filter(
     (booking: IBooking) =>
-      booking.office === c?.locallySelectedOfficeName &&
+      booking.officeId === c?.locallySelectedOfficeId &&
       booking.coworkerId === coworkerId
   );
 

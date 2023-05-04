@@ -7,6 +7,8 @@ import useBookings from "../../stores/SBookings";
 interface Interface {
   isBeingEdited: boolean;
   toggleIsBeingEdited: () => void;
+  locallySelectedOfficeId: number;
+  setLocallySelectedOfficeId: (id: number) => void;
   locallySelectedOfficeName: TOfficeCityEnglish;
   setLocallySelectedOfficeName: (office: TOfficeCityEnglish) => void;
   bookingsToBeSaved: IBooking[];
@@ -23,7 +25,10 @@ interface Interface {
   toggleIsOpenModal: () => void;
 }
 
-const initVal = initialValueForGloballySelectedOffice.city;
+const initVal = {
+  name: initialValueForGloballySelectedOffice.city,
+  id: initialValueForGloballySelectedOffice.officeId,
+};
 
 export const CBookings = React.createContext<Interface | undefined>(undefined);
 
@@ -39,7 +44,9 @@ export default function ContextBookingsProvider({
   );
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
-    useState<TOfficeCityEnglish>(initVal);
+    useState<TOfficeCityEnglish>(initVal.name);
+  const [locallySelectedOfficeId, setLocallySelectedOfficeId] =
+    useState<number>(initVal.id);
   const setBookings = useBookings((s) => s.setBookings);
   const deleteBookings = useBookings((s) => s.deleteBookings);
   const calRef = useRef<HTMLDivElement | null>(null);
@@ -55,7 +62,7 @@ export default function ContextBookingsProvider({
       bookingsToBeSaved.filter(
         (b: IBooking) =>
           (b.date as Date).toJSON() !== date.toJSON() ||
-          b.office !== locallySelectedOfficeName
+          b.officeId !== locallySelectedOfficeId
       )
     );
   };
@@ -75,7 +82,7 @@ export default function ContextBookingsProvider({
       bookingsToBeDeleted.filter(
         (b: IBooking) =>
           (b.date as Date).toJSON() !== date.toJSON() ||
-          b.office !== locallySelectedOfficeName
+          b.officeId !== locallySelectedOfficeId
       )
     );
   };
@@ -95,6 +102,8 @@ export default function ContextBookingsProvider({
     toggleIsBeingEdited,
     locallySelectedOfficeName,
     setLocallySelectedOfficeName,
+    locallySelectedOfficeId,
+    setLocallySelectedOfficeId,
     bookingsToBeSaved,
     setBookingsToBeSaved: setBookingsToBeSavedTMP,
     deleteBookingsToBeSaved,

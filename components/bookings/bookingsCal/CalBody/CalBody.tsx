@@ -6,13 +6,11 @@ import useAccount from "../../../../stores/SAccount";
 import mapCalendar from "../../../../helpers/mapCalendar";
 import { getDate, isPast } from "date-fns";
 import { CBookings } from "../../../contexts/CBookings";
-import { TOfficeCityEnglish } from "../../../../typings/types/TOfficeCity";
 import IBooking from "../../../../typings/interfaces/IBooking";
 
 export default function CalBody() {
   const c = useContext(CBookings);
   const bookings = useBookings((s) => s.bookings);
-  const fetchBookings = useBookings((s) => s.fetchBookings);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const coworkerId: number = useAccount((s) => s.coworkerId);
@@ -24,7 +22,7 @@ export default function CalBody() {
       bookings.some(
         (b: IBooking) =>
           b.date === date.toJSON() &&
-          b.office === c?.locallySelectedOfficeName &&
+          b.officeId === c?.locallySelectedOfficeId &&
           b.coworkerId === coworkerId
       )
     ) {
@@ -38,7 +36,7 @@ export default function CalBody() {
       c?.bookingsToBeSaved.some(
         (b: IBooking) =>
           (b.date as Date).toJSON() === date.toJSON() &&
-          b.office === c?.locallySelectedOfficeName
+          b.officeId === c?.locallySelectedOfficeId
       )
     ) {
       return true;
@@ -51,7 +49,7 @@ export default function CalBody() {
       c?.bookingsToBeDeleted.some(
         (b: IBooking) =>
           (b.date as Date).toJSON() === date.toJSON() &&
-          b.office === c?.locallySelectedOfficeName
+          b.officeId === c?.locallySelectedOfficeId
       )
     ) {
       return true;
@@ -64,13 +62,13 @@ export default function CalBody() {
       // Ensure using date object
       const safeDate: Date = new Date(date);
       if (isPast(safeDate)) return;
-      const office: TOfficeCityEnglish = c!.locallySelectedOfficeName;
+      const officeId = c!.locallySelectedOfficeId;
       if (
         !isBookedDate(safeDate) &&
         !isBeingSelectedAsBookingToBeSaved(safeDate) &&
         !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeSaved({ date: safeDate, coworkerId, office });
+        c.setBookingsToBeSaved({ date: safeDate, coworkerId, officeId });
       } else if (
         isBeingSelectedAsBookingToBeSaved(safeDate) &&
         !isBookedDate(safeDate)
@@ -80,7 +78,7 @@ export default function CalBody() {
         isBookedDate(safeDate) &&
         !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.setBookingsToBeDeleted({ date: safeDate, coworkerId, office });
+        c.setBookingsToBeDeleted({ date: safeDate, coworkerId, officeId });
       } else if (
         isBookedDate(safeDate) &&
         isBeingSelectedAsBookingToBeDeleted(safeDate)

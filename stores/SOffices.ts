@@ -7,9 +7,10 @@ import useAccount from "./SAccount";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
+  officeId: 10,
   district: "Stadtviertel",
-  address: { street: "straße", housenumber: "1", postcode: "12345" },
-  areaInSquareMetres: 100,
+  address: { street: "straße", houseNumber: "1", postcode: "12345" },
+  areaInSquareMeters: 100,
   headcount: 25,
   workstations: 25,
   areDogsAllowed: true,
