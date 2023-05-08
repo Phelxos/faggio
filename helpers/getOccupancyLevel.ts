@@ -1,17 +1,18 @@
 import IBooking from "../typings/interfaces/IBooking";
 import { isSameDay } from "date-fns";
-import useOffice from "../stores/SOffices";
-import TOfficeCity from "../typings/types/TOfficeCity";
 
 export default function getOccupancyLevel(
   date: any,
   workstationCapacity: number,
   bookings: IBooking[],
-  office: TOfficeCity
+  officeId: number
 ) {
   const bookingsNumber = bookings.filter(
-    ({ date: bookingDate, office: bookingOffice }) => {
-      return isSameDay(new Date(bookingDate), date && office === bookingOffice);
+    ({ date: bookingDate, officeId: checkingOfficeId }) => {
+      return isSameDay(
+        new Date(bookingDate),
+        date && officeId === checkingOfficeId
+      );
     }
   ).length;
   const occupancyRate = Math.round(

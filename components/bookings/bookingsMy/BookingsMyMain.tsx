@@ -4,10 +4,9 @@ import useBookings from "../../../stores/SBookings";
 import useAccount from "../../../stores/SAccount";
 import IBooking from "../../../typings/interfaces/IBooking";
 import { CBookings } from "../../contexts/CBookings";
-import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
 import { getDate, getMonth, getYear } from "date-fns";
 import displayEquivalent from "../../../helpers/displayEquivalent";
-import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
+import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
 
 export default function BookingsMyMain() {
   const bookings = useBookings((s) => s.bookings);
@@ -25,7 +24,7 @@ export default function BookingsMyMain() {
         ? bookings
             .filter(
               (booking: IBooking) =>
-                booking.office === c?.locallySelectedOfficeName &&
+                booking.officeId === c?.locallySelectedOfficeId &&
                 booking.coworkerId === coworkerId
             )
             .map((booking: IBooking, i: number) => (
@@ -63,9 +62,7 @@ export default function BookingsMyMain() {
                         className="h-4 w-4 fill-slate-300/25"
                       />
                       <span className="text-xs uppercase text-slate-300/50">
-                        {capitaliseFirstLetter(
-                          EOfficesEnglishToGerman[booking.office]
-                        )}
+                        {convertFromIdToOfficeName(booking.officeId)}
                       </span>
                     </div>
                   </div>

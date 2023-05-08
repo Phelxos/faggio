@@ -9,10 +9,11 @@ export default function useNextWeekBookingsMy(): IBooking[] | undefined {
   const c = useContext(CBookings);
   const globallySelectedOffice = useOffice((s) => s.globallySelectedOffice);
   const bookings = useBookings((s) => s.bookings);
-  const nextBookings = bookings.filter(({ date, office }) => {
+  const nextBookings = bookings.filter(({ date, officeId }) => {
     return (
       getWeek(new Date(date)) === getWeek(new Date()) + 1 &&
-      office === (c?.locallySelectedOfficeName ?? globallySelectedOffice.city)
+      officeId ===
+        (c?.locallySelectedOfficeId ?? globallySelectedOffice.officeId)
     );
   });
   return nextBookings ? nextBookings : undefined;

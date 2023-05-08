@@ -1,15 +1,14 @@
 import { useEffect, useRef } from "react";
 import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
-import { isAfter, parseISO, parseJSON } from "date-fns";
-import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
+import { isAfter, parseJSON } from "date-fns";
 import IBooking from "../typings/interfaces/IBooking";
 import getSafeDate from "../helpers/getSafeDate";
 
 export default function useNextBooking(id: number):
   | {
       date: Date;
-      office: TOfficeCityEnglish;
+      officeId: number;
     }
   | undefined {
   const today = parseJSON(useCalendar((s) => s.today)); // Parse the date saved in JSON format for comparison
@@ -34,7 +33,7 @@ export default function useNextBooking(id: number):
   return nextBooking.current
     ? {
         date: new Date(nextBooking.current!.date),
-        office: nextBooking.current!.office,
+        officeId: nextBooking.current!.officeId,
       }
     : undefined;
 }

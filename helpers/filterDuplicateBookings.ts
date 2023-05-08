@@ -7,7 +7,7 @@ export default function filterDuplicateBookings(
   const uniqueBookings: IBooking[] = [];
 
   for (const booking of bookings) {
-    const bookingKey = `${booking.date}-${booking.coworkerId}-${booking.office}`;
+    const bookingKey = `${booking.date}-${booking.coworkerId}-${booking.officeId}`;
 
     if (!seenBookings[bookingKey]) {
       seenBookings[bookingKey] = true;

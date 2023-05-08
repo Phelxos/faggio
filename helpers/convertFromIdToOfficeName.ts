@@ -19,7 +19,7 @@ const officeIdToName: IOfficeIdToName = {
 };
 
 // TO-DO Implement global language to change the offices' names accordingly
-export default function useOfficeNameFromId(
+export default function convertFromIdToOfficeName(
   id: number
 ): TOfficeCity | undefined {
   if (EOfficesEnglishToGerman[officeIdToName[id]]) {
