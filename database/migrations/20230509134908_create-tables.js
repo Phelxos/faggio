@@ -1,8 +1,3 @@
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-
 exports.up = function (knex) {
   return knex.schema
     .createTable("coworkers", function (table) {
@@ -15,7 +10,7 @@ exports.up = function (knex) {
       table.integer("employmentBeginning").notNullable();
       table.string("position").notNullable();
       table.json("projects");
-      table.integer("coworkerId").notNullable();
+      table.integer("coworkerId").notNullable().unique();
       table.json("favorites");
       table.string("email").notNullable();
       table.string("phone").notNullable();
@@ -23,7 +18,7 @@ exports.up = function (knex) {
     })
     .createTable("offices", function (table) {
       table.string("city").notNullable();
-      table.integer("officeId").notNullable();
+      table.integer("officeId").notNullable().unique;
       table.string("district");
       table.string("street").notNullable();
       table.string("houseNumber").notNullable();
@@ -38,18 +33,13 @@ exports.up = function (knex) {
     .createTable("bookings", function (table) {
       table.increments("id").primary();
       table.date("date").notNullable();
-      table.string("officeId").notNullable();
+      table.integer("officeId").notNullable();
       table.integer("coworkerId").notNullable();
       table.foreign("officeId").references("officeId").inTable("offices");
       table.foreign("coworkerId").references("coworkerId").inTable("coworkers");
       table.timestamps(true, true);
     });
 };
-
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
 
 exports.down = function (knex) {
   return knex.schema

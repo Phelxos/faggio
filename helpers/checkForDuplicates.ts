@@ -24,7 +24,7 @@ export default async function checkForDuplicates(
   } catch (e) {
     console.error(
       e,
-      `An error has occurred while checking for duplicates in the table '${table}'.`
+      `🚧 | An error has occurred while checking for duplicates in the table '${table}'.`
     );
   }
 }

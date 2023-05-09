@@ -108,9 +108,8 @@ export default async function handler(req: any, res: any) {
       res.status(200).json(allBookings);
     } else if (req.method === "POST") {
       const { bookingsToBeSaved } = req.body;
-      bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
-      addBooking(bookingsToBeSaved[0]);
-      res.status(200).json(bookings);
+      const updatedBookings = await addBooking(bookingsToBeSaved);
+      res.status(200).json(updatedBookings);
     } else if (req.method === "DELETE") {
       const bookingsToBeRemoved = req.body;
       bookings = bookings.filter((booking: IBooking) => {

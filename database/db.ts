@@ -6,6 +6,19 @@ import checkForDuplicates from "../helpers/checkForDuplicates";
 
 const db = knex(config);
 
+export async function getAllBookings(): Promise<IBooking[] | undefined> {
+  try {
+    const result = await db("bookings").select(
+      "date",
+      "coworkerId",
+      "officeId"
+    );
+    return result;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 export async function addBooking(
   bookings: IBooking[]
 ): Promise<IBooking[] | undefined> {
@@ -27,23 +40,12 @@ export async function addBooking(
     );
 
     if (bookingsAreUnique) {
-      return await db("bookings").insert(preparedBookings);
+      await db("bookings").insert(preparedBookings);
+      const updatedBookings = await getAllBookings();
+      return updatedBookings;
     } else {
-      throw new Error("The booking to be inserted already exists.");
+      throw new Error("🚧 | One of bookings to be inserted already exists.");
     }
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-export async function getAllBookings(): Promise<IBooking[] | undefined> {
-  try {
-    const result = await db("bookings").select(
-      "date",
-      "coworkerId",
-      "officeId"
-    );
-    return result;
   } catch (e) {
     console.error(e);
   }
