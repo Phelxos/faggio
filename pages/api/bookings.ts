@@ -1,7 +1,7 @@
 import { apiPath } from "../../config";
 import IBooking from "../../typings/interfaces/IBooking";
 import filterDuplicateBookings from "../../helpers/filterDuplicateBookings";
-import { addBooking } from "../../database/db";
+import { addBooking, getAllBookings } from "../../database/db";
 
 let bookings: IBooking[] = [
   {
@@ -101,13 +101,13 @@ let bookings: IBooking[] = [
   },
 ];
 
-export default function handler(req: any, res: any) {
+export default async function handler(req: any, res: any) {
   try {
     if (req.method === "GET") {
-      res.status(200).json(bookings);
+      const allBookings = await getAllBookings();
+      res.status(200).json(allBookings);
     } else if (req.method === "POST") {
       const { bookingsToBeSaved } = req.body;
-      // TO-DO Filter duplicate bookings, and add them to the database
       bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
       addBooking(bookingsToBeSaved[0]);
       res.status(200).json(bookings);
