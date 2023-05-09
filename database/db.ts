@@ -38,7 +38,11 @@ export async function addBooking(
 
 export async function getAllBookings(): Promise<IBooking[] | undefined> {
   try {
-    const result = await db("bookings");
+    const result = await db("bookings").select(
+      "date",
+      "coworkerId",
+      "officeId"
+    );
     return result;
   } catch (e) {
     console.error(e);
