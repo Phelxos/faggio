@@ -9,7 +9,7 @@ export default function OfficeInformationCard({
   city,
   district,
   address,
-  areaInSquareMetres,
+  areaInSquareMeters,
   headcount,
   workstations,
   areDogsAllowed,
@@ -35,10 +35,10 @@ export default function OfficeInformationCard({
       <div className="flex flex-col p-6">
         <div className="mb-4 flex items-stretch gap-4">
           <OfficesCardQuickies
-            headcount={headcount}
-            workstations={workstations}
-            areDogsAllowed={areDogsAllowed}
-            areaInSquareMetres={areaInSquareMetres}
+            headcount={headcount as number}
+            workstations={workstations as number}
+            areDogsAllowed={areDogsAllowed as boolean}
+            areaInSquareMeters={areaInSquareMeters as number}
           />
           <div className="rounded-xl bg-amber-800/75 p-4 text-sm leading-relaxed text-amber-200">
             {description}
@@ -46,7 +46,7 @@ export default function OfficeInformationCard({
         </div>
         <OfficesCardAddress
           street={address?.street}
-          housenumber={address?.housenumber}
+          houseNumber={address?.houseNumber}
           postcode={address?.postcode}
           city={city}
         />

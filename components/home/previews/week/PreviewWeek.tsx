@@ -9,9 +9,9 @@ import useOffice from "../../../../stores/SOffices";
 import getOccupancyLevel from "../../../../helpers/getOccupancyLevel";
 
 export default function PreviewWeek() {
-  const globallySelectedOffice = useOffice(
+  const globallySelectedOfficeId = useOffice(
     (s) => s.globallySelectedOffice
-  ).city;
+  ).officeId;
   const workstationCapacity = useOffice(
     (s) => s.globallySelectedOffice
   ).workstations;
@@ -38,10 +38,10 @@ export default function PreviewWeek() {
     if (isShowingNextWeekBookings) {
       newWeekBookingsOtherCount = nextWeek.map(({ date }) => {
         const safeDate = new Date(date);
-        const count = bookingsOther.filter(({ date, office }) => {
+        const count = bookingsOther.filter(({ date, officeId }) => {
           return (
             isSameDay(new Date(date), safeDate) &&
-            globallySelectedOffice === office
+            globallySelectedOfficeId === officeId
           );
         }).length;
         return { count, date };
@@ -50,10 +50,10 @@ export default function PreviewWeek() {
     } else {
       newWeekBookingsOtherCount = currentWeek.map(({ date }) => {
         const safeDate = new Date(date);
-        const count = bookingsOther.filter(({ date, office }) => {
+        const count = bookingsOther.filter(({ date, officeId }) => {
           return (
             isSameDay(new Date(date), safeDate) &&
-            globallySelectedOffice === office
+            globallySelectedOfficeId === officeId
           );
         }).length;
         return { count, date };
@@ -106,15 +106,15 @@ export default function PreviewWeek() {
                       i % 2
                         ? `bg-emerald-800/75 text-emerald-500/${getOccupancyLevel(
                             date,
-                            workstationCapacity,
+                            workstationCapacity as number,
                             bookingsOther,
-                            globallySelectedOffice
+                            globallySelectedOfficeId
                           )}`
                         : `bg-emerald-700/75 text-emerald-400/${getOccupancyLevel(
                             date,
-                            workstationCapacity,
+                            workstationCapacity as number,
                             bookingsOther,
-                            globallySelectedOffice
+                            globallySelectedOfficeId
                           )}`
                     }`}
                   >

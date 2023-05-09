@@ -6,7 +6,7 @@ import { faPaw, faChair } from "@fortawesome/free-solid-svg-icons";
 interface Props {
   headcount: number;
   workstations: number;
-  areaInSquareMetres: number;
+  areaInSquareMeters: number;
   areDogsAllowed: boolean;
   className?: string;
 }
@@ -14,7 +14,7 @@ interface Props {
 export default function OfficesCardQuickies({
   headcount,
   workstations,
-  areaInSquareMetres,
+  areaInSquareMeters,
   areDogsAllowed,
   className,
 }: Props) {
@@ -29,7 +29,7 @@ export default function OfficesCardQuickies({
         {workstations}
       </div>
       <div className="flex min-h-[48px] w-full items-center justify-center rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 text-xs font-bold text-amber-500">
-        {areaInSquareMetres}
+        {areaInSquareMeters}
         <div className="ml-1 opacity-50">
           m<sup>2</sup>
         </div>

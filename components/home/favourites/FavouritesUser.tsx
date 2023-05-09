@@ -6,6 +6,7 @@ import useNextBooking from "../../../hooks/useNextBooking";
 import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 import ICoworker from "../../../typings/interfaces/ICoworker";
 import Icon from "../../icons/Icon";
+import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
 
 export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
   const nextBooking = useNextBooking(coworker.coworkerId);
@@ -33,9 +34,9 @@ export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
               {displayEquivalent(getDay(nextBooking?.date), "day")}
             </span>
           </div>
-          {nextBooking?.office && (
+          {nextBooking?.officeId && (
             <div className="w-full rounded-b-lg bg-pink-900/50 py-2 text-center text-xs uppercase tracking-widest text-pink-300/50">
-              {EOfficesEnglishToGerman[nextBooking.office]}
+              {convertFromIdToOfficeName(nextBooking.officeId)}
             </div>
           )}
         </>

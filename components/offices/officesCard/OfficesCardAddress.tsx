@@ -4,14 +4,14 @@ import Icon from "../../icons/Icon";
 
 interface Props {
   street: string;
-  housenumber: string;
+  houseNumber: string;
   postcode: string;
   city: string;
 }
 
 export default function OfficesCardAddress({
   street,
-  housenumber,
+  houseNumber,
   postcode,
   city,
 }: Props) {
@@ -62,7 +62,7 @@ export default function OfficesCardAddress({
           <Icon
             icon="documentDuplicate"
             className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75 active:bg-amber-700"
-            onClick={() => copyAdress(street, housenumber, postcode, city)}
+            onClick={() => copyAdress(street, houseNumber, postcode, city)}
           />
         </button>
       </div>
@@ -70,7 +70,7 @@ export default function OfficesCardAddress({
         <div className="flex w-full items-center justify-between gap-4">
           <div className="w-full text-right">
             <span className="break-all text-xs font-semibold uppercase tracking-widest text-amber-900">
-              {street} {housenumber}
+              {street} {houseNumber}
             </span>
           </div>
           <button className="flex flex-col items-center justify-center rounded-full active:bg-amber-400">
@@ -81,7 +81,7 @@ export default function OfficesCardAddress({
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
-              onClick={() => copyAdress(street, housenumber)}
+              onClick={() => copyAdress(street, houseNumber)}
             />
           </button>
         </div>

@@ -1,26 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import mapCalendar from "../../../helpers/mapCalendar";
 import useCalendar from "../../../stores/SCalendar";
 import useOffice from "../../../stores/SOffices";
 import useBookings from "../../../stores/SBookings";
+import useAccount from "../../../stores/SAccount";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import getOccupancyLevel from "../../../helpers/getOccupancyLevel";
+import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function PreviewMonth() {
-  const globallySelectedOffice = useOffice(
+  const globallySelectedOfficeId = useOffice(
     (s) => s.globallySelectedOffice
-  ).city;
+  ).officeId;
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
-  const bookingsOther = useBookings((s) => s.bookingsOther);
+  const allBookings = useBookings((s) => s.bookings);
+  const coworkerId = useAccount((s) => s.coworkerId);
+  const [bookingsOther, setBookingsOther] = useState<IBooking[]>([]);
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
   const workstationCapacity = useOffice(
     (s) => s.globallySelectedOffice
   ).workstations;
+
+  useEffect(() => {
+    const bookingsFromOtherCoworkers = allBookings.filter(
+      (booking) => booking.coworkerId !== coworkerId
+    );
+    setBookingsOther(bookingsFromOtherCoworkers);
+  }, [allBookings, coworkerId]);
 
   return (
     <div>
@@ -76,9 +87,9 @@ export default function PreviewMonth() {
                         key={i}
                         className={`h-[30px] w-[30px] rounded-full bg-emerald-200/${getOccupancyLevel(
                           weekday.date,
-                          workstationCapacity,
+                          workstationCapacity as number,
                           bookingsOther,
-                          globallySelectedOffice
+                          globallySelectedOfficeId
                         )}`}
                       />
                     );

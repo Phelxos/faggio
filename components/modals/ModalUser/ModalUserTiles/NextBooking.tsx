@@ -3,6 +3,7 @@ import capitaliseFirstLetter from "../../../../helpers/capitaliseFirstLetter";
 import { EOfficesEnglishToGerman } from "../../../../typings/types/TOfficeCity";
 import Icon from "../../../icons/Icon";
 import useNextBooking from "../../../../hooks/useNextBooking";
+import convertFromIdToOfficeName from "../../../../helpers/convertFromIdToOfficeName";
 
 export default function NextBooking({ id = 1000 }: { id: number | undefined }) {
   const nextBooking = useNextBooking(id);
@@ -33,10 +34,7 @@ export default function NextBooking({ id = 1000 }: { id: number | undefined }) {
             </span>
             <br />
             <span className="tracking-widest">
-              in{" "}
-              {capitaliseFirstLetter(
-                EOfficesEnglishToGerman[nextBooking?.office]
-              )}
+              in {convertFromIdToOfficeName(nextBooking.officeId)}
             </span>
           </>
         ) : (
