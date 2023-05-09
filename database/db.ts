@@ -8,7 +8,7 @@ const db = knex(config);
 /**
  * Checks if an entry already exists in a table
  * @param entryToBeChecked Object representing the entry to be inserted but needs to be checked for duplicates before
- * @returns Boolean indicating whether a duplicate has been found
+ * @returns Boolean indicating whether a duplicate has NOT been found
  */
 export async function checkForDuplicates(
   table: string,
@@ -16,7 +16,9 @@ export async function checkForDuplicates(
 ) {
   try {
     const result = await db(table).where(entryToBeChecked);
-    return result.length > 0;
+    console.log("🚀 ~ file: db.ts:19 ~ result:", result);
+    console.log("🚀 ~ file: db.ts:20 ~ result's length:", result.length > 0);
+    return result.length === 0; // True if NO duplicates have been found
   } catch (e) {
     console.error(
       e,
