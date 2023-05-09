@@ -31,7 +31,9 @@ const useBookings = create<Interface>()(
               bookingsToBeSaved,
               coworkerId,
             });
-            const sortedBookings = bookingsFromApi.sort(
+            if (!bookingsFromApi)
+              throw new Error("🚧 | No bookings returned from API.");
+            const sortedBookings = bookingsFromApi?.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
             set(() => ({
@@ -52,6 +54,8 @@ const useBookings = create<Interface>()(
             const { data: bookingsFromApi } = await a.delete(apiPath.BOOKINGS, {
               data: bookingsToBeRemoved,
             });
+            if (!bookingsFromApi)
+              throw new Error("🚧 | No bookings returned from API.");
             const sortedBookings = bookingsFromApi.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );

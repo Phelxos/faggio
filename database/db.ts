@@ -1,8 +1,9 @@
 import knex from "knex";
 import config from "../knexfile";
 import IBooking from "../typings/interfaces/IBooking";
-import prepareDate from "../helpers/prepareDate";
 import checkForDuplicates from "../helpers/checkForDuplicates";
+import prepareBookings from "../helpers/prepareBookings";
+import QueryBuilder from "knex";
 
 const db = knex(config);
 
@@ -20,19 +21,10 @@ export async function getAllBookings(): Promise<IBooking[] | undefined> {
 }
 
 export async function addBooking(
-  bookings: IBooking[]
+  bookingsToBeAdded: IBooking[]
 ): Promise<IBooking[] | undefined> {
   try {
-    const preparedBookings = bookings.map(
-      ({ date, coworkerId, officeId }: IBooking) => {
-        const preparedDate = prepareDate(date);
-        return {
-          date: preparedDate,
-          coworkerId,
-          officeId,
-        };
-      }
-    );
+    const preparedBookings = prepareBookings(bookingsToBeAdded);
 
     const bookingsAreUnique = await checkForDuplicates(
       "bookings",
@@ -46,6 +38,28 @@ export async function addBooking(
     } else {
       throw new Error("🚧 | One of bookings to be inserted already exists.");
     }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export async function deleteBookings(bookingsToBeDeleted: IBooking[]) {
+  try {
+    const preparedBookings = prepareBookings(bookingsToBeDeleted);
+
+    const promises = preparedBookings.map((booking) => {
+      return db("bookings")
+        .where({
+          date: booking.date,
+          coworkerId: booking.coworkerId,
+          officeId: booking.officeId,
+        })
+        .del();
+    });
+
+    await Promise.all(promises);
+    const updatedBookings = await getAllBookings();
+    return updatedBookings;
   } catch (e) {
     console.error(e);
   }

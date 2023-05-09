@@ -1,7 +1,7 @@
 import { apiPath } from "../../config";
 import IBooking from "../../typings/interfaces/IBooking";
 import filterDuplicateBookings from "../../helpers/filterDuplicateBookings";
-import { addBooking, getAllBookings } from "../../database/db";
+import { addBooking, deleteBookings, getAllBookings } from "../../database/db";
 
 let bookings: IBooking[] = [
   {
@@ -112,16 +112,8 @@ export default async function handler(req: any, res: any) {
       res.status(200).json(updatedBookings);
     } else if (req.method === "DELETE") {
       const bookingsToBeRemoved = req.body;
-      bookings = bookings.filter((booking: IBooking) => {
-        return !bookingsToBeRemoved.some((toBeRemoved: IBooking) => {
-          return (
-            toBeRemoved.date === booking.date &&
-            toBeRemoved.coworkerId === booking.coworkerId &&
-            toBeRemoved.officeId === booking.officeId
-          );
-        });
-      });
-      res.status(200).json(bookings);
+      const updatedBookings = await deleteBookings(bookingsToBeRemoved);
+      res.status(200).json(updatedBookings);
     } else {
       res.status(200).json(bookings);
     }
