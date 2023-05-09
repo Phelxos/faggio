@@ -107,6 +107,7 @@ export default function handler(req: any, res: any) {
       res.status(200).json(bookings);
     } else if (req.method === "POST") {
       const { bookingsToBeSaved } = req.body;
+      // TO-DO Filter duplicate bookings, and add them to the database
       bookings = filterDuplicateBookings([...bookings, ...bookingsToBeSaved]);
       addBooking(bookingsToBeSaved[0]);
       res.status(200).json(bookings);
