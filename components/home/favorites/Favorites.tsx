@@ -1,7 +1,7 @@
 import React from "react";
-import FavouritesContainer from "./FavouritesContainer";
+import FavouritesContainer from "./FavoritesContainer";
 
-export default function Favourites() {
+export default function Favorites() {
   return (
     <div>
       <p className="mb-3 text-2xl font-thin text-slate-400/75">

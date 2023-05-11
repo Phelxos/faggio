@@ -38,7 +38,6 @@ exports.up = function (knex) {
       table.integer("coworkerId").notNullable();
       table.foreign("officeId").references("officeId").inTable("offices");
       table.foreign("coworkerId").references("coworkerId").inTable("coworkers");
-      table.timestamps(true, true);
     });
 };
 

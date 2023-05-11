@@ -3,12 +3,11 @@ import React from "react";
 import UserImage from "../../user/UserImage";
 import displayEquivalent from "../../../helpers/displayEquivalent";
 import useNextBooking from "../../../hooks/useNextBooking";
-import { EOfficesEnglishToGerman } from "../../../typings/types/TOfficeCity";
 import ICoworker from "../../../typings/interfaces/ICoworker";
 import Icon from "../../icons/Icon";
 import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
 
-export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
+export default function FavoritesUser({ coworker }: { coworker: ICoworker }) {
   const nextBooking = useNextBooking(coworker.coworkerId);
   return (
     <div
@@ -41,7 +40,7 @@ export default function FavouritesUser({ coworker }: { coworker: ICoworker }) {
           )}
         </>
       ) : (
-        <div className="flex flex-col items-center justify-center px-4 pt-1 pb-6">
+        <div className="flex flex-col items-center justify-center px-4 pb-6 pt-1">
           <Icon
             icon="xMark"
             className="h-14 w-14 rounded-full fill-pink-500/50 p-2"
