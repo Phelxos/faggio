@@ -4,11 +4,9 @@ export default interface IOffice {
   city: TOfficeCityEnglish;
   officeId: number;
   district?: string;
-  address: {
-    street: string;
-    houseNumber: string;
-    postcode: string;
-  };
+  street: string;
+  houseNumber: string;
+  postcode: string;
   areaInSquareMeters?: number;
   headcount?: number;
   workstations?: number;

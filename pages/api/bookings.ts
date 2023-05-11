@@ -1,121 +1,29 @@
 import { apiPath } from "../../config";
-import IBooking from "../../typings/interfaces/IBooking";
-import filterDuplicateBookings from "../../helpers/filterDuplicateBookings";
-import { addBooking, deleteBookings, getAllBookings } from "../../database/db";
-
-let bookings: IBooking[] = [
-  {
-    date: "2023-06-07T23:00:00.000Z",
-    coworkerId: 1000,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-13T23:00:00.000Z",
-    coworkerId: 1001,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-09T23:00:00.000Z",
-    coworkerId: 1002,
-    officeId: 11,
-  },
-  {
-    date: "2023-06-14T23:00:00.000Z",
-    coworkerId: 1003,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-01T23:00:00.000Z",
-    coworkerId: 1004,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-18T23:00:00.000Z",
-    coworkerId: 1005,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-09T23:00:00.000Z",
-    coworkerId: 1006,
-    officeId: 12,
-  },
-  {
-    date: "2023-06-25T23:00:00.000Z",
-    coworkerId: 1007,
-    officeId: 13,
-  },
-  {
-    date: "2023-06-03T23:00:00.000Z",
-    coworkerId: 1008,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-13T23:00:00.000Z",
-    coworkerId: 1009,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-17T23:00:00.000Z",
-    coworkerId: 1010,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-13T23:00:00.000Z",
-    coworkerId: 1011,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-05T23:00:00.000Z",
-    coworkerId: 1012,
-    officeId: 12,
-  },
-  {
-    date: "2023-06-22T23:00:00.000Z",
-    coworkerId: 1000,
-    officeId: 12,
-  },
-  {
-    date: "2023-06-09T23:00:00.000Z",
-    coworkerId: 1001,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-21T23:00:00.000Z",
-    coworkerId: 1002,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-20T23:00:00.000Z",
-    coworkerId: 1003,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-20T23:00:00.000Z",
-    coworkerId: 1004,
-    officeId: 10,
-  },
-  {
-    date: "2023-06-19T23:00:00.000Z",
-    coworkerId: 1005,
-    officeId: 10,
-  },
-];
+import {
+  fetch, // GET
+  enter, // POST
+  remove, // DELETE
+} from "../../database/apiHandlers/handleBookingsApi";
 
 export default async function handler(req: any, res: any) {
   try {
-    if (req.method === "GET") {
-      const allBookings = await getAllBookings();
-      res.status(200).json(allBookings);
-    } else if (req.method === "POST") {
-      const { bookingsToBeSaved } = req.body;
-      const updatedBookings = await addBooking(bookingsToBeSaved);
-      res.status(200).json(updatedBookings);
-    } else if (req.method === "DELETE") {
-      const bookingsToBeRemoved = req.body;
-      const updatedBookings = await deleteBookings(bookingsToBeRemoved);
-      res.status(200).json(updatedBookings);
-    } else {
-      res.status(200).json(bookings);
+    switch (req.method) {
+      case "GET":
+        const allBookings = await fetch();
+        res.status(200).json(allBookings);
+        break;
+      case "POST":
+        const { bookingsToBeSaved: bookingsToBeEntered } = req.body;
+        const updatedBookingsForEntering = await enter(bookingsToBeEntered);
+        res.status(200).json(updatedBookingsForEntering);
+        break;
+      case "DELETE":
+        const bookingsToBeRemoved = req.body;
+        const updatedBookingsForRemoving = await remove(bookingsToBeRemoved);
+        res.status(200).json(updatedBookingsForRemoving);
+        break;
+      default:
+        res.status(200).json("bookings");
     }
   } catch (error) {
     console.error(error);

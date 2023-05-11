@@ -8,13 +8,15 @@ import OfficesCardTitle from "./OfficesCardTitle";
 export default function OfficeInformationCard({
   city,
   district,
-  address,
   areaInSquareMeters,
   headcount,
   workstations,
   areDogsAllowed,
   description,
   imgSrc = "/images/office.jpg",
+  street,
+  houseNumber,
+  postcode,
 }: IOffice) {
   return (
     <div className="w-full rounded-lg border-4 border-amber-900/75 bg-amber-700">
@@ -45,9 +47,9 @@ export default function OfficeInformationCard({
           </div>
         </div>
         <OfficesCardAddress
-          street={address?.street}
-          houseNumber={address?.houseNumber}
-          postcode={address?.postcode}
+          street={street}
+          houseNumber={houseNumber}
+          postcode={postcode}
           city={city}
         />
       </div>

@@ -18,10 +18,11 @@ exports.up = function (knex) {
     })
     .createTable("offices", function (table) {
       table.string("city").notNullable();
-      table.integer("officeId").notNullable().unique;
+      table.integer("officeId").notNullable().unique();
       table.string("district");
       table.string("street").notNullable();
       table.string("houseNumber").notNullable();
+      table.string("postcode").notNullable();
       table.integer("areaInSquareMeters");
       table.boolean("areDogsAllowed");
       table.integer("headcount");
