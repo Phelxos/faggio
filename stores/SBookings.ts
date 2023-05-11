@@ -67,7 +67,7 @@ const useBookings = create<Interface>()(
           }
         },
         fetchBookings: async () => {
-          if (get().bookings) return;
+          if (get().bookings.length > 0) return;
           try {
             const { data: bookingsFromApi } = await a.get(apiPath.BOOKINGS);
             const sortedBookings = bookingsFromApi.sort(

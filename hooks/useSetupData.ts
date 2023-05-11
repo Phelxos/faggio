@@ -14,7 +14,7 @@ export default function useSetupData() {
   const allOfficeNames = useOffice((s) => s.allOfficeNames);
 
   if (allOfficeNames.length === 0) fetchAndSetOffice();
-  if (!bookings) fetchBookings();
+  if (bookings.length === 0) fetchBookings();
 
   // wait till NextJS rehydration completes
   useEffect(() => {
