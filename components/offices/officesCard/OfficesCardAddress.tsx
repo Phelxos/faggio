@@ -1,4 +1,5 @@
 import Icon from "../../icons/Icon";
+import copyAddressToClipboard from "../../../helpers/copyAddressToClipboard";
 
 interface Props {
   street: string;
@@ -13,39 +14,6 @@ export default function OfficesCardAddress({
   postcode,
   city,
 }: Props) {
-  const copyAdress = (
-    adressPart_1: string,
-    adressPart_2: string,
-    adressPart_3?: string,
-    adressPart_4?: string
-  ) => {
-    if (!adressPart_3 && !adressPart_4) {
-      let putAdressPartsTogetherShort =
-        adressPart_1[0].toUpperCase() +
-        adressPart_1.substring(1) +
-        " " +
-        adressPart_2[0].toUpperCase() +
-        adressPart_2.substring(1);
-      let copiedAdressShort = navigator.clipboard.writeText(
-        putAdressPartsTogetherShort
-      );
-    } else {
-      let putAdressPartsTogetherLong =
-        adressPart_1[0].toUpperCase() +
-        adressPart_1.substring(1) +
-        " " +
-        adressPart_2 +
-        " " +
-        adressPart_3 +
-        " " +
-        adressPart_4?.[0].toUpperCase() +
-        adressPart_4?.substring(1);
-      let copiedAdressLong = navigator.clipboard.writeText(
-        putAdressPartsTogetherLong
-      );
-    }
-  };
-
   return (
     <div className="rounded-lg border-2 border-amber-800 bg-amber-600">
       <div className="flex items-center justify-between bg-amber-900/90 p-4">
@@ -56,7 +24,9 @@ export default function OfficesCardAddress({
           <Icon
             icon="documentDuplicate"
             className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75 active:bg-amber-700"
-            onClick={() => copyAdress(street, houseNumber, postcode, city)}
+            onClick={() =>
+              copyAddressToClipboard(street, houseNumber, postcode, city)
+            }
           />
         </button>
       </div>
@@ -71,7 +41,7 @@ export default function OfficesCardAddress({
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
-              onClick={() => copyAdress(street, houseNumber)}
+              onClick={() => copyAddressToClipboard(street, houseNumber)}
             />
           </button>
         </div>
@@ -86,7 +56,7 @@ export default function OfficesCardAddress({
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
-              onClick={() => copyAdress(postcode, city)}
+              onClick={() => copyAddressToClipboard(postcode, city)}
             />
           </button>
         </div>

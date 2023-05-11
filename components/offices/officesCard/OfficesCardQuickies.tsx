@@ -19,7 +19,9 @@ export default function OfficesCardQuickies({
   className,
 }: Props) {
   return (
-    <div className={`flex flex-col items-center text-sm ${className} gap-3`}>
+    <div
+      className={`flex flex-col items-center justify-between text-sm ${className} gap-3`}
+    >
       <div className="flex min-h-[48px] w-full items-center justify-center gap-2 rounded-xl border-2 border-amber-500/25 bg-amber-800/50 p-2 font-bold text-amber-500">
         <Icon icon="userGroup" className="h-6 w-6 opacity-50" />
         {headcount}
