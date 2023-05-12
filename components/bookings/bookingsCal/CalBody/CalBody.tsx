@@ -7,6 +7,7 @@ import mapCalendar from "../../../../helpers/mapCalendar";
 import { getDate, isPast } from "date-fns";
 import { CBookings } from "../../../contexts/CBookings";
 import IBooking from "../../../../typings/interfaces/IBooking";
+import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
 
 export default function CalBody() {
   const c = useContext(CBookings);
@@ -19,12 +20,14 @@ export default function CalBody() {
   });
   const isBookedDate = (date: Date): boolean => {
     if (
-      bookings.some(
-        (b: IBooking) =>
+      bookings.some((b: IBooking) => {
+        // if (b.date === date.toJSON()) console.log(b.date, date.toJSON());
+        return (
           b.date === date.toJSON() &&
           b.officeId === c?.locallySelectedOfficeId &&
           b.coworkerId === coworkerId
-      )
+        );
+      })
     ) {
       return true;
     } else {
@@ -60,30 +63,38 @@ export default function CalBody() {
   const handleDateClick = (date: Date | string) => {
     if (c?.isBeingEdited) {
       // Ensure using date object
-      const safeDate: Date = new Date(date);
-      if (isPast(safeDate)) return;
+      const timezoneAdjustedDate: Date = prepareDateAsDate(date);
+      if (isPast(timezoneAdjustedDate)) return;
       const officeId = c!.locallySelectedOfficeId;
       if (
-        !isBookedDate(safeDate) &&
-        !isBeingSelectedAsBookingToBeSaved(safeDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(safeDate)
+        !isBookedDate(timezoneAdjustedDate) &&
+        !isBeingSelectedAsBookingToBeSaved(timezoneAdjustedDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
       ) {
-        c.setBookingsToBeSaved({ date: safeDate, coworkerId, officeId });
+        c.setBookingsToBeSaved({
+          date: timezoneAdjustedDate,
+          coworkerId,
+          officeId,
+        });
       } else if (
-        isBeingSelectedAsBookingToBeSaved(safeDate) &&
-        !isBookedDate(safeDate)
+        isBeingSelectedAsBookingToBeSaved(timezoneAdjustedDate) &&
+        !isBookedDate(timezoneAdjustedDate)
       ) {
-        c.deleteBookingsToBeSaved(safeDate);
+        c.deleteBookingsToBeSaved(timezoneAdjustedDate);
       } else if (
-        isBookedDate(safeDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(safeDate)
+        isBookedDate(timezoneAdjustedDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
       ) {
-        c.setBookingsToBeDeleted({ date: safeDate, coworkerId, officeId });
+        c.setBookingsToBeDeleted({
+          date: timezoneAdjustedDate,
+          coworkerId,
+          officeId,
+        });
       } else if (
-        isBookedDate(safeDate) &&
-        isBeingSelectedAsBookingToBeDeleted(safeDate)
+        isBookedDate(timezoneAdjustedDate) &&
+        isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
       ) {
-        c.deleteBookingsToBeDeleted(safeDate);
+        c.deleteBookingsToBeDeleted(timezoneAdjustedDate);
       }
     }
   };

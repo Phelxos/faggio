@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import useCalendar from "../../../../stores/SCalendar";
-import getSafeDate from "../../../../helpers/getSafeDate";
 import displayEquivalent from "../../../../helpers/displayEquivalent";
 import Coworkers from "./BookingsOtherMainCoworkers";
 import Date from "./BookingsOtherMainDate";
+import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
 
 export default function BookingsOtherMainDays() {
   const workingDaysOfSelectedCalWeek = useCalendar(
@@ -13,9 +13,9 @@ export default function BookingsOtherMainDays() {
   return (
     <ul className="flex flex-col items-center">
       {workingDaysOfSelectedCalWeek.map((workingDay, i) => {
-        const safeDate = getSafeDate(workingDay);
-        const date = safeDate.getDate();
-        const day = displayEquivalent(safeDate.getDay(), "day");
+        const timezoneAdjustedDate = prepareDateAsDate(workingDay);
+        const date = timezoneAdjustedDate.getDate();
+        const day = displayEquivalent(timezoneAdjustedDate.getDay(), "day");
         return (
           <li
             key={i}

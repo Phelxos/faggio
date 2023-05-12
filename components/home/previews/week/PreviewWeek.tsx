@@ -7,6 +7,7 @@ import useBookings from "../../../../stores/SBookings";
 import { isSameDay } from "date-fns";
 import useOffice from "../../../../stores/SOffices";
 import getOccupancyLevel from "../../../../helpers/getOccupancyLevel";
+import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
 
 export default function PreviewWeek() {
   const globallySelectedOfficeId = useOffice(
@@ -37,10 +38,10 @@ export default function PreviewWeek() {
     let newWeekBookingsOtherCount;
     if (isShowingNextWeekBookings) {
       newWeekBookingsOtherCount = nextWeek.map(({ date }) => {
-        const safeDate = new Date(date);
+        const timezoneAdjustedDate = prepareDateAsDate(date);
         const count = bookingsOther.filter(({ date, officeId }) => {
           return (
-            isSameDay(new Date(date), safeDate) &&
+            isSameDay(new Date(date), timezoneAdjustedDate) &&
             globallySelectedOfficeId === officeId
           );
         }).length;
@@ -49,10 +50,10 @@ export default function PreviewWeek() {
       setWeekBookingsOtherCount(newWeekBookingsOtherCount);
     } else {
       newWeekBookingsOtherCount = currentWeek.map(({ date }) => {
-        const safeDate = new Date(date);
+        const timezoneAdjustedDate = prepareDateAsDate(date);
         const count = bookingsOther.filter(({ date, officeId }) => {
           return (
-            isSameDay(new Date(date), safeDate) &&
+            isSameDay(new Date(date), timezoneAdjustedDate) &&
             globallySelectedOfficeId === officeId
           );
         }).length;

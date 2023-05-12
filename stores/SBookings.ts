@@ -23,10 +23,12 @@ const useBookings = create<Interface>()(
         setBookings: async (bookingsToBeSaved: IBooking[]) => {
           if (!bookingsToBeSaved) return;
           try {
-            bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => ({
-              ...b,
-              date: (b.date as Date).toJSON(),
-            }));
+            bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => {
+              return {
+                ...b,
+                date: (b.date as Date).toJSON(), // TO-DO potential error
+              };
+            });
             const { data: bookingsFromApi } = await a.post(apiPath.BOOKINGS, {
               bookingsToBeSaved,
               coworkerId,
