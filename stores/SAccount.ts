@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
 
 interface Interface {
   forename: string;
@@ -9,7 +8,7 @@ interface Interface {
   favourites: number[];
   addToFavourites: (id: number) => void;
   deleteFromFavourites: (id: number) => void;
-  mainOffice: TOfficeCityEnglish;
+  mainOfficeId: number;
 }
 
 const useAccount = create<Interface>()(
@@ -20,7 +19,7 @@ const useAccount = create<Interface>()(
         surname: "mustermann",
         coworkerId: 9999,
         favourites: [1001, 1002, 1003],
-        mainOffice: "dortmund",
+        mainOfficeId: 10,
         addToFavourites: (newId: number) => {
           set((state) => ({
             favourites: [...state.favourites, newId],

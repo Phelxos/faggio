@@ -8,15 +8,16 @@ import Switch from "./TeamsControlsBarSwitch";
 import SearchAndSelect from "../SearchAndSelect";
 import useOffice from "../../stores/SOffices";
 import useTheme from "../../hooks/useTheme";
-import {
-  TOfficeCityEnglish,
-  EOfficesEnglishToGerman,
-} from "../../typings/types/TOfficeCity";
+import convertFromIdToOfficeName from "../../helpers/convertFromIdToOfficeName";
 
 export default function ControlsBar() {
   const c = useContext(CTeams);
-  const allOfficeNames = useOffice((s) => s.allOfficeNames);
+  const allOffices = useOffice((s) => s.allOffices);
   const theme = useTheme();
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
+  const setGloballySelectedOfficeId = useOffice(
+    (s) => s.setGloballySelectedOfficeId
+  );
 
   const handleUserSearchInput = (e: any) => {
     const lastCharacterOfSearchInput =
@@ -49,12 +50,12 @@ export default function ControlsBar() {
           <Switch />
         ) : c?.activeButton === "center" ? (
           <SearchAndSelect
-            value={c?.locallySelectedOfficeName}
-            setValue={c?.setLocallySelectedOfficeName}
-            listOfValues={allOfficeNames}
+            value={globallySelectedOfficeId}
+            setValue={setGloballySelectedOfficeId}
+            listOfValues={allOffices.map((office) => office.officeId)}
             theme={theme}
-            displayFilter={(city: TOfficeCityEnglish) =>
-              EOfficesEnglishToGerman[city]
+            displayFilter={(officeId) =>
+              convertFromIdToOfficeName(officeId) as string
             }
           />
         ) : c?.activeButton === "right" ? (

@@ -29,6 +29,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: false,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "bremen",
@@ -42,6 +44,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: true,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "berlin",
@@ -56,6 +60,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: false,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "cologne",
@@ -70,6 +76,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: false,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "leipzig",
@@ -83,6 +91,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: false,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "munich",
@@ -96,6 +106,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: false,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
     {
       city: "frankfurt",
@@ -109,6 +121,8 @@ exports.seed = async function (knex) {
       areDogsAllowed: true,
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elit ut aliquam purus sit amet luctus venenatis lectus.",
+      imgSrc: "/images/office.jpg",
+      intranetUrl: "https://www.qwant.com/",
     },
   ]);
 };

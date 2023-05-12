@@ -8,6 +8,7 @@ import {
   EOfficesEnglishToGerman,
   TOfficeCityEnglish,
 } from "../../../typings/types/TOfficeCity";
+import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
 
 export default function CalFooter() {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -17,10 +18,8 @@ export default function CalFooter() {
   const currentYear = useCalendar((s) => s.currentYear);
   const currentCalWeek = useCalendar((s) => s.currentCalWeek);
   const today = useCalendar((s) => s.today);
-  const allOfficeNames = useOffice((s) => s.allOfficeNames);
-  const globallySelectedOfficeName = useOffice(
-    (s) => s.globallySelectedOfficeName
-  );
+  const allOffices = useOffice((s) => s.allOffices);
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const setToday = useCalendar((s) => s.setToday);
   const c = useContext(CBookings);
   const theme = useTheme();
@@ -33,12 +32,12 @@ export default function CalFooter() {
   };
 
   useEffect(() => {
-    c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c?.setLocallySelectedOfficeId(globallySelectedOfficeId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [globallySelectedOfficeName]);
+  }, []);
 
   return (
-    <div className="flex w-full items-center justify-center gap-6 rounded-b-lg bg-emerald-800 py-6 px-4">
+    <div className="flex w-full items-center justify-center gap-6 rounded-b-lg bg-emerald-800 px-4 py-6">
       <button
         className="w-min rounded-lg border-2 border-emerald-400 bg-emerald-600 px-3 py-2 uppercase tracking-widest text-emerald-200 hover:bg-emerald-400 hover:text-emerald-600"
         onClick={setAllRelevantCalendarStoreVariablesToTodaysAttributes}
@@ -47,12 +46,12 @@ export default function CalFooter() {
       </button>
       <div className="h-full">
         <SearchAndSelect
-          value={c?.locallySelectedOfficeName}
-          setValue={c!.setLocallySelectedOfficeName}
-          listOfValues={allOfficeNames}
+          value={c?.locallySelectedOfficeId}
+          setValue={c!.setLocallySelectedOfficeId}
+          listOfValues={allOffices.map((office) => office.officeId)}
           theme={theme}
-          displayFilter={(city: TOfficeCityEnglish) =>
-            EOfficesEnglishToGerman[city]
+          displayFilter={(officeId) =>
+            convertFromIdToOfficeName(officeId) as string
           }
         />
       </div>

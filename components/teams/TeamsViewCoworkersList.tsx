@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { use, useContext, useEffect } from "react";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import UserCard from "../user/UserCard";
 import { CTeams } from "../contexts/CTeams";
@@ -11,7 +11,7 @@ function Cards({ coworkers }: { coworkers: ICoworker[] | undefined }) {
         <UserCard
           forename={coworker.forename}
           surname={coworker.surname}
-          office={coworker.office}
+          officeId={coworker.officeId}
           imgSrc={coworker.imgSrc}
           key={i}
           coworkerId={coworker.coworkerId}

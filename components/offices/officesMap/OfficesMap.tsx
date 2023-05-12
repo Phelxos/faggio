@@ -17,6 +17,7 @@ interface IMarker {
     y: number;
   };
   name: TOfficeCityEnglish;
+  officeId: number;
   coordinates: [number, number];
 }
 
@@ -24,41 +25,49 @@ const markers: IMarker[] = [
   {
     markerOffset: { x: 1, y: 13 },
     name: "cologne",
+    officeId: 14,
     coordinates: [6.953101, 50.935173],
   },
   {
     markerOffset: { x: 0, y: -6 },
     name: "dortmund",
+    officeId: 10,
     coordinates: [7.466, 51.51494],
   },
   {
     markerOffset: { x: 0, y: -6 },
     name: "munich",
+    officeId: 16,
     coordinates: [11.57549, 48.13743],
   },
   {
     markerOffset: { x: 0, y: -6 },
     name: "hamburg",
+    officeId: 11,
     coordinates: [9.99302, 53.55073],
   },
   {
     markerOffset: { x: 0, y: 12 },
     name: "frankfurt",
+    officeId: 17,
     coordinates: [8.68417, 50.11552],
   },
   {
     markerOffset: { x: 0, y: -6 },
     name: "berlin",
+    officeId: 13,
     coordinates: [13.41053, 52.52437],
   },
   {
     markerOffset: { x: 0, y: 12 },
     name: "leipzig",
+    officeId: 15,
     coordinates: [12.360103, 51.340199],
   },
   {
     markerOffset: { x: 0, y: 11 },
     name: "bremen",
+    officeId: 12,
     coordinates: [8.806422, 53.073635],
   },
 ];
@@ -67,25 +76,21 @@ const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
 export default function MapOffices() {
-  const globallySelectedOfficeName = useOffice(
-    (s) => s.globallySelectedOfficeName
-  );
-  const setGloballySelectedOfficeName = useOffice(
-    (s) => s.setGloballySelectedOfficeName
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
+  const setGloballySelectedOfficeId = useOffice(
+    (s) => s.setGloballySelectedOfficeId
   );
   const setGloballySelectedOffice = useOffice(
     (s) => s.setGloballySelectedOffice
   );
 
-  function handleMarkerClick(office: TOfficeCityEnglish) {
-    const officeNameInLowerCase: TOfficeCityEnglish =
-      office.toLowerCase() as TOfficeCityEnglish;
-    setGloballySelectedOfficeName(officeNameInLowerCase);
-    setGloballySelectedOffice(officeNameInLowerCase);
+  function handleMarkerClick(officeId: number) {
+    setGloballySelectedOfficeId(officeId);
+    setGloballySelectedOffice(officeId);
   }
 
-  function isCurrentlyDisplayedOffice(chosenOffice: TOfficeCityEnglish) {
-    return chosenOffice === globallySelectedOfficeName!;
+  function isCurrentlyDisplayedOffice(chosenOfficeId: number) {
+    return chosenOfficeId === globallySelectedOfficeId;
   }
 
   return (
@@ -111,11 +116,11 @@ export default function MapOffices() {
           ))
         }
       </Geographies>
-      {markers.map(({ name, coordinates, markerOffset }) => (
+      {markers.map(({ name, officeId, coordinates, markerOffset }) => (
         <Marker
           key={name}
           coordinates={coordinates}
-          onClick={() => handleMarkerClick(name)}
+          onClick={() => handleMarkerClick(officeId)}
           style={{
             default: { fill: "#06F" },
             hover: { fontSize: "16px" },
@@ -123,13 +128,15 @@ export default function MapOffices() {
         >
           <circle
             r={4}
-            fill={`${isCurrentlyDisplayedOffice(name) ? "#fef3c7" : "#92400e"}`}
+            fill={`${
+              isCurrentlyDisplayedOffice(officeId) ? "#fef3c7" : "#92400e"
+            }`}
             stroke={`${
-              isCurrentlyDisplayedOffice(name) ? "#92400e" : "#fef3c7"
+              isCurrentlyDisplayedOffice(officeId) ? "#92400e" : "#fef3c7"
             }`}
             strokeWidth={0.5}
             className={`${
-              !isCurrentlyDisplayedOffice(name) ? "animate-pulse" : ""
+              !isCurrentlyDisplayedOffice(officeId) ? "animate-pulse" : ""
             }`}
           />
           <text
@@ -137,13 +144,15 @@ export default function MapOffices() {
             x={markerOffset.x}
             y={markerOffset.y}
             style={{
-              fontSize: `${isCurrentlyDisplayedOffice(name) ? "8px" : "5px"}`,
+              fontSize: `${
+                isCurrentlyDisplayedOffice(officeId) ? "8px" : "5px"
+              }`,
               fill: "#fef3c7",
               textTransform: "uppercase",
               fontWeight: `${
-                isCurrentlyDisplayedOffice(name) ? "bold" : "300"
+                isCurrentlyDisplayedOffice(officeId) ? "bold" : "300"
               }`,
-              opacity: `${isCurrentlyDisplayedOffice(name) ? "1" : "0.5"}`,
+              opacity: `${isCurrentlyDisplayedOffice(officeId) ? "1" : "0.5"}`,
               transition: "all 0.25s",
             }}
           >

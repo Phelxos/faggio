@@ -3,8 +3,9 @@ import useCoworkers from "../../../../stores/SCoworkers";
 import ICoworker from "../../../../typings/interfaces/ICoworker";
 import Spinner from "../../../spinners/Spinner";
 import { CBookings } from "../../../contexts/CBookings";
-import useModal from "../../../../hooks/useModal";
 import UserImage from "../../../user/UserImage";
+
+// TO-DO Enable the component
 
 export default function BookingsOtherMainRow({ i }: { i: number }) {
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
@@ -12,7 +13,7 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
   const c = useContext(CBookings);
   return (
     <div
-      className={`col-span-6 flex h-[90px] items-center gap-4 overflow-scroll py-2 px-3 shadow-inner ${
+      className={`col-span-6 flex h-[90px] items-center gap-4 overflow-scroll px-3 py-2 shadow-inner ${
         i % 2 === 0 ? "bg-slate-500/50" : "bg-slate-400/50"
       }`}
     >
@@ -23,7 +24,7 @@ export default function BookingsOtherMainRow({ i }: { i: number }) {
           {(coworkers as ICoworker[])
             ?.filter(
               (coworker: ICoworker) =>
-                coworker.office === c?.locallySelectedOfficeName
+                coworker.officeId === c?.locallySelectedOfficeId
             )
             .map((coworker: ICoworker, i: number) => {
               return <UserImage coworker={coworker} key={i} />;

@@ -1,26 +1,27 @@
-import { useRef } from "react";
+import { useEffect } from "react";
 import useTheme from "../../../../hooks/useTheme";
 import SearchAndSelect from "../../../SearchAndSelect";
 import useOffice from "../../../../stores/SOffices";
 import { CBookings } from "../../../contexts/CBookings";
-import useWindowSize from "../../../../hooks/useWindowSize";
 import { useContext } from "react";
 import useCalendar from "../../../../stores/SCalendar";
-import {
-  TOfficeCityEnglish,
-  EOfficesEnglishToGerman,
-} from "../../../../typings/types/TOfficeCity";
+import convertFromIdToOfficeName from "../../../../helpers/convertFromIdToOfficeName";
 
 export default function BookingsOtherHeader() {
   const theme = useTheme();
   const c = useContext(CBookings);
-  const windowSize = useWindowSize();
-  const allOfficeNames = useOffice((s) => s.allOfficeNames);
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
+  const allOffices = useOffice((s) => s.allOffices);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
   const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
   const displayedCalWeeksInSelectedMonth = useCalendar(
     (s) => s.displayedCalWeeksInSelectedMonth
   );
+
+  useEffect(() => {
+    c?.setLocallySelectedOfficeId(globallySelectedOfficeId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="flex w-full flex-col justify-around">
@@ -31,12 +32,12 @@ export default function BookingsOtherHeader() {
         <span className="text-emerald-200/75">in</span>
         <div className="max-w-[150px]">
           <SearchAndSelect
-            value={c?.locallySelectedOfficeName}
-            setValue={c!.setLocallySelectedOfficeName}
-            listOfValues={allOfficeNames}
+            value={c?.locallySelectedOfficeId}
+            setValue={c!.setLocallySelectedOfficeId}
+            listOfValues={allOffices.map((office) => office.officeId)}
             theme={theme}
-            displayFilter={(city: TOfficeCityEnglish) =>
-              EOfficesEnglishToGerman[city]
+            displayFilter={(officeId) =>
+              convertFromIdToOfficeName(officeId) as string
             }
           />
         </div>

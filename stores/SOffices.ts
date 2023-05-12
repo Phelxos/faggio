@@ -8,7 +8,7 @@ import useAccount from "./SAccount";
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
   officeId: 10,
-  district: "Stadtviertel",
+  district: "schueren",
   street: "straße",
   houseNumber: "1",
   postcode: "12345",
@@ -16,18 +16,17 @@ export const initialValueForGloballySelectedOffice: IOffice = {
   headcount: 25,
   workstations: 25,
   areDogsAllowed: true,
-  description:
-    "Im Osten Dortmunds gelegen lädt die viergeschossige Zentrale ins Herz des Unternehmens ein. Über 400 Mitarbeiter arbeiten hier täglich an der Zukunft der IT.",
+  description: "Beschreibung",
   imgSrc: "/images/office.jpg",
 };
 
 interface Interface {
   allOffices: IOffice[] | [];
   allOfficeNames: TOfficeCityEnglish[] | [];
-  globallySelectedOfficeName: TOfficeCityEnglish;
-  setGloballySelectedOfficeName: (office: TOfficeCityEnglish) => void;
+  globallySelectedOfficeId: number;
+  setGloballySelectedOfficeId: (officeId: number) => void;
   globallySelectedOffice: IOffice;
-  setGloballySelectedOffice: (officeCityName: TOfficeCityEnglish) => void;
+  setGloballySelectedOffice: (officeId: number) => void;
   fetchAndSetOffice: () => void;
 }
 
@@ -37,17 +36,23 @@ const useOffice = create<Interface>()(
       (set) => ({
         allOffices: [],
         allOfficeNames: [],
-        globallySelectedOfficeName: useAccount.getState().mainOffice,
-        setGloballySelectedOfficeName: (office) => {
-          set({ globallySelectedOfficeName: office });
-        },
+        globallySelectedOfficeId:
+          initialValueForGloballySelectedOffice.officeId,
         globallySelectedOffice: initialValueForGloballySelectedOffice,
-        setGloballySelectedOffice: (officeCityName) => {
-          set((state) => ({
-            globallySelectedOffice: state.allOffices.find(
-              (entry: IOffice) => entry.city === officeCityName
-            ),
-          }));
+        setGloballySelectedOffice: (officeId) => {
+          set({
+            globallySelectedOffice: useOffice
+              .getState()
+              .allOffices.find((entry: IOffice) => entry.officeId === officeId),
+          });
+        },
+        setGloballySelectedOfficeId: (officeId) => {
+          set({ globallySelectedOfficeId: officeId });
+          set({
+            globallySelectedOffice: useOffice
+              .getState()
+              .allOffices.find((entry: IOffice) => entry.officeId === officeId),
+          });
         },
         fetchAndSetOffice: async () => {
           try {
@@ -58,9 +63,13 @@ const useOffice = create<Interface>()(
               allOfficeNames: fullList.map((entry: IOffice) => entry.city),
             });
             set((state) => ({
+              globallySelectedOfficeId: fullList.find(
+                (entry: IOffice) =>
+                  entry.officeId === state.globallySelectedOfficeId
+              ).officeId,
               globallySelectedOffice: fullList.find(
                 (entry: IOffice) =>
-                  entry.city === state.globallySelectedOfficeName
+                  entry.officeId === state.globallySelectedOfficeId
               ),
             }));
           } catch (err) {

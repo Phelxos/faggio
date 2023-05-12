@@ -10,9 +10,7 @@ import getOccupancyLevel from "../../../helpers/getOccupancyLevel";
 import IBooking from "../../../typings/interfaces/IBooking";
 
 export default function PreviewMonth() {
-  const globallySelectedOfficeId = useOffice(
-    (s) => s.globallySelectedOffice
-  ).officeId;
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
@@ -44,7 +42,7 @@ export default function PreviewMonth() {
             <span className="text-2xl font-extralight uppercase tracking-widest text-emerald-200">
               {displayEquivalent(selectedMonth, "month")}
             </span>
-            <span className="rounded bg-emerald-700/50 py-2 px-4 tracking-widest text-emerald-400/75">
+            <span className="rounded bg-emerald-700/50 px-4 py-2 tracking-widest text-emerald-400/75">
               {selectedYear}
             </span>
           </div>

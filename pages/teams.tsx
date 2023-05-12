@@ -11,9 +11,7 @@ import useCoworkers from "../stores/SCoworkers";
 
 export default function Teams() {
   const c = useContext(CTeams);
-  const globallySelectedOfficeName = useOffice(
-    (s) => s.globallySelectedOfficeName
-  );
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const [displayedCoworkers, setDisplayedCoworkers] = useState<ICoworker[]>([]);
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoadingCoworkersListFromStore = useCoworkers((s) => s.isLoading);
@@ -25,7 +23,7 @@ export default function Teams() {
           return (
             (coworker.forename.includes(c?.searchForUser) ||
               coworker.surname.includes(c?.searchForUser)) &&
-            coworker.office === c?.locallySelectedOfficeName
+            coworker.officeId === c?.locallySelectedOfficeId
           );
         }
       );
@@ -33,7 +31,7 @@ export default function Teams() {
     } else {
       const filteredListOfCoworkers = coworkersList?.filter(
         (coworker: ICoworker) => {
-          return coworker.office === c?.locallySelectedOfficeName;
+          return coworker.officeId === c?.locallySelectedOfficeId;
         }
       );
       setDisplayedCoworkers(filteredListOfCoworkers);
@@ -41,7 +39,7 @@ export default function Teams() {
   }
 
   useEffect(() => {
-    c?.setLocallySelectedOfficeName(globallySelectedOfficeName);
+    c?.setLocallySelectedOfficeId(globallySelectedOfficeId);
   }, []);
 
   useEffect(() => {
@@ -50,7 +48,7 @@ export default function Teams() {
 
   useEffect(() => {
     filterCoworkers(coworkers as ICoworker[]);
-  }, [c?.searchForUser, c?.locallySelectedOfficeName]);
+  }, [c?.searchForUser, c?.locallySelectedOfficeId]);
 
   return (
     <>
