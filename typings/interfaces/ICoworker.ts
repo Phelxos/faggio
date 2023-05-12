@@ -5,12 +5,10 @@ import TPosition from "../types/TPosition";
 export default interface ICoworker {
   forename: string;
   surname: string;
-  office: TOfficeCityEnglish;
+  officeId: number;
   imgSrc?: string;
-  birtday?: {
-    date: number;
-    month: number;
-  };
+  birthdayDate?: number;
+  birthdayMonth?: number;
   employmentBeginning?: number;
   position: TPosition;
   projects?: {}[];

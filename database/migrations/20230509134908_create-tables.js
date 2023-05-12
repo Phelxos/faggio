@@ -3,10 +3,10 @@ exports.up = function (knex) {
     .createTable("coworkers", function (table) {
       table.string("forename").notNullable();
       table.string("surname").notNullable();
-      table.string("office").notNullable();
+      table.integer("officeId").notNullable();
       table.string("imgSrc");
-      table.string("birthdayDate");
-      table.string("birthdayMonth");
+      table.integer("birthdayDate");
+      table.integer("birthdayMonth");
       table.integer("employmentBeginning").notNullable();
       table.string("position").notNullable();
       table.json("projects");

@@ -4,7 +4,7 @@ exports.seed = async function (knex) {
     {
       forename: "tim",
       surname: "mueller",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1000,
       birthdayDate: 12,
       birthdayMonth: 11,
@@ -18,7 +18,7 @@ exports.seed = async function (knex) {
     {
       forename: "matthias",
       surname: "schaefer",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1001,
       birthdayDate: 4,
       birthdayMonth: 3,
@@ -32,7 +32,7 @@ exports.seed = async function (knex) {
     {
       forename: "helena",
       surname: "bauer",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1002,
       birthdayDate: 23,
       birthdayMonth: 8,
@@ -46,7 +46,7 @@ exports.seed = async function (knex) {
     {
       forename: "berkan",
       surname: "yilmaz",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1003,
       birthdayDate: 21,
       birthdayMonth: 2,
@@ -60,7 +60,7 @@ exports.seed = async function (knex) {
     {
       forename: "pieree",
       surname: "giroud",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1004,
       birthdayDate: 9,
       birthdayMonth: 8,
@@ -74,7 +74,7 @@ exports.seed = async function (knex) {
     {
       forename: "arnold",
       surname: "schmal",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1005,
       birthdayDate: 16,
       birthdayMonth: 6,
@@ -88,7 +88,7 @@ exports.seed = async function (knex) {
     {
       forename: "willem",
       surname: "van utrecht",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1006,
       birthdayDate: 28,
       birthdayMonth: 7,
@@ -102,7 +102,7 @@ exports.seed = async function (knex) {
     {
       forename: "sanji",
       surname: "gupta",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1007,
       birthdayDate: 21,
       birthdayMonth: 2,
@@ -116,7 +116,7 @@ exports.seed = async function (knex) {
     {
       forename: "nils",
       surname: "danzig",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1008,
       birthdayDate: 19,
       birthdayMonth: 11,
@@ -130,7 +130,7 @@ exports.seed = async function (knex) {
     {
       forename: "seren",
       surname: "kemal",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1009,
       birthdayDate: 30,
       birthdayMonth: 4,
@@ -144,7 +144,7 @@ exports.seed = async function (knex) {
     {
       forename: "wassili",
       surname: "neustadt",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1010,
       birthdayDate: 18,
       birthdayMonth: 10,
@@ -158,7 +158,7 @@ exports.seed = async function (knex) {
     {
       forename: "susanne",
       surname: "humpert",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1011,
       birthdayDate: 21,
       birthdayMonth: 5,
@@ -172,7 +172,7 @@ exports.seed = async function (knex) {
     {
       forename: "lisa",
       surname: "klaus",
-      office: "dortmund",
+      officeId: 10,
       coworkerId: 1012,
       birthdayDate: 29,
       birthdayMonth: 6,
