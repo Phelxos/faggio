@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import TeamsControlsBar from "../components/teams/TeamsControlsBar";
 import BackupMessage from "../components/teams/TeamsBackupMessage";
@@ -49,7 +50,6 @@ export default function Teams() {
 
   useEffect(() => {
     filterCoworkers(coworkers as ICoworker[]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [c?.searchForUser, c?.locallySelectedOfficeName]);
 
   return (
@@ -59,7 +59,7 @@ export default function Teams() {
           className={`${
             c?.isListView && displayedCoworkers?.length > 0
               ? "snap-y snap-mandatory flex-col border-8 p-4"
-              : "snap-x snap-mandatory flex-row items-center border-x-[12px] py-4 px-[50px]"
+              : "snap-x snap-mandatory flex-row items-center border-x-[12px] px-[50px] py-4"
           } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
         >
           <>
