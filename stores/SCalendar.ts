@@ -41,6 +41,7 @@ interface Interface {
   incrementCountedWeekdays: (weekday: number, by: number) => void;
   incrementSelectedMonth: (by: number) => void;
   incrementSelectedYear: (by: number) => void;
+  updateToCurrentDate: () => void;
   [prop: string]: any;
 }
 
@@ -194,6 +195,19 @@ const useCalendar = create<Interface>()(
           set((state) => ({
             selectedYear: state.selectedYear + by,
           })),
+        updateToCurrentDate: () => {
+          set(() => ({
+            today: new Date(),
+            currentDate: new Date().getDate(),
+            currentMonth: new Date().getMonth(),
+            currentYear: new Date().getFullYear(),
+            currentWeekday: new Date().getDay(),
+            currentCalWeek: getWeek(new Date(), {
+              weekStartsOn: 1,
+              firstWeekContainsDate: 4,
+            }),
+          }));
+        },
       }),
       {
         name: "calendar",
