@@ -83,12 +83,13 @@ export default function PreviewMonth() {
                     return (
                       <div
                         key={i}
-                        className={`h-[30px] w-[30px] rounded-full bg-emerald-200/${getOccupancyLevel(
-                          weekday.date,
-                          workstationCapacity as number,
-                          bookingsOther,
-                          globallySelectedOfficeId
-                        )}`}
+                        className={`h-[30px] w-[30px] rounded-full bg-emerald-200`}
+                        // ${getOccupancyLevel(
+                        //   weekday.date,
+                        //   workstationCapacity as number,
+                        //   bookingsOther,
+                        //   globallySelectedOfficeId
+                        // )}
                       />
                     );
                   }
