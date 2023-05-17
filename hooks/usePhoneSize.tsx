@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import useWindowSize from "./useWindowSize";
 
 export default function usePhoneSize() {
+  const size = useWindowSize();
   const [isNotPhoneSize, setIsNotPhoneSize] = useState<boolean>(true);
 
   const iPhoneSESize = { width: 375, height: 667 };
@@ -15,7 +17,7 @@ export default function usePhoneSize() {
       setIsNotPhoneSize(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [size]);
 
   return isNotPhoneSize;
 }
