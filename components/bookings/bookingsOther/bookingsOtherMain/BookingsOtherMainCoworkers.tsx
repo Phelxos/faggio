@@ -41,6 +41,8 @@ export default function BookingsOtherMainRow({
       )
     ) {
       setHasSomeBooking(true);
+    } else {
+      setHasSomeBooking(false);
     }
   }, [filteredBookings, date]);
 
