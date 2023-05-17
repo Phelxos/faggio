@@ -24,7 +24,7 @@ export default function BookingsOtherHeaderDate() {
   }
 
   return (
-    <div className="flex items-center justify-between gap-2 border-t-4 border-emerald-900/50 bg-slate-700/50 p-3 uppercase tracking-widest text-slate-300/50">
+    <div className="flex items-center justify-between gap-2 border-t-4 border-emerald-900 bg-slate-800 p-3 uppercase tracking-widest text-slate-300/50">
       <div className="text-md flex gap-2">
         {positionOtherMonth().isPresent &&
           positionOtherMonth().isBeforeSelectedMonth && (

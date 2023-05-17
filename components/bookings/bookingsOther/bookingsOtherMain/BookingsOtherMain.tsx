@@ -11,7 +11,7 @@ export default function BookingsOtherMainDays() {
   );
 
   return (
-    <ul className="flex flex-col items-center">
+    <ul className="flex flex-col items-center divide-y-8 divide-emerald-900/50">
       {workingDaysOfSelectedCalWeek.map((workingDay, i) => {
         const timezoneAdjustedDate = prepareDateAsDate(workingDay);
         const date = timezoneAdjustedDate.getDate();
@@ -19,11 +19,11 @@ export default function BookingsOtherMainDays() {
         return (
           <li
             key={i}
-            className="w-full border-b-4 border-b-emerald-900/50 first:border-t-4 first:border-t-emerald-900/50 last:border-b-0"
+            className="w-full first:border-t-4 first:border-t-emerald-900/50 last:border-b-0"
           >
-            <div className="grid grid-cols-8">
+            <div className="grid h-[90px] grid-cols-8">
               <Date i={i} date={date} day={day} />
-              <Coworkers i={i} />
+              <Coworkers i={i} date={timezoneAdjustedDate} />
             </div>
           </li>
         );

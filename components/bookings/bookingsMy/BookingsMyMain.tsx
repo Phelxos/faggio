@@ -4,7 +4,7 @@ import useBookings from "../../../stores/SBookings";
 import IBooking from "../../../typings/interfaces/IBooking";
 import { CBookings } from "../../contexts/CBookings";
 import FilteredBookings from "./BookingsMyFilteredBookings";
-import EmptyStateMessage from "./BookingsMyMainEmptyState";
+import EmptyStateMessage from "./BookingsMyMainEmptyStateMessage";
 
 export default function BookingsMyMain() {
   const c = useContext(CBookings);
@@ -24,7 +24,7 @@ export default function BookingsMyMain() {
   }, [bookings, c?.locallySelectedOfficeId, coworkerId]);
 
   return (
-    <div className="h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-scroll">
+    <div className="max-h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-scroll">
       {filteredBookings.length > 0 ? (
         <FilteredBookings filteredBookings={filteredBookings} />
       ) : (
