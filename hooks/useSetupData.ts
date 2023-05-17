@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import useOffice from "../stores/SOffices";
-import useGreeting from "../stores/SGreeting";
+import { useEffect, useState } from "react";
+import checkForCurrentDate from "../helpers/checkForCurrentDate";
 import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
-import checkForCurrentDate from "../helpers/checkForCurrentDate";
+import useGreeting from "../stores/SGreeting";
+import useOffice from "../stores/SOffices";
+import usePhoneSize from "./usePhoneSize";
 
 export default function useSetupData() {
   const bookings = useBookings((s) => s.bookings);
@@ -12,6 +13,7 @@ export default function useSetupData() {
   const updateToCurrentDate = useCalendar((s) => s.updateToCurrentDate);
   const fetchGreeting = useGreeting((s) => s.fetchGreeting);
   const hasLoadedGreeting = useGreeting((s) => s.hasLoaded);
+  const isNotTheRightSize = usePhoneSize();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -31,5 +33,5 @@ export default function useSetupData() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return isHydrated;
+  return { isHydrated, isNotTheRightSize };
 }
