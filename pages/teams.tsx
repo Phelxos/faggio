@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
 import TeamsControlsBar from "../components/teams/TeamsControlsBar";
-import BackupMessage from "../components/teams/TeamsBackupMessage";
+import BackupMessage from "../components/teams/TeamsEmptyStateMessage";
 import Spinner from "../components/spinners/Spinner";
 import ICoworker from "../typings/interfaces/ICoworker";
 import { CTeams } from "../components/contexts/CTeams";
