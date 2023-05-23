@@ -1,19 +1,23 @@
-import useBookings from "../stores/SBookings";
-import useOffice from "../stores/SOffices";
 import { getWeek } from "date-fns";
-import IBooking from "../typings/interfaces/IBooking";
 import { useContext } from "react";
 import { CBookings } from "../components/contexts/CBookings";
+import prepareDateAsDate from "../helpers/prepareDateAsDate";
+import useBookings from "../stores/SBookings";
+import useOffice from "../stores/SOffices";
+import IBooking from "../typings/interfaces/IBooking";
 
-export default function useNextWeekBookingsMy(): IBooking[] | undefined {
+export default function useNextWeekBookings(
+  passedCoworkerId: number
+): IBooking[] | undefined {
   const c = useContext(CBookings);
   const globallySelectedOffice = useOffice((s) => s.globallySelectedOffice);
   const bookings = useBookings((s) => s.bookings);
-  const nextBookings = bookings.filter(({ date, officeId }) => {
+  const nextBookings = bookings.filter(({ date, officeId, coworkerId }) => {
     return (
-      getWeek(new Date(date)) === getWeek(new Date()) + 1 &&
+      getWeek(prepareDateAsDate(date)) === getWeek(new Date()) + 1 &&
       officeId ===
-        (c?.locallySelectedOfficeId ?? globallySelectedOffice.officeId)
+        (c?.locallySelectedOfficeId ?? globallySelectedOffice.officeId) &&
+      coworkerId === passedCoworkerId
     );
   });
   return nextBookings ? nextBookings : undefined;

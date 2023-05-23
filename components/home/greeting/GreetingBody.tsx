@@ -1,13 +1,28 @@
-import React, { useState } from "react";
-import getLiteralDate from "../../../helpers/getLiteralDate";
-import useNextBooking from "../../../hooks/useNextBookingMy";
-import useNextWeekBookings from "../../../hooks/useNextWeekBookingsMy";
 import Link from "next/link";
+import React, { useState } from "react";
+import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
+import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
+import getLiteralDate from "../../../helpers/getLiteralDate";
+import useNextBooking from "../../../hooks/useNextBooking";
+import useNextWeekBookings from "../../../hooks/useNextWeekBookingsMy";
+import useAccount from "../../../stores/SAccount";
+import Icon from "../../icons/Icon";
 
 export default function GreetingBody() {
-  const nextBooking = useNextBooking();
-  const nextDay = getLiteralDate(nextBooking);
-  const nextWeekBookingsNumber = useState(useNextWeekBookings()?.length)[0];
+  const myId = useAccount((s) => s.coworkerId);
+  const nextBooking = useNextBooking(myId);
+  const nextDay = getLiteralDate(nextBooking?.date);
+  const nextWeekBookingsNumber = useState(useNextWeekBookings(myId)?.length)[0];
+  const weekdaysGerman = [
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag",
+    "Sonntag",
+  ];
+
   return (
     <div className="flex flex-col items-center leading-8">
       <div className="flex flex-col gap-3 p-6">
@@ -17,11 +32,24 @@ export default function GreetingBody() {
               Nächstes Mal
             </p>
             <div className="text-sky-500">
-              Du planst, das nächste Mal {!nextDay?.includes(" ") && "am"}{" "}
-              <div className="inline-block rounded bg-sky-700 px-2 text-sky-300">
+              Du planst, das nächste Mal
+              {weekdaysGerman?.includes(nextDay) ? " am" : ","}{" "}
+              <span className="inline-block rounded bg-sky-700 px-2 text-sky-300">
                 {nextDay}
+              </span>{" "}
+              ins{" "}
+              <div className="inline-flex items-baseline gap-1 rounded bg-sky-700 px-2 text-sky-300">
+                <Icon
+                  icon="buildingOffice"
+                  className="m-0 h-4 w-4 self-center opacity-50"
+                />
+                <Link href={"/offices"}>
+                  {`${capitaliseFirstLetter(
+                    convertFromIdToOfficeName(nextBooking!.officeId)!
+                  )}er`}
+                </Link>
               </div>{" "}
-              ins Büro zu gehen.
+              Büro zu gehen.
             </div>
           </>
         ) : (
@@ -31,7 +59,7 @@ export default function GreetingBody() {
             </p>
             <Link
               href={"/bookings"}
-              className="self-end rounded-xl border-2 border-sky-800/75 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sky-700 to-sky-400 py-2 px-3 text-sky-900 shadow-lg"
+              className="self-end rounded-xl border-2 border-sky-800/75 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-sky-700 to-sky-400 px-3 py-2 text-sky-900 shadow-lg"
             >
               <button className="font-mono text-xs uppercase tracking-wider">
                 Bürotage buchen
