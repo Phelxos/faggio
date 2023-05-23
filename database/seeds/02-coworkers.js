@@ -183,5 +183,19 @@ exports.seed = async function (knex) {
       phone: "+4929021234567",
       messenger: "#",
     },
+    {
+      forename: "max",
+      surname: "mustermann",
+      officeId: 10,
+      coworkerId: 9999,
+      birthdayDate: 2,
+      birthdayMonth: 9,
+      employmentBeginning: 2021,
+      position: "Frontend Developer",
+      favorites: [],
+      email: "coworker@company.com",
+      phone: "+4929021234567",
+      messenger: "#",
+    },
   ]);
 };

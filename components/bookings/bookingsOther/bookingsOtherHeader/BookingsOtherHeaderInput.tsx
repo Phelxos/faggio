@@ -8,15 +8,18 @@ import useCalendar from "../../../../stores/SCalendar";
 import convertFromIdToOfficeName from "../../../../helpers/convertFromIdToOfficeName";
 
 export default function BookingsOtherHeader() {
-  const theme = useTheme();
   const c = useContext(CBookings);
-  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
-  const allOffices = useOffice((s) => s.allOffices);
+
+  const currentCalWeek = useCalendar((s) => s.currentCalWeek);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
   const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
   const displayedCalWeeksInSelectedMonth = useCalendar(
     (s) => s.displayedCalWeeksInSelectedMonth
   );
+  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
+  const allOffices = useOffice((s) => s.allOffices);
+
+  const theme = useTheme();
 
   useEffect(() => {
     c?.setLocallySelectedOfficeId(globallySelectedOfficeId);

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import prepareDateAsString from "../../../../helpers/prepareDateAsString";
+import useAccount from "../../../../stores/SAccount";
 import useBookings from "../../../../stores/SBookings";
 import useCoworkers from "../../../../stores/SCoworkers";
 import IBooking from "../../../../typings/interfaces/IBooking";
@@ -18,9 +19,11 @@ export default function BookingsOtherMainRow({
 }) {
   const c = useContext(CBookings);
 
-  const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
+  const myId = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
+  const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoading = useCoworkers((s) => s.isLoading);
+
   const [filteredBookings, setFilteredBookings] = useState<IBooking[]>([]);
   const [hasSomeBooking, setHasSomeBooking] = useState<boolean>(false);
 
@@ -37,14 +40,15 @@ export default function BookingsOtherMainRow({
     if (
       filteredBookings.some(
         (booking) =>
-          prepareDateAsString(booking.date) === prepareDateAsString(date)
+          prepareDateAsString(booking.date) === prepareDateAsString(date) &&
+          booking.coworkerId !== myId
       )
     ) {
       setHasSomeBooking(true);
     } else {
       setHasSomeBooking(false);
     }
-  }, [filteredBookings, date]);
+  }, [filteredBookings, date, myId]);
 
   return (
     <div
@@ -63,7 +67,11 @@ export default function BookingsOtherMainRow({
               )
             )
             .map((coworker: ICoworker, i: number) => {
-              return <UserImage coworker={coworker} key={i} />;
+              return (
+                <div key={i}>
+                  <UserImage coworker={coworker} />
+                </div>
+              );
             })}
         </>
       ) : (
