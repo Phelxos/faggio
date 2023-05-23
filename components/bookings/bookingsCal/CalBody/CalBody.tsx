@@ -1,29 +1,33 @@
-import React, { useState, useEffect, useContext } from "react";
-import Head from "./TableHead";
-import useCalendar from "../../../../stores/SCalendar";
-import useBookings from "../../../../stores/SBookings";
-import useAccount from "../../../../stores/SAccount";
+import { getDate, isPast, isSameDay } from "date-fns";
+import React, { useContext, useEffect, useState } from "react";
 import mapCalendar from "../../../../helpers/mapCalendar";
-import { getDate, isPast } from "date-fns";
-import { CBookings } from "../../../contexts/CBookings";
-import IBooking from "../../../../typings/interfaces/IBooking";
 import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
+import useAccount from "../../../../stores/SAccount";
+import useBookings from "../../../../stores/SBookings";
+import useCalendar from "../../../../stores/SCalendar";
+import IBooking from "../../../../typings/interfaces/IBooking";
+import { CBookings } from "../../../contexts/CBookings";
+import Head from "./TableHead";
+import prepareDateAsString from "../../../../helpers/prepareDateAsString";
 
 export default function CalBody() {
   const c = useContext(CBookings);
+
+  const coworkerId: number = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
+  const today = useCalendar((s) => s.today);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
-  const coworkerId: number = useAccount((s) => s.coworkerId);
+
   const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
+
   const isBookedDate = (date: Date): boolean => {
     if (
       bookings.some((b: IBooking) => {
-        // if (b.date === date.toJSON()) console.log(b.date, date.toJSON());
         return (
-          b.date === date.toJSON() &&
+          prepareDateAsString(b.date) === prepareDateAsString(date) &&
           b.officeId === c?.locallySelectedOfficeId &&
           b.coworkerId === coworkerId
         );
@@ -38,7 +42,7 @@ export default function CalBody() {
     if (
       c?.bookingsToBeSaved.some(
         (b: IBooking) =>
-          (b.date as Date).toJSON() === date.toJSON() &&
+          prepareDateAsString(b.date) === prepareDateAsString(date) &&
           b.officeId === c?.locallySelectedOfficeId
       )
     ) {
@@ -51,7 +55,7 @@ export default function CalBody() {
     if (
       c?.bookingsToBeDeleted.some(
         (b: IBooking) =>
-          (b.date as Date).toJSON() === date.toJSON() &&
+          prepareDateAsString(b.date) === prepareDateAsString(date) &&
           b.officeId === c?.locallySelectedOfficeId
       )
     ) {
@@ -144,7 +148,12 @@ export default function CalBody() {
                           : isBeingSelectedAsBookingToBeDeleted(weekday.date)
                           ? "rounded-full bg-red-300/50 text-red-800 line-through hover:rounded-full hover:bg-red-300/75 hover:text-red-600"
                           : ""
-                      }`}
+                      } ${
+                        isSameDay(weekday.date, today) &&
+                        !c?.isBeingEdited &&
+                        "rounded-full outline-dashed outline-2 -outline-offset-2 outline-emerald-500/50"
+                      }
+                      `}
                       onClick={() => handleDateClick(weekday.date)}
                     >
                       {getDate(weekday.date)}
