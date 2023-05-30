@@ -50,8 +50,8 @@ export default function ControlsBar() {
           <Switch />
         ) : c?.activeButton === "center" ? (
           <SearchAndSelect
-            value={globallySelectedOfficeId}
-            setValue={setGloballySelectedOfficeId}
+            value={c.locallySelectedOfficeId}
+            setValue={c.setLocallySelectedOfficeId}
             listOfValues={allOffices.map((office) => office.officeId)}
             theme={theme}
             displayFilter={(officeId) =>

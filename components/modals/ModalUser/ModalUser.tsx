@@ -58,7 +58,11 @@ export default function ModalUser({
           <NextBooking id={coworker?.coworkerId} />
           <Projects />
         </div>
-        <UserCardControls className="w-full rounded-b-lg" />
+        <UserCardControls
+          className="w-full rounded-b-lg"
+          phone={coworker?.phone}
+          email={coworker?.email}
+        />
       </Dialog.Panel>
     </Dialog>
   ) : (

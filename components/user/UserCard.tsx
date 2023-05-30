@@ -13,6 +13,8 @@ export default function UserCard({
   imgSrc,
   coworkerId,
   className,
+  phone,
+  email,
 }: ICoworker & { className?: string }) {
   const { isOpenModal, toggleModal } = useModal();
 
@@ -39,7 +41,7 @@ export default function UserCard({
         )}
       </div>
       <UserCardInfo forename={forename} surname={surname} id={coworkerId} />
-      <UserCardControls />
+      <UserCardControls phone={phone} email={email} />
     </div>
   );
 }
