@@ -15,6 +15,7 @@ export default function CalBody() {
 
   const coworkerId: number = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
+  const fetchBookings = useBookings((s) => s.fetchBookings);
   const today = useCalendar((s) => s.today);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
@@ -107,6 +108,11 @@ export default function CalBody() {
     setDisplayedMonth(mapCalendar(selectedMonth, selectedYear));
   }, [selectedYear, selectedMonth]);
 
+  useEffect(() => {
+    fetchBookings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [c?.locallySelectedOfficeId, bookings]);
+
   return (
     <table className="w-full grow table-fixed">
       <Head />
@@ -151,7 +157,7 @@ export default function CalBody() {
                       } ${
                         isSameDay(weekday.date, today) &&
                         !c?.isBeingEdited &&
-                        "rounded-full outline-dashed outline-2 -outline-offset-2 outline-emerald-500/50"
+                        "rounded-full outline outline-2 -outline-offset-2 outline-emerald-500/50"
                       }
                       `}
                       onClick={() => handleDateClick(weekday.date)}

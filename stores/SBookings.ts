@@ -4,6 +4,7 @@ import IBooking from "../typings/interfaces/IBooking";
 import a from "axios";
 import { apiPath } from "../config/index";
 import useAccount from "./SAccount";
+import prepareDateAsString from "../helpers/prepareDateAsString";
 
 interface Interface {
   bookings: IBooking[];
@@ -26,7 +27,7 @@ const useBookings = create<Interface>()(
             bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => {
               return {
                 ...b,
-                date: (b.date as Date).toJSON(), // TO-DO potential error
+                date: prepareDateAsString(b.date),
               };
             });
             const { data: bookingsFromApi } = await a.post(apiPath.BOOKINGS, {
@@ -75,6 +76,7 @@ const useBookings = create<Interface>()(
             const sortedBookings = bookingsFromApi.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
+            console.log(sortedBookings);
             set(() => ({
               bookings: sortedBookings,
             }));

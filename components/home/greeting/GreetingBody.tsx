@@ -31,14 +31,14 @@ export default function GreetingBody() {
             <p className="self-end text-4xl font-thin text-sky-500/50">
               Nächstes Mal
             </p>
-            <div className="text-sky-500">
+            <div className="leading-10 text-sky-500">
               Du planst, das nächste Mal
               {weekdaysGerman?.includes(nextDay) ? " am" : ","}{" "}
               <span className="inline-block rounded bg-sky-700 px-2 text-sky-300">
                 {nextDay}
               </span>{" "}
               ins{" "}
-              <div className="inline-flex items-baseline gap-1 rounded bg-sky-700 px-2 text-sky-300">
+              <div className="my-2 inline-flex items-baseline gap-1 rounded bg-sky-700 px-2 text-sky-300">
                 <Icon
                   icon="buildingOffice"
                   className="m-0 h-4 w-4 self-center opacity-50"
