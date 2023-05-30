@@ -1,4 +1,4 @@
-import { getDate, isPast, isSameDay } from "date-fns";
+import { getDate, isPast, isSameDay, parseISO } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import mapCalendar from "../../../../helpers/mapCalendar";
 import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
@@ -155,7 +155,7 @@ export default function CalBody() {
                           ? "rounded-full bg-red-300/50 text-red-800 line-through hover:rounded-full hover:bg-red-300/75 hover:text-red-600"
                           : ""
                       } ${
-                        isSameDay(weekday.date, today) &&
+                        isSameDay(weekday.date, new Date(today)) &&
                         !c?.isBeingEdited &&
                         "rounded-full outline outline-2 -outline-offset-2 outline-emerald-500/50"
                       }

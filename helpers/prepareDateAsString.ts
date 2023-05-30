@@ -2,8 +2,8 @@ import { add } from "date-fns";
 import isTimeZero from "./isTimeZero";
 
 /**
- * ⚠️ Only works in GMT+0200 timezone!
- * Prepare a date with 'toJSON()' to be saved neatly in the database
+ * Prepare a date with 'toJSON()' to be saved neatly in the database.
+ * (⚠️ Only works in GMT+0200 timezone!)
  * @returns { String } date string in the format 'YYYY-MM-DDTHH:00:00.000Z'
  * @param { Date | String } date - date to be prepared
  */

@@ -76,7 +76,6 @@ const useBookings = create<Interface>()(
             const sortedBookings = bookingsFromApi.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
-            console.log(sortedBookings);
             set(() => ({
               bookings: sortedBookings,
             }));
