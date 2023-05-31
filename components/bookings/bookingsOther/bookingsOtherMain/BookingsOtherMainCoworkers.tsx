@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import prepareDateAsString from "../../../../helpers/prepareDateAsString";
+import compareDatesSafely from "../../../../helpers/compareDatesSafely";
 import useAccount from "../../../../stores/SAccount";
 import useBookings from "../../../../stores/SBookings";
 import useCoworkers from "../../../../stores/SCoworkers";
@@ -29,9 +29,9 @@ export default function BookingsOtherMainRow({
 
   useEffect(() => {
     const filteredBookings = bookings.filter(
-      (booking) =>
-        booking.officeId === c?.locallySelectedOfficeId &&
-        prepareDateAsString(booking.date) === prepareDateAsString(date)
+      (b) =>
+        b.officeId === c?.locallySelectedOfficeId &&
+        compareDatesSafely(date, b.date)
     );
     setFilteredBookings(filteredBookings);
   }, [coworkers, bookings, c?.locallySelectedOfficeId, date]);
@@ -39,9 +39,7 @@ export default function BookingsOtherMainRow({
   useEffect(() => {
     if (
       filteredBookings.some(
-        (booking) =>
-          prepareDateAsString(booking.date) === prepareDateAsString(date) &&
-          booking.coworkerId !== myId
+        (b) => compareDatesSafely(date, b.date) && b.coworkerId !== myId
       )
     ) {
       setHasSomeBooking(true);

@@ -1,14 +1,14 @@
 import IBooking from "../typings/interfaces/IBooking";
-import prepareDateAsString from "./prepareDateAsString";
+import safeguardDate from "./safeguardDateAgainstTimezoneOffset";
 
 export default function preparedBookings(
   bookingsToBePrepared: IBooking[]
 ): IBooking[] {
   const preparedBookings = bookingsToBePrepared.map(
     ({ date, coworkerId, officeId }: IBooking) => {
-      const preparedDate = prepareDateAsString(date);
+      const safeDate = safeguardDate(date);
       return {
-        date: preparedDate,
+        date: safeDate,
         coworkerId,
         officeId,
       };

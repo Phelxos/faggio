@@ -1,7 +1,6 @@
-import { isSameDay } from "date-fns";
 import useBookings from "../stores/SBookings";
 import useOffice from "../stores/SOffices";
-import prepareDateAsDate from "../helpers/prepareDateAsDate";
+import compareDatesSafely from "../helpers/compareDatesSafely";
 
 export default function useOccupancyLevel(
   date: any,
@@ -12,17 +11,22 @@ export default function useOccupancyLevel(
   const bookingsCount = bookings.filter(
     ({ date: toBeCheckedDate, officeId: toBeCheckedOfficeId }) => {
       return (
-        isSameDay(
-          prepareDateAsDate(toBeCheckedDate),
-          prepareDateAsDate(date)
-        ) && toBeCheckedOfficeId === globallySelectedOfficeId
+        compareDatesSafely(date, toBeCheckedDate) &&
+        toBeCheckedOfficeId === globallySelectedOfficeId
       );
     }
   ).length;
 
-  const occupancyRate = Math.round((bookingsCount / workstationCapacity) * 100);
+  const occupancyRate = Math.round((bookingsCount / workstationCapacity) * 100); // Percent represented as a number between 0 and 100
+
   if (occupancyRate < 1) return 10;
-  if (occupancyRate < 3) return 40;
-  if (occupancyRate < 5) return 75;
-  else return 90;
+  if (occupancyRate < 2) return 20;
+  if (occupancyRate < 3) return 30;
+  if (occupancyRate < 4) return 40;
+  if (occupancyRate < 5) return 50;
+  if (occupancyRate < 6) return 60;
+  if (occupancyRate < 7) return 70;
+  if (occupancyRate < 10) return 80;
+  if (occupancyRate < 12) return 90;
+  else return 95;
 }
