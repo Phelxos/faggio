@@ -50,9 +50,9 @@ export default function BookingsOtherMainRow({
 
   return (
     <div
-      className={`relative col-span-6 flex h-[90px] items-center overflow-scroll px-3 py-2 shadow-inner ${
+      className={`relative col-span-6 flex h-[90px] w-full items-center overflow-x-auto px-3 py-2 shadow-inner ${
         i % 2 === 0 ? "bg-slate-500/50" : "bg-slate-400/50"
-      } ${hasSomeBooking ? "gap-4" : "justify-center gap-1 opacity-30"}`}
+      } ${hasSomeBooking ? "gap-5" : "justify-center gap-1 opacity-30"}`}
     >
       {isLoading ? (
         <Spinner />
@@ -66,7 +66,7 @@ export default function BookingsOtherMainRow({
             )
             .map((coworker: ICoworker, i: number) => {
               return (
-                <div key={i}>
+                <div key={i} className="min-w-[65px]">
                   <UserImage coworker={coworker} />
                 </div>
               );

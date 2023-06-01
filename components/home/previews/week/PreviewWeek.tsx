@@ -1,8 +1,9 @@
 import { getDate, getDay, isSameDay } from "date-fns";
 import React, { useEffect, useState } from "react";
-import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
+import safeguardDate from "../../../../helpers/safeguardDateAgainstTimezoneOffset";
 import useWeekCurrent from "../../../../hooks/useWeekCurrent";
 import useWeekNext from "../../../../hooks/useWeekNext";
+import useAccount from "../../../../stores/SAccount";
 import useBookings from "../../../../stores/SBookings";
 import useCalendar from "../../../../stores/SCalendar";
 import useOffice from "../../../../stores/SOffices";
@@ -10,6 +11,7 @@ import CalendarWeek from "./PreviewWeekCalendarWeek";
 import Day from "./PreviewWeekDay";
 
 export default function PreviewWeek() {
+  const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
   const today = useCalendar((s) => s.today);
   const calWeek = useCalendar((s) => s.currentCalWeek);
@@ -38,11 +40,12 @@ export default function PreviewWeek() {
     let newWeekBookingsOtherCount;
     if (isShowingNextWeekBookings) {
       newWeekBookingsOtherCount = nextWeek.map(({ date }) => {
-        const timezoneAdjustedDate = prepareDateAsDate(date);
-        const count = bookings.filter(({ date, officeId }) => {
+        const safeDate = safeguardDate(date);
+        const count = bookings.filter(({ date, officeId, coworkerId }) => {
           return (
-            isSameDay(new Date(date), timezoneAdjustedDate) &&
-            globallySelectedOfficeId === officeId
+            isSameDay(new Date(date), safeDate) &&
+            globallySelectedOfficeId === officeId &&
+            IdOfLoggedInUser !== coworkerId
           );
         }).length;
         return { count, date };
@@ -50,11 +53,12 @@ export default function PreviewWeek() {
       setCountOfOtherBookingsInSelectedWeek(newWeekBookingsOtherCount);
     } else {
       newWeekBookingsOtherCount = currentWeek.map(({ date }) => {
-        const timezoneAdjustedDate = prepareDateAsDate(date);
-        const count = bookings.filter(({ date, officeId }) => {
+        const safeDate = safeguardDate(date);
+        const count = bookings.filter(({ date, officeId, coworkerId }) => {
           return (
-            isSameDay(new Date(date), timezoneAdjustedDate) &&
-            globallySelectedOfficeId === officeId
+            isSameDay(new Date(date), safeDate) &&
+            globallySelectedOfficeId === officeId &&
+            IdOfLoggedInUser !== coworkerId
           );
         }).length;
         return { count, date };

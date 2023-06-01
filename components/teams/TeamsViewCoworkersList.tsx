@@ -1,4 +1,4 @@
-import React, { use, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import UserCard from "../user/UserCard";
 import { CTeams } from "../contexts/CTeams";

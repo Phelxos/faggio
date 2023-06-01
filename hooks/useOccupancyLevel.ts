@@ -1,25 +1,27 @@
 import useBookings from "../stores/SBookings";
 import useOffice from "../stores/SOffices";
 import compareDatesSafely from "../helpers/compareDatesSafely";
+import useAccount from "../stores/SAccount";
 
 export default function useOccupancyLevel(
   date: any,
   workstationCapacity: number
 ) {
   const bookings = useBookings((s) => s.bookings);
+  const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const bookingsCount = bookings.filter(
-    ({ date: toBeCheckedDate, officeId: toBeCheckedOfficeId }) => {
+    ({ date: toBeCheckedDate, officeId: toBeCheckedOfficeId, coworkerId }) => {
       return (
         compareDatesSafely(date, toBeCheckedDate) &&
-        toBeCheckedOfficeId === globallySelectedOfficeId
+        toBeCheckedOfficeId === globallySelectedOfficeId &&
+        coworkerId !== IdOfLoggedInUser
       );
     }
   ).length;
 
   const occupancyRate = Math.round((bookingsCount / workstationCapacity) * 100); // Percent represented as a number between 0 and 100
 
-  if (occupancyRate < 1) return 10;
   if (occupancyRate < 2) return 20;
   if (occupancyRate < 3) return 30;
   if (occupancyRate < 4) return 40;

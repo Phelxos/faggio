@@ -32,8 +32,8 @@ export default function GreetingBody() {
               Nächstes Mal
             </p>
             <div className="leading-10 text-sky-500">
-              Du planst, das nächste Mal
-              {weekdaysGerman?.includes(nextDay) ? " am" : ","}{" "}
+              Du planst,
+              {weekdaysGerman?.includes(nextDay) && " am"}{" "}
               <span className="inline-block rounded bg-sky-700 px-2 text-sky-300">
                 {nextDay}
               </span>{" "}

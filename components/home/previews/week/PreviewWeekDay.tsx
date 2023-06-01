@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Icon from "../../../icons/Icon";
-import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
-import { isSameDay } from "date-fns";
+import compareDatesSafely from "../../../../helpers/compareDatesSafely";
 
 export default function PreviewWeekDay({
   i,
@@ -23,7 +22,7 @@ export default function PreviewWeekDay({
   useEffect(() => {
     setTodaysCount(
       countsOfOtherBookings.find(({ date: dateToFind }) =>
-        isSameDay(prepareDateAsDate(dateToFind), prepareDateAsDate(date))
+        compareDatesSafely(dateToFind, date)
       )?.count!
     );
   }, [countsOfOtherBookings, date]);
@@ -33,12 +32,7 @@ export default function PreviewWeekDay({
   }, [todaysCount]);
 
   return (
-    <div
-      key={i}
-      className={`flex h-full grow flex-col ${
-        !areThereOtherBookingsForToday && "opacity-50"
-      }`}
-    >
+    <div key={i} className={`flex h-full grow flex-col`}>
       <div
         className={`flex w-full flex-col items-center border-r-4 bg-emerald-900/75 p-2 last:border-r-4 ${
           i % 2
@@ -52,8 +46,8 @@ export default function PreviewWeekDay({
       <div
         className={`flex h-full w-full flex-col items-center justify-center p-2 text-2xl ${
           i % 2
-            ? "bg-emerald-800/75 text-emerald-500/60"
-            : "bg-emerald-700/75 text-emerald-400/60"
+            ? "bg-emerald-800 text-emerald-500"
+            : "bg-emerald-700 text-emerald-400"
         }`}
       >
         {areThereOtherBookingsForToday ? (
