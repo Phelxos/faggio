@@ -1,14 +1,14 @@
 import { getDate, isPast, isSameDay, parseISO } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import mapCalendar from "../../../../helpers/mapCalendar";
-import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
 import useAccount from "../../../../stores/SAccount";
 import useBookings from "../../../../stores/SBookings";
 import useCalendar from "../../../../stores/SCalendar";
 import IBooking from "../../../../typings/interfaces/IBooking";
 import { CBookings } from "../../../contexts/CBookings";
 import Head from "./TableHead";
-import prepareDateAsString from "../../../../helpers/prepareDateAsString";
+import compareDatesSafely from "../../../../helpers/compareDatesSafely";
+import safeguardDate from "../../../../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function CalBody() {
   const c = useContext(CBookings);
@@ -28,7 +28,7 @@ export default function CalBody() {
     if (
       bookings.some((b: IBooking) => {
         return (
-          prepareDateAsString(b.date) === prepareDateAsString(date) &&
+          compareDatesSafely(date, b.date) &&
           b.officeId === c?.locallySelectedOfficeId &&
           b.coworkerId === coworkerId
         );
@@ -43,7 +43,7 @@ export default function CalBody() {
     if (
       c?.bookingsToBeSaved.some(
         (b: IBooking) =>
-          prepareDateAsString(b.date) === prepareDateAsString(date) &&
+          compareDatesSafely(date, b.date) &&
           b.officeId === c?.locallySelectedOfficeId
       )
     ) {
@@ -56,7 +56,7 @@ export default function CalBody() {
     if (
       c?.bookingsToBeDeleted.some(
         (b: IBooking) =>
-          prepareDateAsString(b.date) === prepareDateAsString(date) &&
+          compareDatesSafely(date, b.date) &&
           b.officeId === c?.locallySelectedOfficeId
       )
     ) {
@@ -68,38 +68,38 @@ export default function CalBody() {
   const handleDateClick = (date: Date | string) => {
     if (c?.isBeingEdited) {
       // Ensure using date object
-      const timezoneAdjustedDate: Date = prepareDateAsDate(date);
-      if (isPast(timezoneAdjustedDate)) return;
+      const safeDate: Date = safeguardDate(date);
+      if (isPast(safeDate)) return;
       const officeId = c!.locallySelectedOfficeId;
       if (
-        !isBookedDate(timezoneAdjustedDate) &&
-        !isBeingSelectedAsBookingToBeSaved(timezoneAdjustedDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
+        !isBookedDate(safeDate) &&
+        !isBeingSelectedAsBookingToBeSaved(safeDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
         c.setBookingsToBeSaved({
-          date: timezoneAdjustedDate,
+          date: safeDate,
           coworkerId,
           officeId,
         });
       } else if (
-        isBeingSelectedAsBookingToBeSaved(timezoneAdjustedDate) &&
-        !isBookedDate(timezoneAdjustedDate)
+        isBeingSelectedAsBookingToBeSaved(safeDate) &&
+        !isBookedDate(safeDate)
       ) {
-        c.deleteBookingsToBeSaved(timezoneAdjustedDate);
+        c.deleteBookingsToBeSaved(safeDate);
       } else if (
-        isBookedDate(timezoneAdjustedDate) &&
-        !isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
+        isBookedDate(safeDate) &&
+        !isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
         c.setBookingsToBeDeleted({
-          date: timezoneAdjustedDate,
+          date: safeDate,
           coworkerId,
           officeId,
         });
       } else if (
-        isBookedDate(timezoneAdjustedDate) &&
-        isBeingSelectedAsBookingToBeDeleted(timezoneAdjustedDate)
+        isBookedDate(safeDate) &&
+        isBeingSelectedAsBookingToBeDeleted(safeDate)
       ) {
-        c.deleteBookingsToBeDeleted(timezoneAdjustedDate);
+        c.deleteBookingsToBeDeleted(safeDate);
       }
     }
   };

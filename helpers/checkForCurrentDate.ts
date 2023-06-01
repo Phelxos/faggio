@@ -1,7 +1,7 @@
 import { isToday } from "date-fns";
-import prepareDateAsDate from "./prepareDateAsDate";
+import safeguardDate from "./safeguardDateAgainstTimezoneOffset";
 
 export default function checkForCurrentDate(today: Date | string) {
-  today = prepareDateAsDate(today);
+  today = safeguardDate(today);
   return isToday(today);
 }

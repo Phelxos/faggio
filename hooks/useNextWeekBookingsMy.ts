@@ -1,10 +1,10 @@
 import { getWeek } from "date-fns";
 import { useContext } from "react";
 import { CBookings } from "../components/contexts/CBookings";
-import prepareDateAsDate from "../helpers/prepareDateAsDate";
 import useBookings from "../stores/SBookings";
 import useOffice from "../stores/SOffices";
 import IBooking from "../typings/interfaces/IBooking";
+import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function useNextWeekBookings(
   passedCoworkerId: number
@@ -14,7 +14,7 @@ export default function useNextWeekBookings(
   const bookings = useBookings((s) => s.bookings);
   const nextBookings = bookings.filter(({ date, officeId, coworkerId }) => {
     return (
-      getWeek(prepareDateAsDate(date)) === getWeek(new Date()) + 1 &&
+      getWeek(safeguardDate(date)) === getWeek(new Date()) + 1 &&
       officeId ===
         (c?.locallySelectedOfficeId ?? globallySelectedOffice.officeId) &&
       coworkerId === passedCoworkerId

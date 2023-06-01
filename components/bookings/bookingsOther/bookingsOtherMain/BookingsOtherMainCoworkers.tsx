@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import prepareDateAsString from "../../../../helpers/prepareDateAsString";
+import compareDatesSafely from "../../../../helpers/compareDatesSafely";
 import useAccount from "../../../../stores/SAccount";
 import useBookings from "../../../../stores/SBookings";
 import useCoworkers from "../../../../stores/SCoworkers";
@@ -29,9 +29,9 @@ export default function BookingsOtherMainRow({
 
   useEffect(() => {
     const filteredBookings = bookings.filter(
-      (booking) =>
-        booking.officeId === c?.locallySelectedOfficeId &&
-        prepareDateAsString(booking.date) === prepareDateAsString(date)
+      (b) =>
+        b.officeId === c?.locallySelectedOfficeId &&
+        compareDatesSafely(date, b.date)
     );
     setFilteredBookings(filteredBookings);
   }, [coworkers, bookings, c?.locallySelectedOfficeId, date]);
@@ -39,9 +39,7 @@ export default function BookingsOtherMainRow({
   useEffect(() => {
     if (
       filteredBookings.some(
-        (booking) =>
-          prepareDateAsString(booking.date) === prepareDateAsString(date) &&
-          booking.coworkerId !== myId
+        (b) => compareDatesSafely(date, b.date) && b.coworkerId !== myId
       )
     ) {
       setHasSomeBooking(true);
@@ -52,9 +50,9 @@ export default function BookingsOtherMainRow({
 
   return (
     <div
-      className={`relative col-span-6 flex h-[90px] items-center overflow-scroll px-3 py-2 shadow-inner ${
+      className={`relative col-span-6 flex h-[90px] w-full items-center overflow-x-auto px-3 py-2 shadow-inner ${
         i % 2 === 0 ? "bg-slate-500/50" : "bg-slate-400/50"
-      } ${hasSomeBooking ? "gap-4" : "justify-center gap-1 opacity-30"}`}
+      } ${hasSomeBooking ? "gap-5" : "justify-center gap-1 opacity-30"}`}
     >
       {isLoading ? (
         <Spinner />
@@ -68,7 +66,7 @@ export default function BookingsOtherMainRow({
             )
             .map((coworker: ICoworker, i: number) => {
               return (
-                <div key={i}>
+                <div key={i} className="min-w-[65px]">
                   <UserImage coworker={coworker} />
                 </div>
               );

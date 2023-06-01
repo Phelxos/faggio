@@ -3,7 +3,7 @@ import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
 import { isAfter, parseJSON } from "date-fns";
 import IBooking from "../typings/interfaces/IBooking";
-import prepareDateAsDate from "../helpers/prepareDateAsDate";
+import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function useNextBooking(id: number):
   | {
@@ -16,16 +16,16 @@ export default function useNextBooking(id: number):
   const nextBooking = useRef<IBooking | undefined>(undefined);
 
   nextBooking.current = bookings.find(({ date, coworkerId }) => {
-    const timezoneAdjustedDate = prepareDateAsDate(date);
-    if (isAfter(timezoneAdjustedDate, today))
-      return isAfter(timezoneAdjustedDate, today) && coworkerId === id;
+    const safeDate = safeguardDate(date);
+    if (isAfter(safeDate, today))
+      return isAfter(safeDate, today) && coworkerId === id;
   });
 
   useEffect(() => {
     nextBooking.current = bookings.find(({ date, coworkerId }) => {
-      const timezoneAdjustedDate = prepareDateAsDate(date);
-      if (isAfter(timezoneAdjustedDate, today))
-        return isAfter(timezoneAdjustedDate, today) && coworkerId === id;
+      const safeDate = safeguardDate(date);
+      if (isAfter(safeDate, today))
+        return isAfter(safeDate, today) && coworkerId === id;
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [today]);

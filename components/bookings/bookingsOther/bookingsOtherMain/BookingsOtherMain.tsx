@@ -3,7 +3,7 @@ import useCalendar from "../../../../stores/SCalendar";
 import displayEquivalent from "../../../../helpers/displayEquivalent";
 import Coworkers from "./BookingsOtherMainCoworkers";
 import Date from "./BookingsOtherMainDate";
-import prepareDateAsDate from "../../../../helpers/prepareDateAsDate";
+import safeguardDate from "../../../../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function BookingsOtherMainDays() {
   const workingDaysOfSelectedCalWeek = useCalendar(
@@ -13,9 +13,9 @@ export default function BookingsOtherMainDays() {
   return (
     <ul className="flex flex-col items-center divide-y-8 divide-emerald-900/50">
       {workingDaysOfSelectedCalWeek.map((workingDay, i) => {
-        const timezoneAdjustedDate = prepareDateAsDate(workingDay);
-        const date = timezoneAdjustedDate.getDate();
-        const day = displayEquivalent(timezoneAdjustedDate.getDay(), "day");
+        const safeDate = safeguardDate(workingDay);
+        const date = safeDate.getDate();
+        const day = displayEquivalent(safeDate.getDay(), "day");
         return (
           <li
             key={i}
@@ -23,7 +23,7 @@ export default function BookingsOtherMainDays() {
           >
             <div className="grid h-[90px] grid-cols-8">
               <Date i={i} date={date} day={day} />
-              <Coworkers i={i} date={timezoneAdjustedDate} />
+              <Coworkers i={i} date={safeDate} />
             </div>
           </li>
         );

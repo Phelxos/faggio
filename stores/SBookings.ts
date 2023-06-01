@@ -1,10 +1,10 @@
+import a from "axios";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import IBooking from "../typings/interfaces/IBooking";
-import a from "axios";
 import { apiPath } from "../config/index";
+import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
+import IBooking from "../typings/interfaces/IBooking";
 import useAccount from "./SAccount";
-import prepareDateAsString from "../helpers/prepareDateAsString";
 
 interface Interface {
   bookings: IBooking[];
@@ -27,7 +27,7 @@ const useBookings = create<Interface>()(
             bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => {
               return {
                 ...b,
-                date: prepareDateAsString(b.date),
+                date: safeguardDate(b.date),
               };
             });
             const { data: bookingsFromApi } = await a.post(apiPath.BOOKINGS, {

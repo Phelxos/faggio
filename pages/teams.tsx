@@ -48,7 +48,6 @@ export default function Teams() {
 
   useEffect(() => {
     filterCoworkers(coworkers as ICoworker[]);
-    console.log("s");
   }, [c?.searchForUser, c?.locallySelectedOfficeId]);
 
   return (
