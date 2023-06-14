@@ -9,11 +9,16 @@ export default function StatusLocation() {
   const currentTheme = useTheme();
 
   return (
-    <div className="flex items-center">
-      <p className={`font-mono font-bold uppercase text-${currentTheme}-500`}>
+    <div className={`mr-1 flex items-baseline gap-1`}>
+      <Icon
+        className={`h-3 w-3 fill-${currentTheme}-400 opacity-50`}
+        icon="mapPin"
+      />
+      <p
+        className={`font-mono uppercase text-${currentTheme}-400 tracking-widest`}
+      >
         {convertFromIdToOfficeName(globallySelectedOfficeId)}
       </p>
-      <Icon className={`ml-1 h-3 w-3 fill-${currentTheme}-600`} icon="mapPin" />
     </div>
   );
 }

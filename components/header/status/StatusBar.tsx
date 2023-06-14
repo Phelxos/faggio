@@ -8,7 +8,7 @@ export default function StatusBar() {
 
   return (
     <div
-      className={`flex items-center justify-between bg-${currentTheme}-700 py-1 px-3 text-xs`}
+      className={`flex items-center justify-between bg-${currentTheme}-700 p-2 text-xs`}
     >
       <StatusUser />
       <StatusLocation />
