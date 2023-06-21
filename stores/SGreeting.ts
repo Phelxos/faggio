@@ -1,17 +1,16 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import axios from "axios";
-import translateToGerman from "../helpers/translateToGerman";
 import { isSameDay } from "date-fns";
+import transformObjectIntoArray from "../helpers/transformObjectIntoArray";
 
 interface Interface {
   greeting: string;
   setGreeting: (greeting: string) => void;
-  fetchGreeting: () => Promise<void>;
+  fetchGreetings: () => Promise<void>;
+  chooseGreeting: () => void;
   language: string;
   setLanguage: (language: string) => void;
-  languageInGerman: string;
-  setLanguageInGerman: (language: string) => void;
   hasLoaded: boolean;
   setHasLoaded: (status: boolean) => void;
   hasFetchedSuccessfully: boolean;
@@ -29,31 +28,23 @@ const useGreeting = create<Interface>()(
         hasFetchedSuccessfully: false,
         setHasFetchedSuccessfully: (status: boolean) =>
           set({ hasFetchedSuccessfully: status }),
-        greeting: "",
-        languageInGerman: "",
-        setLanguageInGerman: (newLanguageInGerman: string) =>
-          set(() => ({ languageInGerman: newLanguageInGerman })),
-        language: "",
+        greeting: "Salut",
         setGreeting: (newGreeting: string) =>
           set(() => ({ greeting: newGreeting })),
+        chooseGreeting: () => {},
+        language: "Französisch",
         setLanguage: (newLanguage: string) =>
           set(() => ({ language: newLanguage })),
-        fetchGreeting: async () => {
+        fetchGreetings: async () => {
           try {
             const response = await axios.get(
-              "https://www.greetingsapi.com/random"
+              "https://gist.githubusercontent.com/subbe/94ba128e4560b50484eb6aa2556b7559/raw/eb48b92adb545c1651f019b9672804dad39c163f/greetings.json"
             );
-            const { language, greeting } = response.data;
-            const languageInGerman = await translateToGerman(language);
-            if (
-              isSameDay(new Date(), new Date(get().timestamp)) &&
-              get().hasFetchedSuccessfully
-            )
-              return;
+            const greetings = transformObjectIntoArray(
+              await response.data,
+              "language"
+            );
             set(() => ({
-              greeting,
-              language,
-              languageInGerman,
               hasFetchedSuccessfully: true,
               timestamp: new Date(),
             }));

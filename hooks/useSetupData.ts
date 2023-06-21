@@ -11,7 +11,7 @@ export default function useSetupData() {
   const fetchBookings = useBookings((s) => s.fetchBookings);
   const today = useCalendar((s) => s.today);
   const updateToCurrentDate = useCalendar((s) => s.updateToCurrentDate);
-  const fetchGreeting = useGreeting((s) => s.fetchGreeting);
+  const fetchGreeting = useGreeting((s) => s.fetchGreetings);
   const hasLoadedGreeting = useGreeting((s) => s.hasLoaded);
   const isNotTheRightSize = usePhoneSize();
 
