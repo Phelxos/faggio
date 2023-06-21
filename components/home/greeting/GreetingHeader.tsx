@@ -21,12 +21,12 @@ export default function GreetingHeader() {
 
   return (
     <div className="flex items-end gap-2 rounded-t bg-sky-900 p-5">
-      <div>
+      <div className="flex items-end">
         <span className="text-3xl font-thin text-sky-300">
           {hasFetchedSuccesfully ? greeting : "Hei"}
         </span>
         {hasFetchedSuccesfully && (
-          <span className="ml-3 font-light italic text-sky-300/50">
+          <span className="ml-3 text-sm font-light italic text-sky-300/50">
             [ {pronouncation} ]
           </span>
         )}
