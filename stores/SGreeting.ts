@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import axios from "axios";
-import { isSameDay } from "date-fns";
 import transformObjectIntoArrayOfObjects from "../helpers/transformObjectIntoArrayOfObjects";
 
 interface Greeting {

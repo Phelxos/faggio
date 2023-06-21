@@ -2,14 +2,23 @@ import React, { useEffect } from "react";
 import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
 import useAccount from "../../../stores/SAccount";
 import useGreeting from "../../../stores/SGreeting";
+import { isSameDay } from "date-fns";
+import safeguardDate from "../../../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function GreetingHeader() {
   const greeting = useGreeting((s) => s.greeting);
   const pronouncation = useGreeting((s) => s.pronouncation);
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);
+  const timestamp = useGreeting((s) => s.timestamp);
+  const fetchGreetings = useGreeting((s) => s.fetchGreetings);
   const user = useAccount((s) => s.forename);
 
-  useEffect(() => {}, [greeting]);
+  useEffect(() => {
+    if (isSameDay(new Date(safeguardDate(timestamp)), new Date())) return;
+    fetchGreetings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="flex items-end gap-2 rounded-t bg-sky-900 p-5">
       <div>
