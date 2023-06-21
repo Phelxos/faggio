@@ -6,6 +6,7 @@ export default function GreetingFooter() {
   const greeting = useGreeting((s) => s.greeting);
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);
   const language = useGreeting((s) => s.language);
+
   return (
     <div className="relative flex items-center justify-end gap-1 rounded-b bg-sky-900 px-2 py-3 text-xs text-sky-400/50">
       {hasFetchedSuccesfully && (
