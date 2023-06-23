@@ -69,7 +69,7 @@ export default function CalBody() {
     if (c?.isBeingEdited) {
       // Ensure using date object
       const safeDate: Date = safeguardDate(date);
-      if (isPast(safeDate)) return;
+      if (isPast(safeDate) && !isBookedDate(safeDate)) return;
       const officeId = c!.locallySelectedOfficeId;
       if (
         !isBookedDate(safeDate) &&
