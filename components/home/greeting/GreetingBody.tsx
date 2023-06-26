@@ -28,7 +28,7 @@ export default function GreetingBody() {
       <div className="flex flex-col gap-3 p-6">
         {nextDay ? (
           <>
-            <p className="self-end text-4xl font-thin text-sky-500/50">
+            <p className="mb-4 self-end text-4xl font-thin text-sky-500/50">
               Nächstes Mal
             </p>
             <div className="leading-10 text-sky-500">

@@ -1,9 +1,9 @@
+import { isSameDay } from "date-fns";
 import React, { useEffect } from "react";
 import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
+import safeguardDate from "../../../helpers/safeguardDateAgainstTimezoneOffset";
 import useAccount from "../../../stores/SAccount";
 import useGreeting from "../../../stores/SGreeting";
-import { isSameDay } from "date-fns";
-import safeguardDate from "../../../helpers/safeguardDateAgainstTimezoneOffset";
 
 export default function GreetingHeader() {
   const greeting = useGreeting((s) => s.greeting);
@@ -23,7 +23,7 @@ export default function GreetingHeader() {
     <div className="flex items-end gap-2 rounded-t bg-sky-900 p-5">
       <div className="flex items-end">
         <span className="text-3xl font-thin text-sky-300">
-          {hasFetchedSuccesfully ? greeting : "Hei"}
+          {hasFetchedSuccesfully ? capitaliseFirstLetter(greeting) : "Hei"}
         </span>
         {hasFetchedSuccesfully && (
           <span className="ml-3 text-sm font-light italic text-sky-300/50">
