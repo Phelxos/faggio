@@ -16,7 +16,13 @@ const ModalProfileTile: FC<ModalProfileTileProps> = ({
   return (
     <div className="relative h-full w-full overflow-hidden hyphens-auto rounded border-2 border-sky-900 bg-sky-950 p-4 shadow-lg">
       <span className="font-mono text-sm text-sky-200/50">
-        {name} {nameBold && <strong>{nameBold}</strong>}
+        {name}{" "}
+        {nameBold && (
+          <>
+            <br />
+            <strong>{nameBold}</strong>
+          </>
+        )}
       </span>
       <Icon
         icon={icon}

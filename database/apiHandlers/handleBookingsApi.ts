@@ -40,10 +40,13 @@ export async function enter(
 }
 
 export async function remove(bookingsToBeRemoved: IBooking[]) {
+  console.log(
+    "🚀 ~ file: handleBookingsApi.ts:43 ~ remove ~ bookingsToBeRemoved:",
+    bookingsToBeRemoved
+  );
   try {
     const preparedBookings = prepareBookings(bookingsToBeRemoved);
-
-    const promises = preparedBookings.map((booking) => {
+    const promises = preparedBookings?.map((booking) => {
       return db("bookings")
         .where({
           date: booking.date,
