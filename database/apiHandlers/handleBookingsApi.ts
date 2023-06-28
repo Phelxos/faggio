@@ -32,7 +32,7 @@ export async function enter(
       const updatedBookings = await fetch();
       return updatedBookings;
     } else {
-      throw new Error("🚧 | One of bookings to be inserted already exists.");
+      throw new Error("🚨 One of bookings to be inserted already exists.");
     }
   } catch (e) {
     console.error(e);
@@ -40,10 +40,6 @@ export async function enter(
 }
 
 export async function remove(bookingsToBeRemoved: IBooking[]) {
-  console.log(
-    "🚀 ~ file: handleBookingsApi.ts:43 ~ remove ~ bookingsToBeRemoved:",
-    bookingsToBeRemoved
-  );
   try {
     const preparedBookings = prepareBookings(bookingsToBeRemoved);
     const promises = preparedBookings?.map((booking) => {
