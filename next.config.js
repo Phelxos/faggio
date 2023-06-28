@@ -21,9 +21,7 @@ const nextConfig = {
       },
     ],
   },
-  env: {
-    DEEPL_API_KEY: process.env.DEEPL_API_KEY,
-  },
+  appDir: true,
 };
 
 module.exports = nextConfig;
