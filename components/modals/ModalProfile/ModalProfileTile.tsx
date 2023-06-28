@@ -4,23 +4,31 @@ import Icon from "../../icons/Icon";
 
 interface ModalProfileTileProps {
   name: string;
-  nameBold?: string;
+  nameBoldTop?: string;
+  nameBoldBottom?: string;
   icon?: TIcon;
 }
 
 const ModalProfileTile: FC<ModalProfileTileProps> = ({
   name,
-  nameBold,
+  nameBoldTop,
+  nameBoldBottom,
   icon = "informationCircle",
 }) => {
   return (
     <div className="relative h-full w-full overflow-hidden hyphens-auto rounded border-2 border-sky-900 bg-sky-950 p-4 shadow-lg">
       <span className="font-mono text-sm text-sky-200/50">
+        {nameBoldTop && !nameBoldBottom && (
+          <>
+            <strong>{nameBoldTop}</strong>
+            <br />
+          </>
+        )}
         {name}{" "}
-        {nameBold && (
+        {nameBoldBottom && !nameBoldTop && (
           <>
             <br />
-            <strong>{nameBold}</strong>
+            <strong>{nameBoldBottom}</strong>
           </>
         )}
       </span>

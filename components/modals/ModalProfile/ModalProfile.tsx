@@ -15,10 +15,10 @@ const ModalProfile: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
           Mein Profil
         </Dialog.Title>
         <div className="grid h-full w-full grow grid-cols-2 gap-4">
-          <ModalProfileTile name="Profil" nameBold="ansehen" />
-          <ModalProfileTile name="Profil" nameBold="bearbeiten" />
-          <ModalProfileTile name="Farbschema ändern" />
-          <ModalProfileTile name="weitere Einstellungen" />
+          <ModalProfileTile name="Profil" nameBoldBottom="ansehen" />
+          <ModalProfileTile name="Profil" nameBoldBottom="bearbeiten" />
+          <ModalProfileTile nameBoldTop="Farbschema" name="ändern" />
+          <ModalProfileTile name="weitere" nameBoldBottom="Einstellungen" />
         </div>
         <div
           className="w-full grow rounded-b-lg border-2 border-red-700/50 bg-sky-950 p-4 text-center font-mono uppercase tracking-widest text-red-500/75"

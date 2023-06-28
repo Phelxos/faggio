@@ -8,7 +8,7 @@ import useAccount from "./SAccount";
 
 interface Interface {
   bookings: IBooking[];
-  setBookings: (bookingsToBeSaved: IBooking[]) => Promise<void>;
+  setBookings: (bookingsToBeSaved: IBooking[]) => Promise<void | Error>;
   deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<void>;
   clearBookings: () => Promise<void>;
   fetchBookings: () => Promise<void>;
