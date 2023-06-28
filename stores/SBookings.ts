@@ -9,7 +9,7 @@ import useAccount from "./SAccount";
 interface Interface {
   bookings: IBooking[];
   setBookings: (bookingsToBeSaved: IBooking[]) => Promise<void | Error>;
-  deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<void>;
+  deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<void | Error>;
   clearBookings: () => Promise<void>;
   fetchBookings: () => Promise<void>;
 }
@@ -35,7 +35,7 @@ const useBookings = create<Interface>()(
               coworkerId,
             });
             if (!bookingsFromApi)
-              throw new Error("🚧 | No bookings returned from API.");
+              throw new Error("🚨 No bookings returned from API.");
             const sortedBookings = bookingsFromApi?.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
@@ -52,13 +52,19 @@ const useBookings = create<Interface>()(
           }));
         },
         deleteBookings: async (bookingsToBeRemoved: IBooking[]) => {
-          if (!bookingsToBeRemoved) return;
+          console.log(
+            "🚀 ~ file: SBookings.ts:55 ~ deleteBookings: ~ bookingsToBeRemoved:",
+            bookingsToBeRemoved
+          );
+          if (!bookingsToBeRemoved?.length) return;
           try {
             const { data: bookingsFromApi } = await a.delete(apiPath.BOOKINGS, {
-              data: bookingsToBeRemoved,
+              data: { bookingsToBeRemoved },
             });
             if (!bookingsFromApi)
-              throw new Error("🚧 | No bookings returned from API.");
+              throw new Error(
+                "🚨 No bookings have been returned from the API."
+              );
             const sortedBookings = bookingsFromApi.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );

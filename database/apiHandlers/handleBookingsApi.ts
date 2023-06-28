@@ -32,10 +32,10 @@ export async function enter(
       const updatedBookings = await fetch();
       return updatedBookings;
     } else {
-      throw new Error("🚨 One of bookings to be inserted already exists.");
+      throw new Error("🚨 One of the bookings to be inserted already exists.");
     }
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }
 
@@ -55,7 +55,10 @@ export async function remove(bookingsToBeRemoved: IBooking[]) {
     await Promise.all(promises);
     const updatedBookings = await fetch();
     return updatedBookings;
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(
+      "🚨 An error has occurred while trying to remove bookings from the database.",
+      error
+    );
   }
 }
