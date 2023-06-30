@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import mapCalendar from "../../../../helpers/mapCalendar";
-import getOccupancyLevel from "../../../../hooks/useOccupancyLevel";
-import useAccount from "../../../../stores/SAccount";
-import useBookings from "../../../../stores/SBookings";
-import useCalendar from "../../../../stores/SCalendar";
-import useOffice from "../../../../stores/SOffices";
-import IBooking from "../../../../typings/interfaces/IBooking";
+import mapCalendar from "../../../../../../helpers/mapCalendar";
+import getOccupancyLevel from "../../../../../../hooks/useOccupancyLevel";
+import useAccount from "../../../../../../stores/SAccount";
+import useBookings from "../../../../../../stores/SBookings";
+import useCalendar from "../../../../../../stores/SCalendar";
+import useOffice from "../../../../../../stores/SOffices";
+import IBooking from "../../../../../../typings/interfaces/IBooking";
 
-export default function PreviewMonthRows() {
+export default function Rows() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);

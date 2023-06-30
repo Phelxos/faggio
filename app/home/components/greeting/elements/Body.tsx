@@ -1,14 +1,14 @@
 import Link from "next/link";
-import React, { useState } from "react";
-import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
-import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
-import getLiteralDate from "../../../helpers/getLiteralDate";
-import useNextBooking from "../../../hooks/useNextBooking";
-import useNextWeekBookings from "../../../hooks/useNextWeekBookingsMy";
-import useAccount from "../../../stores/SAccount";
-import Icon from "../../icons/Icon";
+import { useState } from "react";
+import capitaliseFirstLetter from "../../../../../helpers/capitaliseFirstLetter";
+import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+import getLiteralDate from "../../../../../helpers/getLiteralDate";
+import useNextBooking from "../../../../../hooks/useNextBooking";
+import useNextWeekBookings from "../../../../../hooks/useNextWeekBookingsMy";
+import useAccount from "../../../../../stores/SAccount";
+import Icon from "../../../../../components/icons/Icon";
 
-export default function GreetingBody() {
+export default function Body() {
   const myId = useAccount((s) => s.coworkerId);
   const nextBooking = useNextBooking(myId);
   const nextDay = getLiteralDate(nextBooking?.date);

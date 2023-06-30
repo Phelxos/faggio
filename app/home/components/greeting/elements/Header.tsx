@@ -1,11 +1,11 @@
 import { isSameDay } from "date-fns";
-import React, { useEffect } from "react";
-import capitaliseFirstLetter from "../../../helpers/capitaliseFirstLetter";
-import safeguardDate from "../../../helpers/safeguardDateAgainstTimezoneOffset";
-import useAccount from "../../../stores/SAccount";
-import useGreeting from "../../../stores/SGreeting";
+import { useEffect } from "react";
+import capitaliseFirstLetter from "../../../../../helpers/capitaliseFirstLetter";
+import safeguardDate from "../../../../../helpers/safeguardDateAgainstTimezoneOffset";
+import useAccount from "../../../../../stores/SAccount";
+import useGreeting from "../../../../../stores/SGreeting";
 
-export default function GreetingHeader() {
+export default function Header() {
   const greeting = useGreeting((s) => s.greeting);
   const pronouncation = useGreeting((s) => s.pronouncation);
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);

@@ -13,7 +13,7 @@ export default function useSetupData() {
   const updateToCurrentDate = useCalendar((s) => s.updateToCurrentDate);
   const fetchGreeting = useGreeting((s) => s.fetchGreetings);
   const hasLoadedGreeting = useGreeting((s) => s.hasLoaded);
-  const isNotTheRightSize = usePhoneSize();
+  const isIncorrectSize = usePhoneSize();
 
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -33,5 +33,5 @@ export default function useSetupData() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { isHydrated, isNotTheRightSize };
+  return { isHydrated, isIncorrectSize };
 }

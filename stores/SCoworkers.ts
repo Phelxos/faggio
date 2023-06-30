@@ -1,17 +1,18 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
-import ICoworker from "../typings/interfaces/ICoworker";
 import { server } from "../config/index";
+import ICoworker from "../typings/interfaces/ICoworker";
 
 interface Interface {
-  coworkerListWithPhotos: ICoworker[] | Promise<void>;
   isLoading: boolean;
+  coworkerListWithPhotos: ICoworker[] | Promise<void>;
+  getCoworker: (id: number) => ICoworker | undefined;
 }
 
 const useCoworkers = create<Interface>()(
   devtools(
     persist(
-      (set) => ({
+      (set, get) => ({
         isLoading: true,
         coworkerListWithPhotos: (async () => {
           try {
@@ -41,6 +42,14 @@ const useCoworkers = create<Interface>()(
             return;
           }
         })(),
+        getCoworker: (id: number) => {
+          const coworkerListWithPhotos: ICoworker[] | Promise<void> =
+            get().coworkerListWithPhotos;
+          if (coworkerListWithPhotos instanceof Promise) return;
+          return coworkerListWithPhotos.find(
+            ({ coworkerId }) => coworkerId === id
+          ) as ICoworker;
+        },
       }),
       {
         name: "coworkers",

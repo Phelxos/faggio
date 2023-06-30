@@ -1,8 +1,7 @@
-import React from "react";
-import useGreeting from "../../../stores/SGreeting";
-import Icon from "../../icons/Icon";
+import useGreeting from "../../../../../stores/SGreeting";
+import Icon from "../../../../../components/icons/Icon";
 
-export default function GreetingFooter() {
+export default function Footer() {
   const greeting = useGreeting((s) => s.greeting);
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);
   const language = useGreeting((s) => s.language);

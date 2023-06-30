@@ -1,8 +1,8 @@
 import Link from "next/link";
 import React from "react";
-import displayEquivalent from "../../../../helpers/displayEquivalent";
-import useCalendar from "../../../../stores/SCalendar";
-import Rows from "./PreviewMonthRows";
+import displayEquivalent from "../../../../../helpers/displayEquivalent";
+import useCalendar from "../../../../../stores/SCalendar";
+import Rows from "./elements/Rows";
 
 export default function PreviewMonth() {
   const selectedMonth = useCalendar((s) => s.selectedMonth);

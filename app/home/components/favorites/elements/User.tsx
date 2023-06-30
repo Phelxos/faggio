@@ -1,14 +1,16 @@
-import { getDay, getMonth } from "date-fns";
-import React from "react";
-import UserImage from "../../user/UserImage";
-import displayEquivalent from "../../../helpers/displayEquivalent";
-import useNextBooking from "../../../hooks/useNextBooking";
-import ICoworker from "../../../typings/interfaces/ICoworker";
-import Icon from "../../icons/Icon";
-import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
+"use client";
 
-export default function FavoritesUser({ coworker }: { coworker: ICoworker }) {
-  const nextBooking = useNextBooking(coworker.coworkerId);
+import { FC } from "react";
+import { getDay, getMonth } from "date-fns";
+import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+import displayEquivalent from "../../../../../helpers/displayEquivalent";
+import useNextBooking from "../../../../../hooks/useNextBooking";
+import Icon from "../../../../../components/icons/Icon";
+import UserImage from "../../../../../components/user/UserImage";
+import TCoworkerId from "../../../../../typings/types/TCoworkerId";
+
+const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
+  const nextBooking = useNextBooking(coworkerId);
   return (
     <div
       className={`flex min-w-[104px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${
@@ -16,7 +18,7 @@ export default function FavoritesUser({ coworker }: { coworker: ICoworker }) {
       }`}
     >
       <div className="relative -top-4">
-        <UserImage coworker={coworker} />
+        <UserImage coworkerId={coworkerId} />
       </div>
       {nextBooking ? (
         <>
@@ -52,4 +54,6 @@ export default function FavoritesUser({ coworker }: { coworker: ICoworker }) {
       )}
     </div>
   );
-}
+};
+
+export default User;

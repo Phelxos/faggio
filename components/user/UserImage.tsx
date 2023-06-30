@@ -1,20 +1,23 @@
-import React from "react";
-import { createPortal } from "react-dom";
 import Image from "next/image";
-import Modal from "../modals/ModalUser/ModalUser";
+import { FC } from "react";
+import { createPortal } from "react-dom";
 import useModal from "../../hooks/useModal";
-import ICoworker from "../../typings/interfaces/ICoworker";
 import useTheme from "../../hooks/useTheme";
+import useCoworkers from "../../stores/SCoworkers";
+import TCoworkerId from "../../typings/types/TCoworkerId";
+import Modal from "../modals/ModalUser/ModalUser";
 
-export default function UserImage({ coworker }: { coworker: ICoworker }) {
+const UserImage: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   const { isOpenModal, toggleModal } = useModal();
+  const coworker = useCoworkers((s) => s.getCoworker(coworkerId));
   const theme = useTheme();
+
   return (
     <>
       <Image
-        src={coworker.imgSrc || ""}
-        alt={`${coworker.forename} ${coworker.surname}`}
-        key={`${coworker.forename} ${coworker.surname}`}
+        src={coworker?.imgSrc || ""}
+        alt={`${coworker?.forename} ${coworker?.surname}`}
+        key={`${coworker?.forename} ${coworker?.surname}`}
         width={50}
         height={50}
         className={`inline w-full rounded-full border-2 border-${theme}-500/50 shadow-lg`}
@@ -24,10 +27,12 @@ export default function UserImage({ coworker }: { coworker: ICoworker }) {
         <Modal
           toggleModal={toggleModal}
           isDisplayingModal={isOpenModal}
-          id={coworker.coworkerId}
+          id={coworkerId}
         />,
         document.body
       )}
     </>
   );
-}
+};
+
+export default UserImage;

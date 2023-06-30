@@ -1,7 +1,6 @@
-import React from "react";
-import GreetingHeader from "./GreetingHeader";
-import GreetingBody from "./GreetingBody";
-import GreetingFooter from "./GreetingFooter";
+import GreetingHeader from "./elements/Header";
+import GreetingBody from "./elements/Body";
+import GreetingFooter from "./elements/Footer";
 
 export default function Greeting() {
   return (

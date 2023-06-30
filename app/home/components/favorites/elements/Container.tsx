@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
-import FavouritesUser from "./FavoritesUser";
-import useCoworkers from "../../../stores/SCoworkers";
-import useAccount from "../../../stores/SAccount";
-import SpinnerWrapped from "../../spinners/SpinnerWrapped";
-import ICoworker from "../../../typings/interfaces/ICoworker";
-import Link from "next/link";
-import Icon from "../../icons/Icon";
-import { CTeams } from "../../contexts/CTeams";
+"use client";
 
-export default function FavoritesContainer() {
+import Link from "next/link";
+import { FC } from "react";
+import { useContext } from "react";
+import { CTeams } from "../../../../../components/contexts/CTeams";
+import User from "./User";
+import Icon from "../../../../../components/icons/Icon";
+import SpinnerWrapped from "../../../../../components/spinners/SpinnerWrapped";
+import useAccount from "../../../../../stores/SAccount";
+import useCoworkers from "../../../../../stores/SCoworkers";
+import ICoworker from "../../../../../typings/interfaces/ICoworker";
+
+const Container: FC = () => {
   const c = useContext(CTeams);
   const favoriteCoworkersOfLoggedInUserAccount = useAccount(
     (s) => s.favourites
@@ -26,12 +29,12 @@ export default function FavoritesContainer() {
         <SpinnerWrapped />
       ) : favoriteCoworkersOfLoggedInUserAccount?.length > 0 ? (
         <>
-          {favoriteCoworkersOfLoggedInUserAccount.map((favouriteId, i) => {
+          {favoriteCoworkersOfLoggedInUserAccount.map((favoriteId, i) => {
             const coworker = (coworkers as ICoworker[])?.find(
-              (coworker: ICoworker) => coworker.coworkerId === favouriteId
+              (coworker: ICoworker) => coworker.coworkerId === favoriteId
             );
             if (coworker) {
-              return <FavouritesUser key={i} coworker={coworker} />;
+              return <User key={i} coworkerId={coworker.coworkerId} />;
             }
           })}
         </>
@@ -60,4 +63,6 @@ export default function FavoritesContainer() {
       )}
     </div>
   );
-}
+};
+
+export default Container;

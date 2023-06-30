@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import Icon from "../../../icons/Icon";
-import compareDatesSafely from "../../../../helpers/compareDatesSafely";
+"use client";
 
-export default function PreviewWeekDay({
+import { useEffect, useState } from "react";
+import Icon from "../../../../../../components/icons/Icon";
+import compareDatesSafely from "../../../../../../helpers/compareDatesSafely";
+
+export default function WeekDay({
   i,
   weekday,
   dateNumber,

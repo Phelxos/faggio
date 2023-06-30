@@ -1,14 +1,14 @@
 import { getDate, getDay, isSameDay } from "date-fns";
-import React, { useEffect, useState } from "react";
-import safeguardDate from "../../../../helpers/safeguardDateAgainstTimezoneOffset";
-import useWeekCurrent from "../../../../hooks/useWeekCurrent";
-import useWeekNext from "../../../../hooks/useWeekNext";
-import useAccount from "../../../../stores/SAccount";
-import useBookings from "../../../../stores/SBookings";
-import useCalendar from "../../../../stores/SCalendar";
-import useOffice from "../../../../stores/SOffices";
-import CalendarWeek from "./PreviewWeekCalendarWeek";
-import Day from "./PreviewWeekDay";
+import { useEffect, useState } from "react";
+import safeguardDate from "../../../../../helpers/safeguardDateAgainstTimezoneOffset";
+import useWeekCurrent from "../../../../../hooks/useWeekCurrent";
+import useWeekNext from "../../../../../hooks/useWeekNext";
+import useAccount from "../../../../../stores/SAccount";
+import useBookings from "../../../../../stores/SBookings";
+import useCalendar from "../../../../../stores/SCalendar";
+import useOffice from "../../../../../stores/SOffices";
+import CalendarWeek from "./elements/CalendarWeek";
+import WeekDay from "./elements/Weekday";
 
 export default function PreviewWeek() {
   const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
@@ -88,7 +88,7 @@ export default function PreviewWeek() {
           {(isShowingNextWeekBookings ? nextWeek : currentWeek).map(
             ({ dateNumber, name: weekday, date }, i) => {
               return (
-                <Day
+                <WeekDay
                   weekday={weekday}
                   dateNumber={dateNumber}
                   date={date}

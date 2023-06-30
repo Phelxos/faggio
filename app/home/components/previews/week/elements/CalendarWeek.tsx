@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function PreviewWeekCalendarWeek({
+export default function CalendarWeek({
   isShowingNextWeekBookings,
   calWeek,
 }: {
