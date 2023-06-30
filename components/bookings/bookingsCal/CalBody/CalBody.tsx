@@ -1,4 +1,4 @@
-import { getDate, isPast, isSameDay, parseISO } from "date-fns";
+import { getDate, isPast, isSameDay, isToday, parseISO } from "date-fns";
 import React, { useContext, useEffect, useState } from "react";
 import mapCalendar from "../../../../helpers/mapCalendar";
 import useAccount from "../../../../stores/SAccount";
@@ -39,6 +39,7 @@ export default function CalBody() {
       return false;
     }
   };
+
   const isBeingSelectedAsBookingToBeSaved = (date: Date): boolean => {
     if (
       c?.bookingsToBeSaved.some(
@@ -52,6 +53,7 @@ export default function CalBody() {
       return false;
     }
   };
+
   const isBeingSelectedAsBookingToBeDeleted = (date: Date): boolean => {
     if (
       c?.bookingsToBeDeleted.some(
@@ -65,6 +67,15 @@ export default function CalBody() {
       return false;
     }
   };
+
+  const isBookedDateAndInThePast = (date: Date): boolean => {
+    if (isBookedDate(date) && isPast(date)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const handleDateClick = (date: Date | string) => {
     if (c?.isBeingEdited) {
       // Ensure using date object
@@ -155,9 +166,17 @@ export default function CalBody() {
                           ? "rounded-full bg-red-300/50 text-red-800 line-through hover:rounded-full hover:bg-red-300/75 hover:text-red-600"
                           : ""
                       } ${
-                        isSameDay(weekday.date, new Date(today)) &&
+                        isToday(weekday.date) &&
                         !c?.isBeingEdited &&
                         "rounded-full outline outline-2 -outline-offset-2 outline-emerald-500/50"
+                      } ${
+                        isPast(weekday.date) &&
+                        !isToday(weekday.date) &&
+                        "opacity-50"
+                      } ${
+                        isToday(weekday.date) &&
+                        isBookedDate(weekday.date) &&
+                        "animate-pulse bg-emerald-500"
                       }
                       `}
                       onClick={() => handleDateClick(weekday.date)}

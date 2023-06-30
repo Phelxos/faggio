@@ -19,14 +19,8 @@ export default async function handler(req: any, res: any) {
         break;
       case "DELETE":
         const { bookingsToBeRemoved } = req.body;
-        console.log(
-          "🚀 ~ file: bookings.ts:22 ~ handler ~ req.body:",
-          req.body
-        );
-        console.log(
-          "🚀 ~ file: bookings.ts:22 ~ handler ~ bookingsToBeRemoved:",
-          bookingsToBeRemoved
-        );
+        const test = req.json;
+        console.log("🚀 ~ file: bookings.ts:23 ~ handler ~ test:", test);
         if (!Array.isArray(bookingsToBeRemoved))
           throw new Error(
             "🚨 The provided argument of bookings to be removed is not an array."
