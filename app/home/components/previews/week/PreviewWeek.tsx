@@ -1,3 +1,5 @@
+"use client";
+
 import { getDate, getDay, isSameDay } from "date-fns";
 import { useEffect, useState } from "react";
 import safeguardDate from "../../../../../helpers/safeguardDateAgainstTimezoneOffset";

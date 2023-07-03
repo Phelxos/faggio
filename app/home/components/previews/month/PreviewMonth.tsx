@@ -1,7 +1,7 @@
-import Link from "next/link";
-import React from "react";
-import displayEquivalent from "../../../../../helpers/displayEquivalent";
+"use client";
+
 import useCalendar from "../../../../../stores/SCalendar";
+import Header from "./elements/Header";
 import Rows from "./elements/Rows";
 
 export default function PreviewMonth() {
@@ -14,16 +14,7 @@ export default function PreviewMonth() {
         Monatsübersicht
       </p>
       <div className="w-full shadow-md">
-        <Link href="/bookings">
-          <div className="flex w-full items-center justify-between rounded-t-lg bg-emerald-900/75 py-4 pl-6 pr-4">
-            <span className="text-2xl font-extralight uppercase tracking-widest text-emerald-200">
-              {displayEquivalent(selectedMonth, "month")}
-            </span>
-            <span className="rounded bg-emerald-700/50 px-4 py-2 tracking-widest text-emerald-400/75">
-              {selectedYear}
-            </span>
-          </div>
-        </Link>
+        <Header year={selectedYear} month={selectedMonth} />
         <Rows />
         <div className="h-[15px] w-full rounded-b-lg bg-emerald-900/75" />
       </div>

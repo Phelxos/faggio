@@ -1,12 +1,12 @@
 "use client";
 
-import { FC } from "react";
 import { getDay, getMonth } from "date-fns";
+import { FC } from "react";
+import Icon from "../../../../../components/icons/Icon";
+import UserImage from "../../../../../components/user/UserImage";
 import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
 import displayEquivalent from "../../../../../helpers/displayEquivalent";
 import useNextBooking from "../../../../../hooks/useNextBooking";
-import Icon from "../../../../../components/icons/Icon";
-import UserImage from "../../../../../components/user/UserImage";
 import TCoworkerId from "../../../../../typings/types/TCoworkerId";
 
 const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {

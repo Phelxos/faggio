@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import mapCalendar from "../../../../../../helpers/mapCalendar";
 import getOccupancyLevel from "../../../../../../hooks/useOccupancyLevel";
 import useAccount from "../../../../../../stores/SAccount";

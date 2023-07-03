@@ -5,16 +5,26 @@ import ICoworker from "../typings/interfaces/ICoworker";
 
 interface Interface {
   isLoading: boolean;
-  coworkerListWithPhotos: ICoworker[] | Promise<void>;
+  coworkerListWithPhotos: ICoworker[];
   getCoworker: (id: number) => ICoworker | undefined;
+  loadCoworkers: () => Promise<void>;
 }
 
-const useCoworkers = create<Interface>()(
+const useCoworkers = create<Interface>(
   devtools(
     persist(
       (set, get) => ({
         isLoading: true,
-        coworkerListWithPhotos: (async () => {
+        coworkerListWithPhotos: [],
+        getCoworker: (id: number) => {
+          const coworkerListWithPhotos: ICoworker[] =
+            get().coworkerListWithPhotos;
+          return coworkerListWithPhotos.find(
+            ({ coworkerId }) => coworkerId === id
+          ) as ICoworker;
+        },
+        loadCoworkers: async () => {
+          if (get().coworkerListWithPhotos.length > 0) return;
           try {
             set({ isLoading: true });
             const res = await fetch(`${server}/api/coworkers`);
@@ -25,30 +35,25 @@ const useCoworkers = create<Interface>()(
             const randomUsers = await resRandomUsers.json();
             const imgSources = randomUsers.results;
 
-            const coworkersListWithPhotos: ICoworker[] =
-              allCoworkersFromAPI.map((coworker: ICoworker, i: number) => {
+            const coworkerListWithPhotos: ICoworker[] = allCoworkersFromAPI.map(
+              (coworker: ICoworker, i: number) => {
                 return {
                   ...coworker,
                   imgSrc: imgSources[i].picture.large as string,
                 };
-              });
+              }
+            );
             set(() => ({
-              coworkerListWithPhotos: coworkersListWithPhotos,
+              coworkerListWithPhotos,
             }));
-          } catch (err) {
-            console.error("😣 ~ file: SCoworkers.ts:40", err);
+          } catch (error) {
+            console.error(
+              "🚨 Something has gone wrong in the store concerning the coworkers:",
+              error
+            );
           } finally {
             set({ isLoading: false });
-            return;
           }
-        })(),
-        getCoworker: (id: number) => {
-          const coworkerListWithPhotos: ICoworker[] | Promise<void> =
-            get().coworkerListWithPhotos;
-          if (coworkerListWithPhotos instanceof Promise) return;
-          return coworkerListWithPhotos.find(
-            ({ coworkerId }) => coworkerId === id
-          ) as ICoworker;
         },
       }),
       {

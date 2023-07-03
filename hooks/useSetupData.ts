@@ -5,10 +5,12 @@ import useCalendar from "../stores/SCalendar";
 import useGreeting from "../stores/SGreeting";
 import useOffice from "../stores/SOffices";
 import usePhoneSize from "./usePhoneSize";
+import useCoworkers from "../stores/SCoworkers";
 
 export default function useSetupData() {
   const bookings = useBookings((s) => s.bookings);
   const fetchBookings = useBookings((s) => s.fetchBookings);
+  const loadCoworkers = useCoworkers((s) => s.loadCoworkers);
   const today = useCalendar((s) => s.today);
   const updateToCurrentDate = useCalendar((s) => s.updateToCurrentDate);
   const fetchGreeting = useGreeting((s) => s.fetchGreetings);
@@ -23,6 +25,7 @@ export default function useSetupData() {
   if (allOfficeNames.length === 0) fetchAndSetOffice();
   if (bookings.length === 0) fetchBookings();
   if (!checkForCurrentDate(today)) updateToCurrentDate();
+  loadCoworkers();
 
   // Wait till NextJS rehydration completes
   useEffect(() => {

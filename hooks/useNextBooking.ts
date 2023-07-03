@@ -5,12 +5,10 @@ import { isAfter, parseJSON } from "date-fns";
 import IBooking from "../typings/interfaces/IBooking";
 import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 
-export default function useNextBooking(id: number):
-  | {
-      date: Date;
-      officeId: number;
-    }
-  | undefined {
+export default function useNextBooking(id: number): {
+  date: Date;
+  officeId: number;
+} {
   const today = parseJSON(useCalendar((s) => s.today)); // Parse the date saved in JSON format for comparison
   const bookings = useBookings((s) => s.bookings);
   const nextBooking = useRef<IBooking | undefined>(undefined);
@@ -30,10 +28,14 @@ export default function useNextBooking(id: number):
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [today]);
 
-  return nextBooking.current
-    ? {
-        date: new Date(nextBooking.current!.date),
-        officeId: nextBooking.current!.officeId,
-      }
-    : undefined;
+  if (nextBooking.current) {
+    return {
+      date: new Date(nextBooking.current!.date),
+      officeId: nextBooking.current!.officeId,
+    };
+  } else {
+    throw new Error(
+      "🚨 No next booking has been found in the function 'useNextBooking'."
+    );
+  }
 }

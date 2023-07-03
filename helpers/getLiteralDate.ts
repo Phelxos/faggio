@@ -1,9 +1,10 @@
 import { isTomorrow, isYesterday, getWeek } from "date-fns";
 
-export default function getLiteralDate(
-  date: Date | undefined
-): string | undefined {
-  if (!date) return undefined;
+export default function getLiteralDate(date: Date): string {
+  if (!date)
+    throw new Error(
+      "🚨 No date has been provided to the function 'getLiteralDate'."
+    );
   const wholeDate = date.toLocaleDateString("de-DE", {
     year: "numeric",
     month: "long",
@@ -14,12 +15,11 @@ export default function getLiteralDate(
 
   if (isTomorrow(date)) {
     return "morgen";
-  }
-  if (isYesterday(date)) {
+  } else if (isYesterday(date)) {
     return "gestern";
-  }
-  if (getWeek(date) != getWeek(new Date())) {
+  } else if (getWeek(date) != getWeek(new Date())) {
     return `kommende Woche ${weekday}`;
+  } else {
+    return weekday;
   }
-  return weekday;
 }

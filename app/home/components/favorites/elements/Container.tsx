@@ -1,21 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { FC } from "react";
-import { useContext } from "react";
+import { FC, useContext } from "react";
 import { CTeams } from "../../../../../components/contexts/CTeams";
-import User from "./User";
-import Icon from "../../../../../components/icons/Icon";
 import SpinnerWrapped from "../../../../../components/spinners/SpinnerWrapped";
 import useAccount from "../../../../../stores/SAccount";
 import useCoworkers from "../../../../../stores/SCoworkers";
-import ICoworker from "../../../../../typings/interfaces/ICoworker";
+import CoworkerList from "./CoworkerList";
+import EmptyMessage from "./EmptyMessage";
 
 const Container: FC = () => {
   const c = useContext(CTeams);
-  const favoriteCoworkersOfLoggedInUserAccount = useAccount(
-    (s) => s.favourites
-  );
+  const favoriteCoworkers = useAccount((s) => s.favourites);
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoading = useCoworkers((s) => s.isLoading);
 
@@ -27,39 +22,13 @@ const Container: FC = () => {
     <div className="flex w-full snap-x gap-6 overflow-x-auto rounded bg-pink-600/25 px-4 py-8 shadow-xl">
       {isLoading ? (
         <SpinnerWrapped />
-      ) : favoriteCoworkersOfLoggedInUserAccount?.length > 0 ? (
-        <>
-          {favoriteCoworkersOfLoggedInUserAccount.map((favoriteId, i) => {
-            const coworker = (coworkers as ICoworker[])?.find(
-              (coworker: ICoworker) => coworker.coworkerId === favoriteId
-            );
-            if (coworker) {
-              return <User key={i} coworkerId={coworker.coworkerId} />;
-            }
-          })}
-        </>
+      ) : favoriteCoworkers?.length > 0 ? (
+        <CoworkerList
+          allCoworkers={coworkers}
+          favoriteCoworkers={favoriteCoworkers}
+        />
       ) : (
-        <div className="flex w-full grow flex-col gap-10">
-          <span className="flex items-center text-xs text-pink-400/50">
-            <Icon
-              icon="informationCircle"
-              className="mr-2 h-8 w-8 opacity-50"
-            />
-            Du hast noch <span className="mx-1 font-bold">keine Favoriten</span>{" "}
-            gewählt.
-          </span>
-          <Link
-            href={"/teams"}
-            className="self-end rounded-xl border-2 border-pink-800/75 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-pink-700 to-pink-400 px-3 py-2 text-pink-900 shadow-lg"
-          >
-            <button
-              className="font-mono text-xs uppercase tracking-wider"
-              onClick={handleButtonClick}
-            >
-              Kollegen favorisieren
-            </button>
-          </Link>
-        </div>
+        <EmptyMessage onButtonClick={handleButtonClick} />
       )}
     </div>
   );

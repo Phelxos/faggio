@@ -1,5 +1,5 @@
-import useGreeting from "../../../../../stores/SGreeting";
 import Icon from "../../../../../components/icons/Icon";
+import useGreeting from "../../../../../stores/SGreeting";
 
 export default function Footer() {
   const greeting = useGreeting((s) => s.greeting);
