@@ -1,9 +1,9 @@
 import React from "react";
-import Cal from "../app/bookings/components/calendar/Calendar";
-import CalEditControl from "../app/bookings/components/control/Control";
-import BookingsMy from "../components/bookings/bookingsMy/BookingsMy";
-import BookingsOther from "../components/bookings/bookingsOther/BookingsOther";
-import ContextBookingsProvider from "../components/contexts/CBookings";
+import Cal from "../app/(pages)/bookings/components/calendar/Calendar";
+import CalEditControl from "../app/(pages)/bookings/components/control/Control";
+import BookingsMy from "../app/(pages)/bookings/components/bookings-my/MyBookings";
+import BookingsOther from "../app/(pages)/bookings/components/bookings-other/OtherBookings";
+import ContextBookingsProvider from "../components/contexts/BookingsContext";
 
 export default function Bookings() {
   return (

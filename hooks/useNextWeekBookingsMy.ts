@@ -1,6 +1,6 @@
 import { getWeek } from "date-fns";
 import { useContext } from "react";
-import { CBookings } from "../components/contexts/CBookings";
+import { CBookings } from "../components/contexts/BookingsContext";
 import useBookings from "../stores/SBookings";
 import useOffice from "../stores/SOffices";
 import IBooking from "../typings/interfaces/IBooking";
