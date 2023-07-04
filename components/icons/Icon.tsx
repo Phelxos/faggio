@@ -1,6 +1,6 @@
-import React from "react";
-import IconPath from "./IconPath";
+import { FC } from "react";
 import TIcon from "../../typings/types/TIcon";
+import Path from "./Path";
 
 interface Props {
   icon: TIcon;
@@ -10,13 +10,13 @@ interface Props {
   onClick?: () => void;
 }
 
-export default function Icon({
+const Icon: FC<Props> = ({
   className,
   icon,
   onClick,
   isActive,
   activeClassName,
-}: Props) {
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -25,11 +25,13 @@ export default function Icon({
       className={`${className} ${isActive && activeClassName}`}
       onClick={onClick}
     >
-      <IconPath icon={icon} />
+      <Path icon={icon} />
     </svg>
   );
-}
+};
 
 Icon.defaultProps = {
   className: "h-12 w-12",
 };
+
+export default Icon;

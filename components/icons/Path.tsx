@@ -1,11 +1,11 @@
-import React from "react";
+import { FC } from "react";
 import TIcon from "../../typings/types/TIcon";
 
 interface Props {
   icon: TIcon;
 }
 
-export default function IconPath({ icon }: Props) {
+const Path: FC<Props> = ({ icon }) => {
   switch (icon) {
     case "arrowTopRightOnSquare":
       return (
@@ -273,4 +273,6 @@ export default function IconPath({ icon }: Props) {
         />
       );
   }
-}
+};
+
+export default Path;
