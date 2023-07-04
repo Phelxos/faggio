@@ -1,22 +1,20 @@
-import React from "react";
-import useModal from "../../hooks/useModal";
-import FavouriteButton from "../user/UserFavouriteButton";
-import ICoworker from "../../typings/interfaces/ICoworker";
-import UserImage from "../user/UserImage";
+import { FC } from "react";
+import FavouriteButton from "../../../../../../components/user/UserFavouriteButton";
+import UserImage from "../../../../../../components/user/UserImage";
+import ICoworker from "../../../../../../typings/interfaces/ICoworker";
 
-export default function TeamsViewCoworkersItem({
-  coworker,
-  className,
-}: {
+interface Props {
   coworker: ICoworker;
   className?: string;
-}) {
+}
+
+const Item: FC<Props> = ({ coworker, className }) => {
   return (
     <li
       className={`flex items-center justify-between gap-2 rounded-lg p-4 text-sm text-pink-200 odd:bg-pink-800 even:bg-pink-900 ${className}`}
     >
       <div>
-        <UserImage coworker={coworker} />
+        <UserImage coworkerId={coworker.coworkerId} />
       </div>
       <div className="ml-2 flex grow flex-col">
         <span className="text-2xl font-thin uppercase tracking-wider text-pink-300">
@@ -32,4 +30,6 @@ export default function TeamsViewCoworkersItem({
       />
     </li>
   );
-}
+};
+
+export default Item;

@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { CTeams } from "../contexts/CTeams";
-import Icon from "../icons/Icon";
+"use client";
+
+import { FC, useContext, useEffect, useState } from "react";
+import { CTeams } from "../../../Context";
+import Icon from "../../../../../../components/icons/Icon";
 
 interface Props {
   onInput: (e: any) => void;
   value: string;
 }
 
-export default function TeamsControlsBarInput({ onInput, value }: Props) {
+const Search: FC<Props> = ({ onInput, value }) => {
   const c = useContext(CTeams);
   const [borderColor, setBorderColor] = useState(200);
 
@@ -40,4 +42,6 @@ export default function TeamsControlsBarInput({ onInput, value }: Props) {
       )}
     </div>
   );
-}
+};
+
+export default Search;

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import Icon from "../icons/Icon";
-import { CTeams } from "../contexts/CTeams";
-import useOffice from "../../stores/SOffices";
-import convertFromIdToOfficeName from "../../helpers/convertFromIdToOfficeName";
+"use client";
 
-export default function BackupMessage() {
+import { FC, useContext } from "react";
+import { CTeams } from "../Context";
+import Icon from "../../../../components/icons/Icon";
+import convertFromIdToOfficeName from "../../../../helpers/convertFromIdToOfficeName";
+
+const EmptyStateMessage: FC = () => {
   const c = useContext(CTeams);
 
   return (
@@ -30,4 +31,6 @@ export default function BackupMessage() {
       </p>
     </div>
   );
-}
+};
+
+export default EmptyStateMessage;

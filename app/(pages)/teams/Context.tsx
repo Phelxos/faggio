@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import TDisplay from "../../typings/types/TDisplay";
-import TActiveButton from "../../typings/types/TActiveButton";
-import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
+"use client";
 
-interface Interface {
+import React, { FC, createContext, useState } from "react";
+import { initialValueForGloballySelectedOffice } from "../../../stores/SOffices";
+import TActiveButton from "../../../typings/types/TActiveButton";
+import TDisplay from "../../../typings/types/TDisplay";
+
+interface ContextProps {
   searchForUser: string;
   setSearchForUser: (e: string) => void;
   viewOfUsers: TDisplay;
@@ -16,13 +18,13 @@ interface Interface {
   setIsListView: (e: any) => void;
 }
 
-export const CTeams = React.createContext<Interface | undefined>(undefined);
+interface ContextProviderProps {
+  children: React.ReactNode;
+}
 
-export default function ContextTeamsProvider({
-  children,
-}: {
-  children: JSX.Element;
-}) {
+export const Context = createContext<ContextProps | undefined>(undefined);
+
+const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
   const [searchForUser, setSearchForUser] = useState<string>("");
   const [viewOfUsers, setViewOfUsers] = useState<TDisplay>("gallery");
   const [locallySelectedOfficeId, setLocallySelectedOfficeId] =
@@ -42,5 +44,7 @@ export default function ContextTeamsProvider({
     isListView,
     setIsListView,
   };
-  return <CTeams.Provider value={value}>{children}</CTeams.Provider>;
-}
+  return <Context.Provider value={value}>{children}</Context.Provider>;
+};
+
+export default ContextProvider;

@@ -2,7 +2,7 @@ import { FC, useEffect, useContext } from "react";
 import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import useOffice from "../../../../../../stores/SOffices";
 import useAccount from "../../../../../../stores/SAccount";
-import { CBookings } from "../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../Context";
 import useTheme from "../../../../../../hooks/useTheme";
 import useBookings from "../../../../../../stores/SBookings";
 import IBooking from "../../../../../../typings/interfaces/IBooking";

@@ -2,7 +2,7 @@
 
 import { getDate, isPast, isToday } from "date-fns";
 import { FC, useContext, useEffect, useState } from "react";
-import { CBookings } from "../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../Context";
 import compareDatesSafely from "../../../../../../helpers/compareDatesSafely";
 import mapCalendar from "../../../../../../helpers/mapCalendar";
 import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";

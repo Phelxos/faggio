@@ -1,10 +1,10 @@
 "use client";
 
 import { FC, createContext, useRef, useState } from "react";
-import useBookings from "../../stores/SBookings";
-import { initialValueForGloballySelectedOffice } from "../../stores/SOffices";
-import IBooking from "../../typings/interfaces/IBooking";
-import { TOfficeCityEnglish } from "../../typings/types/TOfficeCity";
+import useBookings from "../../../stores/SBookings";
+import { initialValueForGloballySelectedOffice } from "../../../stores/SOffices";
+import IBooking from "../../../typings/interfaces/IBooking";
+import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
 
 interface ContextProps {
   isBeingEdited: boolean;
@@ -36,11 +36,9 @@ const initVal = {
   id: initialValueForGloballySelectedOffice.officeId,
 };
 
-export const BookingsContext = createContext<ContextProps | undefined>(
-  undefined
-);
+export const Context = createContext<ContextProps | undefined>(undefined);
 
-const BookingsContextProvider: FC<ContextProviderProps> = ({ children }) => {
+const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
   const [bookingsToBeSaved, setBookingsToBeSaved] = useState<IBooking[]>([]);
   const [bookingsToBeDeleted, setBookingsToBeDeleted] = useState<IBooking[]>(
@@ -122,11 +120,7 @@ const BookingsContextProvider: FC<ContextProviderProps> = ({ children }) => {
     toggleIsOpenModal,
   };
 
-  return (
-    <BookingsContext.Provider value={value}>
-      {children}
-    </BookingsContext.Provider>
-  );
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export default BookingsContextProvider;
+export default ContextProvider;

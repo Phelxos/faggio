@@ -2,7 +2,7 @@
 
 import { Transition } from "@headlessui/react";
 import { FC, useContext } from "react";
-import { CBookings } from "../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../Context";
 import Buttons from "./elements/Buttons";
 import Info from "./elements/Info";
 

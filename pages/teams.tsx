@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useContext } from "react";
-import TeamsControlsBar from "../components/teams/TeamsControlsBar";
-import BackupMessage from "../components/teams/TeamsEmptyStateMessage";
+import TeamsControlsBar from "../app/(pages)/teams/components/control/Control";
+import BackupMessage from "../app/(pages)/teams/components/EmptyStateMessage";
 import Spinner from "../components/spinners/Spinner";
 import ICoworker from "../typings/interfaces/ICoworker";
-import { CTeams } from "../components/contexts/CTeams";
-import Coworkers from "../components/teams/TeamsViewCoworkersList";
+import { CTeams } from "../app/(pages)/teams/Context";
+import Coworkers from "../app/(pages)/teams/components/list/List";
 import useOffice from "../stores/SOffices";
 import useCoworkers from "../stores/SCoworkers";
 

@@ -2,7 +2,7 @@
 
 import { FC, useContext, useEffect } from "react";
 import SearchAndSelect from "../../../../../../../components/SearchAndSelect";
-import { CBookings } from "../../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../../Context";
 import convertFromIdToOfficeName from "../../../../../../../helpers/convertFromIdToOfficeName";
 import useTheme from "../../../../../../../hooks/useTheme";
 import useCalendar from "../../../../../../../stores/SCalendar";

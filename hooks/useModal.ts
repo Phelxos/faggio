@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { CBookings } from "../components/contexts/BookingsContext";
+import { CBookings } from "../app/(pages)/bookings/Context";
 
 export default function useModal() {
   const c = useContext(CBookings);

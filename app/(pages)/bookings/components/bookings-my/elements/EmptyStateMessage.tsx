@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CBookings } from "../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../Context";
 import Icon from "../../../../../../components/icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 

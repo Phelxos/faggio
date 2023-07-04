@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import Icon from "../icons/Icon";
-import TIcon from "../../typings/types/TIcon";
+"use client";
+
+import { FC, useEffect, useState } from "react";
+import Icon from "../../../../../../components/icons/Icon";
+import TIcon from "../../../../../../typings/types/TIcon";
 
 interface Props {
   icon: TIcon;
@@ -8,11 +10,7 @@ interface Props {
   onClick?: () => void;
 }
 
-export default function TeamsControlsBarButton({
-  icon,
-  onClick,
-  isActiveButton,
-}: Props) {
+const Button: FC<Props> = ({ icon, onClick, isActiveButton }) => {
   const [computedClassName, setComputedClassName] = useState("");
 
   useEffect(() => {
@@ -37,4 +35,6 @@ export default function TeamsControlsBarButton({
       />
     </button>
   );
-}
+};
+
+export default Button;

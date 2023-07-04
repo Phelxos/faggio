@@ -1,9 +1,11 @@
-import React from "react";
+"use client";
+
+import { FC } from "react";
 import { useContext } from "react";
-import { CTeams } from "../contexts/CTeams";
+import { CTeams } from "../../../Context";
 import { Switch } from "@headlessui/react";
 
-export default function TeamsControlsBarSwitch() {
+const MySwitch: FC = () => {
   const c = useContext(CTeams);
 
   const handleCheckboxChange = (e: any) => {
@@ -36,4 +38,6 @@ export default function TeamsControlsBarSwitch() {
       </Switch.Group>
     </div>
   );
-}
+};
+
+export default MySwitch;

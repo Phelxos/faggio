@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CBookings } from "../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../Context";
 import Body from "./elements/Body";
 import Footer from "./elements/Footer";
 import Header from "./elements/Header";

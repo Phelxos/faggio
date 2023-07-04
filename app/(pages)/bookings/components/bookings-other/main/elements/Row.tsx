@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext, useEffect, useState } from "react";
-import { CBookings } from "../../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../../Context";
 import Spinner from "../../../../../../../components/spinners/Spinner";
 import UserImage from "../../../../../../../components/user/UserImage";
 import compareDatesSafely from "../../../../../../../helpers/compareDatesSafely";

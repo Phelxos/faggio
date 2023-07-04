@@ -4,7 +4,7 @@ import { FC, useContext, useEffect } from "react";
 import useCalendar from "../../../../../../stores/SCalendar";
 import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import useOffice from "../../../../../../stores/SOffices";
-import { CBookings } from "../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../Context";
 import useTheme from "../../../../../../hooks/useTheme";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 

@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import useAccount from "../../../../../../stores/SAccount";
 import useBookings from "../../../../../../stores/SBookings";
 import IBooking from "../../../../../../typings/interfaces/IBooking";
-import { CBookings } from "../../../../../../components/contexts/BookingsContext";
+import { CBookings } from "../../../Context";
 import FilteredBookings from "./FilteredBookings";
 import EmptyStateMessage from "./EmptyStateMessage";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CTeams } from "../../../../../components/contexts/CTeams";
+import { CTeams } from "../../../teams/Context";
 import SpinnerWrapped from "../../../../../components/spinners/SpinnerWrapped";
 import useAccount from "../../../../../stores/SAccount";
 import useCoworkers from "../../../../../stores/SCoworkers";

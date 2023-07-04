@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
-import TActiveButton from "../../typings/types/TActiveButton";
-import TIcon from "../../typings/types/TIcon";
-import { CTeams } from "../contexts/CTeams";
-import Button from "./TeamsControlsBarButton";
-import Search from "./TeamsControlsBarSearch";
-import Switch from "./TeamsControlsBarSwitch";
-import SearchAndSelect from "../SearchAndSelect";
-import useOffice from "../../stores/SOffices";
-import useTheme from "../../hooks/useTheme";
-import convertFromIdToOfficeName from "../../helpers/convertFromIdToOfficeName";
+"use client";
 
-export default function ControlsBar() {
+import { FC, useContext } from "react";
+import SearchAndSelect from "../../../../../components/SearchAndSelect";
+import { CTeams } from "../../Context";
+import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+import useTheme from "../../../../../hooks/useTheme";
+import useOffice from "../../../../../stores/SOffices";
+import TActiveButton from "../../../../../typings/types/TActiveButton";
+import TIcon from "../../../../../typings/types/TIcon";
+import Button from "./elements/Button";
+import Search from "./elements/Search";
+import Switch from "./elements/Switch";
+
+const Control: FC = () => {
   const c = useContext(CTeams);
   const allOffices = useOffice((s) => s.allOffices);
   const theme = useTheme();
-  const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
-  const setGloballySelectedOfficeId = useOffice(
-    (s) => s.setGloballySelectedOfficeId
-  );
 
   const handleUserSearchInput = (e: any) => {
     const lastCharacterOfSearchInput =
@@ -84,4 +82,6 @@ export default function ControlsBar() {
       </div>
     </div>
   );
-}
+};
+
+export default Control;
