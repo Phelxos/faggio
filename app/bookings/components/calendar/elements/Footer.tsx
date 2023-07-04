@@ -1,16 +1,14 @@
-import React, { useContext, useEffect } from "react";
-import useCalendar from "../../../stores/SCalendar";
-import SearchAndSelect from "../../SearchAndSelect";
-import useOffice from "../../../stores/SOffices";
-import { CBookings } from "../../contexts/CBookings";
-import useTheme from "../../../hooks/useTheme";
-import {
-  EOfficesEnglishToGerman,
-  TOfficeCityEnglish,
-} from "../../../typings/types/TOfficeCity";
-import convertFromIdToOfficeName from "../../../helpers/convertFromIdToOfficeName";
+"use client";
 
-export default function CalFooter() {
+import { FC, useContext, useEffect } from "react";
+import useCalendar from "../../../../../stores/SCalendar";
+import SearchAndSelect from "../../../../../components/SearchAndSelect";
+import useOffice from "../../../../../stores/SOffices";
+import { CBookings } from "../../../../../components/contexts/CBookings";
+import useTheme from "../../../../../hooks/useTheme";
+import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+
+const Footer: FC = () => {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
   const setSelectedYear = useCalendar((s) => s.setSelectedYear);
   const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
@@ -57,4 +55,6 @@ export default function CalFooter() {
       </div>
     </div>
   );
-}
+};
+
+export default Footer;

@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import CalEditControlButtons from "./CalEditControlButtons";
-import CalEditControlInfo from "./CalEditControlInfo";
-import { CBookings } from "../../../contexts/CBookings";
-import { Transition } from "@headlessui/react";
+"use client";
 
-export default function CalEditControl() {
+import { Transition } from "@headlessui/react";
+import { FC, useContext } from "react";
+import { CBookings } from "../../../../components/contexts/CBookings";
+import Buttons from "./elements/Buttons";
+import Info from "./elements/Info";
+
+const Control: FC = () => {
   const c = useContext(CBookings);
   return !c?.isOpenModal ? (
     <>
@@ -17,11 +19,13 @@ export default function CalEditControl() {
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
-        <CalEditControlInfo />
+        <Info />
       </Transition>
-      <CalEditControlButtons />
+      <Buttons />
     </>
   ) : (
     <></>
   );
-}
+};
+
+export default Control;

@@ -1,22 +1,23 @@
-import { getDate, isPast, isSameDay, isToday, parseISO } from "date-fns";
-import React, { useContext, useEffect, useState } from "react";
-import mapCalendar from "../../../../helpers/mapCalendar";
-import useAccount from "../../../../stores/SAccount";
-import useBookings from "../../../../stores/SBookings";
-import useCalendar from "../../../../stores/SCalendar";
-import IBooking from "../../../../typings/interfaces/IBooking";
-import { CBookings } from "../../../contexts/CBookings";
-import Head from "./TableHead";
-import compareDatesSafely from "../../../../helpers/compareDatesSafely";
-import safeguardDate from "../../../../helpers/safeguardDateAgainstTimezoneOffset";
+"use client";
 
-export default function CalBody() {
+import { getDate, isPast, isToday } from "date-fns";
+import { FC, useContext, useEffect, useState } from "react";
+import { CBookings } from "../../../../../components/contexts/CBookings";
+import compareDatesSafely from "../../../../../helpers/compareDatesSafely";
+import mapCalendar from "../../../../../helpers/mapCalendar";
+import safeguardDate from "../../../../../helpers/safeguardDateAgainstTimezoneOffset";
+import useAccount from "../../../../../stores/SAccount";
+import useBookings from "../../../../../stores/SBookings";
+import useCalendar from "../../../../../stores/SCalendar";
+import IBooking from "../../../../../typings/interfaces/IBooking";
+import Head from "./BodyHead";
+
+const Body: FC = () => {
   const c = useContext(CBookings);
 
   const coworkerId: number = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
   const fetchBookings = useBookings((s) => s.fetchBookings);
-  const today = useCalendar((s) => s.today);
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
 
@@ -62,14 +63,6 @@ export default function CalBody() {
           b.officeId === c?.locallySelectedOfficeId
       )
     ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  const isBookedDateAndInThePast = (date: Date): boolean => {
-    if (isBookedDate(date) && isPast(date)) {
       return true;
     } else {
       return false;
@@ -192,4 +185,6 @@ export default function CalBody() {
       </tbody>
     </table>
   );
-}
+};
+
+export default Body;

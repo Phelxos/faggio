@@ -1,24 +1,30 @@
-import React, { useContext } from "react";
-import { CBookings } from "../../../contexts/CBookings";
-import Icon from "../../../icons/Icon";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+"use client";
 
-function ButtonEdit(props: any) {
+import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FC, useContext } from "react";
+import { CBookings } from "../../../../../components/contexts/CBookings";
+import Icon from "../../../../../components/icons/Icon";
+
+interface ButtonProps {
+  onClick: () => void;
+}
+
+const Edit: FC<ButtonProps> = ({ onClick }) => {
   return (
     <button
-      {...props}
+      onClick={onClick}
       className="flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-sky-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-100 via-blue-300 to-blue-500 drop-shadow-xl duration-200 ease-in-out hover:border-sky-900 active:translate-y-0.5 active:drop-shadow-md"
     >
       <Icon icon="pencil" className="h-12 w-12 fill-sky-700 p-2" />
     </button>
   );
-}
+};
 
-function ButtonSave(props: any) {
+const Save: FC<ButtonProps> = ({ onClick }) => {
   return (
     <button
-      {...props}
+      onClick={onClick}
       className="flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-lime-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-lime-100 to-lime-500 drop-shadow-xl duration-200 ease-in-out hover:border-lime-900 active:translate-y-0.5 active:drop-shadow-md"
     >
       <FontAwesomeIcon
@@ -27,20 +33,20 @@ function ButtonSave(props: any) {
       />
     </button>
   );
-}
+};
 
-function ButtonArrowUturnLeft(props: any) {
+const ArrowUturnLeft: FC<ButtonProps> = ({ onClick }) => {
   return (
     <button
-      {...props}
+      onClick={onClick}
       className="relative flex h-16 w-16 flex-col items-center justify-center rounded-full border-4 border-orange-700/75 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-orange-200 to-orange-500 drop-shadow-xl duration-200 ease-in-out hover:border-orange-900 active:translate-y-0.5 active:drop-shadow-md"
     >
       <Icon icon="arrowUturnLeft" className="h-8 w-8 fill-orange-900/75" />
     </button>
   );
-}
+};
 
-export default function CalEditControlButtons() {
+const Buttons: FC = () => {
   const c = useContext(CBookings);
 
   const handleButtonSaveClick = () => {
@@ -69,15 +75,17 @@ export default function CalEditControlButtons() {
   };
 
   return (
-    <div className="fixed right-4 bottom-4 z-50 flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
+    <div className="fixed bottom-4 right-4 z-50 flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
       {c?.isBeingEdited ? (
         <>
-          <ButtonArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />
-          <ButtonSave onClick={handleButtonSaveClick} />
+          <ArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />
+          <Save onClick={handleButtonSaveClick} />
         </>
       ) : (
-        <ButtonEdit onClick={handleButtonEditClick} />
+        <Edit onClick={handleButtonEditClick} />
       )}
     </div>
   );
-}
+};
+
+export default Buttons;

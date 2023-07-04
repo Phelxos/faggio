@@ -1,7 +1,7 @@
-import React from "react";
-import useCalendar from "../../../../stores/SCalendar";
+import { FC } from "react";
+import useCalendar from "../../../../../stores/SCalendar";
 
-export default function TableHead() {
+const BodyHead: FC = () => {
   const displayedWeekdays = useCalendar((s) => s.displayedWeekdays);
 
   return (
@@ -30,4 +30,6 @@ export default function TableHead() {
       </tr>
     </thead>
   );
-}
+};
+
+export default BodyHead;

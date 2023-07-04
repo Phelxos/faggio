@@ -1,11 +1,13 @@
-import { useRef } from "react";
-import useCalendar from "../../../stores/SCalendar";
-import SearchAndSelect from "../../SearchAndSelect";
-import displayEquivalent from "../../../helpers/displayEquivalent";
-import Icon from "../../icons/Icon";
-import useTheme from "../../../hooks/useTheme";
+"use client";
 
-export default function CalHeader() {
+import { FC, useRef } from "react";
+import SearchAndSelect from "../../../../../components/SearchAndSelect";
+import Icon from "../../../../../components/icons/Icon";
+import displayEquivalent from "../../../../../helpers/displayEquivalent";
+import useTheme from "../../../../../hooks/useTheme";
+import useCalendar from "../../../../../stores/SCalendar";
+
+const Header: FC = () => {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
   const incrementSelectedMonth = useCalendar((s) => s.incrementSelectedMonth);
@@ -92,4 +94,6 @@ export default function CalHeader() {
       </div>
     </section>
   );
-}
+};
+
+export default Header;
