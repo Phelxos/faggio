@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext, useEffect, useState } from "react";
-import { CTeams } from "../../../Context";
+import { Context } from "../../../Context";
 import Icon from "../../../../../../components/icons/Icon";
 
 interface Props {
@@ -10,20 +10,20 @@ interface Props {
 }
 
 const Search: FC<Props> = ({ onInput, value }) => {
-  const c = useContext(CTeams);
+  const context = useContext(Context);
   const [borderColor, setBorderColor] = useState(200);
 
   const clearSearch = () => {
-    c?.setSearchForUser("");
+    context?.setSearchForUser("");
   };
 
   useEffect(() => {
-    if (c?.searchForUser?.length! > 0) {
+    if (context?.searchForUser?.length! > 0) {
       setBorderColor(700);
     } else {
       setBorderColor(200);
     }
-  }, [c?.searchForUser]);
+  }, [context?.searchForUser]);
 
   return (
     <div
@@ -35,7 +35,7 @@ const Search: FC<Props> = ({ onInput, value }) => {
         value={value}
         placeholder="Suchen…"
       />
-      {c?.searchForUser?.length! > 0 && (
+      {context?.searchForUser?.length! > 0 && (
         <button onClick={clearSearch}>
           <Icon icon="xMark" className="ml-2 h-10 w-10 grow fill-pink-900/50" />
         </button>
