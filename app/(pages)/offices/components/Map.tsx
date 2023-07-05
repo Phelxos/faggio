@@ -1,15 +1,17 @@
-import React from "react";
-import useOffice from "../../../stores/SOffices";
-import {
-  EOfficesEnglishToGerman,
-  TOfficeCityEnglish,
-} from "../../../typings/types/TOfficeCity";
+"use client";
+
+import { FC } from "react";
 import {
   ComposableMap,
   Geographies,
   Geography,
   Marker,
 } from "react-simple-maps";
+import useOffice from "../../../../stores/SOffices";
+import {
+  EOfficesEnglishToGerman,
+  TOfficeCityEnglish,
+} from "../../../../typings/types/TOfficeCity";
 
 interface IMarker {
   markerOffset: {
@@ -75,7 +77,7 @@ const markers: IMarker[] = [
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
-export default function MapOffices() {
+const Map: FC = () => {
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const setGloballySelectedOfficeId = useOffice(
     (s) => s.setGloballySelectedOfficeId
@@ -162,4 +164,6 @@ export default function MapOffices() {
       ))}
     </ComposableMap>
   );
-}
+};
+
+export default Map;

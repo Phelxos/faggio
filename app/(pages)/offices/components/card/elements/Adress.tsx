@@ -1,5 +1,6 @@
-import Icon from "../../icons/Icon";
-import copyAddressToClipboard from "../../../helpers/copyAddressToClipboard";
+import { FC } from "react";
+import Icon from "../../../../../../components/icons/Icon";
+import copyAddressToClipboard from "../../../../../../helpers/copyAddressToClipboard";
 
 interface Props {
   street: string;
@@ -8,12 +9,7 @@ interface Props {
   city: string;
 }
 
-export default function OfficesCardAddress({
-  street,
-  houseNumber,
-  postcode,
-  city,
-}: Props) {
+const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
   return (
     <div className="rounded-lg border-2 border-amber-800 bg-amber-600">
       <div className="flex items-center justify-between bg-amber-900/90 p-4">
@@ -63,4 +59,6 @@ export default function OfficesCardAddress({
       </div>
     </div>
   );
-}
+};
+
+export default Adress;

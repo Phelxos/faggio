@@ -1,7 +1,7 @@
-import React from "react";
-import Icon from "../../icons/Icon";
+import { faChair, faPaw } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaw, faChair } from "@fortawesome/free-solid-svg-icons";
+import { FC } from "react";
+import Icon from "../../../../../../components/icons/Icon";
 
 interface Props {
   headcount: number;
@@ -11,13 +11,13 @@ interface Props {
   className?: string;
 }
 
-export default function OfficesCardQuickies({
+const Quickies: FC<Props> = ({
   headcount,
   workstations,
   areaInSquareMeters,
   areDogsAllowed,
   className,
-}: Props) {
+}) => {
   return (
     <div
       className={`flex flex-col items-center justify-between text-sm ${className} gap-3`}
@@ -53,4 +53,6 @@ export default function OfficesCardQuickies({
       </div>
     </div>
   );
-}
+};
+
+export default Quickies;

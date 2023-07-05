@@ -1,11 +1,13 @@
+"use client";
+
 import { isSameDay } from "date-fns";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 import capitaliseFirstLetter from "../../../../../../helpers/capitaliseFirstLetter";
 import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";
 import useAccount from "../../../../../../stores/SAccount";
 import useGreeting from "../../../../../../stores/SGreeting";
 
-export default function Header() {
+const Header: FC = () => {
   const greeting = useGreeting((s) => s.greeting);
   const pronouncation = useGreeting((s) => s.pronouncation);
   const hasFetchedSuccesfully = useGreeting((s) => s.hasFetchedSuccessfully);
@@ -40,4 +42,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

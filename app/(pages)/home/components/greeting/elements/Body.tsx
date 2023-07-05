@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { FC, useState } from "react";
 import getLiteralDate from "../../../../../../helpers/getLiteralDate";
 import useNextBooking from "../../../../../../hooks/useNextBooking";
 import useNextWeekBookings from "../../../../../../hooks/useNextWeekBookingsMy";
@@ -6,7 +8,7 @@ import useAccount from "../../../../../../stores/SAccount";
 import EmptyMessage from "./EmptyMessage";
 import NextDay from "./NextDay";
 
-export default function Body() {
+const Body: FC = () => {
   const myId = useAccount((s) => s.coworkerId);
   const nextBooking = useNextBooking(myId);
   const nextDay = getLiteralDate(nextBooking?.date);
@@ -40,4 +42,6 @@ export default function Body() {
       )}
     </div>
   );
-}
+};
+
+export default Body;

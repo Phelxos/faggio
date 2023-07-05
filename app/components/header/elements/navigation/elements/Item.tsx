@@ -1,3 +1,5 @@
+"use client";
+
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import Icon from "../../../../../../components/icons/Icon";

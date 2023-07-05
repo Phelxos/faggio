@@ -1,34 +1,39 @@
-import Image from "next/image";
-import React from "react";
-import IOffice from "../../../typings/interfaces/IOffice";
-import OfficesCardAddress from "./OfficesCardAddress";
-import OfficesCardQuickies from "./OfficesCardQuickies";
-import OfficesCardTitle from "./OfficesCardTitle";
+"use client";
 
-export default function OfficeInformationCard({
-  city,
-  district,
-  areaInSquareMeters,
-  headcount,
-  workstations,
-  areDogsAllowed,
-  description,
-  imgSrc = "/images/office.jpg",
-  street,
-  houseNumber,
-  postcode,
-}: IOffice) {
+import Image from "next/image";
+import { FC } from "react";
+import IOffice from "../../../../../typings/interfaces/IOffice";
+import Adress from "./elements/Adress";
+import Quickies from "./elements/Quickies";
+import Title from "./elements/Title";
+import useOffice from "../../../../../stores/SOffices";
+
+const Card: FC = () => {
+  const {
+    city,
+    district,
+    headcount,
+    areaInSquareMeters,
+    workstations,
+    areDogsAllowed,
+    description,
+    imgSrc = "/images/office.jpg",
+    street,
+    houseNumber,
+    postcode,
+  } = useOffice((s) => s.globallySelectedOffice);
+
   return (
     <div className="w-full rounded-lg border-4 border-amber-900/75 bg-amber-700">
       <div className="relative rounded bg-amber-700">
         <Image
           className="h-full w-full border-b-4 border-amber-900/50 object-cover object-center md:h-36 lg:h-48"
           src={imgSrc ?? ""}
-          alt="blog"
+          alt="office"
           width={100}
           height={100}
         />
-        <OfficesCardTitle
+        <Title
           city={city}
           district={district}
           className="absolute bottom-3 right-2 rounded-lg p-2 backdrop-blur-xl"
@@ -36,7 +41,7 @@ export default function OfficeInformationCard({
       </div>
       <div className="flex flex-col p-6">
         <div className="mb-4 flex items-stretch gap-4">
-          <OfficesCardQuickies
+          <Quickies
             headcount={headcount as number}
             workstations={workstations as number}
             areDogsAllowed={areDogsAllowed as boolean}
@@ -46,7 +51,7 @@ export default function OfficeInformationCard({
             {description}
           </div>
         </div>
-        <OfficesCardAddress
+        <Adress
           street={street}
           houseNumber={houseNumber}
           postcode={postcode}
@@ -55,4 +60,6 @@ export default function OfficeInformationCard({
       </div>
     </div>
   );
-}
+};
+
+export default Card;

@@ -1,11 +1,11 @@
-import React from "react";
-import Icon from "../../icons/Icon";
+import { FC } from "react";
+import Icon from "../../../../../../components/icons/Icon";
 
 interface Props {
   className?: string;
 }
 
-export default function OfficesCardGuidon({ className }: Props) {
+const Guidon: FC<Props> = ({ className }) => {
   return (
     <button
       className={`rounded-lg border-2 border-amber-800 bg-amber-600 px-3 py-2 text-sm text-amber-900 ${className}`}
@@ -19,4 +19,6 @@ export default function OfficesCardGuidon({ className }: Props) {
       </a>
     </button>
   );
-}
+};
+
+export default Guidon;

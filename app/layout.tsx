@@ -7,6 +7,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Faggio",
   description: "Mit Faggio wissen Sie, wer wann im Büro ist.",
+  viewport: { width: "device-width", initialScale: 1 },
+  icons: { icon: "/favicon.ico" },
+  themeColor: { media: "(prefers-color-scheme: dark)", color: "#000000" },
 };
 
 interface Props {
@@ -15,10 +18,7 @@ interface Props {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <html lang="de">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
+    <html>
       <body className="relative flex h-fit w-screen flex-col">
         <Header />
         <Main>
