@@ -3,7 +3,7 @@
 import { FC, useState } from "react";
 import getLiteralDate from "../../../../../../helpers/getLiteralDate";
 import useNextBooking from "../../../../../../hooks/useNextBooking";
-import useNextWeekBookings from "../../../../../../hooks/useNextWeekBookingsMy";
+import useNextWeekBookings from "../../../../../../hooks/useMyBookingsOfNextWeek";
 import useAccount from "../../../../../../stores/SAccount";
 import EmptyMessage from "./EmptyMessage";
 import NextDay from "./NextDay";

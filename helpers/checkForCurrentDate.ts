@@ -1,7 +1,9 @@
 import { isToday } from "date-fns";
 import safeguardDate from "./safeguardDateAgainstTimezoneOffset";
 
-export default function checkForCurrentDate(today: Date | string) {
+const checkForCurrentDate = (today: Date | string): boolean => {
   today = safeguardDate(today);
   return isToday(today);
-}
+};
+
+export default checkForCurrentDate;

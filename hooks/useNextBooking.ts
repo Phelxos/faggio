@@ -1,14 +1,18 @@
+"use client";
+
+import { isAfter, parseJSON } from "date-fns";
 import { useEffect, useRef } from "react";
+import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
-import { isAfter, parseJSON } from "date-fns";
 import IBooking from "../typings/interfaces/IBooking";
-import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 
-export default function useNextBooking(id: number): {
+const useNextBooking = (
+  id: number
+): {
   date: Date;
   officeId: number;
-} {
+} => {
   const today = parseJSON(useCalendar((s) => s.today)); // Parse the date saved in JSON format for comparison
   const bookings = useBookings((s) => s.bookings);
   const nextBooking = useRef<IBooking | undefined>(undefined);
@@ -38,4 +42,6 @@ export default function useNextBooking(id: number): {
       "🚨 No next booking has been found in the function 'useNextBooking'."
     );
   }
-}
+};
+
+export default useNextBooking;

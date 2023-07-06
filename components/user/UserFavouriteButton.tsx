@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../icons/Icon";
 import useAccount from "../../stores/SAccount";
-import useFavourite from "../../hooks/useFavourite";
+import useFavourite from "../../hooks/useFavorite";
 
 export default function UserFavouriteButton({
   id,

@@ -1,5 +1,6 @@
 import capitaliseFirstLetter from "./capitaliseFirstLetter";
 
+// TO-DO Convert into arrow function
 export default function copyAddressToClipboard(
   partOne: string,
   partTwo: string,

@@ -6,11 +6,13 @@ import safeguardDate from "./safeguardDateAgainstTimezoneOffset";
  * @returns { Boolean } true if the dates are the same day
  */
 
-export default function compareDatesSafely(
+const compareDatesSafely = (
   dateA: Date | string,
   dateB: Date | string
-): boolean {
+): boolean => {
   const safeDateA = safeguardDate(dateA);
   const safeDateB = safeguardDate(dateB);
   return isSameDay(safeDateA, safeDateB);
-}
+};
+
+export default compareDatesSafely;

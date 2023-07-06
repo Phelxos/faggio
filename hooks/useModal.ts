@@ -3,7 +3,7 @@
 import { useState, useContext } from "react";
 import { Context as BookingsContext } from "../app/(pages)/bookings/Context";
 
-export default function useModal() {
+const useModal = (): { isOpenModal: boolean; toggleModal: () => void } => {
   const c = useContext(BookingsContext);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const toggleModal = () => {
@@ -16,4 +16,6 @@ export default function useModal() {
   };
 
   return { isOpenModal, toggleModal };
-}
+};
+
+export default useModal;

@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
-interface Interface {
+interface Props {
   width?: number;
   height?: number;
 }
@@ -10,8 +12,8 @@ const getWindowsSize = () => {
   return { width: innerWidth, height: innerHeight };
 };
 
-export default function useWindowSize() {
-  const [windowSize, setWindowSize] = useState<Interface>({});
+const useWindowSize = (): Props => {
+  const [windowSize, setWindowSize] = useState<Props>({});
 
   useEffect(() => {
     const handleResize = () => setWindowSize(getWindowsSize());
@@ -21,4 +23,6 @@ export default function useWindowSize() {
   }, []);
 
   return windowSize;
-}
+};
+
+export default useWindowSize;

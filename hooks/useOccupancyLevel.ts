@@ -1,12 +1,11 @@
-import useBookings from "../stores/SBookings";
-import useOffice from "../stores/SOffices";
+"use client";
+
 import compareDatesSafely from "../helpers/compareDatesSafely";
 import useAccount from "../stores/SAccount";
+import useBookings from "../stores/SBookings";
+import useOffice from "../stores/SOffices";
 
-export default function useOccupancyLevel(
-  date: any,
-  workstationCapacity: number
-) {
+const useOccupancyLevel = (date: any, workstationCapacity: number): number => {
   const bookings = useBookings((s) => s.bookings);
   const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
@@ -31,4 +30,6 @@ export default function useOccupancyLevel(
   if (occupancyRate < 10) return 80;
   if (occupancyRate < 12) return 90;
   else return 95;
-}
+};
+
+export default useOccupancyLevel;

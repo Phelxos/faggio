@@ -1,7 +1,9 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import useWindowSize from "./useWindowSize";
 
-export default function usePhoneSize() {
+const usePhoneSize = (): boolean => {
   const size = useWindowSize();
   const [isNotPhoneSize, setIsNotPhoneSize] = useState<boolean>(true);
 
@@ -20,4 +22,6 @@ export default function usePhoneSize() {
   }, [size]);
 
   return isNotPhoneSize;
-}
+};
+
+export default usePhoneSize;

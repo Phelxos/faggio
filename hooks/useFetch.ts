@@ -3,7 +3,10 @@
 import { useState, useEffect } from "react";
 import { server } from "../config/index";
 
-export default function useFetch(url: string, options?: { isAPI?: true }) {
+const useFetch = (
+  url: string,
+  options?: { isAPI?: true }
+): { isLoading: boolean; resData: unknown | null } => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [resData, setResData] = useState<unknown | null>();
 
@@ -28,5 +31,8 @@ export default function useFetch(url: string, options?: { isAPI?: true }) {
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
+
   return { isLoading, resData };
-}
+};
+
+export default useFetch;

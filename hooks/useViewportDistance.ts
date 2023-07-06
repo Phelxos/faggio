@@ -1,8 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
 
-export default function useViewportDistance(
-  ref: React.RefObject<HTMLElement>
-): boolean {
+const useViewportDistance = (ref: React.RefObject<HTMLElement>): boolean => {
   const [isCloserToTop, setIsCloserToTop] = useState<boolean>(false);
 
   useEffect(() => {
@@ -20,4 +20,6 @@ export default function useViewportDistance(
   }, [ref]);
 
   return isCloserToTop;
-}
+};
+
+export default useViewportDistance;

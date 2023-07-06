@@ -3,7 +3,7 @@
 import { useRouter } from "next/router";
 import { FC, useEffect, useState } from "react";
 import Icon from "../../../../../../components/icons/Icon";
-import useNavIcon from "../../../../../../hooks/useNavIcon";
+import useNavIcon from "../../../../../../helpers/getNavIcon";
 import type TPageTitle from "../../../../../../typings/types/TPageTitle";
 import ActiveLink from "./ActiveLink";
 

@@ -1,13 +1,15 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import checkForCurrentDate from "../helpers/checkForCurrentDate";
 import useBookings from "../stores/SBookings";
 import useCalendar from "../stores/SCalendar";
+import useCoworkers from "../stores/SCoworkers";
 import useGreeting from "../stores/SGreeting";
 import useOffice from "../stores/SOffices";
 import usePhoneSize from "./usePhoneSize";
-import useCoworkers from "../stores/SCoworkers";
 
-export default function useSetupData() {
+const useSetupData = (): { isHydrated: boolean; isIncorrectSize: boolean } => {
   const bookings = useBookings((s) => s.bookings);
   const fetchBookings = useBookings((s) => s.fetchBookings);
   const loadCoworkers = useCoworkers((s) => s.loadCoworkers);
@@ -37,4 +39,6 @@ export default function useSetupData() {
   }, []);
 
   return { isHydrated, isIncorrectSize };
-}
+};
+
+export default useSetupData;

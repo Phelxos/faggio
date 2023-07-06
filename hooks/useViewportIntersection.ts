@@ -1,9 +1,10 @@
-import { useRef } from "react";
+"use client";
+
 import { useState, useEffect } from "react";
 
-export default function useViewportIntersection(
+const useViewportIntersection = (
   ref: React.RefObject<HTMLElement>
-): boolean {
+): boolean => {
   const [isIntersecting, setIsIntersecting] = useState<boolean>(false);
 
   useEffect(() => {
@@ -21,4 +22,6 @@ export default function useViewportIntersection(
   }, [ref]);
 
   return isIntersecting;
-}
+};
+
+export default useViewportIntersection;

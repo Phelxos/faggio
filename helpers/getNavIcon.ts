@@ -1,6 +1,6 @@
 import TPageTitle from "../typings/types/TPageTitle";
 
-export default function useNavIcon(page?: TPageTitle) {
+const getNavIcon = (page?: TPageTitle): string => {
   switch (page) {
     case "bookings":
       return "calendarDays";
@@ -11,4 +11,6 @@ export default function useNavIcon(page?: TPageTitle) {
     default:
       return "home";
   }
-}
+};
+
+export default getNavIcon;

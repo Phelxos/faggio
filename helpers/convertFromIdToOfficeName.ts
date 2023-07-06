@@ -19,13 +19,15 @@ const officeIdToName: IOfficeIdToName = {
 };
 
 // TO-DO Implement global language to change the offices' names accordingly
-export default function convertFromIdToOfficeName(
-  id: number
-): TOfficeCity | undefined {
+const convertFromIdToOfficeName = (id: number): TOfficeCity => {
   if (EOfficesEnglishToGerman[officeIdToName[id]]) {
     const officeName = EOfficesEnglishToGerman[officeIdToName[id]];
     return officeName;
   } else {
-    return undefined;
+    throw new Error(
+      `🚨 The office name for the id ${id} could not be found in the function 'convertFromIdToOfficeName'.`
+    );
   }
-}
+};
+
+export default convertFromIdToOfficeName;

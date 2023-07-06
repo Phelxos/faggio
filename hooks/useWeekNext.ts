@@ -1,3 +1,5 @@
+"use client";
+
 import {
   getDate,
   getDay,
@@ -11,7 +13,11 @@ import {
 import displayEquivalent from "../helpers/displayEquivalent";
 import useCalendar from "../stores/SCalendar";
 
-export default function useNextWeek() {
+const useNextWeek = (): {
+  date: Date;
+  dateNumber: number;
+  name: any;
+}[] => {
   const today = useCalendar((s) => s.today);
   const functionsForDeterminingNextWeekDays = [
     nextMonday,
@@ -32,4 +38,6 @@ export default function useNextWeek() {
   });
 
   return nextWeek;
-}
+};
+
+export default useNextWeek;
