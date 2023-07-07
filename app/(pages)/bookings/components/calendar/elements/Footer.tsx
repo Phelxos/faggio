@@ -4,7 +4,7 @@ import { FC, useContext, useEffect } from "react";
 import useCalendar from "../../../../../../stores/SCalendar";
 import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import useOffice from "../../../../../../stores/SOffices";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import useTheme from "../../../../../../hooks/useTheme";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 
@@ -19,7 +19,7 @@ const Footer: FC = () => {
   const allOffices = useOffice((s) => s.allOffices);
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const setToday = useCalendar((s) => s.setToday);
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
   const theme = useTheme();
 
   const setAllRelevantCalendarStoreVariablesToTodaysAttributes = () => {

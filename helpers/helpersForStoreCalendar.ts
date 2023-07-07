@@ -7,12 +7,12 @@ import {
   eachDayOfInterval,
 } from "date-fns";
 
-export function getDisplayedCalWeeksInSelectedMonth(
+const getDisplayedCalWeeksInSelectedMonth = (
   month?: number,
   year?: number
-): number[] {
+): number[] => {
   let today;
-  if (arguments.length) {
+  if (month || year) {
     today = new Date(year!, month!);
   } else {
     today = new Date();
@@ -34,17 +34,17 @@ export function getDisplayedCalWeeksInSelectedMonth(
     { length: lastWeek - firstWeek + 1 },
     (_, i) => firstWeek + i
   );
-}
+};
 
-export function getLastDayOfCurrentYear(): Date {
+const getLastDayOfCurrentYear = (): Date => {
   const currentYear = new Date().getFullYear();
   return new Date(currentYear, 11, 31);
-}
+};
 
-export function getFirstCalWeekOfSelectedMonth(
+const getFirstCalWeekOfSelectedMonth = (
   month: number,
   year: number
-): number {
+): number => {
   const firstDayOfMonth = startOfMonth(new Date(year, month));
   if (isWeekend(firstDayOfMonth)) {
     return getWeek(nextMonday(firstDayOfMonth), {
@@ -57,56 +57,65 @@ export function getFirstCalWeekOfSelectedMonth(
       firstWeekContainsDate: 4,
     });
   }
-}
+};
 
-export function getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth(
+const getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth = (
   year: number
-) {
+): {
+  date: Date;
+  calWeek: number;
+  month: number;
+}[] => {
   const allWorkingDaysOfYear: Date[] = eachDayOfInterval({
     start: new Date(year, 0, 1),
     end: new Date(year, 11, 31),
   });
-  const allWorkingDaysOfYearWithTheirCorrespondingCalWeek: (
-    | {
-        date: Date;
-        calWeek: number;
-        month: number;
-      }
-    | undefined
-  )[] = allWorkingDaysOfYear
+  const allWorkingDaysOfYearWithTheirCorrespondingCalWeek: {
+    date: Date;
+    calWeek: number;
+    month: number;
+  }[] = allWorkingDaysOfYear
+    .filter((date) => !isWeekend(date))
     .map((date) => {
-      if (!isWeekend(date)) {
-        const calWeek = getWeek(date, {
-          weekStartsOn: 1,
-          firstWeekContainsDate: 4,
-        });
-        const month = date.getMonth();
-        return {
-          date,
-          calWeek,
-          month,
-        };
-      }
-    })
-    .filter((date) => date);
-  return allWorkingDaysOfYearWithTheirCorrespondingCalWeek;
-}
+      const calWeek = getWeek(date, {
+        weekStartsOn: 1,
+        firstWeekContainsDate: 4,
+      });
+      const month = date.getMonth();
+      return {
+        date,
+        calWeek,
+        month,
+      };
+    });
 
-export function getWorkingDaysOfSelectedCalWeek(
+  return allWorkingDaysOfYearWithTheirCorrespondingCalWeek;
+};
+
+const getWorkingDaysOfSelectedCalWeek = (
   workingDays: ({ date: Date; calWeek: number; month: number } | undefined)[],
   calWeekFilter: number
-): Date[] {
+): Date[] => {
   const workingDaysOfSelectedCalWeek = workingDays
     .filter(({ calWeek }: any) => calWeek === calWeekFilter)
     .map(({ date }: any) => date);
   return workingDaysOfSelectedCalWeek;
-}
-export function getWorkingDaysOfSelectedCalWeekAndTheirMonth(
+};
+const getWorkingDaysOfSelectedCalWeekAndTheirMonth = (
   workingDays: ({ date: Date; calWeek: number; month: number } | undefined)[],
   calWeekFilter: number
-): { date: Date; month: number }[] {
+): { date: Date; month: number }[] => {
   const workingDaysOfSelectedCalWeek = workingDays
     .filter(({ calWeek }: any) => calWeek === calWeekFilter)
     .map(({ date, month }: any) => ({ date, month }));
   return workingDaysOfSelectedCalWeek;
-}
+};
+
+export {
+  getDisplayedCalWeeksInSelectedMonth,
+  getLastDayOfCurrentYear,
+  getFirstCalWeekOfSelectedMonth,
+  getAllWorkingDaysOfYearWithTheirCorrespondingCalWeekAndMonth,
+  getWorkingDaysOfSelectedCalWeek,
+  getWorkingDaysOfSelectedCalWeekAndTheirMonth,
+};

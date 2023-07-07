@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CTeams } from "../../../teams/Context";
+import { Context as TeamsContext } from "../../../teams/Context";
 import SpinnerWrapped from "../../../../../components/spinners/SpinnerWrapped";
 import useAccount from "../../../../../stores/SAccount";
 import useCoworkers from "../../../../../stores/SCoworkers";
@@ -9,13 +9,13 @@ import CoworkerList from "./elements/CoworkerList";
 import EmptyMessage from "./elements/EmptyStateMessage";
 
 const Container: FC = () => {
-  const c = useContext(CTeams);
+  const context = useContext(TeamsContext);
   const favoriteCoworkers = useAccount((s) => s.favourites);
   const coworkers = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoading = useCoworkers((s) => s.isLoading);
 
   function handleButtonClick() {
-    if (!c?.isListView) c?.setIsListView(true);
+    if (!context?.isListView) context?.setIsListView(true);
   }
 
   return (

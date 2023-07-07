@@ -11,14 +11,22 @@ import NextDay from "./NextDay";
 const Body: FC = () => {
   const myId = useAccount((s) => s.coworkerId);
   const nextBooking = useNextBooking(myId);
-  const nextDay = getLiteralDate(nextBooking?.date);
+  const nextDay = nextBooking ? getLiteralDate(nextBooking?.date) : null;
   const nextWeekBookingsNumber = useState(useNextWeekBookings(myId)?.length)[0];
 
   return (
     <div className="flex flex-col items-center leading-8">
       <div className="flex flex-col gap-3 p-6">
         {nextDay ? (
-          <NextDay nextBooking={nextBooking} nextDay={nextDay} />
+          <NextDay
+            nextBooking={
+              nextBooking as {
+                date: Date;
+                officeId: number;
+              }
+            }
+            nextDay={nextDay}
+          />
         ) : (
           <EmptyMessage />
         )}

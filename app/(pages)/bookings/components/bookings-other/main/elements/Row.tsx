@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext, useEffect, useState } from "react";
-import { CBookings } from "../../../../Context";
+import { Context as BookingsContext } from "../../../../Context";
 import Spinner from "../../../../../../../components/spinners/Spinner";
 import UserImage from "../../../../../../../components/user/UserImage";
 import compareDatesSafely from "../../../../../../../helpers/compareDatesSafely";
@@ -18,7 +18,7 @@ interface Props {
 }
 
 const Row: FC<Props> = ({ i, date }) => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
 
   const myId = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);

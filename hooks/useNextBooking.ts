@@ -12,7 +12,7 @@ const useNextBooking = (
 ): {
   date: Date;
   officeId: number;
-} => {
+} | null => {
   const today = parseJSON(useCalendar((s) => s.today)); // Parse the date saved in JSON format for comparison
   const bookings = useBookings((s) => s.bookings);
   const nextBooking = useRef<IBooking | undefined>(undefined);
@@ -38,9 +38,7 @@ const useNextBooking = (
       officeId: nextBooking.current!.officeId,
     };
   } else {
-    throw new Error(
-      "🚨 No next booking has been found in the function 'useNextBooking'."
-    );
+    return null;
   }
 };
 

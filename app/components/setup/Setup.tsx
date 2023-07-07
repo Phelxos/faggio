@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import useSetupData from "../../../hooks/useSetupData";
 import IncorrectSizeMessage from "./IncorrectSizeMessage";

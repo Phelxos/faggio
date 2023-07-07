@@ -2,14 +2,14 @@
 
 import { FC, useContext, useEffect } from "react";
 import SearchAndSelect from "../../../../../../../components/SearchAndSelect";
-import { CBookings } from "../../../../Context";
+import { Context as BookingsContext } from "../../../../Context";
 import convertFromIdToOfficeName from "../../../../../../../helpers/convertFromIdToOfficeName";
 import useTheme from "../../../../../../../hooks/useTheme";
 import useCalendar from "../../../../../../../stores/SCalendar";
 import useOffice from "../../../../../../../stores/SOffices";
 
 const Input: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
   const selectedCalWeek = useCalendar((s) => s.selectedCalWeek);
   const setSelectedCalWeek = useCalendar((s) => s.setSelectedCalWeek);
   const displayedCalWeeksInSelectedMonth = useCalendar(

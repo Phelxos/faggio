@@ -6,13 +6,14 @@ import Icon from "../../../../../../components/icons/Icon";
 import useNavIcon from "../../../../../../helpers/getNavIcon";
 import type TPageTitle from "../../../../../../typings/types/TPageTitle";
 import ActiveLink from "./ActiveLink";
+import { usePathname } from "next/navigation";
 
 interface Props {
   pageTitle: TPageTitle;
 }
 
 const Item: FC<Props> = ({ pageTitle }) => {
-  const router = useRouter();
+  const pathname = usePathname();
   const [isHovering, setIsHovering] = useState(false);
   const [computedClassNameIcon, setComputedClassNameIcon] = useState("");
   const drawnIcon = useNavIcon(pageTitle);
@@ -75,7 +76,7 @@ const Item: FC<Props> = ({ pageTitle }) => {
   }
 
   useEffect(() => {
-    if (router.pathname === `/${pageTitle}`) {
+    if (pathname === `/${pageTitle}`) {
       setComputedClassNameIcon(`h-10 w-10 ${activeClassNames.icon}`);
     } else if (isHovering) {
       setComputedClassNameIcon(`h-10 w-10 ${hoverClassNames.icon}`);
@@ -83,7 +84,7 @@ const Item: FC<Props> = ({ pageTitle }) => {
       setComputedClassNameIcon("h-10 w-10 fill-slate-400");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHovering, router.pathname]);
+  }, [isHovering, pathname]);
 
   return (
     <ActiveLink

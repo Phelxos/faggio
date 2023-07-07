@@ -1,6 +1,6 @@
-import { useRouter } from "next/router";
-import TTheme from "../typings/types/TThemes";
+import { usePathname } from "next/navigation";
 import TPageTitle from "../typings/types/TPageTitle";
+import TTheme from "../typings/types/TThemes";
 
 const pageTitleToTheme = new Map<TPageTitle, TTheme>([
   ["home", "slate"],
@@ -9,10 +9,12 @@ const pageTitleToTheme = new Map<TPageTitle, TTheme>([
   ["offices", "amber"],
 ]);
 
-export default function useTheme() {
-  const { pathname } = useRouter();
+const useTheme = (): TTheme => {
+  const pathname = usePathname();
   // pathname without the slash
   const adjustedPathname: TPageTitle =
-    pathname === "/" ? "home" : (pathname.slice(1) as TPageTitle);
-  return pageTitleToTheme.get(adjustedPathname);
-}
+    pathname === "/" ? "home" : (pathname?.slice(1) as TPageTitle);
+  return pageTitleToTheme.get(adjustedPathname) ?? "slate";
+};
+
+export default useTheme;

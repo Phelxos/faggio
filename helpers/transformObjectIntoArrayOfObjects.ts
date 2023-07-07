@@ -2,20 +2,20 @@ interface TransformedObject {
   [key: string]: any;
 }
 
-function transformObjectIntoArrayOfObjects<T extends TransformedObject>(
-  array: T[],
+const transformObjectIntoArrayOfObjects = (
+  object: TransformedObject,
   nameForResolvedKey: string
-): T[] {
-  let transformedArray: T[] = [];
-  for (let key in array) {
-    if (array.hasOwnProperty(key)) {
+): TransformedObject[] => {
+  let transformedArray: TransformedObject[] = [];
+  for (let key in object) {
+    if (object.hasOwnProperty(key)) {
       transformedArray.push({
         [nameForResolvedKey]: key,
-        ...(array[key] as Object),
-      } as T);
+        value: object[key],
+      });
     }
   }
   return transformedArray;
-}
+};
 
 export default transformObjectIntoArrayOfObjects;

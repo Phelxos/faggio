@@ -2,7 +2,7 @@
 
 import { getDate, isPast, isToday } from "date-fns";
 import { FC, useContext, useEffect, useState } from "react";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import compareDatesSafely from "../../../../../../helpers/compareDatesSafely";
 import mapCalendar from "../../../../../../helpers/mapCalendar";
 import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";
@@ -13,7 +13,7 @@ import IBooking from "../../../../../../typings/interfaces/IBooking";
 import Head from "./BodyHead";
 
 const Body: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
 
   const coworkerId: number = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);

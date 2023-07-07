@@ -1,6 +1,6 @@
 import { isTomorrow, isYesterday, getWeek } from "date-fns";
 
-export default function getLiteralDate(date: Date): string {
+const getLiteralDate = (date: Date): string => {
   if (!date)
     throw new Error(
       "🚨 No date has been provided to the function 'getLiteralDate'."
@@ -22,4 +22,6 @@ export default function getLiteralDate(date: Date): string {
   } else {
     return weekday;
   }
-}
+};
+
+export default getLiteralDate;

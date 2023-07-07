@@ -1,8 +1,9 @@
+import { Metadata } from "next";
 import { FC } from "react";
 import Main from "./components/Main";
 import Header from "./components/header/Header";
 import Setup from "./components/setup/Setup";
-import { Metadata } from "next";
+import "../styles/globals.scss";
 
 export const metadata: Metadata = {
   title: "Faggio",
@@ -15,11 +16,10 @@ export const metadata: Metadata = {
 interface Props {
   children: React.ReactNode;
 }
-
 const Layout: FC<Props> = ({ children }) => {
   return (
     <html>
-      <body className="relative flex h-fit w-screen flex-col">
+      <body className="relative flex h-screen w-screen flex-col">
         <Header />
         <Main>
           <Setup>{children}</Setup>

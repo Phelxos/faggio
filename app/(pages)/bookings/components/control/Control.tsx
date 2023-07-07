@@ -2,12 +2,12 @@
 
 import { Transition } from "@headlessui/react";
 import { FC, useContext } from "react";
-import { CBookings } from "../../Context";
+import { Context as BookingsContext } from "../../Context";
 import Buttons from "./elements/Buttons";
 import Info from "./elements/Info";
 
 const Control: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
   return !c?.isOpenModal ? (
     <>
       <Transition

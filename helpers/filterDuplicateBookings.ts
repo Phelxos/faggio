@@ -1,8 +1,6 @@
 import IBooking from "../typings/interfaces/IBooking";
 
-export default function filterDuplicateBookings(
-  bookings: IBooking[]
-): IBooking[] {
+const filterDuplicateBookings = (bookings: IBooking[]): IBooking[] => {
   const seenBookings: { [key: string]: boolean } = {};
   const uniqueBookings: IBooking[] = [];
 
@@ -16,4 +14,6 @@ export default function filterDuplicateBookings(
   }
 
   return uniqueBookings;
-}
+};
+
+export default filterDuplicateBookings;

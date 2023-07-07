@@ -52,10 +52,6 @@ const useBookings = create<Interface>()(
           }));
         },
         deleteBookings: async (bookingsToBeRemoved: IBooking[]) => {
-          console.log(
-            "🚀 ~ file: SBookings.ts:55 ~ deleteBookings: ~ bookingsToBeRemoved:",
-            bookingsToBeRemoved
-          );
           if (!bookingsToBeRemoved?.length) return;
           try {
             const { data: bookingsFromApi } = await a.delete(apiPath.BOOKINGS, {

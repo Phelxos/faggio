@@ -3,7 +3,7 @@
 import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useContext } from "react";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import Icon from "../../../../../../components/icons/Icon";
 
 interface ButtonProps {
@@ -47,7 +47,7 @@ const ArrowUturnLeft: FC<ButtonProps> = ({ onClick }) => {
 };
 
 const Buttons: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
 
   const handleButtonSaveClick = () => {
     c?.transferBookingsToBeSavedToBookingsToStore();

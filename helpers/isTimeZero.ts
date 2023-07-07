@@ -1,4 +1,4 @@
-export default function isTimeZero(date: Date | string) {
+const isTimeZero = (date: Date | string): boolean => {
   if (typeof date === "string") {
     return date.endsWith("T00:00:00.000Z");
   } else {
@@ -9,4 +9,6 @@ export default function isTimeZero(date: Date | string) {
       date.getMilliseconds() === 0
     );
   }
-}
+};
+
+export default isTimeZero;

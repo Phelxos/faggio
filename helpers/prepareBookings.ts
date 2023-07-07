@@ -1,9 +1,7 @@
 import IBooking from "../typings/interfaces/IBooking";
 import safeguardDate from "./safeguardDateAgainstTimezoneOffset";
 
-export default function preparedBookings(
-  bookingsToBePrepared: IBooking[]
-): IBooking[] {
+const preparedBookings = (bookingsToBePrepared: IBooking[]): IBooking[] => {
   if (!Array.isArray(bookingsToBePrepared))
     throw new Error(
       "🚨 The argument of the array parameter containing the bookings to be prepared is not an array."
@@ -21,4 +19,6 @@ export default function preparedBookings(
     }
   );
   return preparedBookings;
-}
+};
+
+export default preparedBookings;

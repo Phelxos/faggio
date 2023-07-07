@@ -1,12 +1,12 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import Icon from "../../../../../../components/icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 
 const EmptyStateMessage: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center gap-8 p-8 text-emerald-200/50">

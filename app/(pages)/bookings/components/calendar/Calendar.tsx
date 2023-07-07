@@ -1,13 +1,13 @@
 "use client";
 
 import { FC, useContext } from "react";
-import { CBookings } from "../../Context";
+import { Context as BookingsContext } from "../../Context";
 import Body from "./elements/Body";
 import Footer from "./elements/Footer";
 import Header from "./elements/Header";
 
 const Calendar: FC = () => {
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
   return (
     <div
       className={`flex h-[485px] w-full flex-col rounded-lg border-[6px] ${

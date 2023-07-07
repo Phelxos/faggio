@@ -14,14 +14,17 @@ const months = [
 ];
 type targetedFormat = "date" | "month" | "day";
 
+// TO-DO Remove 'unknown' as return type, write proper description
+
 //Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
 const displayEquivalent = (
   mainInput: any,
   targetedFormat: targetedFormat,
   startsCountingAtZero: boolean = true
-): any => {
-  const error =
-    "Something has gone wrong while trying to display the equivalent of a date, a month, or a day.";
+): string | number | unknown => {
+  const error = new Error(
+    "Something has gone wrong while trying to display the equivalent of a date, a month, or a day."
+  );
   if (
     mainInput == 0 ||
     mainInput == 1 ||
@@ -127,7 +130,7 @@ const displayEquivalent = (
           case "Dezember":
             return 11;
           default:
-            return error;
+            throw error;
         }
       } else {
         switch (mainInput) {
@@ -188,7 +191,7 @@ const displayEquivalent = (
           case "Dezember":
             return 12;
           default:
-            return error;
+            throw error;
         }
       }
     } else if (targetedFormat === "date") {
@@ -217,7 +220,7 @@ const displayEquivalent = (
           case "Fr":
             return "freitags";
           default:
-            return error;
+            throw error;
         }
       } else if (typeof mainInput === "number") {
         switch (mainInput) {
@@ -237,10 +240,10 @@ const displayEquivalent = (
             return "Sa";
         }
       } else {
-        return error;
+        throw error;
       }
     } else {
-      return error;
+      throw error;
     }
   }
 };

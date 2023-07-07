@@ -4,7 +4,7 @@ interface Props {}
 
 const IncorrectSizeMessage: FC<Props> = () => {
   return (
-    <div className="flex h-screen w-screen flex-col items-center justify-center gap-4">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-4">
       <p className="w-2/3 text-2xl font-light text-slate-400/75">
         This app is <span className="font-bold">only available</span> on the
         size of an iPhone SE.

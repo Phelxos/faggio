@@ -17,6 +17,10 @@ const useWindowSize = (): Props => {
 
   useEffect(() => {
     const handleResize = () => setWindowSize(getWindowsSize());
+    console.log(
+      "🚀 ~ file: useWindowSize.ts:20 ~ useEffect ~ getWindowsSize():",
+      getWindowsSize()
+    );
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);

@@ -1,8 +1,8 @@
 import Link, { LinkProps } from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 
-type ActiveLinkProps = LinkProps & {
+type Props = LinkProps & {
   className?: string;
   activeClassName?: string;
   onMouseOver: () => void;
@@ -16,40 +16,38 @@ const ActiveLink = ({
   onMouseOver,
   onMouseOut,
   ...props
-}: PropsWithChildren<ActiveLinkProps>) => {
-  const { asPath, isReady } = useRouter();
+}: PropsWithChildren<Props>) => {
+  const pathname = usePathname();
   const [computedClassName, setComputedClassName] = useState(className);
 
   useEffect(() => {
-    // Check if the router fields are updated client-side
-    if (isReady) {
-      // Dynamic route will be matched via props.as
-      // Static route will be matched via props.href
-      const linkPathname = new URL(
-        (props.as || props.href) as string,
-        location.href
-      ).pathname;
+    // Dynamic route will be matched via props.as
+    // Static route will be matched via props.href
+    const linkPathname = new URL(
+      (props.as || props.href) as string,
+      location.href
+    ).pathname;
 
-      // Using URL().pathname to get rid of query and hash
-      const activePathname = new URL(asPath, location.href).pathname;
+    // Using URL().pathname to get rid of query and hash
+    if (!pathname) return;
 
-      const newClassName =
-        linkPathname === activePathname
-          ? `${className} ${activeClassName}`.trim()
-          : className;
+    const activePathname = new URL(pathname, location.href).pathname;
 
-      if (newClassName !== computedClassName) {
-        setComputedClassName(newClassName);
-      }
+    const newClassName =
+      linkPathname === activePathname
+        ? `${className} ${activeClassName}`.trim()
+        : className;
+
+    if (newClassName !== computedClassName) {
+      setComputedClassName(newClassName);
     }
   }, [
-    asPath,
-    isReady,
     props.as,
     props.href,
     activeClassName,
     className,
     computedClassName,
+    pathname,
   ]);
 
   return (

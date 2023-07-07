@@ -1,13 +1,15 @@
+"use client";
+
 import { FC, useContext, useEffect, useState } from "react";
 import useAccount from "../../../../../../stores/SAccount";
 import useBookings from "../../../../../../stores/SBookings";
 import IBooking from "../../../../../../typings/interfaces/IBooking";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import FilteredBookings from "./FilteredBookings";
 import EmptyStateMessage from "./EmptyStateMessage";
 
 const Main: FC = () => {
-  const c = useContext(CBookings);
+  const context = useContext(BookingsContext);
 
   const coworkerId = useAccount((s) => s.coworkerId);
   const bookings = useBookings((s) => s.bookings);
@@ -17,11 +19,11 @@ const Main: FC = () => {
   useEffect(() => {
     const filteredBookings = bookings.filter(
       (booking: IBooking) =>
-        booking.officeId === c?.locallySelectedOfficeId &&
+        booking.officeId === context?.locallySelectedOfficeId &&
         booking.coworkerId === coworkerId
     );
     setFilteredBookings(filteredBookings);
-  }, [bookings, c?.locallySelectedOfficeId, coworkerId]);
+  }, [bookings, context?.locallySelectedOfficeId, coworkerId]);
 
   return (
     <div className="max-h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-scroll">

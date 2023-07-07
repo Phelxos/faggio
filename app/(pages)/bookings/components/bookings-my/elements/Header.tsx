@@ -1,8 +1,10 @@
+"use client";
+
 import { FC, useEffect, useContext } from "react";
 import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import useOffice from "../../../../../../stores/SOffices";
 import useAccount from "../../../../../../stores/SAccount";
-import { CBookings } from "../../../Context";
+import { Context as BookingsContext } from "../../../Context";
 import useTheme from "../../../../../../hooks/useTheme";
 import useBookings from "../../../../../../stores/SBookings";
 import IBooking from "../../../../../../typings/interfaces/IBooking";
@@ -14,7 +16,7 @@ const Header: FC = () => {
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const bookings = useBookings((s) => s.bookings);
   const theme = useTheme();
-  const c = useContext(CBookings);
+  const c = useContext(BookingsContext);
 
   let myBookingsInSelectedOffice = bookings.filter(
     (booking: IBooking) =>
