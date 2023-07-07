@@ -56,11 +56,10 @@ const useGreeting = create<Interface>()(
             const response = await axios.get(
               "https://gist.githubusercontent.com/subbe/94ba128e4560b50484eb6aa2556b7559/raw/eb48b92adb545c1651f019b9672804dad39c163f/greetings.json"
             );
-            const greetings: Greeting[] =
-              transformObjectIntoArrayOfObjects<Greeting>(
-                await response.data,
-                "language"
-              );
+            const greetings: Greeting[] = transformObjectIntoArrayOfObjects(
+              await response.data,
+              "language"
+            );
             const randomNumber = Math.floor(Math.random() * greetings.length);
             const rawGreeting = greetings[randomNumber]?.greetings[0];
             const greeting = rawGreeting.split(" ")[0];

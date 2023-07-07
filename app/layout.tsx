@@ -18,7 +18,7 @@ interface Props {
 }
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <html>
+    <html lang="de">
       <body className="relative flex h-screen w-screen flex-col">
         <Header />
         <Main>

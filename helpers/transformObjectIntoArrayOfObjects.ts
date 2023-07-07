@@ -1,21 +1,21 @@
-interface TransformedObject {
+interface Object {
   [key: string]: any;
 }
 
-const transformObjectIntoArrayOfObjects = (
-  object: TransformedObject,
+const transformObjectIntoArrayOfObjects = <T extends Object>(
+  rawObject: T,
   nameForResolvedKey: string
-): TransformedObject[] => {
-  let transformedArray: TransformedObject[] = [];
-  for (let key in object) {
-    if (object.hasOwnProperty(key)) {
-      transformedArray.push({
+): T[] => {
+  let arrayOfObjects: T[] = [];
+  for (let key in rawObject) {
+    if (rawObject.hasOwnProperty(key)) {
+      arrayOfObjects.push({
         [nameForResolvedKey]: key,
-        value: object[key],
-      });
+        ...(rawObject[key] as Object),
+      } as T);
     }
   }
-  return transformedArray;
+  return arrayOfObjects;
 };
 
 export default transformObjectIntoArrayOfObjects;

@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import Icon from "../../../../../../components/icons/Icon";
@@ -11,6 +13,7 @@ const User: FC = () => {
   const user = useAccount((s) => s.forename);
   const currentTheme = useTheme();
   const { isOpenModal, toggleModal } = useModal();
+  const documentBody: HTMLElement = document.body;
 
   return (
     <div
@@ -28,7 +31,7 @@ const User: FC = () => {
       </p>
       {createPortal(
         <Modal toggleModal={toggleModal} isDisplayingModal={isOpenModal} />,
-        document.body
+        documentBody
       )}
     </div>
   );
