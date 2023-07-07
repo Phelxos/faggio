@@ -204,10 +204,26 @@ const displayEquivalent = (
       return null;
     }
   } else if (targetedFormat === "date") {
-    if (typeof mainInput === "string" && mainInput[0] === "0") {
-      return mainInput[1].toString();
-    } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
-      return mainInput.toString();
+    if (startsCountingAtZero) {
+      if (typeof mainInput === "string" && mainInput[0] === "0") {
+        return (mainInput[1] + 1).toString();
+      } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
+        return (mainInput + 1).toString();
+      } else if (typeof mainInput === "number") {
+        return (mainInput + 1).toString();
+      } else {
+        return null;
+      }
+    } else if (!startsCountingAtZero) {
+      if (typeof mainInput === "string" && mainInput[0] === "0") {
+        return mainInput[1].toString();
+      } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
+        return mainInput.toString();
+      } else if (typeof mainInput === "number") {
+        return mainInput.toString();
+      } else {
+        return null;
+      }
     } else {
       return null;
     }
