@@ -4,7 +4,7 @@ import UserCardControls from "./UserCardControls";
 import ICoworker from "../../typings/interfaces/ICoworker";
 import Image from "next/image";
 import { createPortal } from "react-dom";
-import Modal from "../modals/ModalUser/ModalUser";
+import Modal from "../modals/user/Modal";
 import useModal from "../../hooks/useModal";
 
 export default function UserCard({

@@ -1,23 +1,25 @@
-import { useEffect, useState } from "react";
+"use client";
+
 import { Dialog } from "@headlessui/react";
+import Image from "next/image";
+import { FC, useEffect, useState } from "react";
 import useCoworkers from "../../../stores/SCoworkers";
-import Spinner from "../../spinners/Spinner";
 import ICoworker from "../../../typings/interfaces/ICoworker";
 import IModal from "../../../typings/interfaces/IModal";
-import Image from "next/image";
-import Title from "./ModalUserTiles/Title";
-import Description from "./ModalUserTiles/Description";
-import Birthday from "./ModalUserTiles/Birthday";
-import Office from "./ModalUserTiles/Office";
-import NextBooking from "./ModalUserTiles/NextBooking";
-import Projects from "./ModalUserTiles/Projects";
+import Spinner from "../../spinners/Spinner";
 import UserCardControls from "../../user/UserCardControls";
+import Birthday from "./tiles/Birthday";
+import Description from "./tiles/Description";
+import NextBooking from "./tiles/NextBooking";
+import Office from "./tiles/Office";
+import Projects from "./tiles/Projects";
+import Title from "./tiles/Title";
 
-export default function ModalUser({
+const Modal: FC<IModal & { id: number }> = ({
   isDisplayingModal,
   toggleModal,
   id,
-}: IModal & { id: number }) {
+}) => {
   const coworkersStoreData = useCoworkers((s) => s.coworkerListWithPhotos);
   const isLoadingStoreData = useCoworkers((s) => s.isLoading);
   const [coworker, setCoworker] = useState<ICoworker | null>(null);
@@ -50,8 +52,9 @@ export default function ModalUser({
           <Description position={coworker?.position} />
           <div className="col-span-4 flex h-full w-full items-center justify-between gap-2">
             <Birthday
-              date={coworker?.birthdayDate}
-              month={coworker?.birthdayMonth}
+              // Type assertion is valid here due to default props in the component
+              date={coworker?.birthdayDate as number}
+              month={coworker?.birthdayMonth as number}
             />
             <Office officeId={coworker?.officeId} />
           </div>
@@ -68,4 +71,6 @@ export default function ModalUser({
   ) : (
     <p>Fehler beim Laden</p>
   );
-}
+};
+
+export default Modal;

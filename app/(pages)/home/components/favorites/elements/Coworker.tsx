@@ -11,6 +11,7 @@ import TCoworkerId from "../../../../../../typings/types/TCoworkerId";
 
 const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   const nextBooking = useNextBooking(coworkerId);
+  nextBooking && getDay(nextBooking?.date);
   return (
     <div
       className={`flex min-w-[104px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${

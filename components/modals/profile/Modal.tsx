@@ -1,9 +1,11 @@
-import { useEffect, useState, FC } from "react";
+"use client";
+
+import { FC } from "react";
 import { Dialog } from "@headlessui/react";
 import IModal from "../../../typings/interfaces/IModal";
-import ModalProfileTile from "./ModalProfileTile";
+import Tile from "./Tile";
 
-const ModalProfile: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
+const Modal: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
   return (
     <Dialog
       className="fixed left-0 top-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur"
@@ -15,10 +17,10 @@ const ModalProfile: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
           Mein Profil
         </Dialog.Title>
         <div className="grid h-full w-full grow grid-cols-2 gap-4">
-          <ModalProfileTile name="Profil" nameBoldBottom="ansehen" />
-          <ModalProfileTile name="Profil" nameBoldBottom="bearbeiten" />
-          <ModalProfileTile nameBoldTop="Farbschema" name="ändern" />
-          <ModalProfileTile name="weitere" nameBoldBottom="Einstellungen" />
+          <Tile name="Profil" nameBoldBottom="ansehen" />
+          <Tile name="Profil" nameBoldBottom="bearbeiten" />
+          <Tile nameBoldTop="Farbschema" name="ändern" />
+          <Tile name="weitere" nameBoldBottom="Einstellungen" />
         </div>
         <div
           className="w-full grow rounded-b-lg border-2 border-red-700/50 bg-sky-950 p-4 text-center font-mono uppercase tracking-widest text-red-500/75"
@@ -31,4 +33,4 @@ const ModalProfile: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
   );
 };
 
-export default ModalProfile;
+export default Modal;

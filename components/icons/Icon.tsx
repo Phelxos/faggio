@@ -11,7 +11,7 @@ interface Props {
 }
 
 const Icon: FC<Props> = ({
-  className,
+  className = "h-12 w-12",
   icon,
   onClick,
   isActive,
@@ -28,10 +28,6 @@ const Icon: FC<Props> = ({
       <Path icon={icon} />
     </svg>
   );
-};
-
-Icon.defaultProps = {
-  className: "h-12 w-12",
 };
 
 export default Icon;

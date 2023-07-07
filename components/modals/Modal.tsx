@@ -1,8 +1,11 @@
+"use client";
+
 import { Dialog } from "@headlessui/react";
 import IModal from "../../typings/interfaces/IModal";
 import Icon from "../icons/Icon";
+import { FC } from "react";
 
-export default function Modal({
+const Modal: FC<IModal> = ({
   isDisplayingModal,
   toggleModal,
   title = "Dialog",
@@ -12,7 +15,7 @@ export default function Modal({
   onButtonAcceptClick,
   buttonDeclineLabel = "ablehnen",
   onButtonDeclineClick,
-}: IModal) {
+}) => {
   const handleButtonAcceptClick = () => {
     if (onButtonAcceptClick) onButtonAcceptClick();
     toggleModal();
@@ -23,11 +26,11 @@ export default function Modal({
   };
   return (
     <Dialog
-      className={`fixed top-0 left-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
+      className={`fixed left-0 top-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur`}
       open={isDisplayingModal}
       onClose={toggleModal}
     >
-      <Dialog.Panel className="max-h-3/4 min-h-1/4 max-w-3/4 min-w-1/4 flex h-[500px] w-[300px] flex-col items-center justify-between rounded-t rounded-b-xl border-t-8 border-t-sky-300/50 bg-sky-900/80 px-6 pt-4 pb-8 drop-shadow-2xl">
+      <Dialog.Panel className="max-h-3/4 min-h-1/4 max-w-3/4 min-w-1/4 flex h-[500px] w-[300px] flex-col items-center justify-between rounded-b-xl rounded-t border-t-8 border-t-sky-300/50 bg-sky-900/80 px-6 pb-8 pt-4 drop-shadow-2xl">
         <Dialog.Title className="text-4xl font-thin tracking-widest text-sky-300">
           {title}
         </Dialog.Title>
@@ -55,4 +58,6 @@ export default function Modal({
       </Dialog.Panel>
     </Dialog>
   );
-}
+};
+
+export default Modal;

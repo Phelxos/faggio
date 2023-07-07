@@ -2,14 +2,14 @@ import { FC } from "react";
 import TIcon from "../../../typings/types/TIcon";
 import Icon from "../../icons/Icon";
 
-interface ModalProfileTileProps {
+interface Props {
   name: string;
   nameBoldTop?: string;
   nameBoldBottom?: string;
   icon?: TIcon;
 }
 
-const ModalProfileTile: FC<ModalProfileTileProps> = ({
+const Tile: FC<Props> = ({
   name,
   nameBoldTop,
   nameBoldBottom,
@@ -40,4 +40,4 @@ const ModalProfileTile: FC<ModalProfileTileProps> = ({
   );
 };
 
-export default ModalProfileTile;
+export default Tile;

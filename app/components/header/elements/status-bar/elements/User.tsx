@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { createPortal } from "react-dom";
 import Icon from "../../../../../../components/icons/Icon";
-import Modal from "../../../../../../components/modals/ModalProfile/ModalProfile";
+import Modal from "../../../../../../components/modals/profile/Modal";
 import capitaliseFirstLetter from "../../../../../../helpers/capitaliseFirstLetter";
 import useModal from "../../../../../../hooks/useModal";
 import useTheme from "../../../../../../hooks/useTheme";
@@ -13,7 +13,11 @@ const User: FC = () => {
   const user = useAccount((s) => s.forename);
   const currentTheme = useTheme();
   const { isOpenModal, toggleModal } = useModal();
-  const documentBody: HTMLElement = document.body;
+  let documentBody: HTMLElement | null = null;
+
+  if (typeof document !== "undefined") {
+    documentBody = document.body;
+  }
 
   return (
     <div
@@ -31,7 +35,7 @@ const User: FC = () => {
       </p>
       {createPortal(
         <Modal toggleModal={toggleModal} isDisplayingModal={isOpenModal} />,
-        documentBody
+        documentBody!
       )}
     </div>
   );

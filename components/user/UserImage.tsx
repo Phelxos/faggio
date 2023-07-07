@@ -5,7 +5,7 @@ import useModal from "../../hooks/useModal";
 import useTheme from "../../hooks/useTheme";
 import useCoworkers from "../../stores/SCoworkers";
 import TCoworkerId from "../../typings/types/TCoworkerId";
-import Modal from "../modals/ModalUser/ModalUser";
+import Modal from "../modals/user/Modal";
 
 const UserImage: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   const { isOpenModal, toggleModal } = useModal();
