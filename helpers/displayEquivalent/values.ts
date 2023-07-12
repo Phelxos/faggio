@@ -33,6 +33,13 @@ const numbersAsStrings = [
 
 const abbreviatedWeekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
 
+const abbreviatedWeekdaysToFullWeekdays = new Map();
+abbreviatedWeekdaysToFullWeekdays.set("Mo", "montags");
+abbreviatedWeekdaysToFullWeekdays.set("Di", "dienstags");
+abbreviatedWeekdaysToFullWeekdays.set("Mi", "mittwochs");
+abbreviatedWeekdaysToFullWeekdays.set("Do", "donnerstags");
+abbreviatedWeekdaysToFullWeekdays.set("Fr", "freitags");
+
 const numbersToMonthsZeroIndexed = zeroTo11.map((i) => months[i]);
 const numbersToMonthsOneIndexed = oneTo12.map((i) => months[i - 1]);
 
@@ -42,4 +49,5 @@ export {
   abbreviatedWeekdays,
   numbersToMonthsZeroIndexed,
   numbersToMonthsOneIndexed,
+  abbreviatedWeekdaysToFullWeekdays,
 };

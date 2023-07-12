@@ -6,7 +6,7 @@ import {
 const getMonthIfInputIsNumber = (
   input: number,
   isZeroIndexedCount: boolean
-) => {
+): string | null => {
   if (isZeroIndexedCount) {
     return numbersToMonthsZeroIndexed[input];
   } else if (!isZeroIndexedCount) {
