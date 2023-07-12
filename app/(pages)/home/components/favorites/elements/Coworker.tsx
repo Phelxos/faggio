@@ -5,7 +5,7 @@ import { FC } from "react";
 import Icon from "../../../../../../components/icons/Icon";
 import UserImage from "../../../../../../components/user/UserImage";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
-import displayEquivalent from "../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useNextBooking from "../../../../../../hooks/useNextBooking";
 import TCoworkerId from "../../../../../../typings/types/TCoworkerId";
 

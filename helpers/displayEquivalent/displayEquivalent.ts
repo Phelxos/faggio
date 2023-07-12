@@ -1,58 +1,20 @@
-const months = [
-  "Januar",
-  "Februar",
-  "März",
-  "April",
-  "Mai",
-  "Juni",
-  "Juli",
-  "August",
-  "September",
-  "Oktober",
-  "November",
-  "Dezember",
-];
-
-const numbersAsStrings = [
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-];
-
-const abbreviatedWeekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
-
-type targetedFormat = "month" | "date" | "day";
+import { abbreviatedWeekdays } from "./values";
+import { mainInput, targetedFormat } from "./types";
+import checkIfIsSuitableArgument from "./subs/checkIfIsSuitableArgument";
+import getMonthIfInputIsNumber from "./subs/getMonthIfInputIsNumber";
 
 //Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
 const displayEquivalent = (
-  mainInput: number | string,
+  mainInput: mainInput,
   targetedFormat: targetedFormat,
-  startsCountingAtZero: boolean = true
+  isZeroIndexedCount: boolean = true
 ): string | number | null => {
-  const isNotNumberBetween0And31 = !(
-    typeof mainInput === "number" &&
-    0 <= mainInput &&
-    mainInput <= 31
-  );
-  const isNotAptString = !(
-    typeof mainInput === "string" &&
-    (months.includes(mainInput) || numbersAsStrings.includes(mainInput))
-  );
-  const isNotSuitableArgument = isNotNumberBetween0And31 && isNotAptString;
+  const isNotSuitableArgument = checkIfIsSuitableArgument(mainInput);
   if (isNotSuitableArgument) return null;
 
   if (targetedFormat === "month") {
     if (typeof mainInput === "string") {
-      if (startsCountingAtZero) {
+      if (isZeroIndexedCount) {
         switch (mainInput) {
           case "0":
           case "00":
@@ -106,7 +68,7 @@ const displayEquivalent = (
           default:
             return null;
         }
-      } else if (!startsCountingAtZero) {
+      } else if (!isZeroIndexedCount) {
         switch (mainInput) {
           case "01":
             return "Januar";
@@ -132,6 +94,30 @@ const displayEquivalent = (
             return "November";
           case "12":
             return "Dezember";
+          case "Januar":
+            return 1;
+          case "Februar":
+            return 2;
+          case "März":
+            return 3;
+          case "April":
+            return 4;
+          case "Mai":
+            return 5;
+          case "Juni":
+            return 6;
+          case "Juli":
+            return 7;
+          case "August":
+            return 8;
+          case "September":
+            return 9;
+          case "Oktober":
+            return 10;
+          case "November":
+            return 11;
+          case "Dezember":
+            return 12;
           default:
             return null;
         }
@@ -139,75 +125,31 @@ const displayEquivalent = (
         return null;
       }
     } else if (typeof mainInput === "number") {
-      if (startsCountingAtZero) {
-        switch (mainInput) {
-          case 0:
-            return "Januar";
-          case 1:
-            return "Februar";
-          case 2:
-            return "März";
-          case 3:
-            return "April";
-          case 4:
-            return "Mai";
-          case 5:
-            return "Juni";
-          case 6:
-            return "Juli";
-          case 7:
-            return "August";
-          case 8:
-            return "September";
-          case 9:
-            return "Oktober";
-          case 10:
-            return "November";
-          case 11:
-            return "Dezember";
-          default:
-            return null;
-        }
-      } else if (!startsCountingAtZero) {
-        switch (mainInput) {
-          case 1:
-            return "Januar";
-          case 2:
-            return "Februar";
-          case 3:
-            return "März";
-          case 4:
-            return "April";
-          case 5:
-            return "Mai";
-          case 6:
-            return "Juni";
-          case 7:
-            return "Juli";
-          case 8:
-            return "August";
-          case 9:
-            return "September";
-          case 10:
-            return "Oktober";
-          case 11:
-            return "November";
-          case 12:
-            return "Dezember";
-          default:
-            return null;
-        }
-      } else {
-        return null;
-      }
+      return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
     } else {
       return null;
     }
   } else if (targetedFormat === "date") {
-    if (typeof mainInput === "string" && mainInput[0] === "0") {
-      return mainInput[1].toString();
-    } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
-      return mainInput.toString();
+    if (isZeroIndexedCount) {
+      if (typeof mainInput === "string" && mainInput[0] === "0") {
+        return (mainInput[1] + 1).toString();
+      } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
+        return (mainInput + 1).toString();
+      } else if (typeof mainInput === "number") {
+        return (mainInput + 1).toString();
+      } else {
+        return null;
+      }
+    } else if (!isZeroIndexedCount) {
+      if (typeof mainInput === "string" && mainInput[0] === "0") {
+        return mainInput[1].toString();
+      } else if (typeof mainInput === "string" && mainInput[0] !== "0") {
+        return mainInput.toString();
+      } else if (typeof mainInput === "number") {
+        return mainInput.toString();
+      } else {
+        return null;
+      }
     } else {
       return null;
     }

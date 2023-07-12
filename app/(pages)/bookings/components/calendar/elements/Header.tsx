@@ -3,7 +3,7 @@
 import { FC, useRef } from "react";
 import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import Icon from "../../../../../../components/icons/Icon";
-import displayEquivalent from "../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useTheme from "../../../../../../hooks/useTheme";
 import useCalendar from "../../../../../../stores/SCalendar";
 

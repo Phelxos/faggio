@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
-import displayEquivalent from "../../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../../helpers/displayEquivalent/displayEquivalent";
 
 interface Props {
   year: number;

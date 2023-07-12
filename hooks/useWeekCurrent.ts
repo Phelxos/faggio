@@ -10,7 +10,7 @@ import {
   previousTuesday,
   previousWednesday,
 } from "date-fns";
-import displayEquivalent from "../helpers/displayEquivalent";
+import displayEquivalent from "../helpers/displayEquivalent/displayEquivalent";
 import useCalendar from "../stores/SCalendar";
 
 const useWeekCurrent = (): {

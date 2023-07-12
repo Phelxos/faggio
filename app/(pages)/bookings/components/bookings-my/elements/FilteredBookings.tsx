@@ -4,7 +4,7 @@ import { getDate, getMonth } from "date-fns";
 import { FC } from "react";
 import Icon from "../../../../../../components/icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
-import displayEquivalent from "../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useBookings from "../../../../../../stores/SBookings";
 import IBooking from "../../../../../../typings/interfaces/IBooking";
 

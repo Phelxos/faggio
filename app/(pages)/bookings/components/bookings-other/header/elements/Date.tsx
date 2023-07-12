@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import displayEquivalent from "../../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useCalendar from "../../../../../../../stores/SCalendar";
 
 const Date: FC = () => {

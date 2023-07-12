@@ -1,7 +1,7 @@
 "use client";
 
 import { FC } from "react";
-import displayEquivalent from "../../../../../../helpers/displayEquivalent";
+import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";
 import useCalendar from "../../../../../../stores/SCalendar";
 import Date from "./elements/Date";
