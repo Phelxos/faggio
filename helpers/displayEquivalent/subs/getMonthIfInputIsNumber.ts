@@ -1,7 +1,7 @@
 import {
   numbersToMonthsZeroIndexed,
   numbersToMonthsOneIndexed,
-} from "./../values";
+} from "./values";
 
 const getMonthIfInputIsNumber = (
   input: number,

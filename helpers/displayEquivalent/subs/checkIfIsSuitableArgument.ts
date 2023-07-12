@@ -1,8 +1,6 @@
-import { months, numbersAsStrings } from "../values";
+import { months, numbersAsStrings } from "./values";
 
-import { mainInput } from "../types";
-
-const checkIfIsSuitableArgument = (mainInput: mainInput) => {
+const checkIfIsSuitableArgument = (mainInput: number | string) => {
   const isNotNumberBetween0And31 = !(
     typeof mainInput === "number" &&
     0 <= mainInput &&

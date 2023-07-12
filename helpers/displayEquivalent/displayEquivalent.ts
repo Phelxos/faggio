@@ -1,9 +1,12 @@
-import { mainInput, targetedFormat } from "./types";
 import checkIfIsSuitableArgument from "./subs/checkIfIsSuitableArgument";
 import getMonthIfInputIsNumber from "./subs/getMonthIfInputIsNumber";
 import getMonthIfInputIsString from "./subs/getMonthIfInputIsString";
 import getDateAsString from "./subs/getDateAsString";
 import getFormattedDay from "./subs/getFormattedDay";
+
+type targetedFormat = "month" | "date" | "day";
+
+type mainInput = number | string;
 
 //Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
 const displayEquivalent = (
