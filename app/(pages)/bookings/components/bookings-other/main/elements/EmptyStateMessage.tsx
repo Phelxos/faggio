@@ -10,7 +10,7 @@ const EmptyStateMessage: FC<Props> = ({ darker }) => {
     <>
       <Icon
         icon="xMark"
-        className={`absolute right-0 top-0 h-20 w-20 ${
+        className={`absolute -bottom-8 -left-8 h-28 w-28 ${
           darker ? "fill-slate-400" : "fill-slate-200"
         } opacity-20`}
       />
