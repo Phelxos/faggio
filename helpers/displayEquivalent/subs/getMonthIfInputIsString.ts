@@ -3,7 +3,7 @@ const assignmensToPossibleInputs = {};
 const getMonthIfInputIsString = (
   input: string,
   isZeroIndexedCount: boolean
-): number | string | null => {
+): number | string | undefined => {
   if (isZeroIndexedCount) {
     switch (input) {
       case "0":
@@ -56,7 +56,7 @@ const getMonthIfInputIsString = (
       case "Dezember":
         return 11;
       default:
-        return null;
+        return undefined;
     }
   } else if (!isZeroIndexedCount) {
     switch (input) {
@@ -109,10 +109,10 @@ const getMonthIfInputIsString = (
       case "Dezember":
         return 12;
       default:
-        return null;
+        return undefined;
     }
   } else {
-    return null;
+    return undefined;
   }
 };
 

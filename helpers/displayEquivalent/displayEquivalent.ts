@@ -13,9 +13,9 @@ const displayEquivalent = (
   mainInput: mainInput,
   targetedFormat: targetedFormat,
   isZeroIndexedCount: boolean = true
-): string | number | null => {
+): string | number | undefined => {
   const isNotSuitableArgument = checkIfIsSuitableArgument(mainInput);
-  if (isNotSuitableArgument) return null;
+  if (isNotSuitableArgument) return undefined;
 
   if (targetedFormat === "month") {
     if (typeof mainInput === "string") {
@@ -23,14 +23,14 @@ const displayEquivalent = (
     } else if (typeof mainInput === "number") {
       return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
     } else {
-      return null;
+      return undefined;
     }
   } else if (targetedFormat === "date") {
     return getDateAsString(mainInput, isZeroIndexedCount);
   } else if (targetedFormat === "day") {
     return getFormattedDay(mainInput);
   } else {
-    return null;
+    return undefined;
   }
 };
 export default displayEquivalent;

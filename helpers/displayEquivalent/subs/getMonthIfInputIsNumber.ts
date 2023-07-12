@@ -6,13 +6,13 @@ import {
 const getMonthIfInputIsNumber = (
   input: number,
   isZeroIndexedCount: boolean
-): string | null => {
+): string | undefined => {
   if (isZeroIndexedCount) {
     return numbersToMonthsZeroIndexed[input];
   } else if (!isZeroIndexedCount) {
     return numbersToMonthsOneIndexed[input];
   } else {
-    return null;
+    return undefined;
   }
 };
 

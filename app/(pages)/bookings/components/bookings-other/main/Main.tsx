@@ -18,6 +18,9 @@ const Main: FC = () => {
         const safeDate = safeguardDate(workingDay);
         const date = safeDate.getDate();
         const day = displayEquivalent(safeDate.getDay(), "day");
+        // TO-DO Implement proper undefined checking
+        if (!day) return;
+
         return (
           <li
             key={i}

@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 interface Props {
-  day: number;
+  day: number | string;
   date: number;
   i: number;
 }

@@ -35,8 +35,16 @@ const FilteredBookings: FC<Props> = ({ filteredBookings }) => {
               </span>
               <span
                 className={`${
-                  displayEquivalent(getMonth(new Date(booking.date)), "month")
-                    .length <= 5
+                  typeof displayEquivalent(
+                    getMonth(new Date(booking.date)),
+                    "month"
+                  ) === "string" &&
+                  (
+                    displayEquivalent(
+                      getMonth(new Date(booking.date)),
+                      "month"
+                    ) as string
+                  ).length <= 5
                     ? "text-3xl"
                     : "text-xl"
                 } text-slate-400/75`}
