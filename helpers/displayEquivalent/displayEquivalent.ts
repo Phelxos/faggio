@@ -8,7 +8,13 @@ type targetedFormat = "month" | "date" | "day";
 
 type mainInput = number | string;
 
-//Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
+/**
+ * Converts a month-, date- or day-related input to another depiction of the input
+ * @param {mainInput} mainInput - input to be converted
+ * @param {targetedFormat} targetedFormat - requested type of the output
+ * @param {boolean} isZeroIndexedCount - whether the input is zero-indexed or not, i.e. the counting of the months, dates, or days starts from 0 or 1
+ */
+
 const displayEquivalent = (
   mainInput: mainInput,
   targetedFormat: targetedFormat,

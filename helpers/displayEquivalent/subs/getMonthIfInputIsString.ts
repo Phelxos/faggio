@@ -1,5 +1,3 @@
-const assignmensToPossibleInputs = {};
-
 const getMonthIfInputIsString = (
   input: string,
   isZeroIndexedCount: boolean
