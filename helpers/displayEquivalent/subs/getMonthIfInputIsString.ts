@@ -1,7 +1,7 @@
 const getMonthIfInputIsString = (
   input: string,
   isZeroIndexedCount: boolean
-): number | string | null => {
+): number | string => {
   if (isZeroIndexedCount) {
     switch (input) {
       case "0":
@@ -54,7 +54,7 @@ const getMonthIfInputIsString = (
       case "Dezember":
         return 11;
       default:
-        return null;
+        throw new Error("The input is not suitable.");
     }
   } else if (!isZeroIndexedCount) {
     switch (input) {
@@ -107,10 +107,10 @@ const getMonthIfInputIsString = (
       case "Dezember":
         return 12;
       default:
-        return null;
+        throw new Error("The input is not suitable.");
     }
   } else {
-    return null;
+    throw new Error("The input is not suitable.");
   }
 };
 

@@ -19,24 +19,29 @@ const displayEquivalent = (
   mainInput: mainInput,
   targetedFormat: targetedFormat,
   isZeroIndexedCount: boolean = true
-): string | number | null => {
+): string | number => {
   const isNotSuitableArgument = checkIfIsSuitableArgument(mainInput);
-  if (isNotSuitableArgument) return null;
-
-  if (targetedFormat === "month") {
-    if (typeof mainInput === "string") {
-      return getMonthIfInputIsString(mainInput, isZeroIndexedCount);
-    } else if (typeof mainInput === "number") {
-      return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
+  try {
+    if (isNotSuitableArgument) throw new Error("The argument is not suitable.");
+  
+    if (targetedFormat === "month") {
+      if (typeof mainInput === "string") {
+        return getMonthIfInputIsString(mainInput, isZeroIndexedCount);
+      } else if (typeof mainInput === "number") {
+        return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
+      } else {
+        throw new Error("The input is not suitable.");
+      }
+    } else if (targetedFormat === "date") {
+      return getDateAsString(mainInput, isZeroIndexedCount);
+    } else if (targetedFormat === "day") {
+      return getFormattedDay(mainInput);
     } else {
-      return null;
+      throw new Error("The input is not suitable.");
     }
-  } else if (targetedFormat === "date") {
-    return getDateAsString(mainInput, isZeroIndexedCount);
-  } else if (targetedFormat === "day") {
-    return getFormattedDay(mainInput);
-  } else {
-    return null;
+  } catch (error) {
+    console.error(error);
+    return "";
   }
 };
 export default displayEquivalent;
