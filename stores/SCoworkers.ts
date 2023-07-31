@@ -10,7 +10,7 @@ interface Interface {
   loadCoworkers: () => Promise<void>;
 }
 
-const useCoworkers = create<Interface>(
+const useCoworkers = create<Interface>()(
   devtools(
     persist(
       (set, get) => ({
