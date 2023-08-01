@@ -8,29 +8,40 @@ type targetedFormat = "month" | "date" | "day";
 
 type mainInput = number | string;
 
-//Zweck: Darstellungsweise eines Datum bzw. dessen Teils (z.B. Monat) ändern (z.B. "07" in "Juni")
+/**
+ * Converts a month-, date- or day-related input to another depiction of the input
+ * @param {mainInput} mainInput - input to be converted
+ * @param {targetedFormat} targetedFormat - requested type of the output
+ * @param {boolean} isZeroIndexedCount - whether the input is zero-indexed or not, i.e. the counting of the months, dates, or days starts from 0 or 1
+ */
+
 const displayEquivalent = (
   mainInput: mainInput,
   targetedFormat: targetedFormat,
   isZeroIndexedCount: boolean = true
-): string | number | undefined => {
+): string | number => {
   const isNotSuitableArgument = checkIfIsSuitableArgument(mainInput);
-  if (isNotSuitableArgument) return undefined;
+  try {
+    if (isNotSuitableArgument) throw new Error("The argument is not suitable.");
 
-  if (targetedFormat === "month") {
-    if (typeof mainInput === "string") {
-      return getMonthIfInputIsString(mainInput, isZeroIndexedCount);
-    } else if (typeof mainInput === "number") {
-      return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
+    if (targetedFormat === "month") {
+      if (typeof mainInput === "string") {
+        return getMonthIfInputIsString(mainInput, isZeroIndexedCount);
+      } else if (typeof mainInput === "number") {
+        return getMonthIfInputIsNumber(mainInput, isZeroIndexedCount);
+      } else {
+        throw new Error("The input is not suitable.");
+      }
+    } else if (targetedFormat === "date") {
+      return getDateAsString(mainInput, isZeroIndexedCount);
+    } else if (targetedFormat === "day") {
+      return getFormattedDay(mainInput);
     } else {
-      return undefined;
+      throw new Error("The input is not suitable.");
     }
-  } else if (targetedFormat === "date") {
-    return getDateAsString(mainInput, isZeroIndexedCount);
-  } else if (targetedFormat === "day") {
-    return getFormattedDay(mainInput);
-  } else {
-    return undefined;
+  } catch (error) {
+    console.error(error);
+    return "";
   }
 };
 export default displayEquivalent;

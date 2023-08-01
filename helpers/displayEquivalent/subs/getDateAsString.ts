@@ -1,7 +1,7 @@
 const getDateAsString = (
   input: string | number,
   isZeroIndexedCount: boolean
-): string | undefined => {
+): string => {
   const isString = typeof input === "string";
   const isNumber = typeof input === "number";
 
@@ -13,7 +13,7 @@ const getDateAsString = (
     } else if (isNumber) {
       return (input + 1).toString();
     } else {
-      return undefined;
+      throw new Error("The input is not suitable.");
     }
   } else if (!isZeroIndexedCount) {
     if (isString && input[0] === "0") {
@@ -23,10 +23,10 @@ const getDateAsString = (
     } else if (isNumber) {
       return input.toString();
     } else {
-      return undefined;
+      throw new Error("The input is not suitable.");
     }
   } else {
-    return undefined;
+    throw new Error("The input is not suitable.");
   }
 };
 

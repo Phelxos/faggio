@@ -61,7 +61,7 @@ const Header: FC = () => {
         />
         <SearchAndSelect
           value={displayEquivalent(selectedMonth, "month")}
-          setValue={(val: string) =>
+          setValue={(val) =>
             setSelectedMonth(displayEquivalent(val, "month") as number)
           }
           listOfValues={displayedMonths}
