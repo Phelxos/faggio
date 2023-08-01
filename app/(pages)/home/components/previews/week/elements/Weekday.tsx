@@ -36,7 +36,7 @@ export default function WeekDay({
   return (
     <div key={i} className={`flex h-full grow flex-col`}>
       <div
-        className={`flex w-full flex-col items-center border-r-4 bg-emerald-900/75 p-2 last:border-r-4 ${
+        className={`flex h-full w-full flex-col justify-between border-r-4 bg-emerald-900/75 p-2 last:border-r-4 ${
           i % 2
             ? "border-emerald-800/75 text-emerald-500/60"
             : "border-emerald-700/75 text-emerald-400/60"
@@ -46,7 +46,7 @@ export default function WeekDay({
         <span className="self-end text-sm font-bold">{dateNumber}</span>
       </div>
       <div
-        className={`flex h-full w-full flex-col items-center justify-center p-2 text-2xl ${
+        className={`flex w-full flex-col items-center justify-center px-2 py-3 text-2xl ${
           i % 2
             ? "bg-emerald-800 text-emerald-500"
             : "bg-emerald-700 text-emerald-400"
