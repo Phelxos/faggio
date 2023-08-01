@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
-import UserCardInfo from "./UserCardInfo";
-import UserCardControls from "./UserCardControls";
-import ICoworker from "../../typings/interfaces/ICoworker";
-import Image from "next/image";
-import { createPortal } from "react-dom";
-import Modal from "../modals/user/Modal";
-import useModal from "../../hooks/useModal";
+"use client";
 
-export default function UserCard({
+import Image from "next/image";
+import { FC, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import useModal from "../../hooks/useModal";
+import ICoworker from "../../typings/interfaces/ICoworker";
+import Modal from "../modals/user/Modal";
+import UserCardControls from "./UserCardControls";
+import UserCardInfo from "./UserCardInfo";
+
+const UserCard: FC<ICoworker & { className?: string }> = ({
   forename,
   surname,
   imgSrc,
@@ -15,8 +17,11 @@ export default function UserCard({
   className,
   phone,
   email,
-}: ICoworker & { className?: string }) {
+}) => {
   const { isOpenModal, toggleModal } = useModal();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <div
@@ -31,17 +36,20 @@ export default function UserCard({
           className="w-full rounded-tl-lg border-2 border-slate-500/50 shadow-inner"
           onClick={toggleModal}
         />
-        {createPortal(
-          <Modal
-            toggleModal={toggleModal}
-            isDisplayingModal={isOpenModal}
-            id={coworkerId}
-          />,
-          document.body
-        )}
+        {mounted &&
+          createPortal(
+            <Modal
+              toggleModal={toggleModal}
+              isDisplayingModal={isOpenModal}
+              id={coworkerId}
+            />,
+            document.body
+          )}
       </div>
       <UserCardInfo forename={forename} surname={surname} id={coworkerId} />
       <UserCardControls phone={phone} email={email} />
     </div>
   );
-}
+};
+
+export default UserCard;

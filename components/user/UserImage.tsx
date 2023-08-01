@@ -1,5 +1,7 @@
+"use client";
+
 import Image from "next/image";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import useModal from "../../hooks/useModal";
 import useTheme from "../../hooks/useTheme";
@@ -11,6 +13,9 @@ const UserImage: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   const { isOpenModal, toggleModal } = useModal();
   const coworker = useCoworkers((s) => s.getCoworker(coworkerId));
   const theme = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   return (
     <>
@@ -23,14 +28,15 @@ const UserImage: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
         className={`inline w-full rounded-full border-2 border-${theme}-500/50 shadow-lg`}
         onClick={toggleModal}
       />
-      {createPortal(
-        <Modal
-          toggleModal={toggleModal}
-          isDisplayingModal={isOpenModal}
-          id={coworkerId}
-        />,
-        document.body
-      )}
+      {mounted &&
+        createPortal(
+          <Modal
+            toggleModal={toggleModal}
+            isDisplayingModal={isOpenModal}
+            id={coworkerId}
+          />,
+          document.body
+        )}
     </>
   );
 };
