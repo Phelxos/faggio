@@ -151,7 +151,7 @@ const Body: FC = () => {
                       {weekday.calWeek}
                     </td>
                   );
-                } else if ("date" in weekday && weekday?.date !== undefined) {
+                } else if (weekday?.date) {
                   return (
                     <td
                       key={i}
