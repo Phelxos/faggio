@@ -12,6 +12,14 @@ import useCalendar from "../../../../../../stores/SCalendar";
 import IBooking from "../../../../../../typings/interfaces/IBooking";
 import Head from "./BodyHead";
 
+interface DisplayedMonthEntry {
+  calWeek?: number;
+  date?: Date;
+  isNoDayOfMonth?: boolean;
+}
+
+export type DisplayedMonth = DisplayedMonthEntry[][];
+
 const Body: FC = () => {
   const c = useContext(BookingsContext);
 
@@ -21,7 +29,7 @@ const Body: FC = () => {
   const selectedMonth = useCalendar((s) => s.selectedMonth);
   const selectedYear = useCalendar((s) => s.selectedYear);
 
-  const [displayedMonth, setDisplayedMonth]: any[] = useState(() => {
+  const [displayedMonth, setDisplayedMonth] = useState<DisplayedMonth>(() => {
     return mapCalendar(selectedMonth, selectedYear);
   });
 
@@ -69,7 +77,7 @@ const Body: FC = () => {
     }
   };
 
-  const handleDateClick = (date: Date | string) => {
+  const handleDateClick = (date: Date) => {
     if (c?.isBeingEdited) {
       // Ensure using date object
       const safeDate: Date = safeguardDate(date);
@@ -121,7 +129,7 @@ const Body: FC = () => {
     <table className="w-full grow table-fixed">
       <Head />
       <tbody>
-        {displayedMonth.map((week: any[], i: number) => {
+        {displayedMonth.map((week: DisplayedMonthEntry[], i: number) => {
           return (
             <tr
               key={i}
@@ -131,7 +139,7 @@ const Body: FC = () => {
                   : "bg-slate-700 text-slate-400"
               }`}
             >
-              {week.map((weekday: any, i: number) => {
+              {week.map((weekday: DisplayedMonthEntry, i: number) => {
                 if (weekday.isNoDayOfMonth) {
                   return <td key={i}></td>;
                 } else if (weekday.calWeek) {
@@ -143,7 +151,7 @@ const Body: FC = () => {
                       {weekday.calWeek}
                     </td>
                   );
-                } else {
+                } else if ("date" in weekday && weekday?.date !== undefined) {
                   return (
                     <td
                       key={i}
@@ -172,7 +180,7 @@ const Body: FC = () => {
                         "animate-pulse bg-emerald-500"
                       }
                       `}
-                      onClick={() => handleDateClick(weekday.date)}
+                      onClick={() => handleDateClick(weekday.date as Date)}
                     >
                       {getDate(weekday.date)}
                     </td>

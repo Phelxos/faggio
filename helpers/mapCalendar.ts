@@ -5,6 +5,7 @@ import {
   getWeekOfMonth,
   startOfMonth,
 } from "date-fns";
+import type { DisplayedMonth } from "../app/(pages)/bookings/components/calendar/elements/Body";
 
 interface CalendarRows {
   [key: number]: Object[];
@@ -13,7 +14,7 @@ interface CalendarRows {
 const mapCalendar = (
   displayedMonth: number,
   displayedYear: number
-): Object[] => {
+): DisplayedMonth => {
   let calRows: CalendarRows = { 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] };
 
   for (
