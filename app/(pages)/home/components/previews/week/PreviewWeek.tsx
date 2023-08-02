@@ -1,6 +1,6 @@
 "use client";
 
-import { getDate, getDay, isSameDay } from "date-fns";
+import { getDate, getDay, isSameDay, parseISO } from "date-fns";
 import { useEffect, useState } from "react";
 import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";
 import useWeekCurrent from "../../../../../../hooks/useWeekCurrent";
@@ -11,6 +11,7 @@ import useCalendar from "../../../../../../stores/SCalendar";
 import useOffice from "../../../../../../stores/SOffices";
 import CalendarWeek from "./elements/CalendarWeek";
 import WeekDay from "./elements/Weekday";
+import { type } from "os";
 
 export default function PreviewWeek() {
   const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
@@ -32,7 +33,13 @@ export default function PreviewWeek() {
   ] = useState<{ count: number; date: Date }[]>([]);
 
   useEffect(() => {
-    const weekdayToday = getDate(today);
+    let weekdayToday;
+    if (typeof today === "string") {
+      const todayDate = parseISO(today);
+      weekdayToday = getDate(todayDate);
+    } else {
+      weekdayToday = getDate(today);
+    }
     if (weekdayToday === 0 || weekdayToday > 3) {
       setIsShowingNextWeekBookings(true);
     }

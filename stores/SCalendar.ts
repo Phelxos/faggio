@@ -11,7 +11,7 @@ import {
 } from "../helpers/helpersForStoreCalendar";
 
 interface Interface {
-  today: Date;
+  today: Date | string;
   currentDate: number;
   currentWeekday: number;
   currentCalWeek: number;
