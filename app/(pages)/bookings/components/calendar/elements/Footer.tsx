@@ -7,6 +7,7 @@ import useOffice from "../../../../../../stores/SOffices";
 import { Context as BookingsContext } from "../../../Context";
 import useTheme from "../../../../../../hooks/useTheme";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
+import safeguardDate from "../../../../../../helpers/safeguardDateAgainstTimezoneOffset";
 
 const Footer: FC = () => {
   const setSelectedMonth = useCalendar((s) => s.setSelectedMonth);
@@ -23,7 +24,7 @@ const Footer: FC = () => {
   const theme = useTheme();
 
   const setAllRelevantCalendarStoreVariablesToTodaysAttributes = () => {
-    setToday(today);
+    setToday(safeguardDate(today));
     setSelectedMonth(currentMonth);
     setSelectedYear(currentYear);
     setSelectedCalWeek(currentCalWeek);
