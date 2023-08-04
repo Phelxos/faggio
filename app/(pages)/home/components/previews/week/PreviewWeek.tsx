@@ -11,7 +11,6 @@ import useCalendar from "../../../../../../stores/SCalendar";
 import useOffice from "../../../../../../stores/SOffices";
 import CalendarWeek from "./elements/CalendarWeek";
 import WeekDay from "./elements/Weekday";
-import { type } from "os";
 
 export default function PreviewWeek() {
   const IdOfLoggedInUser = useAccount((s) => s.coworkerId);
