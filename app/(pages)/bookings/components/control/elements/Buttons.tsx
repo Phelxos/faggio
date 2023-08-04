@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useContext } from "react";
 import { Context as BookingsContext } from "../../../Context";
 import Icon from "../../../../../../components/icons/Icon";
+import useAccount from "../../../../../../stores/SAccount";
 
 interface ButtonProps {
   onClick: () => void;
@@ -47,36 +48,37 @@ const ArrowUturnLeft: FC<ButtonProps> = ({ onClick }) => {
 };
 
 const Buttons: FC = () => {
-  const c = useContext(BookingsContext);
+  const context = useContext(BookingsContext);
+  const isOpenModalOverFullScreen = useAccount((s) => s.isOpenModal);
 
   const handleButtonSaveClick = () => {
-    c?.transferBookingsToBeSavedToBookingsToStore();
-    c?.transferBookingsToBeDeletedToBookingsToStore();
-    c?.clearBookingsToBeSavedAndDeleted();
-    c?.toggleIsBeingEdited();
+    context?.transferBookingsToBeSavedToBookingsToStore();
+    context?.transferBookingsToBeDeletedToBookingsToStore();
+    context?.clearBookingsToBeSavedAndDeleted();
+    context?.toggleIsBeingEdited();
   };
 
   const handleButtonArrowUturnLeftClick = () => {
-    c?.clearBookingsToBeSavedAndDeleted();
-    c?.toggleIsBeingEdited();
+    context?.clearBookingsToBeSavedAndDeleted();
+    context?.toggleIsBeingEdited();
   };
 
   const handleButtonEditClick = () => {
-    c?.toggleIsBeingEdited();
+    context?.toggleIsBeingEdited();
     if (
-      c?.calRef?.current?.getBoundingClientRect().top &&
-      0 > c?.calRef?.current?.getBoundingClientRect().top
+      context?.calRef?.current?.getBoundingClientRect().top &&
+      0 > context?.calRef?.current?.getBoundingClientRect().top
     ) {
-      c?.calRef?.current?.scrollIntoView({
+      context?.calRef?.current?.scrollIntoView({
         behavior: "smooth",
         block: "center",
       });
     }
   };
 
-  return (
+  return isOpenModalOverFullScreen ? null : (
     <div className="fixed bottom-4 right-4 z-50 flex w-fit items-center justify-end gap-4 rounded-full bg-white/[0.05] p-2 backdrop-blur-md">
-      {c?.isBeingEdited ? (
+      {context?.isBeingEdited ? (
         <>
           <ArrowUturnLeft onClick={handleButtonArrowUturnLeftClick} />
           <Save onClick={handleButtonSaveClick} />

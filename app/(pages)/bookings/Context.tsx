@@ -1,10 +1,11 @@
 "use client";
 
-import { FC, createContext, useRef, useState } from "react";
+import { FC, createContext, useEffect, useRef, useState } from "react";
 import useBookings from "../../../stores/SBookings";
 import { initialValueForGloballySelectedOffice } from "../../../stores/SOffices";
 import IBooking from "../../../typings/interfaces/IBooking";
 import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
+import useAccount from "../../../stores/SAccount";
 
 interface ContextProps {
   isBeingEdited: boolean;
@@ -39,6 +40,7 @@ const initVal = {
 export const Context = createContext<ContextProps | undefined>(undefined);
 
 const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
+  const isOpenModalOverFullScreen = useAccount((s) => s.isOpenModal);
   const [isBeingEdited, setIsBeingEdited] = useState<boolean>(false);
   const [bookingsToBeSaved, setBookingsToBeSaved] = useState<IBooking[]>([]);
   const [bookingsToBeDeleted, setBookingsToBeDeleted] = useState<IBooking[]>(
@@ -98,6 +100,12 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
       setIsBeingEdited(false);
     } else setIsOpenModal(true);
   };
+
+  useEffect(() => {
+    if (isOpenModalOverFullScreen) {
+      setIsBeingEdited(false);
+    }
+  }, [isOpenModalOverFullScreen]);
 
   const value = {
     isBeingEdited,

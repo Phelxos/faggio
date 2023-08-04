@@ -2,17 +2,21 @@
 
 import { useState, useContext } from "react";
 import { Context as BookingsContext } from "../app/(pages)/bookings/Context";
+import useAccount from "../stores/SAccount";
 
 const useModal = (): { isOpenModal: boolean; toggleModal: () => void } => {
-  const c = useContext(BookingsContext);
+  const context = useContext(BookingsContext);
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const setIsOpenModalInStore = useAccount((s) => s.setIsOpenModal);
   const toggleModal = () => {
     if (isOpenModal) {
       setIsOpenModal(false);
+      setIsOpenModalInStore(false);
     } else {
       setIsOpenModal(true);
+      setIsOpenModalInStore(true);
     }
-    c?.toggleIsOpenModal();
+    context?.toggleIsOpenModal();
   };
 
   return { isOpenModal, toggleModal };

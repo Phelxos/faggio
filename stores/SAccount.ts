@@ -9,6 +9,8 @@ interface Interface {
   addToFavourites: (id: number) => void;
   deleteFromFavourites: (id: number) => void;
   mainOfficeId: number;
+  isOpenModal: boolean;
+  setIsOpenModal: (isOpen: boolean) => void;
 }
 
 const useAccount = create<Interface>()(
@@ -28,6 +30,12 @@ const useAccount = create<Interface>()(
         deleteFromFavourites: (oldId: number) => {
           set((state) => ({
             favourites: state.favourites.filter((id) => id !== oldId),
+          }));
+        },
+        isOpenModal: false,
+        setIsOpenModal: (isOpen: boolean) => {
+          set((state) => ({
+            isOpenModal: isOpen,
           }));
         },
       }),

@@ -35,7 +35,7 @@ const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
               </div>
             </div>
             <span className="text-5xl font-thin tracking-widest opacity-75">
-              {displayEquivalent(getDay(nextBooking?.date), "day") ?? "WE"}
+              {displayEquivalent(getDay(nextBooking?.date), "day")}
             </span>
           </div>
           {nextBooking?.officeId && (
