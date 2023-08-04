@@ -1,6 +1,6 @@
 "use client";
 
-import { getDay, getMonth } from "date-fns";
+import { getDate, getDay, getMonth } from "date-fns";
 import { FC } from "react";
 import Icon from "../../../../../../components/icons/Icon";
 import UserImage from "../../../../../../components/user/UserImage";
@@ -23,17 +23,19 @@ const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
       </div>
       {nextBooking ? (
         <>
-          <div className="flex w-full grow flex-col items-center justify-between gap-2 px-6 pb-3 text-pink-100">
+          <div className="flex w-full grow flex-col items-center justify-between gap-2 pb-3 text-pink-100">
             <div>
-              <span className="text-sm font-bold opacity-75">
-                {displayEquivalent(getDay(nextBooking?.date), "date")}.{" "}
-              </span>
-              <span className="text-xs opacity-50">
-                {displayEquivalent(getMonth(nextBooking?.date), "month")}
-              </span>
+              <div>
+                <span className="text-sm font-bold opacity-75">
+                  {getDate(nextBooking?.date)}.{" "}
+                </span>
+                <span className="text-xs opacity-50">
+                  {displayEquivalent(getMonth(nextBooking?.date), "month")}
+                </span>
+              </div>
             </div>
             <span className="text-5xl font-thin tracking-widest opacity-75">
-              {displayEquivalent(getDay(nextBooking?.date), "day")}
+              {displayEquivalent(getDay(nextBooking?.date), "day") ?? "WE"}
             </span>
           </div>
           {nextBooking?.officeId && (

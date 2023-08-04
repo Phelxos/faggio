@@ -31,7 +31,7 @@ const numbersAsStrings = [
   "12",
 ];
 
-const abbreviatedWeekdays = ["Mo", "Di", "Mi", "Do", "Fr"];
+const abbreviatedWeekdays = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"];
 
 const abbreviatedWeekdaysToFullWeekdays = new Map();
 abbreviatedWeekdaysToFullWeekdays.set("Mo", "montags");

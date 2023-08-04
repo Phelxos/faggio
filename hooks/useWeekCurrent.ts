@@ -29,7 +29,7 @@ const useWeekCurrent = (): {
   const nextWeek = functionsForDeterminingNextWeekDays.map((func) => {
     const nextWeekday = func(nextSunday(new Date(today)));
     const dateNumber = getDate(nextWeekday);
-    const name = displayEquivalent(getDay(nextWeekday) - 1, "day"); // date-fns' getDay() returns 0 for Sunday, but displayEquivalent() expects 0 to be Monday
+    const name = displayEquivalent(getDay(nextWeekday), "day");
     return {
       date: nextWeekday,
       dateNumber,
