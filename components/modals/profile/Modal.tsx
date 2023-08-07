@@ -4,6 +4,7 @@ import { FC } from "react";
 import { Dialog } from "@headlessui/react";
 import IModal from "../../../typings/interfaces/IModal";
 import Tile from "./Tile";
+import Link from "next/link";
 
 const Modal: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
   return (
@@ -17,17 +18,25 @@ const Modal: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
           Mein Profil
         </Dialog.Title>
         <div className="grid h-full w-full grow grid-cols-2 gap-4">
-          <Tile name="Profil" nameBoldBottom="ansehen" />
-          <Tile name="Profil" nameBoldBottom="bearbeiten" />
-          <Tile nameBoldTop="Farbschema" name="ändern" />
-          <Tile name="weitere" nameBoldBottom="Einstellungen" />
+          <Tile name="Profil" nameBoldBottom="ansehen" onClick={toggleModal} />
+          <Tile
+            name="Profil"
+            nameBoldBottom="bearbeiten"
+            onClick={toggleModal}
+          />
+          <Tile nameBoldTop="Farbschema" name="ändern" onClick={toggleModal} />
+          <Tile
+            name="weitere"
+            nameBoldBottom="Einstellungen"
+            onClick={toggleModal}
+          />
         </div>
-        <div
+        <Link
+          href="/login"
           className="w-full grow rounded-b-lg border-2 border-red-700/50 bg-sky-950 p-4 text-center font-mono uppercase tracking-widest text-red-500/75"
-          onClick={toggleModal}
         >
           Abmelden
-        </div>
+        </Link>
       </Dialog.Panel>
     </Dialog>
   );

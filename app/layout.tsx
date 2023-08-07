@@ -20,10 +20,7 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <html lang="de">
       <body className="relative flex h-screen w-screen flex-col">
-        <Header />
-        <Main>
-          <Setup>{children}</Setup>
-        </Main>
+        {children}
       </body>
     </html>
   );

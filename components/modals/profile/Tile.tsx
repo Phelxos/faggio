@@ -7,6 +7,7 @@ interface Props {
   nameBoldTop?: string;
   nameBoldBottom?: string;
   icon?: TIcon;
+  onClick?: () => void;
 }
 
 const Tile: FC<Props> = ({

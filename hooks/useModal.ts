@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useContext } from "react";
-import { Context as BookingsContext } from "../app/(pages)/bookings/Context";
+import { Context as BookingsContext } from "../app/(afterLogIn)/bookings/Context";
 import useAccount from "../stores/SAccount";
 
 const useModal = (): { isOpenModal: boolean; toggleModal: () => void } => {

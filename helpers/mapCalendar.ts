@@ -5,7 +5,7 @@ import {
   getWeekOfMonth,
   startOfMonth,
 } from "date-fns";
-import type { DisplayedMonth } from "../app/(pages)/bookings/components/calendar/elements/Body";
+import type { DisplayedMonth } from "../app/(afterLogIn)/bookings/components/calendar/elements/Body";
 
 interface CalendarRows {
   [key: number]: Object[];

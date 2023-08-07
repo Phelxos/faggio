@@ -1,6 +1,6 @@
 import { getWeek } from "date-fns";
 import { useContext } from "react";
-import { Context as BookingsContext } from "../app/(pages)/bookings/Context";
+import { Context as BookingsContext } from "../app/(afterLogIn)/bookings/Context";
 import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 import useBookings from "../stores/SBookings";
 import useOffice from "../stores/SOffices";

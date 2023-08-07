@@ -3,22 +3,26 @@
 import { FC, useState, useRef } from "react";
 import InputField from "./InputField";
 import SubmitButton from "./SubmitButton";
+import { useRouter } from "next/navigation";
 
 const Form: FC = () => {
   const [isValid, setIsValid] = useState(false);
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
+  const router = useRouter();
 
   const handleFormChange = () => {
     setTimeout(() => setIsValid(formRef.current?.checkValidity() ?? false), 0);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!isValid) return;
     e.preventDefault();
     setIsValid(false);
     setEmailValue("");
     setPasswordValue("");
+    router.push("/home");
   };
 
   return (
