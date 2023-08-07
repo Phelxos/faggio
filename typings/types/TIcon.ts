@@ -19,6 +19,7 @@ type TIcon =
   | "exclamationCircle"
   | "home"
   | "informationCircle"
+  | "key"
   | "listBullet"
   | "magnifiyingGlass"
   | "mapPin"
