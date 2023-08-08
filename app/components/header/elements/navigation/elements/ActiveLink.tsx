@@ -1,32 +1,33 @@
 import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
-import { PropsWithChildren, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 type Props = LinkProps & {
+  children: React.ReactNode;
   className?: string;
   activeClassName?: string;
   onMouseOver: () => void;
   onMouseOut: () => void;
+  href: string;
 };
 
-const ActiveLink = ({
+const ActiveLink: FC<Props> = ({
   children,
   activeClassName,
   className,
   onMouseOver,
   onMouseOut,
+  href,
   ...props
-}: PropsWithChildren<Props>) => {
+}) => {
   const pathname = usePathname();
   const [computedClassName, setComputedClassName] = useState(className);
 
   useEffect(() => {
     // Dynamic route will be matched via props.as
     // Static route will be matched via props.href
-    const linkPathname = new URL(
-      (props.as || props.href) as string,
-      location.href
-    ).pathname;
+    const linkPathname = new URL((props.as || href) as string, location.href)
+      .pathname;
 
     // Using URL().pathname to get rid of query and hash
     if (!pathname) return;
@@ -41,20 +42,14 @@ const ActiveLink = ({
     if (newClassName !== computedClassName) {
       setComputedClassName(newClassName);
     }
-  }, [
-    props.as,
-    props.href,
-    activeClassName,
-    className,
-    computedClassName,
-    pathname,
-  ]);
+  }, [props.as, href, activeClassName, className, computedClassName, pathname]);
 
   return (
     <Link
       className={computedClassName}
       onMouseOver={onMouseOver}
       onMouseOut={onMouseOut}
+      href={href}
       {...props}
     >
       {children}
