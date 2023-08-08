@@ -1,6 +1,6 @@
 "use client";
 
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 import useGreeting from "../../../../../../stores/SGreeting";
 
 export default function Footer() {

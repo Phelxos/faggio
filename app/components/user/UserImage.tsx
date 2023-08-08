@@ -3,10 +3,10 @@
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import useModal from "../../hooks/useModal";
-import useTheme from "../../hooks/useTheme";
-import useCoworkers from "../../stores/SCoworkers";
-import TCoworkerId from "../../typings/types/TCoworkerId";
+import useModal from "../../../hooks/useModal";
+import useTheme from "../../../hooks/useTheme";
+import useCoworkers from "../../../stores/SCoworkers";
+import TCoworkerId from "../../../typings/types/TCoworkerId";
 import Modal from "../modals/user/Modal";
 
 const UserImage: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {

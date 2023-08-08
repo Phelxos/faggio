@@ -2,7 +2,7 @@
 
 import { getDate, getMonth } from "date-fns";
 import { FC } from "react";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useBookings from "../../../../../../stores/SBookings";
@@ -35,7 +35,12 @@ const FilteredBookings: FC<Props> = ({ filteredBookings }) => {
               </span>
               <span
                 className={`${
-                  (displayEquivalent(getMonth(new Date(booking.date)), "month") as string).length <= 5
+                  (
+                    displayEquivalent(
+                      getMonth(new Date(booking.date)),
+                      "month"
+                    ) as string
+                  ).length <= 5
                     ? "text-3xl"
                     : "text-xl"
                 } text-slate-400/75`}

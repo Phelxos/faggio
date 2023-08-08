@@ -1,7 +1,7 @@
 import { faChair, faPaw } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC } from "react";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 
 interface Props {
   headcount: number;

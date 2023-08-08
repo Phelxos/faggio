@@ -1,5 +1,5 @@
 import { FC } from "react";
-import UserCard from "../../../../../../components/user/UserCard";
+import UserCard from "../../../../../components/user/UserCard";
 import ICoworker from "../../../../../../typings/interfaces/ICoworker";
 
 interface Props {

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useEffect, useContext } from "react";
-import SearchAndSelect from "../../../../../../components/SearchAndSelect";
+import SearchAndSelect from "../../../../../components/SearchAndSelect";
 import useOffice from "../../../../../../stores/SOffices";
 import useAccount from "../../../../../../stores/SAccount";
 import { Context as BookingsContext } from "../../../Context";

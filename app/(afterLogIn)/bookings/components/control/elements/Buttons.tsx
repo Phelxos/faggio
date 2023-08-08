@@ -4,7 +4,7 @@ import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FC, useContext } from "react";
 import { Context as BookingsContext } from "../../../Context";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 import useAccount from "../../../../../../stores/SAccount";
 
 interface ButtonProps {

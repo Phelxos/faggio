@@ -2,15 +2,16 @@
 
 import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import Icon from "../../../../../../components/icons/Icon";
-import Modal from "../../../../../../components/modals/profile/Modal";
+import Icon from "../../../../icons/Icon";
 import capitaliseFirstLetter from "../../../../../../helpers/capitaliseFirstLetter";
 import useModal from "../../../../../../hooks/useModal";
 import useTheme from "../../../../../../hooks/useTheme";
 import useAccount from "../../../../../../stores/SAccount";
+import Modal from "../../../../modals/profile/Modal";
 
 const User: FC = () => {
   const user = useAccount((s) => s.forename);
+  const userId = useAccount((s) => s.coworkerId);
   const currentTheme = useTheme();
   const { isOpenModal, toggleModal } = useModal();
   let documentBody: HTMLElement | null = null;

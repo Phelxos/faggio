@@ -4,7 +4,7 @@ import { faFloppyDisk } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment, FC } from "react";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 import TIcon from "../../../../../../typings/types/TIcon";
 
 const buttons: { name: string; description: string; icon: TIcon }[] = [

@@ -1,5 +1,5 @@
 import { FC, useState, useRef, useEffect, use } from "react";
-import Icon from "../../../../components/icons/Icon";
+import Icon from "../../../components/icons/Icon";
 import TIcon from "../../../../typings/types/TIcon";
 
 interface Props {

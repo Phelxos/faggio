@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import { FC, useContext, useEffect, useState } from "react";
-import Spinner from "../../../../../components/spinners/Spinner";
+import Spinner from "../../../../components/spinners/Spinner";
 import useCoworkers from "../../../../../stores/SCoworkers";
 import useOffice from "../../../../../stores/SOffices";
 import ICoworker from "../../../../../typings/interfaces/ICoworker";

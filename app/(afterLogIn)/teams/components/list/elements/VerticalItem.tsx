@@ -1,6 +1,6 @@
 import { FC } from "react";
-import FavouriteButton from "../../../../../../components/user/UserFavouriteButton";
-import UserImage from "../../../../../../components/user/UserImage";
+import FavoriteButton from "../../../../../components/user/UserFavouriteButton";
+import UserImage from "../../../../../components/user/UserImage";
 import ICoworker from "../../../../../../typings/interfaces/ICoworker";
 
 interface Props {
@@ -24,7 +24,7 @@ const Item: FC<Props> = ({ coworker, className }) => {
           {coworker.surname}
         </span>
       </div>
-      <FavouriteButton
+      <FavoriteButton
         id={coworker.coworkerId}
         className="border-2 border-pink-200/25"
       />

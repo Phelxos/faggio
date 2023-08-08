@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Icon from "../../../icons/Icon";
-import displayEquivalent from "../../../../helpers/displayEquivalent/displayEquivalent";
+import displayEquivalent from "../../../../../helpers/displayEquivalent";
 
 interface Props {
   date: number;

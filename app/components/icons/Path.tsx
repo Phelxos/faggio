@@ -1,5 +1,5 @@
 import { FC } from "react";
-import TIcon from "../../typings/types/TIcon";
+import TIcon from "../../../typings/types/TIcon";
 
 interface Props {
   icon: TIcon;

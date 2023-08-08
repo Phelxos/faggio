@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { Dialog } from "@headlessui/react";
-import IModal from "../../../typings/interfaces/IModal";
+import IModal from "../../../../typings/interfaces/IModal";
 import Tile from "./Tile";
 import Link from "next/link";
 

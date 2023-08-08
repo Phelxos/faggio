@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Icon from "../../../icons/Icon";
-import convertFromIdToOfficeName from "../../../../helpers/convertFromIdToOfficeName";
-import capitaliseFirstLetter from "../../../../helpers/capitaliseFirstLetter";
+import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+import capitaliseFirstLetter from "../../../../../helpers/capitaliseFirstLetter";
 
 export default function Office({ officeId }: { officeId: number }) {
   return (

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 import useTheme from "../../../../../../hooks/useTheme";
 import useOffice from "../../../../../../stores/SOffices";

@@ -2,7 +2,7 @@
 
 import { FC, useContext, useEffect, useState } from "react";
 import { Context } from "../../../Context";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 
 interface Props {
   onInput: (e: any) => void;

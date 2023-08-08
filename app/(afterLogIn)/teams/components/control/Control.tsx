@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext } from "react";
-import SearchAndSelect from "../../../../../components/SearchAndSelect";
+import SearchAndSelect from "../../../../components/SearchAndSelect";
 import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
 import useTheme from "../../../../../hooks/useTheme";
 import useOffice from "../../../../../stores/SOffices";

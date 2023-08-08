@@ -1,7 +1,6 @@
-import React from "react";
 import Icon from "../icons/Icon";
-import useAccount from "../../stores/SAccount";
-import useFavourite from "../../hooks/useFavorite";
+import useAccount from "../../../stores/SAccount";
+import useFavorite from "../../../hooks/useFavorite";
 
 export default function UserFavouriteButton({
   id,
@@ -12,12 +11,12 @@ export default function UserFavouriteButton({
 }) {
   const addToFavourites = useAccount((s) => s.addToFavourites);
   const deleteFromFavourites = useAccount((s) => s.deleteFromFavourites);
-  const isFavourite = useFavourite(id);
+  const isFavorite = useFavorite(id);
 
   const handleFavouriteClick = () => {
     if (!id) return;
 
-    if (isFavourite) {
+    if (isFavorite) {
       deleteFromFavourites(id);
       return;
     }
@@ -28,7 +27,7 @@ export default function UserFavouriteButton({
   return (
     <button
       className={`${className} flex flex-col items-center justify-center rounded-full p-1 transition duration-150 ease-out  ${
-        isFavourite
+        isFavorite
           ? "bg-pink-500 hover:bg-pink-500/75"
           : "bg-pink-800 hover:bg-pink-800/75"
       }`}
@@ -37,7 +36,7 @@ export default function UserFavouriteButton({
       <Icon
         icon="star"
         className={`h-6 w-6 ${
-          isFavourite
+          isFavorite
             ? "fill-pink-200/75 hover:fill-pink-200/75"
             : "fill-pink-600 hover:fill-pink-600/75"
         }`}

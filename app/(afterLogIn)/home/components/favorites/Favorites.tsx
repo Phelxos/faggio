@@ -2,7 +2,7 @@
 
 import { FC, useContext } from "react";
 import { Context as TeamsContext } from "../../../teams/Context";
-import SpinnerWrapped from "../../../../../components/spinners/SpinnerWrapped";
+import SpinnerWrapped from "../../../../components/spinners/SpinnerWrapped";
 import useAccount from "../../../../../stores/SAccount";
 import useCoworkers from "../../../../../stores/SCoworkers";
 import CoworkerList from "./elements/CoworkerList";

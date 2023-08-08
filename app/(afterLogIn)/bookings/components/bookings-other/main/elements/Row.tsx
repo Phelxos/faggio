@@ -2,8 +2,8 @@
 
 import { FC, useContext, useEffect, useState } from "react";
 import { Context as BookingsContext } from "../../../../Context";
-import Spinner from "../../../../../../../components/spinners/Spinner";
-import UserImage from "../../../../../../../components/user/UserImage";
+import Spinner from "../../../../../../components/spinners/Spinner";
+import UserImage from "../../../../../../components/user/UserImage";
 import compareDatesSafely from "../../../../../../../helpers/compareDatesSafely";
 import useAccount from "../../../../../../../stores/SAccount";
 import useBookings from "../../../../../../../stores/SBookings";

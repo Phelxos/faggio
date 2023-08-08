@@ -3,9 +3,9 @@
 import { Dialog } from "@headlessui/react";
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
-import useCoworkers from "../../../stores/SCoworkers";
-import ICoworker from "../../../typings/interfaces/ICoworker";
-import IModal from "../../../typings/interfaces/IModal";
+import useCoworkers from "../../../../stores/SCoworkers";
+import ICoworker from "../../../../typings/interfaces/ICoworker";
+import IModal from "../../../../typings/interfaces/IModal";
 import Spinner from "../../spinners/Spinner";
 import UserCardControls from "../../user/UserCardControls";
 import Birthday from "./tiles/Birthday";

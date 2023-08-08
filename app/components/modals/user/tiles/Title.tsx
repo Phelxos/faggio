@@ -1,6 +1,6 @@
 import React from "react";
 import { Dialog } from "@headlessui/react";
-import capitaliseFirstLetter from "../../../../helpers/capitaliseFirstLetter";
+import capitaliseFirstLetter from "../../../../../helpers/capitaliseFirstLetter";
 
 export default function Title({
   forename = "",

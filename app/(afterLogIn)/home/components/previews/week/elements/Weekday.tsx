@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Icon from "../../../../../../../components/icons/Icon";
+import Icon from "../../../../../../components/icons/Icon";
 import compareDatesSafely from "../../../../../../../helpers/compareDatesSafely";
 
 export default function WeekDay({

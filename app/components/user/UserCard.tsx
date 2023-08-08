@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import useModal from "../../hooks/useModal";
-import ICoworker from "../../typings/interfaces/ICoworker";
+import useModal from "../../../hooks/useModal";
+import ICoworker from "../../../typings/interfaces/ICoworker";
 import Modal from "../modals/user/Modal";
 import UserCardControls from "./UserCardControls";
 import UserCardInfo from "./UserCardInfo";

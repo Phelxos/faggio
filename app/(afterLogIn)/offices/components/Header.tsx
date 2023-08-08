@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Icon from "../../../../components/icons/Icon";
+import Icon from "../../../components/icons/Icon";
 
 const Header: FC = () => {
   return (

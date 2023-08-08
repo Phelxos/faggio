@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useContext, useEffect } from "react";
-import SearchAndSelect from "../../../../../../../components/SearchAndSelect";
+import SearchAndSelect from "../../../../../../components/SearchAndSelect";
 import { Context as BookingsContext } from "../../../../Context";
 import convertFromIdToOfficeName from "../../../../../../../helpers/convertFromIdToOfficeName";
 import useTheme from "../../../../../../../hooks/useTheme";

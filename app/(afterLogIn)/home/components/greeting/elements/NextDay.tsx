@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FC } from "react";
-import Icon from "../../../../../../components/icons/Icon";
+import Icon from "../../../../../components/icons/Icon";
 import capitaliseFirstLetter from "../../../../../../helpers/capitaliseFirstLetter";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
 

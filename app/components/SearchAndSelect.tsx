@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 import Icon from "./icons/Icon";
-import TTheme from "../typings/types/TThemes";
-import useViewportDistance from "../hooks/useViewportDistance";
-import useViewportIntersection from "../hooks/useViewportIntersection";
+import TTheme from "../../typings/types/TThemes";
+import useViewportDistance from "../../hooks/useViewportDistance";
+import useViewportIntersection from "../../hooks/useViewportIntersection";
 
 interface Props {
   value: any;
