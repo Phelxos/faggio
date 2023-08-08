@@ -8,35 +8,58 @@ import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdTo
 import displayEquivalent from "../../../../../../helpers/displayEquivalent/displayEquivalent";
 import useNextBooking from "../../../../../../hooks/useNextBooking";
 import TCoworkerId from "../../../../../../typings/types/TCoworkerId";
+import convertDateToSpeakingName from "../../../../../../helpers/convertDateToSpeakingName";
 
 const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   const nextBooking = useNextBooking(coworkerId);
   nextBooking && getDay(nextBooking?.date);
   return (
     <div
-      className={`flex min-w-[104px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${
+      className={`flex min-w-[125px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${
         !nextBooking && "opacity-50"
       }`}
     >
-      <div className="relative -top-4">
+      <div className="relative -top-4 scale-125">
         <UserImage coworkerId={coworkerId} />
       </div>
       {nextBooking ? (
         <>
-          <div className="flex w-full grow flex-col items-center justify-between gap-2 pb-3 text-pink-100">
-            <div>
-              <div>
-                <span className="text-sm font-bold opacity-75">
-                  {getDate(nextBooking?.date)}.{" "}
+          <div
+            className={`${
+              convertDateToSpeakingName(nextBooking?.date)
+                ? "justify-center"
+                : "justify-between"
+            } flex w-full grow flex-col items-center gap-2 px-4 pb-3 text-pink-100`}
+          >
+            {convertDateToSpeakingName(nextBooking?.date) ? (
+              <span
+                className={`${
+                  convertDateToSpeakingName(nextBooking?.date) === "morgen"
+                    ? "font-bold"
+                    : "font-thin"
+                } hyphens-auto text-center text-xl tracking-wide opacity-75`}
+              >
+                {(
+                  convertDateToSpeakingName(nextBooking?.date) as string
+                ).toUpperCase()}
+              </span>
+            ) : (
+              <>
+                <div>
+                  <div>
+                    <span className="text-sm font-bold opacity-75">
+                      {getDate(nextBooking?.date)}.{" "}
+                    </span>
+                    <span className="text-xs opacity-50">
+                      {displayEquivalent(getMonth(nextBooking?.date), "month")}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-5xl font-thin tracking-widest opacity-75">
+                  {displayEquivalent(getDay(nextBooking?.date), "day")}
                 </span>
-                <span className="text-xs opacity-50">
-                  {displayEquivalent(getMonth(nextBooking?.date), "month")}
-                </span>
-              </div>
-            </div>
-            <span className="text-5xl font-thin tracking-widest opacity-75">
-              {displayEquivalent(getDay(nextBooking?.date), "day")}
-            </span>
+              </>
+            )}
           </div>
           {nextBooking?.officeId && (
             <div className="w-full rounded-b-lg bg-pink-900/50 py-2 text-center text-xs uppercase tracking-widest text-pink-300/50">

@@ -23,7 +23,7 @@ const Container: FC = () => {
       <p className="mb-3 text-2xl font-thin text-slate-400/75">
         Buchungen meiner Favoriten
       </p>
-      <div className="flex w-full snap-x gap-6 overflow-x-auto rounded bg-pink-600/25 px-4 py-8 shadow-xl">
+      <div className="flex w-full snap-x gap-6 overflow-x-auto rounded bg-pink-600/25 px-4 pb-8 pt-10 shadow-xl">
         {isLoading ? (
           <SpinnerWrapped />
         ) : favoriteCoworkers?.length > 0 ? (
