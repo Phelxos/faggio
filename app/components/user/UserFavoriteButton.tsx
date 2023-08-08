@@ -1,14 +1,14 @@
-import Icon from "../icons/Icon";
-import useAccount from "../../../stores/SAccount";
+import { FC } from "react";
 import useFavorite from "../../../hooks/useFavorite";
+import useAccount from "../../../stores/SAccount";
+import Icon from "../icons/Icon";
 
-export default function UserFavouriteButton({
-  id,
-  className,
-}: {
+interface Props {
   id: number;
   className?: string;
-}) {
+}
+
+const UserFavoriteButton: FC<Props> = ({ id, className }) => {
   const addToFavourites = useAccount((s) => s.addToFavourites);
   const deleteFromFavourites = useAccount((s) => s.deleteFromFavourites);
   const isFavorite = useFavorite(id);
@@ -43,4 +43,6 @@ export default function UserFavouriteButton({
       />
     </button>
   );
-}
+};
+
+export default UserFavoriteButton;

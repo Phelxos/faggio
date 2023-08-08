@@ -11,7 +11,6 @@ import Modal from "../../../../modals/profile/Modal";
 
 const User: FC = () => {
   const user = useAccount((s) => s.forename);
-  const userId = useAccount((s) => s.coworkerId);
   const currentTheme = useTheme();
   const { isOpenModal, toggleModal } = useModal();
   let documentBody: HTMLElement | null = null;

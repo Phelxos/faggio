@@ -1,9 +1,12 @@
+"use client";
+
 import capitaliseFirstLetter from "../../../../../helpers/capitaliseFirstLetter";
 import Icon from "../../../icons/Icon";
 import useNextBooking from "../../../../../hooks/useNextBooking";
 import convertFromIdToOfficeName from "../../../../../helpers/convertFromIdToOfficeName";
+import { FC } from "react";
 
-export default function NextBooking({ id = 1000 }: { id: number | undefined }) {
+const NextBooking: FC<{ id: number | undefined }> = ({ id = 1000 }) => {
   const nextBooking = useNextBooking(id);
 
   return (
@@ -53,4 +56,6 @@ export default function NextBooking({ id = 1000 }: { id: number | undefined }) {
       </p>
     </div>
   );
-}
+};
+
+export default NextBooking;

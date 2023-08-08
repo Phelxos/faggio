@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import NavItem from "./elements/Item";
 import TPageTitle from "../../../../../typings/types/TPageTitle";
 

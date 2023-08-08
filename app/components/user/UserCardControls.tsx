@@ -1,17 +1,15 @@
-import React from "react";
+import { FC } from "react";
 import Icon from "../icons/Icon";
 
 // NOTE For the moment, the "messenger" property of the ICoworker object is omitted, since you can use the email address to link to a Microsoft Teams chat.
 
-export default function UserCardControls({
-  className,
-  phone,
-  email,
-}: {
+interface Props {
   className?: string;
   phone: string;
   email: string;
-}) {
+}
+
+const UserCardControls: FC<Props> = ({ className, phone, email }) => {
   return (
     <div
       className={`col-span-2 flex items-center justify-around rounded-b-lg bg-pink-800/50 px-2 py-4 ${className}`}
@@ -42,4 +40,6 @@ export default function UserCardControls({
       </button>
     </div>
   );
-}
+};
+
+export default UserCardControls;

@@ -1,7 +1,7 @@
-import React from "react";
+import { FC } from "react";
 import Image from "next/image";
 
-export default function Projects() {
+const Projects: FC = () => {
   const temporaryCompanyLogos = [
     "/images/company-logo.jpg",
     "/images/company-logo.jpg",
@@ -33,4 +33,7 @@ export default function Projects() {
       </div>
     </div>
   );
-}
+};
+
+export default Projects;
+

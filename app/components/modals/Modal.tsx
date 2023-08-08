@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog } from "@headlessui/react";
-import IModal from "../../typings/interfaces/IModal";
+import IModal from "../../../typings/interfaces/IModal";
 import Icon from "../icons/Icon";
 import { FC } from "react";
 

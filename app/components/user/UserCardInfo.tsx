@@ -1,5 +1,5 @@
-import React from "react";
-import FavouriteButton from "./UserFavouriteButton";
+import { FC } from "react";
+import FavouriteButton from "./UserFavoriteButton";
 
 interface Props {
   forename: string;
@@ -7,14 +7,16 @@ interface Props {
   id: number;
 }
 
-export default function UserCardInfo({ forename, surname, id }: Props) {
+const UserCardInfo: FC<Props> = ({ forename, surname, id }) => {
   return (
     <div className="relative flex h-full cursor-pointer flex-col justify-end rounded-tr-lg border-2 border-pink-400/50 bg-pink-600 p-2">
-      <FavouriteButton id={id} className="absolute top-3 right-3" />
+      <FavouriteButton id={id} className="absolute right-3 top-3" />
       <div className="flex flex-col uppercase">
         <span className="text-lg font-light text-slate-900">{forename}</span>
         <span className="text-xs font-bold text-pink-400">{surname}</span>
       </div>
     </div>
   );
-}
+};
+
+export default UserCardInfo;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Dialog } from "@headlessui/react";
 import Icon from "../../../icons/Icon";
-import type TPosition from "../../../../typings/types/TPosition";
+import TPosition from "../../../../../typings/types/TPosition";
 
 export default function Description({
   position,

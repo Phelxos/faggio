@@ -1,5 +1,5 @@
 import { FC } from "react";
-import FavoriteButton from "../../../../../components/user/UserFavouriteButton";
+import FavoriteButton from "../../../../../components/user/UserFavoriteButton";
 import UserImage from "../../../../../components/user/UserImage";
 import ICoworker from "../../../../../../typings/interfaces/ICoworker";
 

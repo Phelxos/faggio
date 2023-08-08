@@ -1,11 +1,6 @@
-import React from "react";
-import type TTheme from "../../typings/types/TThemes";
+import { FC } from "react";
 
-interface Props {
-  theme?: TTheme;
-}
-
-export default function Spinner({ theme = "slate" }: Props) {
+const Spinner: FC = () => {
   return (
     <div>
       <svg
@@ -24,4 +19,6 @@ export default function Spinner({ theme = "slate" }: Props) {
       </svg>
     </div>
   );
-}
+};
+
+export default Spinner;

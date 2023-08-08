@@ -1,3 +1,5 @@
+"use client";
+
 import { FC } from "react";
 import Icon from "../../../../icons/Icon";
 import convertFromIdToOfficeName from "../../../../../../helpers/convertFromIdToOfficeName";
