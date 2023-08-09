@@ -1,6 +1,8 @@
-import { FC, useState, useRef, useEffect, use } from "react";
-import Icon from "../../../components/icons/Icon";
+import { Dispatch, FC, use, useEffect, useRef, useState } from "react";
 import TIcon from "../../../../typings/types/TIcon";
+import Icon from "../../../components/icons/Icon";
+import { inputData } from "./utils/formData";
+import { Action } from "./utils/formTypes";
 
 interface Props {
   type?: string;
@@ -8,9 +10,10 @@ interface Props {
   id: string;
   label?: string;
   icon?: TIcon;
-  pattern?: string;
   inputValue: string;
-  setInputValue: (value: string) => void;
+  prefilledValue?: string;
+  setInputValue?: Dispatch<Action>;
+  isValid: boolean;
 }
 
 const InputField: FC<Props> = ({
@@ -19,35 +22,40 @@ const InputField: FC<Props> = ({
   id = "",
   label = "Beschriftung",
   icon = "informationCircle",
-  pattern = "",
   inputValue,
   setInputValue,
+  prefilledValue = "",
+  isValid = false,
 }) => {
-  const prefilledEmailValue = "@unternehmen.de";
   const [userStartedTyping, setUserStartedTyping] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+  const handleChange = () => {
     setUserStartedTyping(true);
   };
 
   const handleFocus = () => {
-    if (id !== "email-adress") return;
+    if (id !== "email") return;
     if (inputValue !== "") return;
-    setInputValue(prefilledEmailValue);
+    if (!setInputValue) return;
+    setInputValue({
+      type: inputData[id].actionType,
+      payload: prefilledValue,
+    });
   };
 
   const handleBlur = () => {
-    if (id !== "email-adress") return;
-    if (inputValue !== prefilledEmailValue) return;
-    setInputValue("");
+    if (id !== "email") return;
+    if (inputValue !== prefilledValue) return;
+    if (!setInputValue) return;
+    setInputValue({ type: inputData[id].actionType, payload: "" });
   };
 
   useEffect(() => {
-    if (id !== "email-adress") return;
-    if (inputValue !== prefilledEmailValue) return;
+    if (id !== "email") return;
+    if (inputValue !== prefilledValue) return;
     inputRef.current?.setSelectionRange(0, 0);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
 
@@ -68,14 +76,11 @@ const InputField: FC<Props> = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         required
-        pattern={pattern}
       />
       <label
         htmlFor={id}
         className={`ml-2 flex w-3/5 items-center gap-2 rounded-t-lg  bg-slate-500 py-1 pl-3 text-lg tracking-widest text-slate-300 transition-all duration-200 ${
-          inputValue.length > 0 &&
-          userStartedTyping &&
-          "peer-valid:bg-green-700/75 peer-valid:text-green-300"
+          isValid && userStartedTyping && "bg-green-700/75 text-green-300"
         }`}
       >
         {icon && (

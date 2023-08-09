@@ -1,4 +1,4 @@
-import { months, numbersAsStrings } from "./values";
+import { months, numbersAsStrings } from "./data";
 
 const checkIfIsSuitableArgument = (mainInput: number | string) => {
   const isNotNumberBetween0And31 = !(

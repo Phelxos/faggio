@@ -1,7 +1,4 @@
-import {
-  abbreviatedWeekdays,
-  abbreviatedWeekdaysToFullWeekdays,
-} from "./values";
+import { abbreviatedWeekdays, abbreviatedWeekdaysToFullWeekdays } from "./data";
 
 const getFormattedDay = (input: string | number): string => {
   const isString = typeof input === "string";
