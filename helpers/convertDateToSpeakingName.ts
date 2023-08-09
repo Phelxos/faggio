@@ -7,16 +7,18 @@ import { isToday, isTomorrow, isYesterday, addDays, isSameDay } from "date-fns";
 
 const convertDateToSpeakingName = (date: Date | string): string | boolean => {
   date = safeguardDate(date);
-  const today = new Date();
+  // const today = new Date();
 
-  const dayAfterTomorrow = addDays(today, 2);
-  const dayBeforeYesterday = addDays(today, -2);
+  // NOTE The badge on the favorite card displaying the speaking name has to be made suitable for long words.
+
+  // const dayAfterTomorrow = addDays(today, 2);
+  // const dayBeforeYesterday = addDays(today, -2);
 
   if (isToday(date)) return "heute";
   if (isTomorrow(date)) return "morgen";
   if (isYesterday(date)) return "gestern";
-  if (isSameDay(dayAfterTomorrow, date)) return "übermorgen";
-  if (isSameDay(dayBeforeYesterday, date)) return "vorgestern";
+  // if (isSameDay(dayAfterTomorrow, date)) return "übermorgen";
+  // if (isSameDay(dayBeforeYesterday, date)) return "vorgestern";
   else return false;
 };
 

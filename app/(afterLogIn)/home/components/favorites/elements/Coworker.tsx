@@ -15,7 +15,7 @@ const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
   nextBooking && getDay(nextBooking?.date);
   return (
     <div
-      className={`flex min-w-[125px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${
+      className={`relative flex min-w-[125px] snap-center flex-col items-center rounded-lg bg-pink-500/50 shadow-lg ${
         !nextBooking && "opacity-50"
       }`}
     >
@@ -31,35 +31,21 @@ const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
                 : "justify-between"
             } flex w-full grow flex-col items-center gap-2 px-4 pb-3 text-pink-100`}
           >
-            {convertDateToSpeakingName(nextBooking?.date) ? (
-              <span
-                className={`${
-                  convertDateToSpeakingName(nextBooking?.date) === "morgen"
-                    ? "font-bold"
-                    : "font-thin"
-                } hyphens-auto text-center text-xl tracking-wide opacity-75`}
-              >
-                {(
-                  convertDateToSpeakingName(nextBooking?.date) as string
-                ).toUpperCase()}
-              </span>
-            ) : (
-              <>
+            <>
+              <div>
                 <div>
-                  <div>
-                    <span className="text-sm font-bold opacity-75">
-                      {getDate(nextBooking?.date)}.{" "}
-                    </span>
-                    <span className="text-xs opacity-50">
-                      {displayEquivalent(getMonth(nextBooking?.date), "month")}
-                    </span>
-                  </div>
+                  <span className="text-sm font-bold opacity-75">
+                    {getDate(nextBooking?.date)}.{" "}
+                  </span>
+                  <span className="text-xs opacity-50">
+                    {displayEquivalent(getMonth(nextBooking?.date), "month")}
+                  </span>
                 </div>
-                <span className="text-5xl font-thin tracking-widest opacity-75">
-                  {displayEquivalent(getDay(nextBooking?.date), "day")}
-                </span>
-              </>
-            )}
+              </div>
+              <span className="text-5xl font-thin tracking-widest opacity-75">
+                {displayEquivalent(getDay(nextBooking?.date), "day")}
+              </span>
+            </>
           </div>
           {nextBooking?.officeId && (
             <div className="w-full rounded-b-lg bg-pink-900/50 py-2 text-center text-xs uppercase tracking-widest text-pink-300/50">
@@ -77,6 +63,20 @@ const User: FC<{ coworkerId: TCoworkerId }> = ({ coworkerId }) => {
             bislang keine Buchung
           </span>
         </div>
+      )}
+      {nextBooking?.date && convertDateToSpeakingName(nextBooking?.date) && (
+        <span
+          className={`${
+            convertDateToSpeakingName(nextBooking.date) === "morgen" ||
+            convertDateToSpeakingName(nextBooking.date) === "heute"
+              ? "font-bold"
+              : "font-thin"
+          } absolute -right-3 top-11 inline-block hyphens-auto rounded bg-pink-200/75 px-3 py-1 text-center text-sm tracking-wide text-pink-800 opacity-95 drop-shadow-2xl`}
+        >
+          {(
+            convertDateToSpeakingName(nextBooking.date as Date) as string
+          ).toUpperCase()}
+        </span>
       )}
     </div>
   );
