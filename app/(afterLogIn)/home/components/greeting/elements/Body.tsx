@@ -7,12 +7,14 @@ import useNextWeekBookings from "../../../../../../hooks/useMyBookingsOfNextWeek
 import useAccount from "../../../../../../stores/SAccount";
 import EmptyMessage from "./EmptyMessage";
 import NextDay from "./NextDay";
+import useToast from "../../../../../../stores/SToast";
 
 const Body: FC = () => {
   const myId = useAccount((s) => s.coworkerId);
   const nextBooking = useNextBooking(myId);
   const nextDay = nextBooking ? getLiteralDate(nextBooking?.date) : null;
   const nextWeekBookingsNumber = useState(useNextWeekBookings(myId)?.length)[0];
+  const { showToast } = useToast();
 
   return (
     <div className="flex flex-col items-center leading-8">
@@ -31,6 +33,7 @@ const Body: FC = () => {
           <EmptyMessage />
         )}
       </div>
+      <button onClick={() => showToast("Wie geht's?")}>Klick!</button>
       {!!nextWeekBookingsNumber && (
         <>
           <hr className="w-[85%] border-sky-700" />

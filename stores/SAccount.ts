@@ -34,7 +34,7 @@ const useAccount = create<Interface>()(
         },
         isOpenModal: false,
         setIsOpenModal: (isOpen: boolean) => {
-          set((state) => ({
+          set(() => ({
             isOpenModal: isOpen,
           }));
         },

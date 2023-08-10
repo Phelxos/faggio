@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { FC } from "react";
 import "../styles/globals.scss";
+import ToastContainer from "./components/toasts/Container";
 
 export const metadata: Metadata = {
   title: "Faggio",
@@ -18,6 +19,7 @@ const Layout: FC<Props> = ({ children }) => {
     <html lang="de">
       <body className="relative flex h-screen w-screen flex-col">
         {children}
+        <ToastContainer />
       </body>
     </html>
   );

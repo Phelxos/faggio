@@ -18,18 +18,10 @@ const Modal: FC<IModal> = ({ isDisplayingModal, toggleModal }) => {
           Mein Profil
         </Dialog.Title>
         <div className="grid h-full w-full grow grid-cols-2 gap-4">
-          <Tile name="Profil" nameBoldBottom="ansehen" onClick={toggleModal} />
-          <Tile
-            name="Profil"
-            nameBoldBottom="bearbeiten"
-            onClick={toggleModal}
-          />
-          <Tile nameBoldTop="Farbschema" name="ändern" onClick={toggleModal} />
-          <Tile
-            name="weitere"
-            nameBoldBottom="Einstellungen"
-            onClick={toggleModal}
-          />
+          <Tile name="Profil" nameBoldBottom="ansehen" />
+          <Tile name="Profil" nameBoldBottom="bearbeiten" />
+          <Tile nameBoldTop="Farbschema" name="ändern" />
+          <Tile name="weitere" nameBoldBottom="Einstellungen" />
         </div>
         <Link
           href="/login"
