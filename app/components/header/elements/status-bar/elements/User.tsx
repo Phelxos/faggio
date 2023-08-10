@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useRef } from "react";
 import { createPortal } from "react-dom";
 import Icon from "../../../../icons/Icon";
 import capitaliseFirstLetter from "../../../../../../helpers/capitaliseFirstLetter";
@@ -13,14 +13,15 @@ const User: FC = () => {
   const user = useAccount((s) => s.forename);
   const currentTheme = useTheme();
   const { isOpenModal, toggleModal } = useModal();
-  let documentBody: HTMLElement | null = null;
+  const documentBody = useRef<HTMLElement | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
-
-  if (typeof document !== "undefined") {
-    documentBody = document.body;
-  }
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      documentBody.current = document.body;
+    }
+    setMounted(true);
+  }, []);
 
   return (
     <div
@@ -39,7 +40,7 @@ const User: FC = () => {
       {mounted &&
         createPortal(
           <Modal toggleModal={toggleModal} isDisplayingModal={isOpenModal} />,
-          documentBody!
+          documentBody.current!
         )}
     </div>
   );

@@ -1,27 +1,17 @@
 "use client";
 
-import { FC, useState, useEffect, useRef } from "react";
+import { FC } from "react";
 import useToast from "../../../stores/SToast";
-import { createPortal } from "react-dom";
 import Message from "./Message";
 
 const Container: FC = () => {
-  const { message } = useToast();
-  const [mounted, setMounted] = useState(false);
-  let documentBody = useRef<HTMLElement | null>(null);
+  const { messages } = useToast();
 
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      documentBody.current = document.body;
-      setMounted(true);
-    }
-  }, []);
-
-  return (
-    <div className="hidden">
-      {message &&
-        mounted &&
-        createPortal(<Message message={message} />, documentBody.current!)}
+  return messages.length === 0 ? null : (
+    <div className="z-1 fixed right-2 top-2 flex h-1/2 w-2/3 flex-col gap-4 overflow-scroll">
+      {messages.map((message) => (
+        <Message key={message.id} {...message} />
+      ))}
     </div>
   );
 };
