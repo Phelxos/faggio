@@ -36,7 +36,11 @@ const Body: FC = () => {
       </div>
       <button
         onClick={() =>
-          showToast({ text: new Date().toString(), id: uuid(), title: "Test" })
+          showToast([
+            { text: new Date().toString(), id: uuid(), title: "Test" },
+            { text: new Date().toString(), id: uuid(), title: "Test" },
+            { text: new Date().toString(), id: uuid(), title: "Test" },
+          ])
         }
       >
         Klick!

@@ -8,7 +8,7 @@ const Container: FC = () => {
   const { messages } = useToast();
 
   return messages.length === 0 ? null : (
-    <div className="z-1 fixed right-2 top-2 flex h-1/2 w-2/3 flex-col gap-4 overflow-scroll">
+    <div className="z-1 scrollbar-hide fixed right-2 top-2 flex h-1/2 w-2/3 flex-col gap-4 overflow-scroll">
       {messages.map((message) => (
         <Message key={message.id} {...message} />
       ))}

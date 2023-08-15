@@ -11,5 +11,5 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require("tailwindcss-highlights")],
+  plugins: [require("tailwindcss-highlights"), require("tailwindcss-animated")],
 };

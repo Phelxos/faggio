@@ -12,7 +12,7 @@ export interface Message {
 
 interface Interface {
   messages: Message[];
-  showToast: (passedMessage: Message) => void;
+  showToast: (passedMessage: Message | Message[]) => void;
   deleteToast: (idOfMessageToBeDeleted: string) => void;
 }
 
@@ -21,9 +21,15 @@ const useToast = create<Interface>()(
     (set) => ({
       messages: [],
       showToast: (passedMessage) => {
-        set((state) => ({
-          messages: [passedMessage, ...state.messages],
-        }));
+        if (Array.isArray(passedMessage)) {
+          set((state) => ({
+            messages: [...passedMessage, ...state.messages],
+          }));
+        } else {
+          set((state) => ({
+            messages: [passedMessage, ...state.messages],
+          }));
+        }
       },
       deleteToast: (idOfMessageToBeDeleted) => {
         set((state) => ({

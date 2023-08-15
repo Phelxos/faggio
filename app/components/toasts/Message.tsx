@@ -3,35 +3,60 @@ import { Message } from "../../../stores/SToast";
 import Icon from "../icons/Icon";
 import useToast from "../../../stores/SToast";
 
-const secondsToStartFrom = 10;
-const startOfCountdown = secondsToStartFrom * 100;
+const strainer = 10; // The larger the number, the more granular the animation of the countdown bar
+
+const milliseconds = 1000;
+const countdownStart = 5; // seconds
+const widthDividend = countdownStart * strainer;
+const singlePartsOfCountdownBarWidth = 100 / widthDividend;
+
+const intervalInMilliseconds = milliseconds / strainer;
+
+const timeoutInMilliseconds = countdownStart * milliseconds;
 
 const Message: FC<Message> = ({ title, text, id }) => {
   const { deleteToast } = useToast();
-  const [countdown, setCountdown] = useState(startOfCountdown);
+  const [widthOfCountdownBar, setWidthOfCountdownBar] = useState(100);
+  const [animationClass, setAnimationClass] = useState(
+    "animate-fade-left animate-duration-[200ms]"
+  );
 
   const handleCountdown = () => {
-    setCountdown((prev) => {
-      const updatedValue = prev - 1;
-      return updatedValue;
-    });
+    setWidthOfCountdownBar(
+      (prevWidthOfCountdownBar) =>
+        prevWidthOfCountdownBar - singlePartsOfCountdownBarWidth
+    );
   };
 
+  const handleFadingAnimation = () => {};
+
   useEffect(() => {
-    const interval = setInterval(() => handleCountdown(), 10);
+    const interval = setInterval(
+      () => handleCountdown(),
+      intervalInMilliseconds
+    );
     const timeout = setTimeout(
       () => deleteToast(id),
-      (startOfCountdown + 1) * 10
+      timeoutInMilliseconds + intervalInMilliseconds
     );
+
+    // const animationTimeout = setTimeout(
+    //   () => setAnimationClass((state) => `${state} animate-reverse`),
+    //   startOfCountdown * 10
+    // );
+
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
+      // clearTimeout(animationTimeout);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="relative rounded-lg bg-slate-400/90 text-slate-800/75 drop-shadow-2xl">
+    <div
+      className={`${""} relative rounded-lg bg-slate-400/90 text-slate-800/75 drop-shadow-2xl`}
+    >
       <div className="rounded-t-lg p-5">
         {title && (
           <span className="mb-2 inline-block text-3xl font-thin">{title}</span>
@@ -42,7 +67,9 @@ const Message: FC<Message> = ({ title, text, id }) => {
         <div className="h-5 w-4/5 rounded-full bg-slate-700 p-1">
           <div
             className="h-3 rounded-full bg-slate-400/75"
-            style={{ width: `${countdown * (100 / startOfCountdown)}%` }}
+            style={{
+              width: `${widthOfCountdownBar}%`,
+            }}
           ></div>
         </div>
         <div className="flex grow items-center justify-center">
