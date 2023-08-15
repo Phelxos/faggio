@@ -16,7 +16,7 @@ const intervalInMilliseconds = milliseconds / strainer;
 
 const timeoutInMilliseconds = countdownStart * milliseconds;
 
-const Message: FC<Message> = ({ title, text, id }) => {
+const Message: FC<Message> = ({ title, description, id }) => {
   const { deleteToast } = useToast();
   const [widthOfCountdownBar, setWidthOfCountdownBar] = useState(100);
   const [animationClass, setAnimationClass] = useState(
@@ -62,7 +62,7 @@ const Message: FC<Message> = ({ title, text, id }) => {
         {title && (
           <span className="mb-2 inline-block text-3xl font-thin">{title}</span>
         )}
-        <p className="font-semibold">{text}</p>
+        <p className="font-semibold">{description}</p>
       </div>
       <div className="flex items-center justify-between gap-2 rounded-b-lg bg-slate-500 p-3 opacity-75">
         <div className="h-5 w-4/5 rounded-full bg-slate-700 p-1">

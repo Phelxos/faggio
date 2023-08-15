@@ -8,8 +8,8 @@ import useAccount from "./SAccount";
 
 interface Interface {
   bookings: IBooking[];
-  setBookings: (bookingsToBeSaved: IBooking[]) => Promise<void | Error>;
-  deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<void | Error>;
+  setBookings: (bookingsToBeSaved: IBooking[]) => Promise<number | Error>;
+  deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<number | Error>;
   clearBookings: () => Promise<void>;
   fetchBookings: () => Promise<void>;
 }
@@ -22,7 +22,10 @@ const useBookings = create<Interface>()(
       (set, get) => ({
         bookings: [],
         setBookings: async (bookingsToBeSaved: IBooking[]) => {
-          if (!bookingsToBeSaved) return;
+          if (!bookingsToBeSaved)
+            throw new Error(
+              "🚨 No bookings supposed to be saved were passed to the bookings store."
+            );
           try {
             bookingsToBeSaved = bookingsToBeSaved.map((b: IBooking) => {
               return {
@@ -35,15 +38,19 @@ const useBookings = create<Interface>()(
               coworkerId,
             });
             if (!bookingsFromApi)
-              throw new Error("🚨 No bookings returned from API.");
+              throw new Error(
+                "🚨 No bookings have been returned from the API."
+              );
             const sortedBookings = bookingsFromApi?.sort(
               (a: IBooking, b: IBooking) => (a.date > b.date ? 1 : -1)
             );
             set(() => ({
               bookings: sortedBookings,
             }));
+            return bookingsToBeSaved.length;
           } catch (error) {
             console.error(error);
+            throw error;
           }
         },
         clearBookings: async () => {
@@ -52,7 +59,10 @@ const useBookings = create<Interface>()(
           }));
         },
         deleteBookings: async (bookingsToBeRemoved: IBooking[]) => {
-          if (!bookingsToBeRemoved?.length) return;
+          if (!bookingsToBeRemoved?.length)
+            throw new Error(
+              "🚨 No bookings supposed to be deleted were passed to the bookings store."
+            );
           try {
             const { data: bookingsFromApi } = await a.delete(apiPath.BOOKINGS, {
               data: { bookingsToBeRemoved },
@@ -67,8 +77,10 @@ const useBookings = create<Interface>()(
             set(() => ({
               bookings: sortedBookings,
             }));
+            return bookingsToBeRemoved.length;
           } catch (error) {
             console.error(error);
+            throw error;
           }
         },
         fetchBookings: async () => {

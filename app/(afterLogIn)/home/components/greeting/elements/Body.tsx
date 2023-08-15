@@ -14,7 +14,6 @@ const Body: FC = () => {
   const nextBooking = useNextBooking(myId);
   const nextDay = nextBooking ? getLiteralDate(nextBooking?.date) : null;
   const nextWeekBookingsNumber = useState(useNextWeekBookings(myId)?.length)[0];
-  const { showToast } = useToast();
 
   return (
     <div className="flex flex-col items-center leading-8">
@@ -33,17 +32,6 @@ const Body: FC = () => {
           <EmptyMessage />
         )}
       </div>
-      <button
-        onClick={() =>
-          showToast([
-            { text: new Date().toString(), title: "Test" },
-            { text: new Date().toString(), title: "Test" },
-            { text: new Date().toString(), title: "Test" },
-          ])
-        }
-      >
-        Klick!
-      </button>
       {!!nextWeekBookingsNumber && (
         <>
           <hr className="w-[85%] border-sky-700" />

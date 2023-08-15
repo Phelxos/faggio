@@ -5,16 +5,16 @@ import { v4 as uuid } from "uuid";
 type MessageType = "success" | "error" | "warning" | "info";
 
 export interface Message {
-  text: string;
+  description: string;
   id?: string;
   title?: string;
-  type?: MessageType;
+  status?: MessageType;
 }
 
 interface Interface {
   messages: Message[];
   showToast: (passedMessage: Message | Message[]) => void;
-  deleteToast: (idOfMessageToBeDeleted: string) => void;
+  deleteToast: (idOfMessageToBeDeleted: string | undefined) => void;
 }
 
 const useToast = create<Interface>()(

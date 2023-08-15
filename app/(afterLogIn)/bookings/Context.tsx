@@ -6,6 +6,7 @@ import { initialValueForGloballySelectedOffice } from "../../../stores/SOffices"
 import IBooking from "../../../typings/interfaces/IBooking";
 import { TOfficeCityEnglish } from "../../../typings/types/TOfficeCity";
 import useAccount from "../../../stores/SAccount";
+import useToast from "../../../stores/SToast";
 
 interface ContextProps {
   isBeingEdited: boolean;
@@ -26,6 +27,7 @@ interface ContextProps {
   calRef: React.RefObject<HTMLDivElement> | null;
   isOpenModal: boolean;
   toggleIsOpenModal: () => void;
+  previousSuccessfullySavedBookings: number;
 }
 
 interface ContextProviderProps {
@@ -47,6 +49,14 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
     []
   );
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [
+    previousSuccessfullySavedBookings,
+    setPreviousSuccessfullySavedBookings,
+  ] = useState<number>(0);
+  const [
+    previousSuccessfullyDeletedBookings,
+    setPreviousSuccessfullyDeletedBookings,
+  ] = useState<number>(0);
   const [locallySelectedOfficeName, setLocallySelectedOfficeName] =
     useState<TOfficeCityEnglish>(initVal.name);
   const [locallySelectedOfficeId, setLocallySelectedOfficeId] =
@@ -54,6 +64,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
   const setBookings = useBookings((s) => s.setBookings);
   const deleteBookings = useBookings((s) => s.deleteBookings);
   const calRef = useRef<HTMLDivElement | null>(null);
+  const { showToast } = useToast();
 
   const toggleIsBeingEdited = () => {
     setIsBeingEdited(!isBeingEdited);
@@ -70,9 +81,23 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
       )
     );
   };
-  const transferBookingsToBeSavedToBookingsToStore = () => {
+  const transferBookingsToBeSavedToBookingsToStore = async () => {
     if (!bookingsToBeSaved.length) return;
-    setBookings(bookingsToBeSaved);
+    const numberOfSavedBookings = await setBookings(bookingsToBeSaved);
+    if (typeof numberOfSavedBookings === "number") {
+      setPreviousSuccessfullySavedBookings(numberOfSavedBookings);
+      showToast({
+        title: "Erfolgreich verbucht",
+        description: `Du hast ${
+          numberOfSavedBookings > 1 ? numberOfSavedBookings : "einen"
+        } Bürotag${numberOfSavedBookings > 1 ? "e" : ""} gebucht.`,
+        status: "success",
+      });
+    } else {
+      console.error(
+        "🚨 The number of succesfully saved bookings could not have been returned in the context of the bookings page."
+      );
+    }
   };
   const clearBookingsToBeSavedAndDeleted = () => {
     setBookingsToBeSaved([]);
@@ -90,9 +115,25 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
       )
     );
   };
-  const transferBookingsToBeDeletedToBookingsToStore = () => {
+  const transferBookingsToBeDeletedToBookingsToStore = async () => {
     if (!bookingsToBeDeleted.length) return;
-    deleteBookings(bookingsToBeDeleted);
+    const numberOfDeletedBookings = await deleteBookings(bookingsToBeDeleted);
+    if (typeof numberOfDeletedBookings === "number") {
+      setPreviousSuccessfullyDeletedBookings(numberOfDeletedBookings);
+      showToast({
+        title: "Erfolgreich entfernt",
+        description: `Du hast ${
+          numberOfDeletedBookings > 1 ? numberOfDeletedBookings : "einen"
+        } Bürotag${
+          numberOfDeletedBookings > 1 ? "e" : ""
+        } aus deinen Buchungen entfernt.`,
+        status: "success",
+      });
+    } else {
+      console.error(
+        "🚨 The number of succesfully deleted bookings could not have been returned in the context of the bookings page."
+      );
+    }
   };
   const toggleIsOpenModal = () => {
     if (isOpenModal) {
@@ -126,6 +167,7 @@ const ContextProvider: FC<ContextProviderProps> = ({ children }) => {
     calRef,
     isOpenModal,
     toggleIsOpenModal,
+    previousSuccessfullySavedBookings,
   };
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
