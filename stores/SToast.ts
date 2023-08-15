@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+import { v4 as uuid } from "uuid";
 
 type MessageType = "success" | "error" | "warning" | "info";
 
 export interface Message {
   text: string;
-  id: string;
+  id?: string;
   title?: string;
   type?: MessageType;
 }
@@ -22,13 +23,22 @@ const useToast = create<Interface>()(
       messages: [],
       showToast: (passedMessage) => {
         if (Array.isArray(passedMessage)) {
-          set((state) => ({
-            messages: [...passedMessage, ...state.messages],
-          }));
+          set((state) => {
+            const messagesWithId = passedMessage.map((message) => ({
+              id: uuid(),
+              ...message,
+            }));
+            return {
+              messages: [...messagesWithId, ...state.messages],
+            };
+          });
         } else {
-          set((state) => ({
-            messages: [passedMessage, ...state.messages],
-          }));
+          set((state) => {
+            const messageWithId = { id: uuid(), ...passedMessage };
+            return {
+              messages: [messageWithId, ...state.messages],
+            };
+          });
         }
       },
       deleteToast: (idOfMessageToBeDeleted) => {

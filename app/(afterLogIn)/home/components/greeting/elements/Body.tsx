@@ -8,7 +8,6 @@ import useAccount from "../../../../../../stores/SAccount";
 import EmptyMessage from "./EmptyMessage";
 import NextDay from "./NextDay";
 import useToast from "../../../../../../stores/SToast";
-import { v4 as uuid } from "uuid";
 
 const Body: FC = () => {
   const myId = useAccount((s) => s.coworkerId);
@@ -37,9 +36,9 @@ const Body: FC = () => {
       <button
         onClick={() =>
           showToast([
-            { text: new Date().toString(), id: uuid(), title: "Test" },
-            { text: new Date().toString(), id: uuid(), title: "Test" },
-            { text: new Date().toString(), id: uuid(), title: "Test" },
+            { text: new Date().toString(), title: "Test" },
+            { text: new Date().toString(), title: "Test" },
+            { text: new Date().toString(), title: "Test" },
           ])
         }
       >

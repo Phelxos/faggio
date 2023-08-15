@@ -1,3 +1,5 @@
+"use client";
+
 import { FC, useEffect, useState, memo } from "react";
 import { Message } from "../../../stores/SToast";
 import Icon from "../icons/Icon";
@@ -28,8 +30,6 @@ const Message: FC<Message> = ({ title, text, id }) => {
     );
   };
 
-  const handleFadingAnimation = () => {};
-
   useEffect(() => {
     const interval = setInterval(
       () => handleCountdown(),
@@ -40,22 +40,23 @@ const Message: FC<Message> = ({ title, text, id }) => {
       timeoutInMilliseconds + intervalInMilliseconds
     );
 
-    // const animationTimeout = setTimeout(
-    //   () => setAnimationClass((state) => `${state} animate-reverse`),
-    //   startOfCountdown * 10
-    // );
+    const animationTimeout = setTimeout(() => {
+      setAnimationClass(
+        "animate-fade-left animate-reverse animate-duration-[500ms]"
+      );
+    }, timeoutInMilliseconds - intervalInMilliseconds);
 
     return () => {
       clearInterval(interval);
       clearTimeout(timeout);
-      // clearTimeout(animationTimeout);
+      clearTimeout(animationTimeout);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div
-      className={`${""} relative rounded-lg bg-slate-400/90 text-slate-800/75 drop-shadow-2xl`}
+      className={`${animationClass} relative rounded-lg bg-slate-400/90 text-slate-800/75 drop-shadow-2xl`}
     >
       <div className="rounded-t-lg p-5">
         {title && (
