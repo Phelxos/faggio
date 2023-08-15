@@ -16,7 +16,7 @@ const Body: FC = () => {
   const nextWeekBookingsNumber = useState(useNextWeekBookings(myId)?.length)[0];
 
   return (
-    <div className="flex flex-col items-center leading-8">
+    <div className="flex grow flex-col items-center justify-center leading-8">
       <div className="flex flex-col gap-3 p-6">
         {nextDay ? (
           <NextDay

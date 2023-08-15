@@ -83,7 +83,7 @@ export default function PreviewWeek() {
   }, [today]);
 
   return (
-    <div>
+    <div className="col-span-full h-fit sm:col-start-3 sm:col-end-13 md:col-span-6 md:col-start-7 md:row-start-1 md:row-end-2 lg:col-end-11">
       <p className="mb-3 text-4xl font-thin text-slate-400/75">
         Wochenübersicht
       </p>

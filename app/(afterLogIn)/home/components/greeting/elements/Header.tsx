@@ -22,7 +22,7 @@ const Header: FC = () => {
   }, []);
 
   return (
-    <div className="flex items-end gap-2 rounded-t bg-sky-900 p-5">
+    <div className="flex items-end gap-2 rounded-t-lg bg-sky-900 p-5">
       <div className="flex items-end">
         <span className="text-3xl font-thin text-sky-300">
           {hasFetchedSuccesfully ? capitaliseFirstLetter(greeting) : "Hei"}

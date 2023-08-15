@@ -19,11 +19,11 @@ const Container: FC = () => {
   }
 
   return (
-    <div>
+    <div className="col-span-full sm:col-span-8 sm:col-start-3 md:col-start-1 md:col-end-6 md:row-start-3 md:row-end-4 lg:col-start-3">
       <p className="mb-3 text-2xl font-thin text-slate-400/75">
         Buchungen meiner Favoriten
       </p>
-      <div className="flex h-[275px] w-full snap-x gap-9 overflow-x-auto rounded bg-pink-600/25 px-4 pb-8 pt-10 shadow-xl">
+      <div className="flex h-[275px] w-full snap-x gap-9 overflow-x-scroll rounded bg-pink-600/25 px-4 pb-8 pt-10 shadow-xl">
         {isLoading ? (
           <SpinnerWrapped />
         ) : favoriteCoworkers?.length > 0 ? (
