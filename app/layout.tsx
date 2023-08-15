@@ -17,7 +17,7 @@ interface Props {
 const Layout: FC<Props> = ({ children }) => {
   return (
     <html lang="de">
-      <body className="relative flex h-screen w-screen flex-col">
+      <body className="scrollbar-hide relative flex h-screen w-screen flex-col">
         {children}
         <ToastContainer />
       </body>
