@@ -1,5 +1,4 @@
 import { FC } from "react";
-import ToastContainer from "./toasts/Container";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

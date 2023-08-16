@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Mit Faggio wissen Sie, wer wann im Büro ist.",
   viewport: { width: "device-width", initialScale: 1 },
   icons: { icon: "/favicon.ico" },
-  themeColor: { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  themeColor: { media: "(prefers-color-scheme: dark)", color: "#334454" },
 };
 
 interface Props {

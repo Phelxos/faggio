@@ -26,7 +26,7 @@ const NextDay: FC<Props> = ({ nextDay, nextBooking }) => {
   return (
     <>
       <p className="mb-4 self-end text-4xl font-thin text-sky-500/50">
-        Nächstes Mal
+        Nächster Bürobesuch
       </p>
       <div className="leading-10 text-sky-500">
         Du planst,
