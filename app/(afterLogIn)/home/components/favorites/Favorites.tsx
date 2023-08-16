@@ -19,7 +19,7 @@ const Container: FC = () => {
   }
 
   return (
-    <div className="col-span-full sm:col-span-8 sm:col-start-3 md:col-start-1 md:col-end-6 md:row-start-3 md:row-end-4 lg:col-start-3">
+    <div className="lg:col-end- col-span-full sm:col-span-8 sm:col-start-3 md:col-start-1 md:col-end-6 md:row-start-3 md:row-end-4 lg:col-start-8 lg:col-end-12 lg:row-start-2 lg:row-end-3">
       <p className="mb-3 text-2xl font-thin text-slate-400/75">
         Buchungen meiner Favoriten
       </p>

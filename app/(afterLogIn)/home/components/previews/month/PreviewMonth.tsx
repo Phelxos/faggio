@@ -9,7 +9,7 @@ export default function PreviewMonth() {
   const selectedYear = useCalendar((s) => s.selectedYear);
 
   return (
-    <div className="col-span-full sm:col-start-3 sm:col-end-11 md:col-start-7 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-end-11">
+    <div className="col-span-full sm:col-start-3 sm:col-end-11 md:col-start-7 md:col-end-13 md:row-start-2 md:row-end-4 lg:col-start-8 lg:col-end-12 lg:row-start-1 lg:row-end-2">
       <p className="mb-3 text-4xl font-thin text-slate-400/75">
         Monatsübersicht
       </p>
