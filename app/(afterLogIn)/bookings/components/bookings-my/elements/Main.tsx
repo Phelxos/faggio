@@ -26,7 +26,7 @@ const Main: FC = () => {
   }, [bookings, context?.locallySelectedOfficeId, coworkerId]);
 
   return (
-    <div className="max-h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-scroll">
+    <div className="max-h-[400px] w-full grow divide-y-4 divide-emerald-900 overflow-y-scroll">
       {filteredBookings.length > 0 ? (
         <FilteredBookings filteredBookings={filteredBookings} />
       ) : (
