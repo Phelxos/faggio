@@ -23,14 +23,16 @@ const buttons: { name: string; description: string; icon: TIcon }[] = [
 
 const Info: FC = () => {
   return (
-    <Popover className={`fixed bottom-7 left-4 z-50 opacity-95`}>
+    <Popover
+      className={`fixed bottom-7 left-4 z-50 opacity-95 sm:bottom-8 sm:left-8`}
+    >
       {({ open }) => (
         <>
           <Popover.Button className="group ml-2 inline-flex items-center rounded-full border-2 border-sky-200/50 bg-sky-800 p-1 opacity-50 hover:text-opacity-100 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Icon
               icon="informationCircle"
               className={`${open ? "text-opacity-100" : "text-opacity-50"}
-                  h-10 w-10 text-slate-100 transition duration-150 ease-in-out group-hover:text-opacity-80`}
+                  h-10 w-10 text-slate-100 transition duration-150 ease-in-out group-hover:text-opacity-80 lg:h-16 lg:w-16`}
               aria-hidden="true"
             />
           </Popover.Button>
@@ -43,9 +45,9 @@ const Info: FC = () => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="fixed bottom-32 left-0 right-0 z-10 w-screen max-w-sm transform px-4 sm:px-0 lg:left-7 lg:max-w-3xl">
-              <div className="flex flex-col overflow-hidden rounded-lg border-4 border-sky-800/80 bg-sky-700">
-                <div className="relative grid gap-8 rounded p-6 lg:grid-cols-2">
+            <Popover.Panel className="fixed bottom-32 left-1 right-1 z-10 w-screen max-w-sm transform px-4 sm:left-6 sm:max-w-xl md:bottom-36 md:max-w-2xl lg:max-w-3xl 2xl:max-w-4xl">
+              <div className="flex flex-col gap-2 overflow-hidden rounded-lg border-4 border-sky-800/80 bg-sky-700">
+                <div className="relative grid gap-8 rounded p-6 md:grid-cols-2">
                   {buttons.map(
                     ({ name, description, icon }: any, i: number) => (
                       <div key={i} className="flex gap-4">
