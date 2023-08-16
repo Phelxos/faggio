@@ -23,12 +23,10 @@ const buttons: { name: string; description: string; icon: TIcon }[] = [
 
 const Info: FC = () => {
   return (
-    <Popover
-      className={`fixed bottom-7 left-4 z-50 opacity-75 hover:opacity-100`}
-    >
+    <Popover className={`fixed bottom-7 left-4 z-50 opacity-95`}>
       {({ open }) => (
         <>
-          <Popover.Button className="group ml-2 inline-flex items-center rounded-full border-2 border-sky-200/50 bg-sky-800 from-orange-900/75 to-lime-500/75 p-1 hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+          <Popover.Button className="group ml-2 inline-flex items-center rounded-full border-2 border-sky-200/50 bg-sky-800 p-1 opacity-50 hover:text-opacity-100 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
             <Icon
               icon="informationCircle"
               className={`${open ? "text-opacity-100" : "text-opacity-50"}
@@ -45,40 +43,44 @@ const Info: FC = () => {
             leaveFrom="opacity-100 translate-y-0"
             leaveTo="opacity-0 translate-y-1"
           >
-            <Popover.Panel className="fixed bottom-28 left-0 right-0 z-10 w-screen max-w-sm transform px-4 sm:px-0 lg:left-7 lg:max-w-3xl">
-              <div className="flex flex-col gap-6 overflow-hidden rounded-lg border-2 border-orange-200 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-900 to-lime-500 p-6">
-                <div className="relative grid gap-8 lg:grid-cols-2">
+            <Popover.Panel className="fixed bottom-32 left-0 right-0 z-10 w-screen max-w-sm transform px-4 sm:px-0 lg:left-7 lg:max-w-3xl">
+              <div className="flex flex-col overflow-hidden rounded-lg border-4 border-sky-800/80 bg-sky-700">
+                <div className="relative grid gap-8 rounded p-6 lg:grid-cols-2">
                   {buttons.map(
                     ({ name, description, icon }: any, i: number) => (
-                      <div key={i} className="flex items-center gap-4">
-                        <div className=" flex min-h-[75px] min-w-[75px] flex-col items-center justify-center rounded-lg bg-lime-900/50 p-2 text-lime-300/75">
+                      <div key={i} className="flex gap-4">
+                        <div className="flex min-h-[75px] min-w-[75px] flex-col items-center justify-center rounded-xl bg-sky-800">
                           {icon !== "noSymbol" ? (
-                            <Icon icon={icon} className="h-12 w-12" />
+                            <Icon
+                              icon={icon}
+                              className="h-12 w-12 fill-sky-400/90"
+                            />
                           ) : (
                             <FontAwesomeIcon
                               icon={faFloppyDisk}
-                              className="h-12 w-12"
+                              className="h-12 w-12 text-sky-400/90"
                             />
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-bold tracking-wider text-lime-400">
+                          <p className="mb-1 text-lg font-bold tracking-wider text-sky-300/75">
                             {name}
                           </p>
-                          <p className="text-xs text-lime-100">{description}</p>
+                          <p className="text-sm text-sky-200/90">
+                            {description}
+                          </p>
                         </div>
                       </div>
                     )
                   )}
                 </div>
-                <hr className="border-orange-900/25" />
-                <div className="text-lime-200/90">
+                <div className="rounded-b bg-sky-800 p-8">
                   <span className="flex flex-col">
-                    <span className="text-md mb-1 font-bold tracking-wider text-orange-900/50">
+                    <span className="mb-2 text-xl font-light tracking-wider text-sky-200/50">
                       Bürotage buchen
                     </span>
                   </span>
-                  <span className="block text-sm font-light tracking-wide text-orange-900/75">
+                  <span className="block text-sm font-light tracking-wide text-sky-100">
                     Um einzutragen dass du an einem Tag ins Büro kommst,{" "}
                     <span className="font-bold">klicke auf den Tag</span> im
                     Bearbeitungsmodus des Kalendars.

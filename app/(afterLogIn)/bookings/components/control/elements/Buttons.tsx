@@ -8,7 +8,7 @@ import Icon from "../../../../../components/icons/Icon";
 import useAccount from "../../../../../../stores/SAccount";
 
 const dimensions = {
-  button: "h-16 w-16 lg:h-20 lg:w-20",
+  button: "h-16 w-16 lg:h-20 lg:w-20 2xl:h-24 2xl:w-24",
   icons: {
     edit: "h-12 w-12 lg:h-14 lg:w-14",
     save: "h-8 w-8 lg:h-10 lg:w-10",
