@@ -35,7 +35,7 @@ const Card: FC = () => {
         <Title
           city={city}
           district={district}
-          className="absolute bottom-3 right-2 rounded-lg p-2 backdrop-blur-xl"
+          className="absolute bottom-3 right-2 rounded-lg p-2 backdrop-blur-xl lg:p-4"
         />
       </div>
       <div className="flex h-full flex-col p-6">

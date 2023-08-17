@@ -12,14 +12,11 @@ interface Props {
 
 const Title: FC<Props> = ({ district, city, className }) => {
   return (
-    <div className={`flex flex-col items-center gap-1 ${className}`}>
-      {/* <h2 className="text-sm font-semibold tracking-widest text-amber-900">
-        {district && district[0].toLocaleUpperCase() + district?.slice(1)}
-      </h2> */}
-      <h1 className="text-4xl font-light uppercase tracking-widest text-amber-900">
-        {EOfficesEnglishToGerman[city]}
-      </h1>
-    </div>
+    <h1
+      className={`${className} bg-amber-800 bg-clip-text text-4xl font-light uppercase tracking-widest text-transparent`}
+    >
+      {EOfficesEnglishToGerman[city]}
+    </h1>
   );
 };
 
