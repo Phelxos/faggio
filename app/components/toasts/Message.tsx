@@ -40,11 +40,12 @@ const Message: FC<Message> = ({ title, description, id }) => {
       timeoutInMilliseconds + intervalInMilliseconds
     );
 
+    // TO-DO Animation for fading out the toast is not working
     const animationTimeout = setTimeout(() => {
       setAnimationClass(
         "animate-fade-left animate-reverse animate-duration-[500ms]"
       );
-    }, timeoutInMilliseconds - intervalInMilliseconds);
+    }, timeoutInMilliseconds);
 
     return () => {
       clearInterval(interval);
@@ -58,14 +59,14 @@ const Message: FC<Message> = ({ title, description, id }) => {
     <div
       className={`${animationClass} relative rounded-lg bg-slate-400/90 text-slate-800/75 drop-shadow-2xl`}
     >
-      <div className="rounded-t-lg p-5">
+      <div className="rounded-t-lg p-6">
         {title && (
-          <span className="mb-2 inline-block text-3xl font-thin">{title}</span>
+          <span className="mb-3 inline-block text-3xl font-thin">{title}</span>
         )}
         <p className="font-semibold">{description}</p>
       </div>
-      <div className="flex items-center justify-between gap-2 rounded-b-lg bg-slate-500 p-3 opacity-75">
-        <div className="h-5 w-4/5 rounded-full bg-slate-700 p-1">
+      <div className="flex items-center justify-between gap-3 rounded-b-lg bg-slate-500 p-4 opacity-75">
+        <div className="h-5 grow rounded-full bg-slate-700 p-1">
           <div
             className="h-3 rounded-full bg-slate-400/75"
             style={{
@@ -73,7 +74,7 @@ const Message: FC<Message> = ({ title, description, id }) => {
             }}
           ></div>
         </div>
-        <div className="flex grow items-center justify-center">
+        <div className="flex w-fit items-center justify-center">
           <button>
             <Icon
               icon="xMark"
