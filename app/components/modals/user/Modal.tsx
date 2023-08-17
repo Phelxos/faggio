@@ -35,11 +35,11 @@ const Modal: FC<IModal & { id: number }> = ({
     <Spinner />
   ) : coworker ? (
     <Dialog
-      className="fixed left-0 top-0 flex h-screen w-screen flex-col items-center justify-center bg-slate-900/50 backdrop-blur"
+      className="fixed left-1/2 top-1/2 flex h-screen w-screen -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center bg-slate-900/50 backdrop-blur"
       open={isDisplayingModal}
       onClose={toggleModal}
     >
-      <Dialog.Panel className="max-h-3/4 min-h-1/4 max-w-3/4 min-w-1/4 relative flex h-[500px] w-[300px] flex-col rounded-b-lg rounded-t border-t-8 border-t-pink-300/50 bg-pink-900/75 drop-shadow-2xl">
+      <Dialog.Panel className="relative m-4 flex flex-col rounded-b-lg rounded-t border-t-8 border-t-pink-300/50 bg-pink-900/75 drop-shadow-2xl">
         <div className="grid w-full grid-cols-4 grid-rows-[minmax(1fr,_fit-content)] place-items-center gap-y-4 overflow-auto px-6 pb-8 pt-4">
           <Title forename={coworker?.forename} surname={coworker?.surname} />
           <Image
