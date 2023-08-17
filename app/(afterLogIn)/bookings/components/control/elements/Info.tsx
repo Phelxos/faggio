@@ -47,7 +47,7 @@ const Info: FC = () => {
           >
             <Popover.Panel className="fixed bottom-32 left-1 right-1 z-10 w-screen max-w-sm transform px-4 sm:left-6 sm:max-w-xl md:bottom-36 md:max-w-2xl lg:max-w-3xl 2xl:max-w-4xl">
               <div className="flex flex-col gap-2 overflow-hidden rounded-lg border-4 border-sky-800/80 bg-sky-700">
-                <div className="relative grid gap-8 rounded p-6 md:grid-cols-2">
+                <div className="relative grid gap-8 rounded p-6 md:grid-cols-2 lg:p-12">
                   {buttons.map(
                     ({ name, description, icon }: any, i: number) => (
                       <div key={i} className="flex gap-4">

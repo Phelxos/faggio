@@ -6,7 +6,13 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children }) => {
-  return <ContextProvider>{children}</ContextProvider>;
+  return (
+    <ContextProvider>
+      <div className="col-span-full grid h-fit grid-cols-12 gap-y-8">
+        {children}
+      </div>
+    </ContextProvider>
+  );
 };
 
 export default Layout;

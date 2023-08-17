@@ -36,9 +36,9 @@ const Control: FC = () => {
   };
 
   return (
-    <div className="flex h-[200px] w-full flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/40 p-3">
+    <div className="col-start-1 col-end-13 row-start-2 row-end-3 flex h-[200px] w-full flex-col items-stretch justify-end gap-3 rounded-lg bg-pink-900/40 p-3 sm:col-start-3 sm:col-end-11 md:col-start-4 md:col-end-10 lg:col-start-8 lg:col-end-12 lg:row-start-1 lg:row-end-2 lg:place-self-center xl:col-end-11">
       <div
-        className={`flex h-1/2 flex-col items-center justify-center rounded-t-lg border-pink-200/75 ${
+        className={`flex h-1/2 flex-col justify-center rounded-t-lg border-pink-200/75 xl:px-4 ${
           context?.activeButton !== "center"
             ? "bg-pink-500"
             : " bg-gradient-to-r from-pink-500 to-pink-800"

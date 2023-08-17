@@ -79,7 +79,7 @@ const ListView: FC<ListViewProps> = () => {
         context?.isListView && displayedCoworkers?.length > 0
           ? "snap-y snap-mandatory flex-col border-8 p-4"
           : "snap-x snap-mandatory flex-row items-center border-x-[12px] px-[50px] py-4"
-      } flex h-[300px] w-full gap-10 overflow-scroll rounded-lg border-transparent bg-pink-300/25 shadow-inner`}
+      } xl-col-end-7 col-start-1 col-end-13 row-start-1 row-end-2 flex h-[300px] w-full gap-10 overflow-scroll overflow-y-hidden rounded-lg border-transparent bg-pink-300/25 shadow-inner sm:col-start-2 sm:col-end-12 md:col-start-3 md:col-end-11 lg:col-start-1 lg:col-end-7 xl:col-start-2`}
     >
       <>
         {isLoadingCoworkersListFromStore ? (
