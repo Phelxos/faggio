@@ -7,11 +7,11 @@ import {
   Geography,
   Marker,
 } from "react-simple-maps";
-import useOffice from "../../../../stores/SOffices";
+import useOffice from "../../../../../../stores/SOffices";
 import {
   EOfficesEnglishToGerman,
   TOfficeCityEnglish,
-} from "../../../../typings/types/TOfficeCity";
+} from "../../../../../../typings/types/TOfficeCity";
 
 interface IMarker {
   markerOffset: {
@@ -77,7 +77,7 @@ const markers: IMarker[] = [
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/countries/germany/germany-regions.json";
 
-const Map: FC = () => {
+const Body: FC = () => {
   const globallySelectedOfficeId = useOffice((s) => s.globallySelectedOfficeId);
   const setGloballySelectedOfficeId = useOffice(
     (s) => s.setGloballySelectedOfficeId
@@ -125,7 +125,7 @@ const Map: FC = () => {
           onClick={() => handleMarkerClick(officeId)}
           style={{
             default: { fill: "#06F" },
-            hover: { fontSize: "16px" },
+            hover: { fontSize: "16px", cursor: "pointer" },
           }}
         >
           <circle
@@ -166,4 +166,4 @@ const Map: FC = () => {
   );
 };
 
-export default Map;
+export default Body;

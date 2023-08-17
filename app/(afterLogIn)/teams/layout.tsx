@@ -5,6 +5,10 @@ interface Props {
   children: React.ReactNode;
 }
 
+export const metadata = {
+  themeColor: { media: "(prefers-color-scheme: dark)", color: "#BE185D" },
+};
+
 const Layout: FC<Props> = ({ children }) => {
   return (
     <ContextProvider>
