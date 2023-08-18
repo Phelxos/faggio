@@ -40,7 +40,7 @@ const Modal: FC<IModal & { id: number }> = ({
         open={isDisplayingModal}
         onClose={toggleModal}
       >
-        <Dialog.Panel className="relative m-4 flex flex-col rounded-b-lg rounded-t border-t-8 border-t-pink-300/50 bg-pink-900/75 drop-shadow-2xl">
+        <Dialog.Panel className="relative m-4 flex flex-col rounded-b-lg rounded-t border-t-8 border-t-pink-300/50 bg-pink-900/75 drop-shadow-2xl sm:w-2/3 lg:w-1/2 xl:w-1/3 2xl:w-1/4">
           <div className="grid w-full grid-cols-4 grid-rows-[minmax(1fr,_fit-content)] place-items-center gap-y-4 overflow-auto px-6 pb-8 pt-4">
             <Title forename={coworker?.forename} surname={coworker?.surname} />
             <Image
