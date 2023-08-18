@@ -1,6 +1,9 @@
+"use client";
+
 import { FC } from "react";
 import Icon from "../../../../../components/icons/Icon";
-import copyAddressToClipboard from "../../../../../../helpers/copyAddressToClipboard";
+import copyAddressToClipboard from "../../../../../../hooks/useCopyClipboardForAdresses";
+import useCopyClipboardForAddresses from "../../../../../../hooks/useCopyClipboardForAdresses";
 
 interface Props {
   street: string;
@@ -9,7 +12,8 @@ interface Props {
   city: string;
 }
 
-const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
+const Address: FC<Props> = ({ street, houseNumber, postcode, city }) => {
+  const copyToClipboard = useCopyClipboardForAddresses();
   return (
     <div className="rounded-lg border-2 border-amber-800 bg-amber-600">
       <div className="flex items-center justify-between bg-amber-900/90 p-4">
@@ -20,9 +24,7 @@ const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
           <Icon
             icon="documentDuplicate"
             className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-600 opacity-75 active:bg-amber-700"
-            onClick={() =>
-              copyAddressToClipboard(street, houseNumber, postcode, city)
-            }
+            onClick={() => copyToClipboard(street, houseNumber, postcode, city)}
           />
         </button>
       </div>
@@ -37,7 +39,7 @@ const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
-              onClick={() => copyAddressToClipboard(street, houseNumber)}
+              onClick={() => copyToClipboard(street, houseNumber)}
             />
           </button>
         </div>
@@ -52,7 +54,7 @@ const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
             <Icon
               icon="documentDuplicate"
               className="h-8 w-8 rounded-full bg-amber-700/50 p-2 text-amber-900 opacity-75"
-              onClick={() => copyAddressToClipboard(postcode, city)}
+              onClick={() => copyToClipboard(postcode, city)}
             />
           </button>
         </div>
@@ -61,4 +63,4 @@ const Adress: FC<Props> = ({ street, houseNumber, postcode, city }) => {
   );
 };
 
-export default Adress;
+export default Address;

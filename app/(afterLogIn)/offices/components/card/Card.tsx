@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FC } from "react";
-import Adress from "./elements/Adress";
+import Address from "./elements/Address";
 import Quickies from "./elements/Quickies";
 import Title from "./elements/Title";
 import useOffice from "../../../../../stores/SOffices";
@@ -50,7 +50,7 @@ const Card: FC = () => {
             {description}
           </div>
         </div>
-        <Adress
+        <Address
           street={street}
           houseNumber={houseNumber}
           postcode={postcode}
