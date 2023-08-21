@@ -25,7 +25,7 @@ const User: FC = () => {
 
   return (
     <div
-      className={`relative flex items-center gap-1 overflow-hidden rounded-sm bg-${currentTheme}-500 py-2 pl-5 pr-8 shadow-sm`}
+      className={`relative flex items-center gap-1 overflow-hidden rounded-sm cursor-pointer bg-${currentTheme}-500 py-2 pl-5 pr-8 shadow-sm`}
       onClick={toggleModal}
     >
       <Icon
