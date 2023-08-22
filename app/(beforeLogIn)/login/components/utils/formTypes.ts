@@ -1,20 +1,41 @@
+import TIcon from "../../../../../typings/types/TIcon";
+import { Message } from "../../../../../stores/SToast";
+
 interface State {
-  emailValue: string;
-  passwordValue: string;
-  emailError: string;
-  passwordError: string;
-  isValidEmail: boolean;
-  isValidPassword: boolean;
-  isValid: boolean;
+  values: {
+    email: string;
+    password: string;
+  };
+  errors: {
+    email: Message | null;
+    password: Message | null;
+  };
+  isValid: {
+    form: boolean;
+    email: boolean;
+    password: boolean;
+  };
 }
 
-type ActionType = "SET_EMAIL" | "SET_PASSWORD";
+type ActionType = "SET_EMAIL" | "SET_PASSWORD" | "SUBMIT";
 
 interface Action {
   type: ActionType;
   payload: string;
 }
 
-type FormIds = "email" | "password";
+type Input = "email" | "password";
 
-export type { State, Action, ActionType, FormIds };
+interface InputData {
+  [key: string]: {
+    id: Input;
+    label: string;
+    placeholder: string;
+    icon: TIcon;
+    actionType: ActionType;
+    type?: string;
+    prefilledValue?: string;
+  };
+}
+
+export type { State, Action, ActionType, Input, InputData };

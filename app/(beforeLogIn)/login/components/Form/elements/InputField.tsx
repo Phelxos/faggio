@@ -1,8 +1,8 @@
 import { Dispatch, FC, use, useEffect, useRef, useState } from "react";
-import TIcon from "../../../../typings/types/TIcon";
-import Icon from "../../../components/icons/Icon";
-import { inputData } from "./utils/formData";
-import { Action } from "./utils/formTypes";
+import TIcon from "../../../../../../typings/types/TIcon";
+import Icon from "../../../../../components/icons/Icon";
+import { inputData } from "../../utils/formData";
+import { Action } from "../../utils/formTypes";
 
 interface Props {
   type?: string;

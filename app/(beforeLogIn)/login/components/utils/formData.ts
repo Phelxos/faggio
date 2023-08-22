@@ -1,26 +1,38 @@
-import TIcon from "../../../../../typings/types/TIcon";
-import { State, ActionType, FormIds } from "./formTypes";
+import { Message } from "../../../../../stores/SToast";
+import { State, ActionType, Input, InputData } from "./formTypes";
 
 const initialState: State = {
-  emailValue: "",
-  passwordValue: "",
-  emailError: "",
-  passwordError: "",
-  isValidEmail: false,
-  isValidPassword: false,
-  isValid: false,
+  values: {
+    email: "",
+    password: "",
+  },
+  errors: {
+    email: null,
+    password: null,
+  },
+  isValid: {
+    form: false,
+    email: false,
+    password: false,
+  },
 };
 
 const regex = {
-  email: /[a-zA-Z]+@unternehmen.de$/,
-  password: /[a-zA-Z]{6,32}/,
+  EMAIL: /[a-zA-Z]+@unternehmen.de$/,
+  PASSWORD: /[a-zA-Z]{6,32}/,
 };
 
-const errorMessages = {
-  email:
-    "Bitte geben Sie eine gültige E-Mail-Adresse ein. Sie muss auf '@unternehmen.de' enden.",
-  password:
-    "Bitte geben Sie ein gültiges Kennwort ein. Es muss mindestens sechs und höchstens 32 Zeichen lang sein.",
+const errorMessages: { [key: string]: Message } = {
+  EMAIL: {
+    title: "Ungültige E-Mail-Adresse",
+    description:
+      "Bitte geben Sie eine gültige E-Mail-Adresse ein. Sie muss auf '@unternehmen.de' enden.",
+  },
+  PASSWORD: {
+    title: "Ungültiges Kennwort",
+    description:
+      "Bitte geben Sie ein gültiges Kennwort ein. Es muss mindestens sechs und höchstens 32 Zeichen lang sein.",
+  },
 };
 
 const payloadCases: { [key: string]: ActionType } = {
@@ -28,26 +40,14 @@ const payloadCases: { [key: string]: ActionType } = {
   SET_PASSWORD: "SET_PASSWORD",
 };
 
-const formIds: { [key: string]: FormIds } = {
-  email: "email",
-  password: "password",
+const inputTypes: { [key: string]: Input } = {
+  EMAIL: "email",
+  PASSWORD: "password",
 };
-
-interface InputData {
-  [key: string]: {
-    id: FormIds;
-    label: string;
-    placeholder: string;
-    icon: TIcon;
-    actionType: ActionType;
-    type?: string;
-    prefilledValue?: string;
-  };
-}
 
 const inputData: InputData = {
   email: {
-    id: formIds.email,
+    id: inputTypes.EMAIL,
     label: "E-Mail-Adresse",
     placeholder: "volker@unternehmen.de",
     icon: "envelope",
@@ -55,7 +55,7 @@ const inputData: InputData = {
     prefilledValue: "@unternehmen.de",
   },
   password: {
-    id: formIds.password,
+    id: inputTypes.PASSWORD,
     label: "Kennwort",
     placeholder: "nurderbvb09!",
     icon: "key",
@@ -64,4 +64,11 @@ const inputData: InputData = {
   },
 };
 
-export { initialState, regex, errorMessages, payloadCases, inputData, formIds };
+export {
+  initialState,
+  regex,
+  errorMessages,
+  payloadCases,
+  inputData,
+  inputTypes,
+};
