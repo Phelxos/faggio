@@ -9,7 +9,7 @@ const EmptyStateMessage: FC = () => {
   const context = useContext(Context);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-2 border-2 py-4 text-pink-200/50">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 py-4 text-pink-200/50">
       <Icon
         icon="exclamationCircle"
         className="h-52 w-52 fill-pink-300/25 opacity-50"
