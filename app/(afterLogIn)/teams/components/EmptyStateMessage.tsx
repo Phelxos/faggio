@@ -9,7 +9,7 @@ const EmptyStateMessage: FC = () => {
   const context = useContext(Context);
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-pink-200/50">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-2 border-2 py-4 text-pink-200/50">
       <Icon
         icon="exclamationCircle"
         className="h-52 w-52 fill-pink-300/25 opacity-50"
@@ -24,7 +24,7 @@ const EmptyStateMessage: FC = () => {
         {context?.searchForUser && (
           <>
             mit der Buchstabenfolge{" "}
-            <strong className="min-w-3/4 max-w-3/4 mx-auto my-2 block overflow-scroll rounded bg-pink-700/75 px-4 py-2 font-mono uppercase">
+            <strong className="min-w-3/4 max-w-3/4 mx-auto my-2 block overflow-auto rounded bg-pink-700/75 px-4 py-2 font-mono uppercase">
               {context?.searchForUser}
             </strong>{" "}
             im Namen.
