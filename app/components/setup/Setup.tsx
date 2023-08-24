@@ -2,7 +2,6 @@
 
 import { FC } from "react";
 import useSetupData from "../../../hooks/useSetupData";
-import IncorrectSizeMessage from "./IncorrectSizeMessage";
 // import "../styles/globals.scss";
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 
 const Setup: FC<Props> = ({ children }) => {
   const { isHydrated } = useSetupData();
-  
+
   if (isHydrated) {
     return <>{children}</>;
   }
