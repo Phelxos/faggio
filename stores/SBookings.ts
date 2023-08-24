@@ -10,10 +10,14 @@ import compareDatesSafely from "../helpers/compareDatesSafely";
 
 interface Interface {
   bookings: IBooking[] | [];
-  setBookings: (bookingsToBeSaved: IBooking[]) => Promise<number | Error>;
-  deleteBookings: (bookingsToBeRemoved: IBooking[]) => Promise<number | Error>;
+  setBookings: (
+    bookingsToBeSaved: IBooking[]
+  ) => Promise<number | Error> | number | Error;
+  deleteBookings: (
+    bookingsToBeRemoved: IBooking[]
+  ) => Promise<number | Error> | number | Error;
   clearBookings: () => void;
-  fetchBookings: () => Promise<void>;
+  fetchBookings: () => Promise<void> | void;
 }
 
 const { coworkerId } = useAccount.getState();
