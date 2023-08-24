@@ -1,4 +1,6 @@
-const mockCoworkers = [
+import ICoworker from "../../typings/interfaces/ICoworker";
+
+const mockCoworkers: ICoworker[] = [
   {
     forename: "tim",
     surname: "mueller",

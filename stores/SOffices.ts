@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
+import mockOffices from "../database/mock/offices";
 import IOffice from "../typings/interfaces/IOffice";
 import { TOfficeCityEnglish } from "../typings/types/TOfficeCity";
-import useAccount from "./SAccount";
 
 export const initialValueForGloballySelectedOffice: IOffice = {
   city: "dortmund",
@@ -27,8 +27,10 @@ interface Interface {
   setGloballySelectedOfficeId: (officeId: number) => void;
   globallySelectedOffice: IOffice;
   setGloballySelectedOffice: (officeId: number) => void;
-  fetchAndSetOffice: () => void;
+  fetchAndSetOffice: () => Promise<void>;
 }
+
+const isUsingSqlData = process.env.USE_SQL_DATA?.toLowerCase() === "true";
 
 const useOffice = create<Interface>()(
   devtools(
@@ -55,23 +57,32 @@ const useOffice = create<Interface>()(
           });
         },
         fetchAndSetOffice: async () => {
+          let fullList: IOffice[] = [];
           try {
-            const res = await fetch(`${server}/api/offices`);
-            const fullList = await res.json();
-            set({ allOffices: fullList });
-            set({
-              allOfficeNames: fullList.map((entry: IOffice) => entry.city),
-            });
-            set((state) => ({
-              globallySelectedOfficeId: fullList.find(
-                (entry: IOffice) =>
-                  entry.officeId === state.globallySelectedOfficeId
-              ).officeId,
-              globallySelectedOffice: fullList.find(
-                (entry: IOffice) =>
-                  entry.officeId === state.globallySelectedOfficeId
-              ),
-            }));
+            if (isUsingSqlData) {
+              const res = await fetch(`${server}/api/offices`);
+              fullList = await res.json();
+            } else {
+              fullList = mockOffices;
+            }
+            if (fullList.length > 0) {
+              set({ allOffices: fullList });
+              set({
+                allOfficeNames: fullList.map((entry: IOffice) => entry.city),
+              });
+              set((state) => ({
+                globallySelectedOfficeId: fullList.find(
+                  (entry: IOffice) =>
+                    entry.officeId === state.globallySelectedOfficeId
+                )?.officeId,
+                globallySelectedOffice: fullList.find(
+                  (entry: IOffice) =>
+                    entry.officeId === state.globallySelectedOfficeId
+                ),
+              }));
+            } else {
+              throw new Error("🚨 The list of fetched offices is empty.");
+            }
           } catch (err) {
             console.error(
               "Something has gone wrong, while fetching the list of offices:",

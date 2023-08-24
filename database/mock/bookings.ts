@@ -1,4 +1,6 @@
-const mockBookings = [
+import IBooking from "../../typings/interfaces/IBooking";
+
+const mockBookings: IBooking[] = [
   { date: "2023-09-02T12:00:00.000Z", officeId: 10, coworkerId: 1000 },
   { date: "2023-09-01T12:00:00.000Z", officeId: 10, coworkerId: 1000 },
   { date: "2023-09-05T12:00:00.000Z", officeId: 10, coworkerId: 1000 },

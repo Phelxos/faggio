@@ -1,4 +1,6 @@
-const mockOffices = [
+import IOffice from "../../typings/interfaces/IOffice";
+
+const mockOffices: IOffice[] = [
   {
     city: "dortmund",
     officeId: 10,
