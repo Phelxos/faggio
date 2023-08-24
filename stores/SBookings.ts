@@ -2,11 +2,11 @@ import a from "axios";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { apiPath } from "../config/index";
+import mockBookings from "../database/mock/bookings";
+import compareDatesSafely from "../helpers/compareDatesSafely";
 import safeguardDate from "../helpers/safeguardDateAgainstTimezoneOffset";
 import IBooking from "../typings/interfaces/IBooking";
 import useAccount from "./SAccount";
-import mockBookings from "../database/mock/bookings";
-import compareDatesSafely from "../helpers/compareDatesSafely";
 
 interface Interface {
   bookings: IBooking[] | [];
@@ -21,13 +21,13 @@ interface Interface {
 }
 
 const { coworkerId } = useAccount.getState();
-const useSqlData = process.env.USE_SQL_DATA?.toLowerCase() === "true";
+const isUsingSqlData = process.env.USE_SQL_DATA?.toLowerCase() === "true";
 
 const useBookings = create<Interface>()(
   devtools(
     persist(
       (set, get) => {
-        if (useSqlData) {
+        if (isUsingSqlData) {
           return {
             bookings: [],
             setBookings: async (bookingsToBeSaved: IBooking[]) => {

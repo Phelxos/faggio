@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { server } from "../config/index";
+import mockCoworkers from "../database/mock/coworkers";
 import ICoworker from "../typings/interfaces/ICoworker";
 
 interface Interface {
@@ -9,6 +10,8 @@ interface Interface {
   getCoworker: (id: number) => ICoworker | undefined;
   loadCoworkers: () => Promise<void>;
 }
+
+const isUsingSqlData = process.env.USE_SQL_DATA?.toLowerCase() === "true";
 
 const useCoworkers = create<Interface>()(
   devtools(
@@ -28,14 +31,19 @@ const useCoworkers = create<Interface>()(
           try {
             set({ isLoading: true });
             const res = await fetch(`${server}/api/coworkers`);
-            const allCoworkersFromAPI = await res.json();
+            let allCoworkers;
+            if (isUsingSqlData) {
+              allCoworkers = await res.json();
+            } else {
+              allCoworkers = mockCoworkers;
+            }
             const resRandomUsers = await fetch(
-              `https://randomuser.me/api/?results=${allCoworkersFromAPI.length}`
+              `https://randomuser.me/api/?results=${allCoworkers.length}`
             );
             const randomUsers = await resRandomUsers.json();
             const imgSources = randomUsers.results;
 
-            const coworkerListWithPhotos: ICoworker[] = allCoworkersFromAPI.map(
+            const coworkerListWithPhotos: ICoworker[] = allCoworkers.map(
               (coworker: ICoworker, i: number) => {
                 return {
                   ...coworker,
