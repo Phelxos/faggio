@@ -10,12 +10,9 @@ interface Props {
 }
 
 const Setup: FC<Props> = ({ children }) => {
-  const { isHydrated, isIncorrectSize } = useSetupData();
-
-  // if (isIncorrectSize) {
-  if (false) {
-    return <IncorrectSizeMessage />;
-  } else if (isHydrated) {
+  const { isHydrated } = useSetupData();
+  
+  if (isHydrated) {
     return <>{children}</>;
   }
 
