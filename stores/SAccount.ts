@@ -17,7 +17,7 @@ const useAccount = create<Interface>()(
   devtools(
     persist(
       (set) => ({
-        forename: "max",
+        forename: "maximilian",
         surname: "mustermann",
         coworkerId: 9999,
         favourites: [1001, 1002, 1003],
